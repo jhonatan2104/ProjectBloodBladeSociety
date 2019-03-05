@@ -26,7 +26,7 @@ class System:
             shield = Shield("Armor Berserker", 1, 100, 600)
 
             return Player("Ichigo Kurosaki", 1000, 100, sword, shield)
-        elif (nameChamp == 'Killer Bee'):
+        elif nameChamp == 'Killer Bee':
             at1 = Attack(" ", 0, 0, 0, 0)
             at2 = Attack(" ", 0, 0, 0, 0)
             at3 = Attack(" ", 0, 0, 0, 0)
@@ -36,7 +36,7 @@ class System:
             shield = Shield("Armor of Gemini", 0, 0, 0)
 
             return Player("Killer Bee", 0, 0, sword, shield)
-        elif (nameChamp == 'Xena'):
+        elif nameChamp == 'Xena':
             at1 = Attack(" ", 0, 0, 0, 0)
             at2 = Attack(" ", 0, 0, 0, 0)
             at3 = Attack(" ", 0, 0, 0, 0)
@@ -45,7 +45,7 @@ class System:
             shield = Shield("Armor Knight", 0, 0, 0)
 
             return Player("Xena", 0, 0, sword, shield)
-        elif (nameChamp == 'Roronoa Zoro'):
+        elif nameChamp == 'Roronoa Zoro':
             at1 = Attack(" ", 0, 0, 0, 0)
             at2 = Attack(" ", 0, 0, 0, 0)
             at3 = Attack(" ", 0, 0, 0, 0)
@@ -55,7 +55,7 @@ class System:
             shield = Shield("Black Armor", 0, 0, 0)
 
             return Player("Roronoa Zoro", 0, 0, sword, shield)
-        elif (nameChamp == 'Gohan'):
+        elif nameChamp == 'Gohan':
             at1 = Attack(" ", 0, 0, 0, 0)
             at2 = Attack(" ", 0, 0, 0, 0)
             at3 = Attack(" ", 0, 0, 0, 0)
