@@ -17,54 +17,55 @@ class System:
     def choosePlayer(indexPlayer):
         nameChamp = System.listPlayer()[indexPlayer]
         if nameChamp == 'Ichigo Kurosaki':
-            at1 = Attack(" ", 52, 1, 300, 100)
-            at2 = Attack(" ", 52, 1, 300, 100)
-            at3 = Attack(" ", 52, 1, 300, 100)
+            at1 = Attack(name="Getsuga Tenshou", mana=400, latencia=6, danoFisico=1000, danoMagico=6000)
+            at2 = Attack(name="Piercer of Heaven", mana=200, latencia=3, danoFisico=600, danoMagico=2000)
+            at3 = Attack(name="Getsuga Jūjishō", mana=350, latencia=3, danoFisico=2500, danoMagico=1500)
 
             sword = Sword("Zanpakutō", at1, at2, at3)
 
-            shield = Shield("Armor Berserker", 1, 100, 600)
+            shield = Shield(name="Armor Berserker", latencia=2, defesaFisica=1000, defesaMagica=3000)
 
-            return Player("Ichigo Kurosaki", 1000, 100, sword, shield)
+            return Player(name="Ichigo Kurosaki", hp=10000, mana=1000, sword=sword, shield=shield)
         elif nameChamp == 'Killer Bee':
-            at1 = Attack(" ", 0, 0, 0, 0)
-            at2 = Attack(" ", 0, 0, 0, 0)
-            at3 = Attack(" ", 0, 0, 0, 0)
+            at1 = Attack(name="Crumbling the skin", mana=200, latencia=3, danoFisico=3000, danoMagico=600)
+            at2 = Attack(name="Life Theft", mana=10, latencia=7, danoFisico=1000, danoMagico=5500)
+            at3 = Attack(name="Samehada and the seven lightning swords", mana=500, latencia=5, danoFisico=3500, danoMagico=4500)
 
             sword = Sword("Samehada", at1, at2, at3)
 
-            shield = Shield("Armor of Gemini", 0, 0, 0)
+            shield = Shield(name="Armor of Gemini", latencia=4, defesaFisica=2000, defesaMagica=1000)
 
-            return Player("Killer Bee", 0, 0, sword, shield)
+            return Player(name="Killer Bee", hp=10000, mana=1500, sword=sword, shield=shield)
         elif nameChamp == 'Xena':
-            at1 = Attack(" ", 0, 0, 0, 0)
-            at2 = Attack(" ", 0, 0, 0, 0)
-            at3 = Attack(" ", 0, 0, 0, 0)
+            at1 = Attack(name="Full Counter", mana=200, latencia=3, danoFisico=3000, danoMagico=500)
+            at2 = Attack(name="Counter Vanish", mana=100, latencia=1, danoFisico=2500, danoMagico=100)
+            at3 = Attack(name="Hellblaze", mana=400, latencia=5, danoFisico=4000, danoMagico=3000)
 
             sword = Sword("Excalibur", at1, at2, at3)
-            shield = Shield("Armor Knight", 0, 0, 0)
 
-            return Player("Xena", 0, 0, sword, shield)
+            shield = Shield(name="Armor Knight",  latencia=3, defesaFisica=1000, defesaMagica=1000)
+
+            return Player(name="Xena", hp=7000, mana=1000, sword=sword, shield=shield)
         elif nameChamp == 'Roronoa Zoro':
-            at1 = Attack(" ", 0, 0, 0, 0)
-            at2 = Attack(" ", 0, 0, 0, 0)
-            at3 = Attack(" ", 0, 0, 0, 0)
+            at1 = Attack(name="Shishi SonSon", mana=100, latencia=1, danoFisico=1500, danoMagico=0)
+            at2 = Attack(name="Sanjuroku Pound Ho", mana=200, latencia=4, danoFisico=3500, danoMagico=500)
+            at3 = Attack(name="Yakkodori", mana=500, latencia=3, danoFisico=3000, danoMagico=4000)
 
             sword = Sword("Sandai Kitetsu", at1, at2, at3)
 
-            shield = Shield("Black Armor", 0, 0, 0)
+            shield = Shield(name="Black Armor",  latencia=4, defesaFisica=1000, defesaMagica=1000)
 
-            return Player("Roronoa Zoro", 0, 0, sword, shield)
+            return Player(name="Roronoa Zoro", hp=7000, mana=1000, sword=sword, shield=shield)
         elif nameChamp == 'Gohan':
-            at1 = Attack(" ", 0, 0, 0, 0)
-            at2 = Attack(" ", 0, 0, 0, 0)
-            at3 = Attack(" ", 0, 0, 0, 0)
+            at1 = Attack(name="Fulminant Strike", mana=400, latencia=3, danoFisico=1000, danoMagico=3000)
+            at2 = Attack(name="Blade Combo", mana=300, latencia=1, danoFisico=1500, danoMagico=1500)
+            at3 = Attack(name="Rage of the Blade", mana=600, latencia=7, danoFisico=6500, danoMagico=1000)
 
             sword = Sword("Espada Z", at1, at2, at3)
 
-            shield = Shield("Metal Tech", 0, 0, 0)
+            shield = Shield(name="Metal Tech", latencia=3, defesaFisica=700, defesaMagica=500)
 
-            return Player("Gohan", 0, 0, sword, shield)
+            return Player(name="Gohan", hp=15000, mana=2000, sword=sword, shield=shield)
 
     @staticmethod
     def calculeteDamageShield(player, attack):
@@ -86,17 +87,18 @@ class System:
         # calculando valores de dano ao hp adversario pela subtracoo (dano - armadura)
         danoRealMagico = danoMagico - defesaMagica
         danoRealFisico = danoFisico - defesaFisica
+
         # validando os valores de retorno da funcao
-        if (danoRealMagico > 0 and danoRealFisico > 0):
+        if danoRealMagico >= 0 and danoRealFisico >= 0:
             # significa que o ataque foi efetivo tanto de modo magico como fisico
             danoReal = danoRealFisico + danoRealMagico
             return danoReal
-        elif (danoRealMagico < 0 and danoRealFisico < 0):
+        elif danoRealMagico < 0 and danoRealFisico < 0:
             # significa que o ataque foi totalmente defendido
             return 0
         else:
             # significa que apenas uma das formas foi efetiva ao realizar o dano
-            if (danoRealMagico < 0):
+            if danoRealMagico < 0:
                 # Dano Fisico foi efetivo
                 return danoRealFisico
             else:
@@ -209,18 +211,16 @@ class Player:
 
     def restoreMana(self, dano):
         # quanto maior e o dano menos se recupera a mana
-        if (dano < 200):
-            self.mana += 500
-        elif (dano >= 200 and dano < 700):
-            self.mana += 300
+        if dano >= 400:
+            self.mana += int(1000*(100/dano))
         else:
-            self.mana += 100
+            self.mana += 300
 
     @staticmethod
     def printAttacks(player):
         attacksUser = player.sword.getAttack()
         for attackIndice in range(4):
-            if (attackIndice == 3):
+            if attackIndice == 3:
                 print(str(attackIndice) + " - Manter modo defensivo")
                 break
             print(str(attackIndice) + " - " + str(attacksUser[attackIndice]) + "\n")
@@ -257,18 +257,18 @@ class InteligencePlayer:
         return: int [0:3]
 
         '''
-        if (self.player.mana == 0):
+        if self.player.mana == 0:
             return 3
-        if (self.player.mana <= self.baseDeMana):
+        if self.player.mana <= self.baseDeMana:
             ListRank = self.rankAttack(PlayerAdv)
             for linhaMatrizAttack in ListRank:
-                if (self.player.mana > linhaMatrizAttack[0].mana):
+                if self.player.mana > linhaMatrizAttack[0].mana:
                     return linhaMatrizAttack[2]
             return 3
         else:
             ListRank = self.rankAttack(PlayerAdv)
             for linhaMatrizAttack in ListRank[::-1]:
-                if (self.player.mana > linhaMatrizAttack[0].mana):
+                if self.player.mana > linhaMatrizAttack[0].mana:
                     return linhaMatrizAttack[2]
             return 3
 

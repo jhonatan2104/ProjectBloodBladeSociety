@@ -32,6 +32,7 @@ if ModelGame == 0:
 
     while True:
         if Player1.hp <= 0:
+            print(Player2.name+" É O VERDADEIRO VENCEDOR!!")
             break
         print("\nVocê é o " + Player1.name + ", hora de atacar!")
         # Imprimir os ataques do Player 1
@@ -63,6 +64,7 @@ if ModelGame == 0:
         print("--------------------------------------------------------------")
 
         if Player2.hp <= 0:
+            print(Player1.name + " É O VERDADEIRO VENCEDOR!!")
             break
         print("\nVoce e o " + Player2.name + ", hora de atacar!")
         # Imprimir os ataques do Player 2
@@ -119,6 +121,7 @@ elif ModelGame == 1:
 
     while True:
         if Player1.hp <= 0:
+            print(BOT.name + " É O VERDADEIRO VENCEDOR!!")
             break
         print("\nVoce e o " + Player1.name + ", hora de atacar!")
         # Imprimir os ataques do Player 1
@@ -149,6 +152,7 @@ elif ModelGame == 1:
         print("--------------------------------------------------------------")
 
         if BOT.hp <= 0:
+            print(Player1.name + " É O VERDADEIRO VENCEDOR!!")
             break
 
         attacksBOT = BOT.sword.getAttack()
