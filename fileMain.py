@@ -13,8 +13,9 @@ if ModelGame == 0:
     indexPlayer1 = int(input())
 
     while indexPlayer1 < 0 or indexPlayer1 >= len(System.listPlayer()):
-        print("o numero escolhido é invalido\n\n")
+        print("CAMPEÃO INVÁLIDO\n\n")
         indexPlayer1 = int(input())
+    #Campeão escolhido
     Player1 = System.choosePlayer(indexPlayer1)
 
     print("Player 2 escolha o seu Campeão")
@@ -23,8 +24,9 @@ if ModelGame == 0:
     indexPlayer2 = int(input())
 
     while indexPlayer2 < 0 or indexPlayer2 >= len(System.listPlayer()):
-        print("o numero escolhido é invalido")
+        print("CAMPEÃO INVÁLIDO\n\n")
         indexPlayer2 = int(input())
+    # Campeão escolhido
     Player2 = System.choosePlayer(indexPlayer2)
 
     print(Player1)

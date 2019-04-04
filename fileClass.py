@@ -131,6 +131,7 @@ class Player:
         self.sword = sword
         self.shield = shield
         self.mana = mana
+        self.arqWAV = ["",""]
 
     def __str__(self, ):
         return ("Nome: " + str(self.name) + "\nHP: " + str(self.hp) + "\nSword: " + str(
@@ -147,20 +148,48 @@ class Player:
         '''
 
         self.hp -= damage
-
+    def setWAVSlang(self,nomeArquivoWAV):
+        '''
+        Atualizar o arquivo inicializado como ('') vazio
+        :param nomeArquivoWAV:
+        :return: void
+        '''
+        self.arqWAV[0] = nomeArquivoWAV
+    def getWAVSlang(self):
+        '''
+        Ter acesso ao nome no arquivo de voz do personagem
+        :return: string
+        '''
+        return  self.arqWAV[0]
+    def setWAVShow(self, nomeArquivoWAV):
+        '''
+        Atualizar o arquivo inicializado como ('') vazio
+        :param nomeArquivoWAV:
+        :return: void
+        '''
+        self.arqWAV[1] = nomeArquivoWAV
+    def getWAVShow(self):
+        '''
+        Ter acesso ao nome no arquivo de voz do personagem
+        :return: string
+        '''
+        return  self.arqWAV[1]
     def userMana(self, mana):
         '''
         Funcao responsavel subtrair a MANA utlizada para realizar o ataque
-
-        mana : Type (INT)
-
-        return: VOID
-
+        :param Type (INT)
+        :return: VOID
         '''
 
         self.mana -= mana
 
     def knock(self, playerAdversario, attack):
+        '''
+        Realizar o Ataque. Calcular latência.
+        :param playerAdversario: Player
+        :param attack: Attack
+        :return: void
+        '''
         # o numero randomico para a latencia
         randomLatenciaAtaque = randint(0, 9)
         # ESTRUTURA DA LATENCIA
@@ -178,7 +207,7 @@ class Player:
                 Quando comparado com o valor randomico, se o valor estiver fora dessa margem o ataque foi efetivo
 
                 QUANTO MENOR A LATENCIA, MAIS MAIOR E A POSSIBILIDADE DE ATQUE EFETIVO
-                '''
+        '''
         print(" Lantencia: " + str(randomLatenciaAtaque))
         if (attack.latencia <= randomLatenciaAtaque):
             # ATAQUE EFETIVO
@@ -210,6 +239,10 @@ class Player:
             print("SEU ATAQUE FALHOU\n-------------RANDOM LATENCIA: " + str(randomLatenciaAtaque))
 
     def restoreMana(self, dano):
+        """
+        :param dano: int
+        :return: void
+        """
         # quanto maior e o dano menos se recupera a mana
         if dano >= 400:
             self.mana += int(1000*(100/dano))
@@ -218,6 +251,11 @@ class Player:
 
     @staticmethod
     def printAttacks(player):
+        '''
+        Metodo estático. Imprime os ataques.
+        :param player: Player
+        :return: void
+        '''
         attacksUser = player.sword.getAttack()
         for attackIndice in range(4):
             if attackIndice == 3:
@@ -234,11 +272,8 @@ class InteligencePlayer:
     def rankAttack(self, PlayerAdv):
         '''
         Funcao responsavel por rankear os ataques do player
-
-        PlayerAdv : Type (Player)
-
-        return: List(Matriz[3][3])
-
+        :param PlayerAdv: Player
+        :return: Matriz[3][3]
         '''
 
         ListAttack = self.player.sword.getAttack()
@@ -251,11 +286,8 @@ class InteligencePlayer:
     def resolverAttack(self, PlayerAdv):
         '''
         Funcao responsavel por retorna o index do ataque mais recomendado
-
-        PlayerAdv : Type (Player)
-
-        return: int [0:3]
-
+        :param PlayerAdv: Player
+        :return: int [0:3]
         '''
         if self.player.mana == 0:
             return 3
@@ -301,9 +333,7 @@ class Sword:
     def getAttack(self):
         '''
         Funcao responsavel por retornar o ataque requerido pelo PLAYER
-
-        return: List<Attack>
-
+        :return: List<Attack>
         '''
         return [self.attackI, self.attackII, self.attackIII]
 
