@@ -4,8 +4,8 @@
 **Jogo de Turnos e escolha de Campeãoes**
 
 ```
-* Baixe o projeto completo
-* Execute o modulo .py fileMain
+* [Baixe o projeto completo]
+* [Execute o modulo .py fileMain]
 ```
 
 
