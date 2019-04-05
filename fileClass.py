@@ -1,5 +1,6 @@
 from random import randint
 from operator import itemgetter
+import winsound
 
 
 class System:
@@ -24,8 +25,12 @@ class System:
             sword = Sword("Zanpakutō", at1, at2, at3)
 
             shield = Shield(name="Armor Berserker", latencia=2, defesaFisica=1000, defesaMagica=3000)
+            player = Player(name="Ichigo Kurosaki", hp=10000, mana=1000, sword=sword, shield=shield)
 
-            return Player(name="Ichigo Kurosaki", hp=10000, mana=1000, sword=sword, shield=shield)
+            player.setWAVShow("DirWAV/go.wav")
+            player.setWAVSlang("DirWAV/go.wav")
+
+            return player
         elif nameChamp == 'Killer Bee':
             at1 = Attack(name="Crumbling the skin", mana=200, latencia=3, danoFisico=3000, danoMagico=600)
             at2 = Attack(name="Life Theft", mana=10, latencia=7, danoFisico=1000, danoMagico=5500)
@@ -34,8 +39,12 @@ class System:
             sword = Sword("Samehada", at1, at2, at3)
 
             shield = Shield(name="Armor of Gemini", latencia=4, defesaFisica=2000, defesaMagica=1000)
+            player = Player(name="Killer Bee", hp=10000, mana=1500, sword=sword, shield=shield)
 
-            return Player(name="Killer Bee", hp=10000, mana=1500, sword=sword, shield=shield)
+            player.setWAVShow("DirWAV/go.wav")
+            player.setWAVSlang("DirWAV/go.wav")
+
+            return player
         elif nameChamp == 'Xena':
             at1 = Attack(name="Full Counter", mana=200, latencia=3, danoFisico=3000, danoMagico=500)
             at2 = Attack(name="Counter Vanish", mana=100, latencia=1, danoFisico=2500, danoMagico=100)
@@ -45,7 +54,12 @@ class System:
 
             shield = Shield(name="Armor Knight",  latencia=3, defesaFisica=1000, defesaMagica=1000)
 
-            return Player(name="Xena", hp=7000, mana=1000, sword=sword, shield=shield)
+            player = Player(name="Xena", hp=7000, mana=1000, sword=sword, shield=shield)
+
+            player.setWAVShow("DirWAV/go.wav")
+            player.setWAVSlang("DirWAV/go.wav")
+
+            return player
         elif nameChamp == 'Roronoa Zoro':
             at1 = Attack(name="Shishi SonSon", mana=100, latencia=1, danoFisico=1500, danoMagico=0)
             at2 = Attack(name="Sanjuroku Pound Ho", mana=200, latencia=4, danoFisico=3500, danoMagico=500)
@@ -55,7 +69,12 @@ class System:
 
             shield = Shield(name="Black Armor",  latencia=4, defesaFisica=1000, defesaMagica=1000)
 
-            return Player(name="Roronoa Zoro", hp=7000, mana=1000, sword=sword, shield=shield)
+            player = Player(name="Roronoa Zoro", hp=7000, mana=1000, sword=sword, shield=shield)
+
+            player.setWAVShow("DirWAV/go.wav")
+            player.setWAVSlang("DirWAV/go.wav")
+
+            return player
         elif nameChamp == 'Gohan':
             at1 = Attack(name="Fulminant Strike", mana=400, latencia=3, danoFisico=1000, danoMagico=3000)
             at2 = Attack(name="Blade Combo", mana=300, latencia=1, danoFisico=1500, danoMagico=1500)
@@ -65,7 +84,12 @@ class System:
 
             shield = Shield(name="Metal Tech", latencia=3, defesaFisica=700, defesaMagica=500)
 
-            return Player(name="Gohan", hp=15000, mana=2000, sword=sword, shield=shield)
+            player = Player(name="Gohan", hp=15000, mana=2000, sword=sword, shield=shield)
+
+            player.setWAVShow("DirWAV/go.wav")
+            player.setWAVSlang("DirWAV/go.wav")
+
+            return player
 
     @staticmethod
     def calculeteDamageShield(player, attack):
@@ -155,12 +179,8 @@ class Player:
         :return: void
         '''
         self.arqWAV[0] = nomeArquivoWAV
-    def getWAVSlang(self):
-        '''
-        Ter acesso ao nome no arquivo de voz do personagem
-        :return: string
-        '''
-        return  self.arqWAV[0]
+    def PlayWAVSlang(self):
+        winsound.PlaySound(self.arqWAV[0],winsound.SND_NOSTOP)
     def setWAVShow(self, nomeArquivoWAV):
         '''
         Atualizar o arquivo inicializado como ('') vazio
@@ -168,12 +188,8 @@ class Player:
         :return: void
         '''
         self.arqWAV[1] = nomeArquivoWAV
-    def getWAVShow(self):
-        '''
-        Ter acesso ao nome no arquivo de voz do personagem
-        :return: string
-        '''
-        return  self.arqWAV[1]
+    def PlayWAVShow(self):
+        winsound.PlaySound(self.arqWAV[1],winsound.SND_NOSTOP)
     def userMana(self, mana):
         '''
         Funcao responsavel subtrair a MANA utlizada para realizar o ataque

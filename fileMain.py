@@ -17,6 +17,7 @@ if ModelGame == 0:
         indexPlayer1 = int(input())
     #Campeão escolhido
     Player1 = System.choosePlayer(indexPlayer1)
+    Player1.PlayWAVShow()
 
     print("Player 2 escolha o seu Campeão")
     System.printPlayers()
@@ -28,7 +29,7 @@ if ModelGame == 0:
         indexPlayer2 = int(input())
     # Campeão escolhido
     Player2 = System.choosePlayer(indexPlayer2)
-
+    Player2.PlayWAVShow()
     print(Player1)
     print(Player2)
 
@@ -105,6 +106,7 @@ elif ModelGame == 1:
         print("o numero escolhido invalido\n\n")
         indexPlayer1 = int(input())
     Player1 = System.choosePlayer(indexPlayer1)
+    Player1.PlayWAVShow()
 
     print("Player 1 escolha o Campeao que deseja infrentar")
     System.printPlayers()
