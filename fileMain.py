@@ -37,10 +37,10 @@ if ModelGame == 0:
     # Campeão escolhido
     Player2 = System.choosePlayer(indexPlayer2)
     Player2.PlayWAVShow()
-    print("-----------------------------------------")
+    print("-"*50)
     System.printPlayer(Player1,"BLUE")
     System.printPlayer(Player2, "RED")
-    print("-----------------------------------------")
+    print("-"*50)
     while True:
         if Player1.hp <= 0:
             System.print('''
@@ -86,7 +86,7 @@ if ModelGame == 0:
         if Player2.hp <= 0:
             System.print('''
                         {} TEM A VERDADEIRA MENTE DE UM ASSASSINO! AS SUAS HABILIDADES O FAZ MESTRE DESSA SOCIEDADE! 
-                        '''.format(Player2.name.upper()), "YELLOW")
+                        '''.format(Player1.name.upper()), "YELLOW")
             break
         System.print('''
                 {} REALIZE O SEU MOVIMENTO. 

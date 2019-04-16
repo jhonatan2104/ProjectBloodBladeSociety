@@ -80,7 +80,7 @@ class System:
             shield = Shield(name="Armor Berserker", latencia=2, defesaFisica=1000, defesaMagica=3000)
             player = Player(name="Ichigo Kurosaki", hp=10000, mana=1000, sword=sword, shield=shield)
 
-            player.setWAVShow("DirWAV/go.wav")
+            player.setWAVShow("DirWAV/ICHIGOPERSONAGEM.wav")
             player.setWAVSlang("DirWAV/go.wav")
 
             return player
@@ -94,7 +94,7 @@ class System:
             shield = Shield(name="Armor of Gemini", latencia=4, defesaFisica=2000, defesaMagica=1000)
             player = Player(name="Killer Bee", hp=10000, mana=1500, sword=sword, shield=shield)
 
-            player.setWAVShow("DirWAV/go.wav")
+            player.setWAVShow("DirWAV/KILLERBEEPERSONAGEM.wav")
             player.setWAVSlang("DirWAV/go.wav")
 
             return player
@@ -109,7 +109,7 @@ class System:
 
             player = Player(name="Xena", hp=7000, mana=1000, sword=sword, shield=shield)
 
-            player.setWAVShow("DirWAV/go.wav")
+            player.setWAVShow("DirWAV/XENAPERSONAGEM.wav")
             player.setWAVSlang("DirWAV/go.wav")
 
             return player
@@ -124,7 +124,7 @@ class System:
 
             player = Player(name="Roronoa Zoro", hp=7000, mana=1000, sword=sword, shield=shield)
 
-            player.setWAVShow("DirWAV/go.wav")
+            player.setWAVShow("DirWAV/ZOROPERSONAGEM.wav")
             player.setWAVSlang("DirWAV/go.wav")
 
             return player
@@ -139,7 +139,7 @@ class System:
 
             player = Player(name="Gohan", hp=15000, mana=2000, sword=sword, shield=shield)
 
-            player.setWAVShow("DirWAV/go.wav")
+            player.setWAVShow("DirWAV/GOHANPERSONAGEM.wav")
             player.setWAVSlang("DirWAV/go.wav")
 
             return player
@@ -294,7 +294,7 @@ class Player:
 
             else:
                 # DEFESA NAO EFETIVA
-                print("DANO CRITICO")
+                System.print("DANO CRITICO",'NEGRITO')
                 dano = System.calculeteDamage(attack)
                 playerAdversario.sufferDamage(dano)
                 self.userMana(attack.mana)
