@@ -3,6 +3,19 @@ from operator import itemgetter
 import winsound
 
 
+Config = {
+    "RED" : '\033[31m',
+    "GREEN" : '\033[32m',
+    "BLUE" : '\033[34m',
+    "CIANO" : '\033[36m',
+    "MAGETA" : '\033[35m',
+    "YELLOW" : '\033[33m',
+    "BLACK" : '\033[30m',
+    "WHITE" : '\033[37m',
+    'NEGRITO' : '\033[1m',
+    'RESET' : '\033[0;0m'
+}
+
 class System:
     @staticmethod
     def listPlayer():
@@ -13,6 +26,46 @@ class System:
         player = System.listPlayer()
         for index in range(len(player)):
             print("%i - %s \n" % (index, player[index]))
+
+    @staticmethod
+    def printPlayer(player,flagConfig):
+        print(Config[flagConfig], end="")
+        print('''
+        
+            Nome : {}
+            Vida : {}
+            Mana : {}
+            Sword : {}
+            Shield : {}
+            
+        '''.format(player.name,player.hp,player.mana,player.sword.name,player.shield.name))
+        print(Config['RESET'], end="")
+
+    @staticmethod
+    def print(st, flagConfig):
+        print(Config[flagConfig])
+        print(st)
+        print(Config['RESET'])
+
+    @staticmethod
+    def printKnock(danoVerdadeiro, mana, attack, player, advPlayer):
+        print(Config["BLACK"],Config['NEGRITO'],end='')
+        print(''' {} 
+        Utiliza {} para atacar {} '''.format(player.name.upper(),attack.name.upper(),advPlayer.name.upper()))
+
+        print(Config["BLACK"],Config['NEGRITO'], end='')
+        print("Dano verdadeiro :",end='')
+        print(Config["RED"],end='')
+        print(danoVerdadeiro)
+
+        print(Config["CIANO"])
+        print('''
+        HP {} : {}
+        '''.format(advPlayer.name.upper(),advPlayer.hp))
+
+        print(Config["BLUE"],end='')
+        print("MANA RESTAURADA : {}".format(mana))
+        print(Config['RESET'])
 
     @staticmethod
     def choosePlayer(indexPlayer):
@@ -27,7 +80,7 @@ class System:
             shield = Shield(name="Armor Berserker", latencia=2, defesaFisica=1000, defesaMagica=3000)
             player = Player(name="Ichigo Kurosaki", hp=10000, mana=1000, sword=sword, shield=shield)
 
-            player.setWAVShow("DirWAV/go.wav")
+            player.setWAVShow("DirWAV/ICHIGOPERSONAGEM.wav")
             player.setWAVSlang("DirWAV/go.wav")
 
             return player
@@ -41,7 +94,7 @@ class System:
             shield = Shield(name="Armor of Gemini", latencia=4, defesaFisica=2000, defesaMagica=1000)
             player = Player(name="Killer Bee", hp=10000, mana=1500, sword=sword, shield=shield)
 
-            player.setWAVShow("DirWAV/go.wav")
+            player.setWAVShow("DirWAV/KILLERBEEPERSONAGEM.wav")
             player.setWAVSlang("DirWAV/go.wav")
 
             return player
@@ -56,7 +109,7 @@ class System:
 
             player = Player(name="Xena", hp=7000, mana=1000, sword=sword, shield=shield)
 
-            player.setWAVShow("DirWAV/go.wav")
+            player.setWAVShow("DirWAV/XENAPERSONAGEM.wav")
             player.setWAVSlang("DirWAV/go.wav")
 
             return player
@@ -71,7 +124,7 @@ class System:
 
             player = Player(name="Roronoa Zoro", hp=7000, mana=1000, sword=sword, shield=shield)
 
-            player.setWAVShow("DirWAV/go.wav")
+            player.setWAVShow("DirWAV/ZOROPERSONAGEM.wav")
             player.setWAVSlang("DirWAV/go.wav")
 
             return player
@@ -86,7 +139,7 @@ class System:
 
             player = Player(name="Gohan", hp=15000, mana=2000, sword=sword, shield=shield)
 
-            player.setWAVShow("DirWAV/go.wav")
+            player.setWAVShow("DirWAV/GOHANPERSONAGEM.wav")
             player.setWAVSlang("DirWAV/go.wav")
 
             return player
@@ -227,7 +280,8 @@ class Player:
         print(" Lantencia: " + str(randomLatenciaAtaque))
         if (attack.latencia <= randomLatenciaAtaque):
             # ATAQUE EFETIVO
-            print("SEU ATAQUE FOI EFETIVO\n-------------RANDOM LATENCIA:" + str(randomLatenciaAtaque))
+            System.print('''SEU ATAQUE FOI EFETIVO
+            -------------RANDOM LATENCIA: {}'''.format(str(randomLatenciaAtaque)),"GREEN")
             randomLatenciaDefesa = randint(0, 9)
 
             if (playerAdversario.shield.latencia <= randomLatenciaDefesa):
@@ -235,35 +289,35 @@ class Player:
                 dano = System.calculeteDamageShield(playerAdversario, attack)
                 playerAdversario.sufferDamage(dano)
                 self.userMana(attack.mana)
-                self.restoreMana(dano)
-                print("Dano verdadeiro:" + str(dano) + "\n")
-                print(self)
-                print(playerAdversario)
+                manaRestore = self.restoreMana(dano)
+                System.printKnock(dano,manaRestore,attack,self,playerAdversario)
 
             else:
                 # DEFESA NAO EFETIVA
-                print("DANO CRITICO")
+                System.print("DANO CRITICO",'NEGRITO')
                 dano = System.calculeteDamage(attack)
                 playerAdversario.sufferDamage(dano)
                 self.userMana(attack.mana)
-                self.restoreMana(dano)
-                print("Dano verdadeiro:" + str(dano) + "\n")
-                print(self)
-                print(playerAdversario)
+                manaRestore = self.restoreMana(dano)
+                System.printKnock(dano, manaRestore, attack, self, playerAdversario)
         else:
             # ATAQUE NAO EFETIVO
-            print("SEU ATAQUE FALHOU\n-------------RANDOM LATENCIA: " + str(randomLatenciaAtaque))
+            System.print('''SEU ATAQUE FALHOU
+            -------------RANDOM LATENCIA: {}'''.format(str(randomLatenciaAtaque)), "RED")
 
     def restoreMana(self, dano):
         """
         :param dano: int
-        :return: void
+        :return: int
         """
         # quanto maior e o dano menos se recupera a mana
         if dano >= 400:
-            self.mana += int(1000*(100/dano))
+            mana = int(1000*(100/dano))
+            self.mana += mana
+            return mana
         else:
             self.mana += 300
+            return 300
 
     @staticmethod
     def printAttacks(player):

@@ -1,51 +1,65 @@
 from fileClass import Player,InteligencePlayer,System
-print("MODO é DO JOGO \n0 - Player x Player\n1 - Player x BOT")
-ModelGame = int(input())
+System.print('''
+MODO é DO JOGO 
+    0 - Player x Player
+    1 - Player x BOT''','NEGRITO')
+ModelGame = int(input("DIGITE:"))
 
 while ModelGame != 0 and ModelGame != 1:
-    print("o numero escolhido invalido")
-    ModelGame = int(input())
+    System.print("O NÚMERO ESCOLHIDO É INVÁLIDO","BLACK")
+    ModelGame = int(input("DIGITE:"))
 
 if ModelGame == 0:
-    print("Player 1 escolha o seu Campeão")
+    System.print("PLAYER 1 SUA HORA DE SER O MESTRE DA SOCIEDADE DA LÂMINA DE SANGUE", "BLUE")
     System.printPlayers()
-    print("------------------\nO seu Campeão: ")
-    indexPlayer1 = int(input())
+    System.print('''HORA DE ESCOLHER O SEU MELHOR HOSPEDEIRO
+    
+    EU ESCOLHO HOSPEDAR MINHA MENTE EM: - digite o número do compeão -''', 'RESET')
+    indexPlayer1 = int(input("DIGITE:"))
 
     while indexPlayer1 < 0 or indexPlayer1 >= len(System.listPlayer()):
-        print("CAMPEÃO INVÁLIDO\n\n")
-        indexPlayer1 = int(input())
+        System.print("CAMPEÃO INVÁLIDO\n\n","RED")
+        indexPlayer1 = int(input("DIGITE:"))
     #Campeão escolhido
     Player1 = System.choosePlayer(indexPlayer1)
     Player1.PlayWAVShow()
 
-    print("Player 2 escolha o seu Campeão")
+    System.print("PLAYER 2 SUA HORA DE SER O MESTRE DA SOCIEDADE DA LÂMINA DE SANGUE", "RED")
     System.printPlayers()
-    print("------------------\nO seu Campeão: ")
-    indexPlayer2 = int(input())
+    System.print('''HORA DE ESCOLHER O SEU MELHOR HOSPEDEIRO
+
+        EU ESCOLHO HOSPEDAR MINHA MENTE EM: - digite o número do compeão -''', 'RESET')
+    indexPlayer2 = int(input("DIGITE:"))
 
     while indexPlayer2 < 0 or indexPlayer2 >= len(System.listPlayer()):
-        print("CAMPEÃO INVÁLIDO\n\n")
-        indexPlayer2 = int(input())
+        System.print("CAMPEÃO INVÁLIDO\n\n","RED")
+        indexPlayer2 = int(input("DIGITE:"))
     # Campeão escolhido
     Player2 = System.choosePlayer(indexPlayer2)
     Player2.PlayWAVShow()
-    print(Player1)
-    print(Player2)
-
+    print("-"*50)
+    System.printPlayer(Player1,"BLUE")
+    System.printPlayer(Player2, "RED")
+    print("-"*50)
     while True:
         if Player1.hp <= 0:
-            print(Player2.name+" É O VERDADEIRO VENCEDOR!!")
+            System.print('''
+            {} TEM A VERDADEIRA MENTE DE UM ASSASSINO! AS SUAS HABILIDADES O FAZ MESTRE DESSA SOCIEDADE! 
+            '''.format(Player2.name.upper()),"YELLOW")
             break
-        print("\nVocê é o " + Player1.name + ", hora de atacar!")
+        System.print('''
+        {} REALIZE O SEU MOVIMENTO. 
+        SUA ESPADA TEM SEDE DO MEDO DOS SEUS INIMIGOS!
+        '''.format(Player1.name),"BLUE")
         # Imprimir os ataques do Player 1
+        System.printPlayer(Player1,"BLUE")
         Player.printAttacks(Player1)
 
         attacksUser1 = Player1.sword.getAttack()
 
         # Solicitar que o usuario insira o valor como escolha do ataque
-        value = int(input("Escolha o seu Ataque de acordo com o indice\n"))
-
+        System.print("ESCOLHA O SEU ATAQUE DE ACORDO COM O INDICE...","BLACK")
+        value = int(input("DIGITE:"))
         while True:
             # Validacao de dados
             if value != 0 and value != 1 and value != 2:
@@ -53,13 +67,16 @@ if ModelGame == 0:
                 if value == 3:
                     Player1.restoreMana(0)
                     break
-
-                value = int(input("O indice escolhido não é válido, tente novamente :\n"))
+                System.print("O INDIDE INVÁDLIDO, TENTE NOVAMENTE...", "RED")
+                value = int(input("DIGITE:"))
                 continue
 
             attackP1 = attacksUser1[value]
             if attackP1.mana > Player1.mana:
-                value = int(input("Você não tem mana suficiente para realizar esse ataque\n Tente outro ataque :\n"))
+                System.print('''VOCÊ NÃO TEM MANA SUFICIENTE PARA REALIZER ESSE MOVIMENTO.
+                - ESCOLHA OUTRO ATAQUE -
+                - MANTENHA MODO DEFENSIVO -''', "BLUE")
+                value = int(input("DIGITE:"))
                 continue
             else:
                 Player1.knock(Player2, attacksUser1[value])
@@ -67,16 +84,23 @@ if ModelGame == 0:
         print("--------------------------------------------------------------")
 
         if Player2.hp <= 0:
-            print(Player1.name + " É O VERDADEIRO VENCEDOR!!")
+            System.print('''
+                        {} TEM A VERDADEIRA MENTE DE UM ASSASSINO! AS SUAS HABILIDADES O FAZ MESTRE DESSA SOCIEDADE! 
+                        '''.format(Player1.name.upper()), "YELLOW")
             break
-        print("\nVoce e o " + Player2.name + ", hora de atacar!")
+        System.print('''
+                {} REALIZE O SEU MOVIMENTO. 
+                SUA ESPADA TEM SEDE DO MEDO DOS SEUS INIMIGOS!
+                '''.format(Player1.name), "RED")
         # Imprimir os ataques do Player 2
+        System.printPlayer(Player2, "RED")
         Player.printAttacks(Player2)
 
         attacksUser2 = Player2.sword.getAttack()
 
         # Solicitar que o usuario insira o valor como escolha do ataque
-        value = int(input("Escolha o seu Ataque de acordo com o indice\n"))
+        System.print("ESCOLHA O SEU ATAQUE DE ACORDO COM O INDICE...", "BLACK")
+        value = int(input("DIGITE:"))
         while True:
             # Validacao de dados
             if value != 0 and value != 1 and value != 2:
@@ -84,13 +108,16 @@ if ModelGame == 0:
                 if value == 3:
                     Player2.restoreMana(0)
                     break
-
-                value = int(input("O indice escolhido nao e valido, tente novamente :\n"))
+                System.print("O INDIDE INVÁDLIDO, TENTE NOVAMENTE...", "RED")
+                value = int(input("DIGITE:"))
                 continue
 
             attackP2 = attacksUser2[value]
             if attackP2.mana > Player2.mana:
-                value = int(input("Voce nao tem mana suficiente para realizar esse ataque\n Tente outro ataque :\n"))
+                System.print('''VOCÊ NÃO TEM MANA SUFICIENTE PARA REALIZER ESSE MOVIMENTO.
+                                - ESCOLHA OUTRO ATAQUE -
+                                - MANTENHA MODO DEFENSIVO -''', "BLUE")
+                value = int(input("DIGITE:"))
                 continue
             else:
                 Player2.knock(Player1, attacksUser2[value])
@@ -120,8 +147,8 @@ elif ModelGame == 1:
     BOT = System.choosePlayer(indexBOT)
     intelBOT = InteligencePlayer(BOT, 200)
 
-    print(Player1)
-    print(BOT)
+    System.printPlayer(Player1, "BLACK")
+    System.printPlayer(BOT, "WHITE")
 
     while True:
         if Player1.hp <= 0:
