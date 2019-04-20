@@ -2,19 +2,19 @@ from random import randint
 from operator import itemgetter
 import winsound
 
-
 Config = {
-    "RED" : '\033[31m',
-    "GREEN" : '\033[32m',
-    "BLUE" : '\033[34m',
-    "CIANO" : '\033[36m',
-    "MAGETA" : '\033[35m',
-    "YELLOW" : '\033[33m',
-    "BLACK" : '\033[30m',
-    "WHITE" : '\033[37m',
-    'NEGRITO' : '\033[1m',
-    'RESET' : '\033[0;0m'
+    "RED": '\033[31m',
+    "GREEN": '\033[32m',
+    "BLUE": '\033[34m',
+    "CIANO": '\033[36m',
+    "MAGETA": '\033[35m',
+    "YELLOW": '\033[33m',
+    "BLACK": '\033[30m',
+    "WHITE": '\033[37m',
+    'NEGRITO': '\033[1m',
+    'RESET': '\033[0;0m'
 }
+
 
 class System:
     @staticmethod
@@ -28,17 +28,17 @@ class System:
             print("%i - %s \n" % (index, player[index]))
 
     @staticmethod
-    def printPlayer(player,flagConfig):
+    def printPlayer(player, flagConfig):
         print(Config[flagConfig], end="")
         print('''
-        
+
             Nome : {}
             Vida : {}
             Mana : {}
             Sword : {}
             Shield : {}
-            
-        '''.format(player.name,player.hp,player.mana,player.sword.name,player.shield.name))
+
+        '''.format(player.name, player.hp, player.mana, player.sword.name, player.shield.name))
         print(Config['RESET'], end="")
 
     @staticmethod
@@ -49,21 +49,21 @@ class System:
 
     @staticmethod
     def printKnock(danoVerdadeiro, mana, attack, player, advPlayer):
-        print(Config["BLACK"],Config['NEGRITO'],end='')
+        print(Config["BLACK"], Config['NEGRITO'], end='')
         print(''' {} 
-        Utiliza {} para atacar {} '''.format(player.name.upper(),attack.name.upper(),advPlayer.name.upper()))
+        Utiliza {} para atacar {} '''.format(player.name.upper(), attack.name.upper(), advPlayer.name.upper()))
 
-        print(Config["BLACK"],Config['NEGRITO'], end='')
-        print("Dano verdadeiro :",end='')
-        print(Config["RED"],end='')
+        print(Config["BLACK"], Config['NEGRITO'], end='')
+        print("Dano verdadeiro :", end='')
+        print(Config["RED"], end='')
         print(danoVerdadeiro)
 
         print(Config["CIANO"])
         print('''
         HP {} : {}
-        '''.format(advPlayer.name.upper(),advPlayer.hp))
+        '''.format(advPlayer.name.upper(), advPlayer.hp))
 
-        print(Config["BLUE"],end='')
+        print(Config["BLUE"], end='')
         print("MANA RESTAURADA : {}".format(mana))
         print(Config['RESET'])
 
@@ -87,7 +87,8 @@ class System:
         elif nameChamp == 'Killer Bee':
             at1 = Attack(name="Crumbling the skin", mana=200, latencia=3, danoFisico=3000, danoMagico=600)
             at2 = Attack(name="Life Theft", mana=10, latencia=7, danoFisico=1000, danoMagico=5500)
-            at3 = Attack(name="Samehada and the seven lightning swords", mana=500, latencia=5, danoFisico=3500, danoMagico=4500)
+            at3 = Attack(name="Samehada and the seven lightning swords", mana=500, latencia=5, danoFisico=3500,
+                         danoMagico=4500)
 
             sword = Sword("Samehada", at1, at2, at3)
 
@@ -105,7 +106,7 @@ class System:
 
             sword = Sword("Excalibur", at1, at2, at3)
 
-            shield = Shield(name="Armor Knight",  latencia=3, defesaFisica=1000, defesaMagica=1000)
+            shield = Shield(name="Armor Knight", latencia=3, defesaFisica=1000, defesaMagica=1000)
 
             player = Player(name="Xena", hp=7000, mana=1000, sword=sword, shield=shield)
 
@@ -120,7 +121,7 @@ class System:
 
             sword = Sword("Sandai Kitetsu", at1, at2, at3)
 
-            shield = Shield(name="Black Armor",  latencia=4, defesaFisica=1000, defesaMagica=1000)
+            shield = Shield(name="Black Armor", latencia=4, defesaFisica=1000, defesaMagica=1000)
 
             player = Player(name="Roronoa Zoro", hp=7000, mana=1000, sword=sword, shield=shield)
 
@@ -148,12 +149,9 @@ class System:
     def calculeteDamageShield(player, attack):
         '''
         Funcao responsavel por CALCULAR o dano com base na ARMADURA do adversario
-
         player : Type (Player)
         attack : Type (Attack)
-
         return: INT
-
         '''
         # obter valores de armadura do jogador adversario
         defesaMagica = player.shield.defesaMagica
@@ -186,11 +184,8 @@ class System:
     def calculeteDamage(attack):
         '''
         Funcao responsavel por CALCULAR o dano sem a ARMADURA do adversario
-
         attack : Type (Attack)
-
         return: INT
-
         '''
         # obter valores do dano causado pelo ataque
         danoMagico = attack.danoMagico
@@ -208,7 +203,7 @@ class Player:
         self.sword = sword
         self.shield = shield
         self.mana = mana
-        self.arqWAV = ["",""]
+        self.arqWAV = ["", ""]
 
     def __str__(self, ):
         return ("Nome: " + str(self.name) + "\nHP: " + str(self.hp) + "\nSword: " + str(
@@ -217,23 +212,23 @@ class Player:
     def sufferDamage(self, damage):
         '''
         Funcao responsavel subtrair o dano sofrido no HP
-
         damage : Type (INT)
-
         return: VOID
-
         '''
 
         self.hp -= damage
-    def setWAVSlang(self,nomeArquivoWAV):
+
+    def setWAVSlang(self, nomeArquivoWAV):
         '''
         Atualizar o arquivo inicializado como ('') vazio
         :param nomeArquivoWAV:
         :return: void
         '''
         self.arqWAV[0] = nomeArquivoWAV
+
     def PlayWAVSlang(self):
-        winsound.PlaySound(self.arqWAV[0],winsound.SND_NOSTOP)
+        winsound.PlaySound(self.arqWAV[0], winsound.SND_NOSTOP)
+
     def setWAVShow(self, nomeArquivoWAV):
         '''
         Atualizar o arquivo inicializado como ('') vazio
@@ -241,8 +236,10 @@ class Player:
         :return: void
         '''
         self.arqWAV[1] = nomeArquivoWAV
+
     def PlayWAVShow(self):
-        winsound.PlaySound(self.arqWAV[1],winsound.SND_NOSTOP)
+        winsound.PlaySound(self.arqWAV[1], winsound.SND_NOSTOP)
+
     def userMana(self, mana):
         '''
         Funcao responsavel subtrair a MANA utlizada para realizar o ataque
@@ -264,24 +261,19 @@ class Player:
         # ESTRUTURA DA LATENCIA
         '''
                 A latencia e a possibilidade de erro do ataque. Entao, e jagado um random e comparado esse o valor do random com a latencia do Player
-
                 Se a latencia do individuo for 5, significa que ele tem uma margem de erro [0,5[. 
                 Quando comparado com o valor randomico, se o valor estiver fora dessa margem o ataque foi efetivo
-
                 QUANTO MENOR A LATENCIA, MAIS MAIOR E A POSSIBILIDADE DE ATQUE EFETIVO
                 #ESTRUTURA DA LATENCIA
                 A latencia e a possibilidade de erro do ataque. Entao, e jagado um random e comparado esse o valor do random com a latencia do Player
-
                 Se a latencia do individuo for 5, significa que ele tem uma margem de erro [0,5[. 
                 Quando comparado com o valor randomico, se o valor estiver fora dessa margem o ataque foi efetivo
-
                 QUANTO MENOR A LATENCIA, MAIS MAIOR E A POSSIBILIDADE DE ATQUE EFETIVO
         '''
-        print(" Lantencia: " + str(randomLatenciaAtaque))
         if (attack.latencia <= randomLatenciaAtaque):
             # ATAQUE EFETIVO
             System.print('''SEU ATAQUE FOI EFETIVO
-            -------------RANDOM LATENCIA: {}'''.format(str(randomLatenciaAtaque)),"GREEN")
+            -------------RANDOM LATENCIA: {}'''.format(str(randomLatenciaAtaque)), "GREEN")
             randomLatenciaDefesa = randint(0, 9)
 
             if (playerAdversario.shield.latencia <= randomLatenciaDefesa):
@@ -290,11 +282,11 @@ class Player:
                 playerAdversario.sufferDamage(dano)
                 self.userMana(attack.mana)
                 manaRestore = self.restoreMana(dano)
-                System.printKnock(dano,manaRestore,attack,self,playerAdversario)
+                System.printKnock(dano, manaRestore, attack, self, playerAdversario)
 
             else:
                 # DEFESA NAO EFETIVA
-                System.print("DANO CRITICO",'NEGRITO')
+                System.print("DANO CRITICO", 'NEGRITO')
                 dano = System.calculeteDamage(attack)
                 playerAdversario.sufferDamage(dano)
                 self.userMana(attack.mana)
@@ -312,7 +304,7 @@ class Player:
         """
         # quanto maior e o dano menos se recupera a mana
         if dano >= 400:
-            mana = int(1000*(100/dano))
+            mana = int(1000 * (100 / dano))
             self.mana += mana
             return mana
         else:
@@ -431,4 +423,4 @@ class Shield:
 
     def __str__(self):
         return (
-                    "Nome: " + self.name + "\nLatencia: " + self.latencia + "\nDefesa Magica: " + self.defesaMagica + "\nDefesa Fisica: " + self.defesaFisica)
+                "Nome: " + self.name + "\nLatencia: " + self.latencia + "\nDefesa Magica: " + self.defesaMagica + "\nDefesa Fisica: " + self.defesaFisica)

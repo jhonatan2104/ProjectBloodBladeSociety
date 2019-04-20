@@ -1,64 +1,64 @@
-from fileClass import Player,InteligencePlayer,System
+from fileClass import Player, InteligencePlayer, System
+
 System.print('''
 MODO é DO JOGO 
     0 - Player x Player
-    1 - Player x BOT''','NEGRITO')
+    1 - Player x BOT''', 'NEGRITO')
 ModelGame = int(input("DIGITE:"))
 
 while ModelGame != 0 and ModelGame != 1:
-    System.print("O NÚMERO ESCOLHIDO É INVÁLIDO","BLACK")
+    System.print("O NÚMERO ESCOLHIDO É INVÁLIDO", "BLACK")
     ModelGame = int(input("DIGITE:"))
 
 if ModelGame == 0:
     System.print("PLAYER 1 SUA HORA DE SER O MESTRE DA SOCIEDADE DA LÂMINA DE SANGUE", "BLUE")
     System.printPlayers()
     System.print('''HORA DE ESCOLHER O SEU MELHOR HOSPEDEIRO
-    
+
     EU ESCOLHO HOSPEDAR MINHA MENTE EM: - digite o número do compeão -''', 'RESET')
     indexPlayer1 = int(input("DIGITE:"))
 
     while indexPlayer1 < 0 or indexPlayer1 >= len(System.listPlayer()):
-        System.print("CAMPEÃO INVÁLIDO\n\n","RED")
+        System.print("CAMPEÃO INVÁLIDO\n\n", "RED")
         indexPlayer1 = int(input("DIGITE:"))
-    #Campeão escolhido
+    # Campeão escolhido
     Player1 = System.choosePlayer(indexPlayer1)
     Player1.PlayWAVShow()
 
     System.print("PLAYER 2 SUA HORA DE SER O MESTRE DA SOCIEDADE DA LÂMINA DE SANGUE", "RED")
     System.printPlayers()
     System.print('''HORA DE ESCOLHER O SEU MELHOR HOSPEDEIRO
-
         EU ESCOLHO HOSPEDAR MINHA MENTE EM: - digite o número do compeão -''', 'RESET')
     indexPlayer2 = int(input("DIGITE:"))
 
     while indexPlayer2 < 0 or indexPlayer2 >= len(System.listPlayer()):
-        System.print("CAMPEÃO INVÁLIDO\n\n","RED")
+        System.print("CAMPEÃO INVÁLIDO\n\n", "RED")
         indexPlayer2 = int(input("DIGITE:"))
     # Campeão escolhido
     Player2 = System.choosePlayer(indexPlayer2)
     Player2.PlayWAVShow()
-    print("-"*50)
-    System.printPlayer(Player1,"BLUE")
+    print("-" * 50)
+    System.printPlayer(Player1, "BLUE")
     System.printPlayer(Player2, "RED")
-    print("-"*50)
+    print("-" * 50)
     while True:
         if Player1.hp <= 0:
             System.print('''
             {} TEM A VERDADEIRA MENTE DE UM ASSASSINO! AS SUAS HABILIDADES O FAZ MESTRE DESSA SOCIEDADE! 
-            '''.format(Player2.name.upper()),"YELLOW")
+            '''.format(Player2.name.upper()), "YELLOW")
             break
         System.print('''
         {} REALIZE O SEU MOVIMENTO. 
         SUA ESPADA TEM SEDE DO MEDO DOS SEUS INIMIGOS!
-        '''.format(Player1.name),"BLUE")
+        '''.format(Player1.name), "BLUE")
         # Imprimir os ataques do Player 1
-        System.printPlayer(Player1,"BLUE")
+        System.printPlayer(Player1, "BLUE")
         Player.printAttacks(Player1)
 
         attacksUser1 = Player1.sword.getAttack()
 
         # Solicitar que o usuario insira o valor como escolha do ataque
-        System.print("ESCOLHA O SEU ATAQUE DE ACORDO COM O INDICE...","BLACK")
+        System.print("ESCOLHA O SEU ATAQUE DE ACORDO COM O INDICE...", "BLACK")
         value = int(input("DIGITE:"))
         while True:
             # Validacao de dados
