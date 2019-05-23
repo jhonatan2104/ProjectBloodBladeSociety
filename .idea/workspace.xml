@@ -2,8 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fefe4446-7a52-4355-8c4a-2041c4896d9f" name="Default Changelist" comment="Teste Hacker">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DirPNG/DirPNGnumber/#.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/DirPNGnumber/#.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DirPNG/DirPNGnumber/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/DirPNGnumber/1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DirPNG/DirPNGnumber/2.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/DirPNGnumber/2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DirPNG/DirPNGnumber/3.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/DirPNGnumber/3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DirPNG/DirPNGnumber/4.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/DirPNGnumber/4.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DirPNG/DirPNGnumber/5.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/DirPNGnumber/5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DirPNG/DirPNGnumber/6.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/DirPNGnumber/6.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DirPNG/DirPNGnumber/7.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/DirPNGnumber/7.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DirPNG/DirPNGnumber/8.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/DirPNGnumber/8.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DirPNG/DirPNGnumber/9.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/DirPNGnumber/9.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fileWindows.py" beforeDir="false" afterPath="$PROJECT_DIR$/fileWindows.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -41,8 +49,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/fileWindows.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="161" column="30" selection-start-line="161" selection-start-column="30" selection-end-line="161" selection-end-column="30" />
+            <state relative-caret-position="211">
+              <caret line="128" column="50" selection-start-line="128" selection-start-column="50" selection-end-line="128" selection-end-column="50" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
               </folding>
@@ -206,7 +214,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.fileWindows">
+  <component name="RunManager" selected="Python.fileMain">
     <configuration name="Strategy" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="ProjectBloodBladeSociety" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -502,8 +510,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/fileWindows.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="161" column="30" selection-start-line="161" selection-start-column="30" selection-end-line="161" selection-end-column="30" />
+        <state relative-caret-position="211">
+          <caret line="128" column="50" selection-start-line="128" selection-start-column="50" selection-end-line="128" selection-end-column="50" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
           </folding>

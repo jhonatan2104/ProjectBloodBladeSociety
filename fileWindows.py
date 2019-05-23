@@ -1,7 +1,7 @@
 from tkinter import *
 from fileClass import *
 from functools import partial
-
+import time
 class TelaEscolhaBot:
     def __init__(self):
         self.btSizeX = 100
@@ -119,13 +119,13 @@ class TelaInicio:
 class TelaMain:
     def __init__(self):
         self.root = Tk()
-        self.lb1 = Canvas(self.root, width=300, height=200)
-        self.lb2 = Canvas(self.root, width=300, height=200)
-        self.lb3 = Canvas(self.root, width=300, height=200)
+        self.lb1 = Canvas(self.root, width=60, height=60)
+        self.lb2 = Canvas(self.root, width=60, height=60)
+        self.lb3 = Canvas(self.root, width=60, height=60)
         self.bts1 = [self.lb1, self.lb2, self.lb3]
-        self.lb4 = Canvas(self.root, width=300, height=200)
-        self.lb5 = Canvas(self.root, width=300, height=200)
-        self.lb6 = Canvas(self.root, width=300, height=200)
+        self.lb4 = Canvas(self.root, width=60, height=60)
+        self.lb5 = Canvas(self.root, width=60, height=60)
+        self.lb6 = Canvas(self.root, width=60, height=60)
         self.bts2 = [self.lb4, self.lb5, self.lb6]
 
     def setDisplay(self, number, display):
@@ -142,24 +142,24 @@ class TelaMain:
             "8": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/8.png"),
             "9": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/9.png")
         }
-        l = [
-            PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/2.png")
-        ]
         strNumber = number if len(number) == len(display) else "#"*(len(display)-len(number))+str(number)
         for elem in range(len(display)):
             imag = dicImagens[strNumber[elem]]
-            display[elem].create_image(50, 70, image=imag)
+            display[elem].create_image(30, 35, image=imag)
             display[elem].image = imag
 
     def construtor(self):
-        self.root.geometry("800x500+100+100")
-
+        self.root.geometry("1500x780+12+0")
+        self.root["bg"] = "Black"
         for indexBt in range(len(self.bts1)):
-            self.bts1[indexBt].place(x=100*indexBt+200, y=100)
+            self.bts1[indexBt]["bg"] = "Black"
+            self.bts1[indexBt].place(x=70*indexBt+200, y=100)
         for indexBt in range(len(self.bts2)):
-            self.bts2[indexBt].place(x=100*indexBt+200, y=300)
-        self.setDisplay(str(4), self.bts1)
-        self.setDisplay(str(452), self.bts2)
+            self.bts2[indexBt]["bg"] = "Black"
+            self.bts2[indexBt].place(x=70*indexBt+200, y=300)
+
+        self.setDisplay(str(8), self.bts1)
+        self.setDisplay(str(858), self.bts2)
         self.root.mainloop()
 
 TelaMain().construtor()
