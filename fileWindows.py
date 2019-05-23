@@ -16,16 +16,11 @@ class TelaEscolhaBot:
             file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/ImagemLabelBOT.png")
         self.imagemLabelPlayer = PhotoImage(
             file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/ImagemLabelPlayer.png")
-        self.IchigoKurosakiPNG = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
-        self.KillerBeePNG = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
-        self.XenaPNG = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
-        self.RoronoaZoroPNG = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
-        self.GohanPNG = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+        self.IchigoKurosakiPNG = PhotoImage(file=System.choosePlayer(0).imageShow)
+        self.KillerBeePNG = PhotoImage(file=System.choosePlayer(1).imageShow)
+        self.XenaPNG = PhotoImage(file=System.choosePlayer(2).imageShow)
+        self.RoronoaZoroPNG = PhotoImage(file=System.choosePlayer(3).imageShow)
+        self.GohanPNG = PhotoImage(file=System.choosePlayer(4).imageShow)
         self.backPNG = PhotoImage(
             file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/backPNG.png")
         self.bt1 = Button(self.root, image= self.IchigoKurosakiPNG, width=self.btSizeX,
@@ -162,6 +157,6 @@ class TelaMain:
         self.setDisplay(str(858), self.bts2)
         self.root.mainloop()
 
-TelaMain().construtor()
+TelaEscolhaBot().construtor()
 
 

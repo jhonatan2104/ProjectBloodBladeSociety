@@ -78,7 +78,8 @@ class System:
             sword = Sword("Zanpakutō", at1, at2, at3)
 
             shield = Shield(name="Armor Berserker", latencia=2, defesaFisica=1000, defesaMagica=3000)
-            player = Player(name="Ichigo Kurosaki", hp=10000, mana=1000, sword=sword, shield=shield)
+            player = Player(name="Ichigo Kurosaki", hp=10000, mana=1000, sword=sword, shield=shield,
+                            imageShow="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Personagens/ichico.png")
 
             player.setWAVShow("DirWAV/ICHIGOPERSONAGEM.wav")
             player.setWAVSlang("DirWAV/go.wav")
@@ -93,7 +94,8 @@ class System:
             sword = Sword("Samehada", at1, at2, at3)
 
             shield = Shield(name="Armor of Gemini", latencia=4, defesaFisica=2000, defesaMagica=1000)
-            player = Player(name="Killer Bee", hp=10000, mana=1500, sword=sword, shield=shield)
+            player = Player(name="Killer Bee", hp=10000, mana=1500, sword=sword, shield=shield,
+                            imageShow="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Personagens/bee.png")
 
             player.setWAVShow("DirWAV/KILLERBEEPERSONAGEM.wav")
             player.setWAVSlang("DirWAV/go.wav")
@@ -108,7 +110,8 @@ class System:
 
             shield = Shield(name="Armor Knight", latencia=3, defesaFisica=1000, defesaMagica=1000)
 
-            player = Player(name="Xena", hp=7000, mana=1000, sword=sword, shield=shield)
+            player = Player(name="Xena", hp=7000, mana=1000, sword=sword, shield=shield,
+                            imageShow="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Personagens/xena.png")
 
             player.setWAVShow("DirWAV/XENAPERSONAGEM.wav")
             player.setWAVSlang("DirWAV/go.wav")
@@ -123,7 +126,8 @@ class System:
 
             shield = Shield(name="Black Armor", latencia=4, defesaFisica=1000, defesaMagica=1000)
 
-            player = Player(name="Roronoa Zoro", hp=7000, mana=1000, sword=sword, shield=shield)
+            player = Player(name="Roronoa Zoro", hp=7000, mana=1000, sword=sword, shield=shield,
+                            imageShow="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Personagens/zoro.png")
 
             player.setWAVShow("DirWAV/ZOROPERSONAGEM.wav")
             player.setWAVSlang("DirWAV/go.wav")
@@ -138,7 +142,8 @@ class System:
 
             shield = Shield(name="Metal Tech", latencia=3, defesaFisica=700, defesaMagica=500)
 
-            player = Player(name="Gohan", hp=15000, mana=2000, sword=sword, shield=shield)
+            player = Player(name="Gohan", hp=15000, mana=2000, sword=sword, shield=shield,
+                            imageShow="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Personagens/gohan.png")
 
             player.setWAVShow("DirWAV/GOHANPERSONAGEM.wav")
             player.setWAVSlang("DirWAV/go.wav")
@@ -197,12 +202,14 @@ class System:
 
 
 class Player:
-    def __init__(self, name, hp, mana, sword, shield):
+    def __init__(self, name, hp, mana, sword, shield,
+                 imageShow = "C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png"):
         self.name = name
         self.hp = hp
         self.sword = sword
         self.shield = shield
         self.mana = mana
+        self.imageShow = imageShow
         self.arqWAV = ["", ""]
 
     def __str__(self, ):

@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fefe4446-7a52-4355-8c4a-2041c4896d9f" name="Default Changelist" comment="Teste Hacker">
-      <change beforePath="$PROJECT_DIR$/DirPNG/DirPNGnumber/#.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/DirPNGnumber/#.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DirPNG/DirPNGnumber/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/DirPNGnumber/1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DirPNG/DirPNGnumber/2.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/DirPNGnumber/2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DirPNG/DirPNGnumber/3.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/DirPNGnumber/3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DirPNG/DirPNGnumber/4.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/DirPNGnumber/4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DirPNG/DirPNGnumber/5.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/DirPNGnumber/5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DirPNG/DirPNGnumber/6.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/DirPNGnumber/6.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DirPNG/DirPNGnumber/7.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/DirPNGnumber/7.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DirPNG/DirPNGnumber/8.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/DirPNGnumber/8.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DirPNG/DirPNGnumber/9.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/DirPNGnumber/9.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fileClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/fileClass.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fileWindows.py" beforeDir="false" afterPath="$PROJECT_DIR$/fileWindows.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -37,8 +28,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fileClass.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="92" column="52" selection-start-line="92" selection-start-column="52" selection-end-line="92" selection-end-column="52" />
+            <state relative-caret-position="294">
+              <caret line="145" column="118" selection-start-line="145" selection-start-column="118" selection-end-line="145" selection-end-column="118" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -49,8 +40,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/fileWindows.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="211">
-              <caret line="128" column="50" selection-start-line="128" selection-start-column="50" selection-end-line="128" selection-end-column="50" />
+            <state relative-caret-position="267">
+              <caret line="27" column="38" selection-start-line="27" selection-start-column="38" selection-end-line="27" selection-end-column="38" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
               </folding>
@@ -88,11 +79,11 @@
         <option value="$PROJECT_DIR$/System.py" />
         <option value="$PROJECT_DIR$/SystemGame.py" />
         <option value="$PROJECT_DIR$/fileMain.py" />
-        <option value="$PROJECT_DIR$/fileClass.py" />
         <option value="$PROJECT_DIR$/Mind.txt" />
         <option value="$PROJECT_DIR$/Strategy.py" />
         <option value="$PROJECT_DIR$/Interface/TelaEscolhaBot.py" />
         <option value="$PROJECT_DIR$/windows.py" />
+        <option value="$PROJECT_DIR$/fileClass.py" />
         <option value="$PROJECT_DIR$/fileWindows.py" />
       </list>
     </option>
@@ -135,23 +126,13 @@
             <path>
               <item name="ProjectBloodBladeSociety" type="b2602c69:ProjectViewProjectNode" />
               <item name="ProjectBloodBladeSociety" type="462c0819:PsiDirectoryNode" />
-              <item name="DirPNG" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ProjectBloodBladeSociety" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ProjectBloodBladeSociety" type="462c0819:PsiDirectoryNode" />
-              <item name="DirWAV" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ProjectBloodBladeSociety" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ProjectBloodBladeSociety" type="462c0819:PsiDirectoryNode" />
               <item name="fileClass.py" type="8704e2dd:PyFileNode" />
             </path>
             <path>
               <item name="ProjectBloodBladeSociety" type="b2602c69:ProjectViewProjectNode" />
               <item name="ProjectBloodBladeSociety" type="462c0819:PsiDirectoryNode" />
               <item name="fileClass.py" type="8704e2dd:PyFileNode" />
-              <item name="InteligencePlayer" type="dd8bbb05:PyElementNode" />
+              <item name="Player" type="dd8bbb05:PyElementNode" />
             </path>
             <path>
               <item name="ProjectBloodBladeSociety" type="b2602c69:ProjectViewProjectNode" />
@@ -169,12 +150,6 @@
               <item name="ProjectBloodBladeSociety" type="462c0819:PsiDirectoryNode" />
               <item name="fileWindows.py" type="8704e2dd:PyFileNode" />
               <item name="TelaEscolhaBot" type="dd8bbb05:PyElementNode" />
-            </path>
-            <path>
-              <item name="ProjectBloodBladeSociety" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ProjectBloodBladeSociety" type="462c0819:PsiDirectoryNode" />
-              <item name="fileWindows.py" type="8704e2dd:PyFileNode" />
-              <item name="TelaMain" type="dd8bbb05:PyElementNode" />
             </path>
             <path>
               <item name="ProjectBloodBladeSociety" type="b2602c69:ProjectViewProjectNode" />
@@ -214,7 +189,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.fileMain">
+  <component name="RunManager" selected="Python.fileWindows">
     <configuration name="Strategy" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="ProjectBloodBladeSociety" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -369,7 +344,7 @@
       <window_info id="Favorites" order="2" sideWeight="0.5021962" side_tool="true" weight="0.2247191" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.329429" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.30161053" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3001464" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39824304" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -488,6 +463,9 @@
     <entry file="file://$PROJECT_DIR$/Strategy.py" />
     <entry file="file://$PROJECT_DIR$/Interface/Tk.py" />
     <entry file="file://$PROJECT_DIR$/DirPNG/eu sou a solução dos seus problemas.png" />
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/tkinter/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/fileMain.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="23">
@@ -497,21 +475,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/fileClass.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="92" column="52" selection-start-line="92" selection-start-column="52" selection-end-line="92" selection-end-column="52" />
+        <state relative-caret-position="294">
+          <caret line="145" column="118" selection-start-line="145" selection-start-column="118" selection-end-line="145" selection-end-column="118" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/tkinter/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/fileWindows.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="128" column="50" selection-start-line="128" selection-start-column="50" selection-end-line="128" selection-end-column="50" />
+        <state relative-caret-position="267">
+          <caret line="27" column="38" selection-start-line="27" selection-start-column="38" selection-end-line="27" selection-end-column="38" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
           </folding>
