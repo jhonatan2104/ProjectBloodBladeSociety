@@ -2,7 +2,6 @@ from tkinter import *
 from fileClass import *
 from functools import partial
 
-
 class TelaEscolhaBot:
     def __init__(self):
         self.btSizeX = 100
@@ -47,18 +46,20 @@ class TelaEscolhaBot:
         self.BOT = None
 
     def choose(self,player):
-        if self.p1 == None:
+        if self.p1 is None:
             player.PlayWAVShow()
             self.p1 = player
             self.lb["image"] = self.imagemLabelBOT
-        elif self.BOT == None:
+        elif self.BOT is None:
             player.PlayWAVShow()
             self.BOT = player
             #Alter essa parte do código quando CRIAR A TELA MAIN
             print(self.p1.name, self.BOT.name)
+
     def voltar(self):
         self.root.destroy()
         TelaInicio().construtor()
+
     def construtor(self):
         self.root.geometry("800x500+300+100")
         self.root["bg"] = self.color
@@ -69,7 +70,7 @@ class TelaEscolhaBot:
                 contCamp += 1
                 self.bts[line][column].place(x=self.x*column+self.margeX, y=self.y*line+self.margeY)
         self.lb.pack(side=TOP)
-        self.btVoltar.pack(side=BOTTOM,anchor=SE)
+        self.btVoltar.pack(side=BOTTOM, anchor=SE)
         self.btVoltar["command"] = self.voltar
         self.root.mainloop()
 
@@ -113,5 +114,54 @@ class TelaInicio:
         self.bt1["command"] = self.abrirTelaEscolhaPlayerBOT
         self.bt2["command"] = self.abrirTelaEscolhaPlayer
         self.root.mainloop()
-TelaInicio().construtor()
+
+
+class TelaMain:
+    def __init__(self):
+        self.root = Tk()
+        self.lb1 = Canvas(self.root, width=300, height=200)
+        self.lb2 = Canvas(self.root, width=300, height=200)
+        self.lb3 = Canvas(self.root, width=300, height=200)
+        self.bts1 = [self.lb1, self.lb2, self.lb3]
+        self.lb4 = Canvas(self.root, width=300, height=200)
+        self.lb5 = Canvas(self.root, width=300, height=200)
+        self.lb6 = Canvas(self.root, width=300, height=200)
+        self.bts2 = [self.lb4, self.lb5, self.lb6]
+
+    def setDisplay(self, number, display):
+        dicImagens = {
+            "#": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/#.png"),
+            "0": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/#.png"),
+            "1": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/1.png"),
+            "2": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/2.png"),
+            "3": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/3.png"),
+            "4": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/4.png"),
+            "5": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/5.png"),
+            "6": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/6.png"),
+            "7": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/7.png"),
+            "8": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/8.png"),
+            "9": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/9.png")
+        }
+        l = [
+            PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/2.png")
+        ]
+        strNumber = number if len(number) == len(display) else "#"*(len(display)-len(number))+str(number)
+        for elem in range(len(display)):
+            imag = dicImagens[strNumber[elem]]
+            display[elem].create_image(50, 70, image=imag)
+            display[elem].image = imag
+
+    def construtor(self):
+        self.root.geometry("800x500+100+100")
+
+        for indexBt in range(len(self.bts1)):
+            self.bts1[indexBt].place(x=100*indexBt+200, y=100)
+        for indexBt in range(len(self.bts2)):
+            self.bts2[indexBt].place(x=100*indexBt+200, y=300)
+        self.setDisplay(str(4), self.bts1)
+        self.setDisplay(str(452), self.bts2)
+        self.root.mainloop()
+
+TelaMain().construtor()
+
 
