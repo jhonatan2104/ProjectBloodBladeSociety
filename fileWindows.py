@@ -2,6 +2,8 @@ from tkinter import *
 from fileClass import *
 from functools import partial
 import time
+
+
 class TelaEscolhaBot:
     def __init__(self):
         self.btSizeX = 100
@@ -50,6 +52,8 @@ class TelaEscolhaBot:
             self.BOT = player
             #Alter essa parte do código quando CRIAR A TELA MAIN
             print(self.p1.name, self.BOT.name)
+            self.root.destroy()
+            TelaMain(self.p1, self.BOT).construtor()
 
     def voltar(self):
         self.root.destroy()
@@ -112,16 +116,55 @@ class TelaInicio:
 
 
 class TelaMain:
-    def __init__(self):
+    def __init__(self, player, bot):
         self.root = Tk()
-        self.lb1 = Canvas(self.root, width=60, height=60)
-        self.lb2 = Canvas(self.root, width=60, height=60)
-        self.lb3 = Canvas(self.root, width=60, height=60)
-        self.bts1 = [self.lb1, self.lb2, self.lb3]
-        self.lb4 = Canvas(self.root, width=60, height=60)
-        self.lb5 = Canvas(self.root, width=60, height=60)
-        self.lb6 = Canvas(self.root, width=60, height=60)
-        self.bts2 = [self.lb4, self.lb5, self.lb6]
+        self.player = player
+        self.bot = bot
+        self.imageLife1 = PhotoImage(
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+        self.imageLife2 = PhotoImage(
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+        self.imageMana1 = PhotoImage(
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+        self.imageMana2 = PhotoImage(
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+
+        self.lbLifePlayer = Label(self.root, width=200, height=60, image=self.imageLife1)
+        self.lbLifeBOT = Label(self.root, width=200, height=60, image=self.imageLife2)
+        self.lbManaPlayer = Label(self.root, width=200, height=60, image=self.imageMana1)
+        self.lbManaBOT = Label(self.root, width=200, height=60, image=self.imageMana2)
+
+        self.yDisplayLifi = 370
+        self.xDisplayLifiPlayer = 40
+        self.xDisplayLifiBOT = 1260
+
+        self.yDisplayMana = 550
+        self.xDisplayManaPlayer = 40
+        self.xDisplayManaBOT = 1260
+
+        self.c1 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c2 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c3 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c4 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.displayLifePlayer = [self.c1, self.c2, self.c3, self.c4]
+
+        self.c5 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c6 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c7 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c8 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.displayLifeBOT = [self.c5, self.c6, self.c7, self.c8]
+
+        self.c9 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c10 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c11 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c12 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.displayManaPlayer = [self.c9, self.c10, self.c11, self.c12]
+
+        self.c13 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c14 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c15 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c16 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.displayManaBOT = [self.c13, self.c14, self.c15, self.c16]
 
     def setDisplay(self, number, display):
         dicImagens = {
@@ -146,17 +189,32 @@ class TelaMain:
     def construtor(self):
         self.root.geometry("1500x780+12+0")
         self.root["bg"] = "Black"
-        for indexBt in range(len(self.bts1)):
-            self.bts1[indexBt]["bg"] = "Black"
-            self.bts1[indexBt].place(x=70*indexBt+200, y=100)
-        for indexBt in range(len(self.bts2)):
-            self.bts2[indexBt]["bg"] = "Black"
-            self.bts2[indexBt].place(x=70*indexBt+200, y=300)
 
-        self.setDisplay(str(8), self.bts1)
-        self.setDisplay(str(858), self.bts2)
+        #Display LIFE PLAYER
+        for j in range(len(self.displayLifePlayer)):
+            self.displayLifePlayer[j].config(bg="Black")
+            self.displayLifePlayer[j].place(x=j*50+self.xDisplayLifiPlayer, y=self.yDisplayLifi+80)
+        self.lbLifePlayer.place(x=self.xDisplayLifiPlayer, y=self.yDisplayLifi)
+        for j in range(len(self.displayManaPlayer)):
+            self.displayManaPlayer[j].config(bg="Black")
+            self.displayManaPlayer[j].place(x=j*50+self.xDisplayManaPlayer, y=self.yDisplayMana+80)
+        self.lbManaPlayer.place(x=self.xDisplayManaPlayer, y=self.yDisplayMana)
+
+        # Display LIFE BOT
+        for j in range(len(self.displayLifeBOT)):
+            self.displayLifeBOT[j].config(bg="Black")
+            self.displayLifeBOT[j].place(x=j*50+self.xDisplayLifiBOT, y=self.yDisplayLifi+80)
+        self.lbLifeBOT.place(x=self.xDisplayLifiBOT, y=self.yDisplayLifi)
+        for j in range(len(self.displayManaBOT)):
+            self.displayManaBOT[j].config(bg="Black")
+            self.displayManaBOT[j].place(x=j*50+self.xDisplayManaBOT, y=self.yDisplayMana+80)
+        self.lbManaBOT.place(x=self.xDisplayManaBOT, y=self.yDisplayMana)
+
+        self.setDisplay(str(self.player.hp), self.displayLifePlayer)
+        self.setDisplay(str(self.bot.hp), self.displayLifeBOT)
+        self.setDisplay(str(self.player.mana), self.displayManaBOT)
+        self.setDisplay(str(self.bot.mana), self.displayManaPlayer)
         self.root.mainloop()
 
-TelaEscolhaBot().construtor()
 
-
+TelaInicio().construtor()

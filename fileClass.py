@@ -94,7 +94,7 @@ class System:
             sword = Sword("Samehada", at1, at2, at3)
 
             shield = Shield(name="Armor of Gemini", latencia=4, defesaFisica=2000, defesaMagica=1000)
-            player = Player(name="Killer Bee", hp=10000, mana=1500, sword=sword, shield=shield,
+            player = Player(name="Killer Bee", hp=9900, mana=1500, sword=sword, shield=shield,
                             imageShow="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Personagens/bee.png")
 
             player.setWAVShow("DirWAV/KILLERBEEPERSONAGEM.wav")
@@ -142,7 +142,7 @@ class System:
 
             shield = Shield(name="Metal Tech", latencia=3, defesaFisica=700, defesaMagica=500)
 
-            player = Player(name="Gohan", hp=15000, mana=2000, sword=sword, shield=shield,
+            player = Player(name="Gohan", hp=9999, mana=2000, sword=sword, shield=shield,
                             imageShow="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Personagens/gohan.png")
 
             player.setWAVShow("DirWAV/GOHANPERSONAGEM.wav")
