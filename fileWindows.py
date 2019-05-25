@@ -120,6 +120,10 @@ class TelaMain:
         self.root = Tk()
         self.player = player
         self.bot = bot
+        self.ImageShowPlayer = PhotoImage(file=self.player.imageShow)
+        self.ImageShowBOT = PhotoImage(file=self.bot.imageShow)
+        self.lbPlAYER = Label(self.root, image=self.ImageShowPlayer, width=100, height=150)
+        self.lbBtBOT = Button(self.root, image=self.ImageShowBOT, width=100, height=150)
         self.imageLife1 = PhotoImage(
             file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
         self.imageLife2 = PhotoImage(
@@ -134,13 +138,13 @@ class TelaMain:
         self.lbManaPlayer = Label(self.root, width=200, height=60, image=self.imageMana1)
         self.lbManaBOT = Label(self.root, width=200, height=60, image=self.imageMana2)
 
-        self.yDisplayLifi = 370
-        self.xDisplayLifiPlayer = 40
-        self.xDisplayLifiBOT = 1260
+        self.yDisplayLifi = 400
+        self.xDisplayLifiPlayer = 50
+        self.xDisplayLifiBOT = 1250
 
-        self.yDisplayMana = 550
-        self.xDisplayManaPlayer = 40
-        self.xDisplayManaBOT = 1260
+        self.yDisplayMana = 580
+        self.xDisplayManaPlayer = 50
+        self.xDisplayManaBOT = 1250
 
         self.c1 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
         self.c2 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
@@ -166,6 +170,21 @@ class TelaMain:
         self.c16 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
         self.displayManaBOT = [self.c13, self.c14, self.c15, self.c16]
 
+        self.canvasAttk = Canvas(self.root, width=725, height=170, highlightbackground="Black")
+        self.imageATTK1 = PhotoImage(
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+        self.imageATTK2 = PhotoImage(
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+        self.imageATTK3 = PhotoImage(
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+        self.imageDEF = PhotoImage(
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+        self.btAttk1 = Button(self.canvasAttk, width=175, height=160, image= self.imageATTK1)
+        self.btAttk2 = Button(self.canvasAttk, width=175, height=160, image=self.imageATTK2)
+        self.btAttk3 = Button(self.canvasAttk, width=175, height=160, image=self.imageATTK3)
+        self.btdef1 = Button(self.canvasAttk, width=175, height=160, image=self.imageDEF)
+        self.BTSCommands = [self.btAttk1, self.btAttk2, self.btAttk3, self.btdef1]
+
     def setDisplay(self, number, display):
         dicImagens = {
             "#": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/#.png"),
@@ -189,7 +208,8 @@ class TelaMain:
     def construtor(self):
         self.root.geometry("1500x780+12+0")
         self.root["bg"] = "Black"
-
+        self.lbPlAYER.place(x=self.xDisplayManaPlayer+50, y=20)
+        self.lbBtBOT.place(x=self.xDisplayManaBOT+50, y=20)
         #Display LIFE PLAYER
         for j in range(len(self.displayLifePlayer)):
             self.displayLifePlayer[j].config(bg="Black")
@@ -205,15 +225,21 @@ class TelaMain:
             self.displayLifeBOT[j].config(bg="Black")
             self.displayLifeBOT[j].place(x=j*50+self.xDisplayLifiBOT, y=self.yDisplayLifi+80)
         self.lbLifeBOT.place(x=self.xDisplayLifiBOT, y=self.yDisplayLifi)
+
         for j in range(len(self.displayManaBOT)):
             self.displayManaBOT[j].config(bg="Black")
             self.displayManaBOT[j].place(x=j*50+self.xDisplayManaBOT, y=self.yDisplayMana+80)
         self.lbManaBOT.place(x=self.xDisplayManaBOT, y=self.yDisplayMana)
 
+        self.canvasAttk.pack(side=BOTTOM, anchor=S)
+        for bt in range(len(self.BTSCommands)):
+            self.BTSCommands[bt].place(x=bt*185, y=0)
+        self.canvasAttk.config(bg="black")
         self.setDisplay(str(self.player.hp), self.displayLifePlayer)
         self.setDisplay(str(self.bot.hp), self.displayLifeBOT)
         self.setDisplay(str(self.player.mana), self.displayManaBOT)
         self.setDisplay(str(self.bot.mana), self.displayManaPlayer)
+
         self.root.mainloop()
 
 
