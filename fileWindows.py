@@ -122,25 +122,24 @@ class TelaMain:
         self.bot = bot
 
         self.ImageShowPlayer = PhotoImage(file=self.player.imageShow)
-        self.ImageIDPlayer = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
-        self.ImageIDSwordPlayer = ""
-        self.ImageIDShieldPlayer = ""
+        self.ImageIDPlayer = PhotoImage(file=player.imageID)
+        self.ImageIDSwordPlayer = PhotoImage(file=player.sword.imageID)
+        self.ImageIDShieldPlayer = PhotoImage(file=player.shield.imageID)
 
         self.ImageShowBOT = PhotoImage(file=self.bot.imageShow)
-        self.ImageIDBOT = ""
-        self.ImageIDSwordBOT = ""
-        self.ImageIDShieldBOT = ""
+        self.ImageIDBOT = PhotoImage(file=bot.imageID)
+        self.ImageIDSwordBOT = PhotoImage(file=bot.sword.imageID)
+        self.ImageIDShieldBOT = PhotoImage(file=bot.shield.imageID)
 
         self.lbPlAYER = Label(self.root, image=self.ImageShowPlayer, width=100, height=150)
-        self.nomePlAYER = ""
-        self.swordPlAYER = ""
-        self.shieldPlayer = ""
+        self.nomePlAYER = Label(self.root, image=self.ImageIDPlayer, width=200, height=60)
+        self.swordPlAYER = Label(self.root, image=self.ImageIDSwordPlayer, width=200, height=60)
+        self.shieldPlayer = Label(self.root, image=self.ImageIDShieldPlayer, width=200, height=60)
 
         self.lbBtBOT = Button(self.root, image=self.ImageShowBOT, width=100, height=150)
-        self.nomeBOT = Label(self.root, image=self.ImageIDPlayer, width=200, height=60)
-        self.swordBOT = ""
-        self.shieldBOT = ""
+        self.nomeBOT = Label(self.root, image=self.ImageIDBOT, width=200, height=60)
+        self.swordBOT = Label(self.root, image=self.ImageIDSwordBOT, width=200, height=60)
+        self.shieldBOT = Label(self.root, image=self.ImageIDShieldBOT, width=200, height=60)
 
         self.imageLife1 = PhotoImage(
             file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
@@ -256,7 +255,15 @@ class TelaMain:
         self.root["bg"] = "Black"
         self.lbPlAYER.place(x=self.xDisplayManaPlayer+50, y=20)
         self.lbBtBOT.place(x=self.xDisplayManaBOT+50, y=20)
-        self.nomeBOT.place(x=self.xDisplayManaBOT,y=200)
+
+        self.nomePlAYER.place(x=self.xDisplayManaPlayer, y=200)
+        self.nomeBOT.place(x=self.xDisplayManaBOT, y=200)
+
+        self.swordPlAYER.place(x=self.xDisplayManaPlayer, y=270)
+        self.swordBOT.place(x=self.xDisplayManaBOT, y=270)
+
+        self.shieldPlayer.place(x=self.xDisplayManaPlayer, y=340)
+        self.shieldBOT.place(x=self.xDisplayManaBOT, y=340)
 
         #Display LIFE PLAYER
         for j in range(len(self.displayLifePlayer)):
