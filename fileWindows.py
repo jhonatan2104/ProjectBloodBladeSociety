@@ -118,24 +118,30 @@ class TelaInicio:
 class TelaMain:
     def __init__(self, player, bot):
         self.root = Tk()
+
+        # PLAYER
         self.player = player
         self.bot = bot
 
+        # IMAGE PLAYER
         self.ImageShowPlayer = PhotoImage(file=self.player.imageShow)
         self.ImageIDPlayer = PhotoImage(file=player.imageID)
         self.ImageIDSwordPlayer = PhotoImage(file=player.sword.imageID)
         self.ImageIDShieldPlayer = PhotoImage(file=player.shield.imageID)
 
+        # IMAAGE BOT
         self.ImageShowBOT = PhotoImage(file=self.bot.imageShow)
         self.ImageIDBOT = PhotoImage(file=bot.imageID)
         self.ImageIDSwordBOT = PhotoImage(file=bot.sword.imageID)
         self.ImageIDShieldBOT = PhotoImage(file=bot.shield.imageID)
 
+        # Lb Player
         self.lbPlAYER = Label(self.root, image=self.ImageShowPlayer, width=100, height=150)
         self.nomePlAYER = Label(self.root, image=self.ImageIDPlayer, width=200, height=60)
         self.swordPlAYER = Label(self.root, image=self.ImageIDSwordPlayer, width=200, height=60)
         self.shieldPlayer = Label(self.root, image=self.ImageIDShieldPlayer, width=200, height=60)
 
+        # Lb BOT
         self.lbBtBOT = Button(self.root, image=self.ImageShowBOT, width=100, height=150)
         self.nomeBOT = Label(self.root, image=self.ImageIDBOT, width=200, height=60)
         self.swordBOT = Label(self.root, image=self.ImageIDSwordBOT, width=200, height=60)
@@ -155,6 +161,7 @@ class TelaMain:
         self.lbManaPlayer = Label(self.root, width=200, height=60, image=self.imageMana1)
         self.lbManaBOT = Label(self.root, width=200, height=60, image=self.imageMana2)
 
+        #CANVAS STATUS
         self.imageStatusFalhou = PhotoImage(
             file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
         self.imageStatusEfetivo = PhotoImage(
@@ -165,6 +172,7 @@ class TelaMain:
             file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
         self.canvasStatus = Canvas(self.root, width=725, height=200, highlightbackground="Black")
 
+        #CONFIG DISPLAY
         self.yDisplayLifi = 450
         self.xDisplayLifiPlayer = 50
         self.xDisplayLifiBOT = 1250
@@ -173,30 +181,64 @@ class TelaMain:
         self.xDisplayManaPlayer = 50
         self.xDisplayManaBOT = 1250
 
+        #DISPLAY
         self.c1 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
         self.c2 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
         self.c3 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
         self.c4 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
-        self.displayLifePlayer = [self.c1, self.c2, self.c3, self.c4]
+        self.c17 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.displayLifePlayer = [self.c1, self.c2, self.c3, self.c4,self.c17]
 
         self.c5 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
         self.c6 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
         self.c7 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
         self.c8 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
-        self.displayLifeBOT = [self.c5, self.c6, self.c7, self.c8]
+        self.c18 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.displayLifeBOT = [self.c5, self.c6, self.c7, self.c8, self.c18]
 
         self.c9 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
         self.c10 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
         self.c11 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
         self.c12 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
-        self.displayManaPlayer = [self.c9, self.c10, self.c11, self.c12]
+        self.c19 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.displayManaPlayer = [self.c9, self.c10, self.c11, self.c12, self.c19]
 
         self.c13 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
         self.c14 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
         self.c15 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
         self.c16 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
-        self.displayManaBOT = [self.c13, self.c14, self.c15, self.c16]
+        self.c20 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.displayManaBOT = [self.c13, self.c14, self.c15, self.c16, self.c20]
 
+        # CONFIG DISPLAY DANO, LATÊNCIA
+        self.xMargeDisplayDL = 750
+        self.xMargeLabelDL = 550
+        self.yMargeDisplayDL = 450
+
+        #IMAGE DANO, LATÊNCIA
+        self.imgLatencia = PhotoImage(
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png"
+        )
+        self.imgDanoReal = PhotoImage(
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png"
+        )
+
+        #LABEL DANO, LATÊNCIA
+        self.lbLatencia = Label(self.root, width=200, height=60, highlightbackground="Black", image=self.imgLatencia)
+        self.lbDanoReal = Label(self.root, width=200, height=60, highlightbackground="Black", image=self.imgDanoReal)
+
+        # DISPLAY DANO
+        self.c21 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c22 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c23 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c24 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.displayDanoReal = [self.c21, self.c22, self.c23, self.c24]
+
+        # DISPLAY LATENCIA
+        self.c25 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.displayLatencia = [self.c25]
+
+        #BOTÕES DE ATTACK
         self.canvasAttk = Canvas(self.root, width=725, height=170, highlightbackground="Black")
         self.imageATTK1 = PhotoImage(
             file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
@@ -265,27 +307,39 @@ class TelaMain:
         self.shieldPlayer.place(x=self.xDisplayManaPlayer, y=340)
         self.shieldBOT.place(x=self.xDisplayManaBOT, y=340)
 
+        recuo = 20
         #Display LIFE PLAYER
         for j in range(len(self.displayLifePlayer)):
             self.displayLifePlayer[j].config(bg="Black")
-            self.displayLifePlayer[j].place(x=j*50+self.xDisplayLifiPlayer, y=self.yDisplayLifi+60)
+            self.displayLifePlayer[j].place(x=j*50+self.xDisplayLifiPlayer-recuo, y=self.yDisplayLifi+60)
         self.lbLifePlayer.place(x=self.xDisplayLifiPlayer, y=self.yDisplayLifi)
 
         for j in range(len(self.displayManaPlayer)):
             self.displayManaPlayer[j].config(bg="Black")
-            self.displayManaPlayer[j].place(x=j*50+self.xDisplayManaPlayer, y=self.yDisplayMana+60)
+            self.displayManaPlayer[j].place(x=j*50+self.xDisplayManaPlayer-recuo, y=self.yDisplayMana+60)
         self.lbManaPlayer.place(x=self.xDisplayManaPlayer, y=self.yDisplayMana)
 
         # Display LIFE BOT
         for j in range(len(self.displayLifeBOT)):
             self.displayLifeBOT[j].config(bg="Black")
-            self.displayLifeBOT[j].place(x=j*50+self.xDisplayLifiBOT, y=self.yDisplayLifi+60)
+            self.displayLifeBOT[j].place(x=j*50+self.xDisplayLifiBOT-recuo, y=self.yDisplayLifi+60)
         self.lbLifeBOT.place(x=self.xDisplayLifiBOT, y=self.yDisplayLifi)
 
         for j in range(len(self.displayManaBOT)):
             self.displayManaBOT[j].config(bg="Black")
-            self.displayManaBOT[j].place(x=j*50+self.xDisplayManaBOT, y=self.yDisplayMana+60)
+            self.displayManaBOT[j].place(x=j*50+self.xDisplayManaBOT-recuo, y=self.yDisplayMana+60)
         self.lbManaBOT.place(x=self.xDisplayManaBOT, y=self.yDisplayMana)
+
+        # DISPLAY DL
+        for j in range(len(self.displayDanoReal)):
+            self.displayDanoReal[j].config(bg="Black")
+            self.displayDanoReal[j].place(x=j*50+self.xMargeDisplayDL, y=self.yMargeDisplayDL)
+
+        self.displayLatencia[0].config(bg="Black")
+        self.displayLatencia[0].place(x=self.xMargeDisplayDL, y=self.yMargeDisplayDL+70)
+
+        self.lbDanoReal.place(x=self.xMargeLabelDL, y=self.yMargeDisplayDL)
+        self.lbLatencia.place(x=self.xMargeLabelDL, y=self.yMargeDisplayDL+70)
 
         self.canvasAttk.pack(side=BOTTOM, anchor=S)
         self.canvasAttk.config(bg="black")
@@ -295,6 +349,8 @@ class TelaMain:
         self.canvasStatus.pack(side=TOP, anchor=N)
         self.setCanvasStatus(-1)
 
+        self.setDisplay(str(9), self.displayLatencia)
+        self.setDisplay(str(2000), self.displayDanoReal)
         self.setDisplay(str(self.player.hp), self.displayLifePlayer)
         self.setDisplay(str(self.bot.hp), self.displayLifeBOT)
         self.setDisplay(str(self.player.mana), self.displayManaBOT)
