@@ -1,8 +1,6 @@
 from tkinter import *
 from fileClass import *
 from functools import partial
-import time
-
 
 class TelaEscolhaBot:
     def __init__(self):
@@ -137,29 +135,29 @@ class TelaMain:
 
         # Lb Player
         self.lbPlAYER = Label(self.root, image=self.ImageShowPlayer, width=100, height=150)
-        self.nomePlAYER = Label(self.root, image=self.ImageIDPlayer, width=200, height=60)
-        self.swordPlAYER = Label(self.root, image=self.ImageIDSwordPlayer, width=200, height=60)
-        self.shieldPlayer = Label(self.root, image=self.ImageIDShieldPlayer, width=200, height=60)
+        self.nomePlAYER = Label(self.root, image=self.ImageIDPlayer, width=200, height=60, bg="Black")
+        self.swordPlAYER = Label(self.root, image=self.ImageIDSwordPlayer, width=200, height=60, bg="Black")
+        self.shieldPlayer = Label(self.root, image=self.ImageIDShieldPlayer, width=200, height=60, bg="Black")
 
         # Lb BOT
         self.lbBtBOT = Button(self.root, image=self.ImageShowBOT, width=100, height=150)
-        self.nomeBOT = Label(self.root, image=self.ImageIDBOT, width=200, height=60)
-        self.swordBOT = Label(self.root, image=self.ImageIDSwordBOT, width=200, height=60)
-        self.shieldBOT = Label(self.root, image=self.ImageIDShieldBOT, width=200, height=60)
+        self.nomeBOT = Label(self.root, image=self.ImageIDBOT, width=200, height=60, bg="Black")
+        self.swordBOT = Label(self.root, image=self.ImageIDSwordBOT, width=200, height=60, bg="Black")
+        self.shieldBOT = Label(self.root, image=self.ImageIDShieldBOT, width=200, height=60, bg="Black")
 
         self.imageLife1 = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/life.png")
         self.imageLife2 = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/life.png")
         self.imageMana1 = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/mana.png")
         self.imageMana2 = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/mana.png")
 
-        self.lbLifePlayer = Label(self.root, width=200, height=60, image=self.imageLife1)
-        self.lbLifeBOT = Label(self.root, width=200, height=60, image=self.imageLife2)
-        self.lbManaPlayer = Label(self.root, width=200, height=60, image=self.imageMana1)
-        self.lbManaBOT = Label(self.root, width=200, height=60, image=self.imageMana2)
+        self.lbLifePlayer = Label(self.root, width=200, height=60, image=self.imageLife1,  bg="Black")
+        self.lbLifeBOT = Label(self.root, width=200, height=60, image=self.imageLife2, bg="Black")
+        self.lbManaPlayer = Label(self.root, width=200, height=60, image=self.imageMana1, bg="Black")
+        self.lbManaBOT = Label(self.root, width=200, height=60, image=self.imageMana2, bg="Black")
 
         #CANVAS STATUS
         self.imageStatusFalhou = PhotoImage(
@@ -256,7 +254,7 @@ class TelaMain:
 
     def setDisplay(self, number, display):
         dicImagens = {
-            "#": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/#.png"),
+            "#": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/0.png"),
             "0": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/0.png"),
             "1": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/1.png"),
             "2": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/2.png"),

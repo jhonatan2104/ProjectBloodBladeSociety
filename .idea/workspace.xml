@@ -3,6 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="fefe4446-7a52-4355-8c4a-2041c4896d9f" name="Default Changelist" comment="Teste Hacker">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DirPNG/life.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/life.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DirPNG/mana.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/mana.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fileClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/fileClass.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fileWindows.py" beforeDir="false" afterPath="$PROJECT_DIR$/fileWindows.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -25,11 +28,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/fileClass.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1622">
-              <caret line="162" column="120" selection-start-line="162" selection-start-column="120" selection-end-line="162" selection-end-column="120" />
+            <state>
+              <caret line="81" column="118" selection-start-line="81" selection-start-column="118" selection-end-line="81" selection-end-column="118" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -37,11 +40,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fileWindows.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="354">
-              <caret line="341" column="76" selection-start-line="341" selection-start-column="76" selection-end-line="341" selection-end-column="76" />
+            <state relative-caret-position="-807">
+              <caret line="256" column="110" selection-start-line="256" selection-start-column="110" selection-end-line="256" selection-end-column="110" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
               </folding>
@@ -83,8 +86,8 @@
         <option value="$PROJECT_DIR$/Strategy.py" />
         <option value="$PROJECT_DIR$/Interface/TelaEscolhaBot.py" />
         <option value="$PROJECT_DIR$/windows.py" />
-        <option value="$PROJECT_DIR$/fileClass.py" />
         <option value="$PROJECT_DIR$/fileWindows.py" />
+        <option value="$PROJECT_DIR$/fileClass.py" />
       </list>
     </option>
   </component>
@@ -96,7 +99,7 @@
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
-    <navigator currentView="Scope" currentSubView="Scope 'Problems'; set:Problems; class com.intellij.psi.search.scope.ProblemsScope" proportions="" version="1">
+    <navigator currentView="Scope" currentSubView="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope" proportions="" version="1">
       <showMembers ProjectPane="true" />
       <showExcludedFiles Scope="true" ProjectPane="true" />
       <autoscrollToSource ProjectPane="true" />
@@ -495,22 +498,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fileClass.py">
+    <entry file="file://$PROJECT_DIR$/fileWindows.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1622">
-          <caret line="162" column="120" selection-start-line="162" selection-start-column="120" selection-end-line="162" selection-end-column="120" />
+        <state relative-caret-position="-807">
+          <caret line="256" column="110" selection-start-line="256" selection-start-column="110" selection-end-line="256" selection-end-column="110" />
           <folding>
-            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#0#21#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fileWindows.py">
+    <entry file="file://$PROJECT_DIR$/fileClass.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="341" column="76" selection-start-line="341" selection-start-column="76" selection-end-line="341" selection-end-column="76" />
+        <state>
+          <caret line="81" column="118" selection-start-line="81" selection-start-column="118" selection-end-line="81" selection-end-column="118" />
           <folding>
-            <element signature="e#0#21#0" expanded="true" />
+            <element signature="e#0#26#0" expanded="true" />
           </folding>
         </state>
       </provider>
