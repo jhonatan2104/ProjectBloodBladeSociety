@@ -188,19 +188,19 @@ class System:
         # validando os valores de retorno da funcao
         if danoRealMagico >= 0 and danoRealFisico >= 0:
             # significa que o ataque foi efetivo tanto de modo magico como fisico
-            danoReal = danoRealFisico + danoRealMagico
+            danoReal = [danoRealFisico, danoRealMagico]
             return danoReal
         elif danoRealMagico < 0 and danoRealFisico < 0:
             # significa que o ataque foi totalmente defendido
-            return 0
+            return [0,0]
         else:
             # significa que apenas uma das formas foi efetiva ao realizar o dano
             if danoRealMagico < 0:
                 # Dano Fisico foi efetivo
-                return danoRealFisico
+                return [danoRealFisico, 0]
             else:
                 # Dano Magico foi efetivo
-                return danoRealMagico
+                return [0, danoRealMagico]
 
     @staticmethod
     def calculeteDamage(attack):
@@ -213,7 +213,7 @@ class System:
         danoMagico = attack.danoMagico
         danoFisico = attack.danoFisico
 
-        danoReal = danoFisico + danoMagico
+        danoReal = [danoFisico, danoMagico]
 
         return danoReal
 
@@ -304,20 +304,22 @@ class Player:
 
             if (playerAdversario.shield.latencia <= randomLatenciaDefesa):
                 # DEFESA EFETIVA
-                dano = System.calculeteDamageShield(playerAdversario, attack)
-                playerAdversario.sufferDamage(dano)
+                danos = System.calculeteDamageShield(playerAdversario, attack)
+                danoReal = danos[0] + danos[1]
+                playerAdversario.sufferDamage(danoReal)
                 self.userMana(attack.mana)
-                manaRestore = self.restoreMana(dano)
-                System.printKnock(dano, manaRestore, attack, self, playerAdversario)
+                manaRestore = self.restoreMana(danoReal)
+                System.printKnock(danoReal, manaRestore, attack, self, playerAdversario)
 
             else:
                 # DEFESA NAO EFETIVA
                 System.print("DANO CRITICO", 'NEGRITO')
-                dano = System.calculeteDamage(attack)
-                playerAdversario.sufferDamage(dano)
+                danos = System.calculeteDamage(attack)
+                danoReal = danos[0]+danos[1]
+                playerAdversario.sufferDamage(danoReal)
                 self.userMana(attack.mana)
-                manaRestore = self.restoreMana(dano)
-                System.printKnock(dano, manaRestore, attack, self, playerAdversario)
+                manaRestore = self.restoreMana(danoReal)
+                System.printKnock(danoReal, manaRestore, attack, self, playerAdversario)
         else:
             # ATAQUE NAO EFETIVO
             System.print('''SEU ATAQUE FALHOU
@@ -367,8 +369,9 @@ class InteligencePlayer:
         ListAttack = self.player.sword.getAttack()
         ListRank = []
         for indexAttack in range(len(ListAttack)):
-            Dano = System.calculeteDamageShield(PlayerAdv, ListAttack[indexAttack])
-            ListRank.append([ListAttack[indexAttack], Dano, indexAttack])
+            danos = System.calculeteDamageShield(PlayerAdv, ListAttack[indexAttack])
+            danoReal = danos[0]+danos[1]
+            ListRank.append([ListAttack[indexAttack], danoReal, indexAttack])
         return sorted(ListRank, key=itemgetter(1))
 
     def resolverAttack(self, PlayerAdv):
