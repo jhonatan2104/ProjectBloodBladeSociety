@@ -179,6 +179,9 @@ class TelaMain:
             file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
         self.imageStatusHome = PhotoImage(
             file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+        self.imageStatusManaAlerta = PhotoImage(
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+
         self.canvasStatus = Canvas(self.root, width=725, height=200, highlightbackground="Black")
 
         #CANVAS ATTACK DICA
@@ -289,7 +292,7 @@ class TelaMain:
 
     def setCanvasStatus(self, status):
         '''
-        :param status:  -1 - bem-vindo; 0 - falhou ;1 - efetivo; 2 - crítico
+        :param status:  -1 - bem-vindo; 0 - falhou ;1 - efetivo; 2 - crítico; 3 - Mana insuficiente
         :return: Void
         '''
         if status == -1:
@@ -304,11 +307,17 @@ class TelaMain:
         elif status == 2:
             self.canvasStatus.create_image(0, 0, image=self.imageStatusCritico)
             self.canvasStatus.image = self.imageStatusCritico
+        elif status == 3:
+            self.canvasStatus.create_image(0, 0, image=self.imageStatusManaAlerta)
+            self.canvasStatus.image = self.imageStatusManaAlerta
 
-    def setCanvasDICA(self, attack):
-        imag = PhotoImage(file=attack.imageID)
-        self.canvasAttackDica.create_image(0, 0, image=imag)
-        self.canvasAttackDica.image = imag
+    def setCanvasDICA(self, attack=None):
+        if attack is None:
+            self.canvasAttackDica.config(bg="Black")
+        else:
+            imag = PhotoImage(file=attack.imageID)
+            self.canvasAttackDica.create_image(0, 0, image=imag)
+            self.canvasAttackDica.image = imag
 
     def verificarGame(self):
         if self.player.hp <= 0:
@@ -340,6 +349,19 @@ class TelaMain:
                         ''')
             return True
         return False
+
+    def defensiveMode(self):
+        self.setCanvasStatus(3)
+        self.setCanvasDICA()
+        manaRestore = self.player.restoreMana(0)
+
+        #SET DISPLAY DADOS
+        self.setDisplay(self.player.mana, self.displayManaPlayer)
+        self.setDisplay(0, self.displayDanoReal)
+        self.setDisplay(0, self.displayLatencia)
+
+        # DADOS ARMAZENÁVEIS
+        self.manaRestaurada += manaRestore
 
     def knock(self, attack):
         # o numero randomico para a latencia
@@ -474,6 +496,9 @@ class TelaMain:
             if bt < 3:
                 self.BTSCommands[bt].place(x=bt*185, y=0)
                 self.BTSCommands[bt]["command"] = partial(self.knock, attacksPlayer[bt])
+            else:
+                self.BTSCommands[bt].place(x=bt * 185, y=0)
+                self.BTSCommands[bt]["command"] = self.defensiveMode
 
         self.canvasStatus.pack(side=TOP, anchor=N)
         self.canvasAttackDica.pack(side=TOP, anchor=CENTER)
