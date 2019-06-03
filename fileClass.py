@@ -71,9 +71,12 @@ class System:
     def choosePlayer(indexPlayer):
         nameChamp = System.listPlayer()[indexPlayer]
         if nameChamp == 'Ichigo Kurosaki':
-            at1 = Attack(name="Getsuga Tenshou", mana=400, latencia=6, danoFisico=1000, danoMagico=6000)
-            at2 = Attack(name="Piercer of Heaven", mana=200, latencia=3, danoFisico=600, danoMagico=2000)
-            at3 = Attack(name="Getsuga Jūjishō", mana=350, latencia=3, danoFisico=2500, danoMagico=1500)
+            at1 = Attack(name="Getsuga Tenshou", mana=400, latencia=6, danoFisico=1000, danoMagico=6000,
+                         imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+            at2 = Attack(name="Piercer of Heaven", mana=200, latencia=3, danoFisico=600, danoMagico=2000,
+                         imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+            at3 = Attack(name="Getsuga Jūjishō", mana=350, latencia=3, danoFisico=2500, danoMagico=1500,
+                         imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
 
             sword = Sword("Zanpakutō", at1, at2, at3,
                           imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Sword/zampakuto.png")
@@ -90,10 +93,13 @@ class System:
 
             return player
         elif nameChamp == 'Killer Bee':
-            at1 = Attack(name="Crumbling the skin", mana=200, latencia=3, danoFisico=3000, danoMagico=600)
-            at2 = Attack(name="Life Theft", mana=10, latencia=7, danoFisico=1000, danoMagico=5500)
+            at1 = Attack(name="Crumbling the skin", mana=200, latencia=3, danoFisico=3000, danoMagico=600,
+                         imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+            at2 = Attack(name="Life Theft", mana=10, latencia=7, danoFisico=1000, danoMagico=5500,
+                         imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
             at3 = Attack(name="Samehada and the seven lightning swords", mana=500, latencia=5, danoFisico=3500,
-                         danoMagico=4500)
+                         danoMagico=4500,
+                         imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
 
             sword = Sword("Samehada", at1, at2, at3,
                           imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Sword/samehada.png")
@@ -129,9 +135,12 @@ class System:
 
             return player
         elif nameChamp == 'Roronoa Zoro':
-            at1 = Attack(name="Shishi SonSon", mana=100, latencia=1, danoFisico=1500, danoMagico=0)
-            at2 = Attack(name="Sanjuroku Pound Ho", mana=200, latencia=4, danoFisico=3500, danoMagico=500)
-            at3 = Attack(name="Yakkodori", mana=500, latencia=3, danoFisico=3000, danoMagico=4000)
+            at1 = Attack(name="Shishi SonSon", mana=100, latencia=1, danoFisico=1500, danoMagico=0,
+                         imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+            at2 = Attack(name="Sanjuroku Pound Ho", mana=200, latencia=4, danoFisico=3500, danoMagico=500,
+                         imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+            at3 = Attack(name="Yakkodori", mana=500, latencia=3, danoFisico=3000, danoMagico=4000,
+                         imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
 
             sword = Sword("Sandai Kitetsu", at1, at2, at3,
                           imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Sword/sandaiKitetsu.png")
@@ -148,9 +157,12 @@ class System:
 
             return player
         elif nameChamp == 'Gohan':
-            at1 = Attack(name="Fulminant Strike", mana=400, latencia=3, danoFisico=1000, danoMagico=3000)
-            at2 = Attack(name="Blade Combo", mana=300, latencia=1, danoFisico=1500, danoMagico=1500)
-            at3 = Attack(name="Rage of the Blade", mana=600, latencia=7, danoFisico=6500, danoMagico=1000)
+            at1 = Attack(name="Fulminant Strike", mana=400, latencia=3, danoFisico=1000, danoMagico=3000,
+                         imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+            at2 = Attack(name="Blade Combo", mana=300, latencia=1, danoFisico=1500, danoMagico=1500,
+                         imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+            at3 = Attack(name="Rage of the Blade", mana=600, latencia=7, danoFisico=6500, danoMagico=1000,
+                         imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
 
             sword = Sword("Espada Z", at1, at2, at3,
                           imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Sword/espadaZ.png")
@@ -432,12 +444,14 @@ class Sword:
 
 
 class Attack:
-    def __init__(self, name, mana, latencia, danoMagico, danoFisico):
+    def __init__(self, name, mana, latencia, danoMagico, danoFisico,
+                 imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png"):
         self.name = name
         self.mana = mana
         self.latencia = latencia
         self.danoMagico = danoMagico
         self.danoFisico = danoFisico
+        self.imageID = "C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png"
 
     def __str__(self):
         # coverter para string

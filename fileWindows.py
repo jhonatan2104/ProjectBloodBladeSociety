@@ -121,6 +121,17 @@ class TelaMain:
         self.player = player
         self.bot = bot
 
+        # DADOS PLAYER
+        self.damageMagico = 0
+        self.damageFisico = 0
+        self.CONTAttackFalhos = 0
+        self.CONTAttackCriticos = 0
+        self.CONTAttack = 0
+        self.damageMagicoSofrido = 0
+        self.damageFisicoSofrido = 0
+        self.manaRestaurada = 0
+        self.manaGasta = 0
+
         # IMAGE PLAYER
         self.ImageShowPlayer = PhotoImage(file=self.player.imageShow)
         self.ImageIDPlayer = PhotoImage(file=player.imageID)
@@ -170,6 +181,9 @@ class TelaMain:
             file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
         self.canvasStatus = Canvas(self.root, width=725, height=200, highlightbackground="Black")
 
+        #CANVAS ATTACK DICA
+        self.canvasAttackDica = Canvas(self.root, width=725, height=200, highlightbackground="Black")
+
         #CONFIG DISPLAY
         self.yDisplayLifi = 450
         self.xDisplayLifiPlayer = 50
@@ -185,7 +199,7 @@ class TelaMain:
         self.c3 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
         self.c4 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
         self.c17 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
-        self.displayLifePlayer = [self.c1, self.c2, self.c3, self.c4,self.c17]
+        self.displayLifePlayer = [self.c1, self.c2, self.c3, self.c4, self.c17]
 
         self.c5 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
         self.c6 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
@@ -252,7 +266,8 @@ class TelaMain:
         self.btdef1 = Button(self.canvasAttk, width=175, height=160, image=self.imageDEF)
         self.BTSCommands = [self.btAttk1, self.btAttk2, self.btAttk3, self.btdef1]
 
-    def setDisplay(self, number, display):
+    def setDisplay(self, num, display):
+        number = str(num)
         dicImagens = {
             "#": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/0.png"),
             "0": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/0.png"),
@@ -278,17 +293,129 @@ class TelaMain:
         :return: Void
         '''
         if status == -1:
-            self.canvasStatus.create_image(725, 200, image=self.imageStatusHome)
+            self.canvasStatus.create_image(0, 0, image=self.imageStatusHome)
             self.canvasStatus.image = self.imageStatusHome
         elif status == 0:
-            self.canvasStatus.create_image(30, 35, image=self.imageStatusFalhou)
+            self.canvasStatus.create_image(0, 0, image=self.imageStatusFalhou)
             self.canvasStatus.image = self.imageStatusFalhou
         elif status == 1:
-            self.canvasStatus.create_image(30, 35, image=self.imageStatusEfetivo)
+            self.canvasStatus.create_image(0, 0, image=self.imageStatusEfetivo)
             self.canvasStatus.image = self.imageStatusEfetivo
         elif status == 2:
-            self.canvasStatus.create_image(30, 35, image=self.imageStatusCritico)
+            self.canvasStatus.create_image(0, 0, image=self.imageStatusCritico)
             self.canvasStatus.image = self.imageStatusCritico
+
+    def setCanvasDICA(self, attack):
+        imag = PhotoImage(file=attack.imageID)
+        self.canvasAttackDica.create_image(0, 0, image=imag)
+        self.canvasAttackDica.image = imag
+
+    def verificarGame(self):
+        if self.player.hp <= 0:
+            print(f'''
+                        {self.bot.name} ganhou!!
+                        Dano Mágico : {self.damageMagico}
+                    Dano Físico : {self.damageFisico}
+                    Attacks Falhos : {self.CONTAttackFalhos} 
+                    Attacks Críticos : {self.CONTAttackCriticos}
+                    Attacks {self.CONTAttack}
+                    Dano Mágico Sofrido {self.damageMagicoSofrido}
+                    Dano Físico Sofrido {self.damageFisicoSofrido}
+                    Mana Restaurada : {self.manaRestaurada}
+                    Mana Gata : {self.manaGasta}
+                        ''')
+            return True
+        if self.bot.hp <= 0:
+            print(f'''
+                        {self.player.name} ganhou!!
+                        Dano Mágico : {self.damageMagico}
+                    Dano Físico : {self.damageFisico}
+                    Attacks Falhos : {self.CONTAttackFalhos} 
+                    Attacks Críticos : {self.CONTAttackCriticos}
+                    Attacks {self.CONTAttack}
+                    Dano Mágico Sofrido {self.damageMagicoSofrido}
+                    Dano Físico Sofrido {self.damageFisicoSofrido}
+                    Mana Restaurada : {self.manaRestaurada}
+                    Mana Gata : {self.manaGasta}
+                        ''')
+            return True
+        return False
+
+    def knock(self, attack):
+        # o numero randomico para a latencia
+        randomLatenciaAtaque = randint(0, 9)
+        self.setDisplay(randomLatenciaAtaque, self.displayLatencia)
+        if attack.latencia <= randomLatenciaAtaque:
+            # ATAQUE EFETIVO
+            randomLatenciaDefesa = randint(0, 9)
+
+            if self.bot.shield.latencia <= randomLatenciaDefesa:
+                # DEFESA EFETIVA
+                self.setCanvasStatus(1)
+                self.setCanvasDICA(attack)
+
+                #DADOS JOGÁVEIS
+                danos = System.calculeteDamageShield(self.bot, attack)
+                danoReal = danos[0] + danos[1]
+                self.bot.sufferDamage(danoReal)
+                self.player.userMana(attack.mana)
+                manaRestore = self.player.restoreMana(danoReal)
+
+                # DADOS ARMAZENÁVEIS
+                self.damageFisico += danos[0]
+                self.damageMagico += danos[1]
+                self.CONTAttack += 1
+                self.manaGasta += attack.mana
+                self.manaRestaurada += manaRestore
+
+                if self.verificarGame():
+                    self.root.destroy()
+                else:
+                    #SET DISPLAY DADOS
+                    self.setDisplay(danoReal, self.displayDanoReal)
+                    self.setDisplay(self.bot.hp, self.displayLifeBOT)
+                    self.setDisplay(self.player.mana, self.displayManaPlayer)
+            else:
+                # DEFESA NAO EFETIVA
+                self.setCanvasStatus(2)
+                self.setCanvasDICA(attack)
+
+                # DADOS JOGÁVEIS
+                danos = System.calculeteDamage(attack)
+                danoReal = danos[0] + danos[1]
+                self.bot.sufferDamage(danoReal)
+                self.player.userMana(attack.mana)
+                manaRestore = self.player.restoreMana(danoReal)
+
+                # DADOS ARMAZENÁVEIS
+                self.damageFisico += danos[0]
+                self.damageMagico += danos[1]
+                self.CONTAttack += 1
+                self.CONTAttackCriticos += 1
+                self.manaGasta += attack.mana
+                self.manaRestaurada += manaRestore
+
+                if self.verificarGame():
+                    self.root.destroy()
+                else:
+                    # SET DISPLAY DADOS
+                    self.setDisplay(danoReal, self.displayDanoReal)
+                    self.setDisplay(self.bot.hp, self.displayLifeBOT)
+                    self.setDisplay(self.player.mana, self.displayManaPlayer)
+        else:
+            # ATAQUE NAO EFETIVO
+            self.setCanvasStatus(0)
+            self.setCanvasDICA(attack)
+
+            # DADOS ARMAZENÁVEIS
+            self.CONTAttack += 1
+            self.CONTAttackFalhos += 1
+
+            if self.verificarGame():
+                self.root.destroy()
+            else:
+                # SET DISPLAY DADOS
+                self.setDisplay(0, self.displayDanoReal)
 
     def construtor(self):
         self.root.geometry("1500x780+12+0")
@@ -341,14 +468,19 @@ class TelaMain:
 
         self.canvasAttk.pack(side=BOTTOM, anchor=S)
         self.canvasAttk.config(bg="black")
+
+        attacksPlayer = self.player.sword.getAttack()
         for bt in range(len(self.BTSCommands)):
-            self.BTSCommands[bt].place(x=bt*185, y=0)
+            if bt < 3:
+                self.BTSCommands[bt].place(x=bt*185, y=0)
+                self.BTSCommands[bt]["command"] = partial(self.knock, attacksPlayer[bt])
 
         self.canvasStatus.pack(side=TOP, anchor=N)
-        self.setCanvasStatus(-1)
+        self.canvasAttackDica.pack(side=TOP, anchor=CENTER)
+        self.setCanvasStatus(1)
 
-        self.setDisplay(str(9), self.displayLatencia)
-        self.setDisplay(str(2000), self.displayDanoReal)
+        self.setDisplay(str(0), self.displayLatencia)
+        self.setDisplay(str(0), self.displayDanoReal)
         self.setDisplay(str(self.player.hp), self.displayLifePlayer)
         self.setDisplay(str(self.bot.hp), self.displayLifeBOT)
         self.setDisplay(str(self.player.mana), self.displayManaBOT)
