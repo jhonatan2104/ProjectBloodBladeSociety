@@ -126,6 +126,7 @@ class TelaMain:
         self.intelBOT = InteligencePlayer(self.bot, 200)
 
         # DADOS PLAYER
+        self.damageTotal = 0
         self.damageMagico = 0
         self.damageFisico = 0
         self.CONTAttackFalhos = 0
@@ -133,6 +134,8 @@ class TelaMain:
         self.CONTAttack = 0
         self.damageMagicoSofrido = 0
         self.damageFisicoSofrido = 0
+        self.damageMagicoDefendido = 0
+        self.damageFisicoDefendido = 0
         self.manaRestaurada = 0
         self.manaGasta = 0
 
@@ -311,6 +314,8 @@ class TelaMain:
                         # DADOS ARMAZENÁVEIS
                         self.damageFisicoSofrido += danos[0]
                         self.damageMagicoSofrido += danos[1]
+                        self.damageMagicoDefendido += attackBOT.danoMagico - danos[1]
+                        self.damageFisicoDefendido += attackBOT.danoFisico - danos[0]
 
                         if self.verificarGame():
                             self.root.destroy()
@@ -407,30 +412,36 @@ class TelaMain:
     def verificarGame(self):
         if self.player.hp <= 0:
             print(f'''
-                        {self.bot.name} ganhou!!
-                        Dano Mágico : {self.damageMagico}
+                        VOCÊ PERDEU!1
+                    Dano Total : {self.damageTotal}
+                    Dano Mágico : {self.damageMagico}
                     Dano Físico : {self.damageFisico}
                     Attacks Falhos : {self.CONTAttackFalhos} 
                     Attacks Críticos : {self.CONTAttackCriticos}
                     Attacks : {self.CONTAttack}
                     Dano Mágico Sofrido : {self.damageMagicoSofrido}
                     Dano Físico Sofrido : {self.damageFisicoSofrido}
+                    Dado Mágico Defendido : {self.damageMagicoDefendido}
+                    Dano Físico Defendido : {self.damageFisicoDefendido}
                     Mana Restaurada : {self.manaRestaurada}
-                    Mana Gata : {self.manaGasta}
+                    Mana Gasta : {self.manaGasta}
                         ''')
             return True
         if self.bot.hp <= 0:
             print(f'''
-                        {self.player.name} ganhou!!
-                        Dano Mágico : {self.damageMagico}
+                        VOCÊ GANHOU!!1
+                    Dano Total : {self.damageTotal}
+                    Dano Mágico : {self.damageMagico}
                     Dano Físico : {self.damageFisico}
                     Attacks Falhos : {self.CONTAttackFalhos} 
                     Attacks Críticos : {self.CONTAttackCriticos}
                     Attacks : {self.CONTAttack}
                     Dano Mágico Sofrido : {self.damageMagicoSofrido}
                     Dano Físico Sofrido : {self.damageFisicoSofrido}
+                    Dado Mágico Defendido : {self.damageMagicoDefendido}
+                    Dano Físico Defendido : {self.damageFisicoDefendido}
                     Mana Restaurada : {self.manaRestaurada}
-                    Mana Gata : {self.manaGasta}
+                    Mana Gasta : {self.manaGasta}
                         ''')
             return True
         return False
@@ -472,6 +483,7 @@ class TelaMain:
                     manaRestore = self.player.restoreMana(danoReal)
 
                     # DADOS ARMAZENÁVEIS
+                    self.damageTotal += danoReal
                     self.damageFisico += danos[0]
                     self.damageMagico += danos[1]
                     self.CONTAttack += 1
@@ -498,6 +510,7 @@ class TelaMain:
                     manaRestore = self.player.restoreMana(danoReal)
 
                     # DADOS ARMAZENÁVEIS
+                    self.damageTotal += danoReal
                     self.damageFisico += danos[0]
                     self.damageMagico += danos[1]
                     self.CONTAttack += 1
@@ -591,7 +604,9 @@ class TelaMain:
                 self.BTSCommands[bt]["command"] = self.defensiveMode
 
         self.canvasStatus.pack(side=TOP, anchor=N)
+        self.canvasStatus.config(bg="Black")
         self.canvasAttackDica.pack(side=TOP, anchor=CENTER)
+        self.canvasAttackDica.config(bg="Black")
         self.setCanvasStatus(1)
 
         self.setDisplay(str(0), self.displayLatencia)
