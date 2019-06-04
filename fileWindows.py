@@ -120,6 +120,8 @@ class TelaMain:
         # PLAYER
         self.player = player
         self.bot = bot
+        #CRIAR A UMA INSTÂNCIA DA INTALIGÊNCIA BOT
+        self.intelBOT = InteligencePlayer(self.bot, 200)
 
         # DADOS PLAYER
         self.damageMagico = 0
@@ -268,6 +270,85 @@ class TelaMain:
         self.btAttk3 = Button(self.canvasAttk, width=175, height=160, image=self.imageATTK3)
         self.btdef1 = Button(self.canvasAttk, width=175, height=160, image=self.imageDEF)
         self.BTSCommands = [self.btAttk1, self.btAttk2, self.btAttk3, self.btdef1]
+
+    def ActionBOT(self):
+        attacksBOT = self.bot.sword.getAttack()
+        value = self.intelBOT.resolverAttack(self.player)
+
+        if value == 3:
+            self.setCanvasStatus(3)
+            self.setCanvasDICA()
+            self.bot.restoreMana(0)
+
+            # SET DISPLAY DADOS
+            self.setDisplay(self.bot.mana, self.displayManaBOT)
+            self.setDisplay(0, self.displayDanoReal)
+            self.setDisplay(0, self.displayLatencia)
+        else:
+            attackBOT = attacksBOT[value]
+            # o numero randomico para a latencia
+            randomLatenciaAtaque = randint(0, 9)
+            self.setDisplay(randomLatenciaAtaque, self.displayLatencia)
+            if attackBOT.latencia <= randomLatenciaAtaque:
+                # ATAQUE EFETIVO
+                randomLatenciaDefesa = randint(0, 9)
+
+                if self.player.shield.latencia <= randomLatenciaDefesa:
+                    # DEFESA EFETIVA
+                    self.setCanvasStatus(1)
+                    self.setCanvasDICA(attackBOT)
+
+                    # DADOS JOGÁVEIS
+                    danos = System.calculeteDamageShield(self.player, attackBOT)
+                    danoReal = danos[0] + danos[1]
+                    self.player.sufferDamage(danoReal)
+                    self.bot.userMana(attackBOT.mana)
+                    self.bot.restoreMana(danoReal)
+
+                    # DADOS ARMAZENÁVEIS
+                    self.damageFisicoSofrido += danos[0]
+                    self.damageMagicoSofrido += danos[1]
+
+                    if self.verificarGame():
+                        self.root.destroy()
+                    else:
+                        # SET DISPLAY DADOS
+                        self.setDisplay(danoReal, self.displayDanoReal)
+                        self.setDisplay(self.player.hp, self.displayLifePlayer)
+                        self.setDisplay(self.bot.mana, self.displayManaBOT)
+                else:
+                    # DEFESA NAO EFETIVA
+                    self.setCanvasStatus(2)
+                    self.setCanvasDICA(attackBOT)
+
+                    # DADOS JOGÁVEIS
+                    danos = System.calculeteDamage(attackBOT)
+                    danoReal = danos[0] + danos[1]
+                    self.player.sufferDamage(danoReal)
+                    self.bot.userMana(attackBOT.mana)
+                    self.bot.restoreMana(danoReal)
+
+                    # DADOS ARMAZENÁVEIS
+                    self.damageFisicoSofrido += danos[0]
+                    self.damageMagicoSofrido += danos[1]
+
+                    if self.verificarGame():
+                        self.root.destroy()
+                    else:
+                        # SET DISPLAY DADOS
+                        self.setDisplay(danoReal, self.displayDanoReal)
+                        self.setDisplay(self.player.hp, self.displayLifePlayer)
+                        self.setDisplay(self.bot.mana, self.displayManaBOT)
+            else:
+                # ATAQUE NAO EFETIVO
+                self.setCanvasStatus(0)
+                self.setCanvasDICA(attackBOT)
+
+                if self.verificarGame():
+                    self.root.destroy()
+                else:
+                    # SET DISPLAY DADOS
+                    self.setDisplay(0, self.displayDanoReal)
 
     def setDisplay(self, num, display):
         number = str(num)
@@ -444,6 +525,7 @@ class TelaMain:
         self.root["bg"] = "Black"
         self.lbPlAYER.place(x=self.xDisplayManaPlayer+50, y=20)
         self.lbBtBOT.place(x=self.xDisplayManaBOT+50, y=20)
+        self.lbBtBOT["command"] = self.ActionBOT
 
         self.nomePlAYER.place(x=self.xDisplayManaPlayer, y=200)
         self.nomeBOT.place(x=self.xDisplayManaBOT, y=200)
