@@ -2,6 +2,7 @@ from tkinter import *
 from fileClass import *
 from functools import partial
 
+
 class TelaEscolhaBot:
     def __init__(self):
         self.btSizeX = 100
@@ -131,7 +132,9 @@ class TelaMain:
         self.damageFisico = 0
         self.CONTAttackFalhos = 0
         self.CONTAttackCriticos = 0
+        self.CONTAttackNormais = 0
         self.CONTAttack = 0
+        self.FalhaDefesa = 0
         self.damageMagicoSofrido = 0
         self.damageFisicoSofrido = 0
         self.damageMagicoDefendido = 0
@@ -179,15 +182,15 @@ class TelaMain:
 
         #CANVAS STATUS
         self.imageStatusFalhou = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/ataqueFalhou.png")
         self.imageStatusEfetivo = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/ataqueEfetivo.png")
         self.imageStatusCritico = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/critico.png")
         self.imageStatusHome = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/bemVindo.png")
         self.imageStatusManaAlerta = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/manaAlerta.png")
 
         self.canvasStatus = Canvas(self.root, width=725, height=200, highlightbackground="Black")
 
@@ -339,6 +342,7 @@ class TelaMain:
                         # DADOS ARMAZENÁVEIS
                         self.damageFisicoSofrido += danos[0]
                         self.damageMagicoSofrido += danos[1]
+                        self.FalhaDefesa += 1
 
                         if self.verificarGame():
                             self.root.destroy()
@@ -385,20 +389,21 @@ class TelaMain:
         :param status:  -1 - bem-vindo; 0 - falhou ;1 - efetivo; 2 - crítico; 3 - Mana insuficiente
         :return: Void
         '''
+        self.canvasStatus.delete("all")
         if status == -1:
-            self.canvasStatus.create_image(0, 0, image=self.imageStatusHome)
+            self.canvasStatus.create_image(365, 100, image=self.imageStatusHome)
             self.canvasStatus.image = self.imageStatusHome
         elif status == 0:
-            self.canvasStatus.create_image(0, 0, image=self.imageStatusFalhou)
+            self.canvasStatus.create_image(365, 100, image=self.imageStatusFalhou)
             self.canvasStatus.image = self.imageStatusFalhou
         elif status == 1:
-            self.canvasStatus.create_image(0, 0, image=self.imageStatusEfetivo)
+            self.canvasStatus.create_image(365, 100, image=self.imageStatusEfetivo)
             self.canvasStatus.image = self.imageStatusEfetivo
         elif status == 2:
-            self.canvasStatus.create_image(0, 0, image=self.imageStatusCritico)
+            self.canvasStatus.create_image(365, 100, image=self.imageStatusCritico)
             self.canvasStatus.image = self.imageStatusCritico
         elif status == 3:
-            self.canvasStatus.create_image(0, 0, image=self.imageStatusManaAlerta)
+            self.canvasStatus.create_image(365, 100, image=self.imageStatusManaAlerta)
             self.canvasStatus.image = self.imageStatusManaAlerta
 
     def setCanvasDICA(self, attack=None):
@@ -418,7 +423,9 @@ class TelaMain:
                     Dano Físico : {self.damageFisico}
                     Attacks Falhos : {self.CONTAttackFalhos} 
                     Attacks Críticos : {self.CONTAttackCriticos}
-                    Attacks : {self.CONTAttack}
+                    Attacks Normais : {self.CONTAttackNormais}
+                    Total Attacks : {self.CONTAttack}
+                    Falaha Da Armadura : {self.FalhaDefesa}
                     Dano Mágico Sofrido : {self.damageMagicoSofrido}
                     Dano Físico Sofrido : {self.damageFisicoSofrido}
                     Dado Mágico Defendido : {self.damageMagicoDefendido}
@@ -435,7 +442,9 @@ class TelaMain:
                     Dano Físico : {self.damageFisico}
                     Attacks Falhos : {self.CONTAttackFalhos} 
                     Attacks Críticos : {self.CONTAttackCriticos}
-                    Attacks : {self.CONTAttack}
+                    Attacks Normais : {self.CONTAttackNormais}
+                    Total Attacks : {self.CONTAttack}
+                    Falaha Da Armadura : {self.FalhaDefesa}
                     Dano Mágico Sofrido : {self.damageMagicoSofrido}
                     Dano Físico Sofrido : {self.damageFisicoSofrido}
                     Dado Mágico Defendido : {self.damageMagicoDefendido}
@@ -487,6 +496,7 @@ class TelaMain:
                     self.damageFisico += danos[0]
                     self.damageMagico += danos[1]
                     self.CONTAttack += 1
+                    self.CONTAttackNormais += 1
                     self.manaGasta += attack.mana
                     self.manaRestaurada += manaRestore
 
@@ -607,7 +617,7 @@ class TelaMain:
         self.canvasStatus.config(bg="Black")
         self.canvasAttackDica.pack(side=TOP, anchor=CENTER)
         self.canvasAttackDica.config(bg="Black")
-        self.setCanvasStatus(1)
+        self.setCanvasStatus(-1)
 
         self.setDisplay(str(0), self.displayLatencia)
         self.setDisplay(str(0), self.displayDanoReal)
