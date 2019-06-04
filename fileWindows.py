@@ -117,6 +117,8 @@ class TelaMain:
     def __init__(self, player, bot):
         self.root = Tk()
 
+        #Alternar Ataques
+        self.Alternar = True
         # PLAYER
         self.player = player
         self.bot = bot
@@ -272,83 +274,85 @@ class TelaMain:
         self.BTSCommands = [self.btAttk1, self.btAttk2, self.btAttk3, self.btdef1]
 
     def ActionBOT(self):
-        attacksBOT = self.bot.sword.getAttack()
-        value = self.intelBOT.resolverAttack(self.player)
+        if not self.Alternar:
+            attacksBOT = self.bot.sword.getAttack()
+            value = self.intelBOT.resolverAttack(self.player)
 
-        if value == 3:
-            self.setCanvasStatus(3)
-            self.setCanvasDICA()
-            self.bot.restoreMana(0)
+            if value == 3:
+                self.setCanvasStatus(3)
+                self.setCanvasDICA()
+                self.bot.restoreMana(0)
 
-            # SET DISPLAY DADOS
-            self.setDisplay(self.bot.mana, self.displayManaBOT)
-            self.setDisplay(0, self.displayDanoReal)
-            self.setDisplay(0, self.displayLatencia)
-        else:
-            attackBOT = attacksBOT[value]
-            # o numero randomico para a latencia
-            randomLatenciaAtaque = randint(0, 9)
-            self.setDisplay(randomLatenciaAtaque, self.displayLatencia)
-            if attackBOT.latencia <= randomLatenciaAtaque:
-                # ATAQUE EFETIVO
-                randomLatenciaDefesa = randint(0, 9)
-
-                if self.player.shield.latencia <= randomLatenciaDefesa:
-                    # DEFESA EFETIVA
-                    self.setCanvasStatus(1)
-                    self.setCanvasDICA(attackBOT)
-
-                    # DADOS JOGÁVEIS
-                    danos = System.calculeteDamageShield(self.player, attackBOT)
-                    danoReal = danos[0] + danos[1]
-                    self.player.sufferDamage(danoReal)
-                    self.bot.userMana(attackBOT.mana)
-                    self.bot.restoreMana(danoReal)
-
-                    # DADOS ARMAZENÁVEIS
-                    self.damageFisicoSofrido += danos[0]
-                    self.damageMagicoSofrido += danos[1]
-
-                    if self.verificarGame():
-                        self.root.destroy()
-                    else:
-                        # SET DISPLAY DADOS
-                        self.setDisplay(danoReal, self.displayDanoReal)
-                        self.setDisplay(self.player.hp, self.displayLifePlayer)
-                        self.setDisplay(self.bot.mana, self.displayManaBOT)
-                else:
-                    # DEFESA NAO EFETIVA
-                    self.setCanvasStatus(2)
-                    self.setCanvasDICA(attackBOT)
-
-                    # DADOS JOGÁVEIS
-                    danos = System.calculeteDamage(attackBOT)
-                    danoReal = danos[0] + danos[1]
-                    self.player.sufferDamage(danoReal)
-                    self.bot.userMana(attackBOT.mana)
-                    self.bot.restoreMana(danoReal)
-
-                    # DADOS ARMAZENÁVEIS
-                    self.damageFisicoSofrido += danos[0]
-                    self.damageMagicoSofrido += danos[1]
-
-                    if self.verificarGame():
-                        self.root.destroy()
-                    else:
-                        # SET DISPLAY DADOS
-                        self.setDisplay(danoReal, self.displayDanoReal)
-                        self.setDisplay(self.player.hp, self.displayLifePlayer)
-                        self.setDisplay(self.bot.mana, self.displayManaBOT)
+                # SET DISPLAY DADOS
+                self.setDisplay(self.bot.mana, self.displayManaBOT)
+                self.setDisplay(0, self.displayDanoReal)
+                self.setDisplay(0, self.displayLatencia)
             else:
-                # ATAQUE NAO EFETIVO
-                self.setCanvasStatus(0)
-                self.setCanvasDICA(attackBOT)
+                attackBOT = attacksBOT[value]
+                # o numero randomico para a latencia
+                randomLatenciaAtaque = randint(0, 9)
+                self.setDisplay(randomLatenciaAtaque, self.displayLatencia)
+                if attackBOT.latencia <= randomLatenciaAtaque:
+                    # ATAQUE EFETIVO
+                    randomLatenciaDefesa = randint(0, 9)
 
-                if self.verificarGame():
-                    self.root.destroy()
+                    if self.player.shield.latencia <= randomLatenciaDefesa:
+                        # DEFESA EFETIVA
+                        self.setCanvasStatus(1)
+                        self.setCanvasDICA(attackBOT)
+
+                        # DADOS JOGÁVEIS
+                        danos = System.calculeteDamageShield(self.player, attackBOT)
+                        danoReal = danos[0] + danos[1]
+                        self.player.sufferDamage(danoReal)
+                        self.bot.userMana(attackBOT.mana)
+                        self.bot.restoreMana(danoReal)
+
+                        # DADOS ARMAZENÁVEIS
+                        self.damageFisicoSofrido += danos[0]
+                        self.damageMagicoSofrido += danos[1]
+
+                        if self.verificarGame():
+                            self.root.destroy()
+                        else:
+                            # SET DISPLAY DADOS
+                            self.setDisplay(danoReal, self.displayDanoReal)
+                            self.setDisplay(self.player.hp, self.displayLifePlayer)
+                            self.setDisplay(self.bot.mana, self.displayManaBOT)
+                    else:
+                        # DEFESA NAO EFETIVA
+                        self.setCanvasStatus(2)
+                        self.setCanvasDICA(attackBOT)
+
+                        # DADOS JOGÁVEIS
+                        danos = System.calculeteDamage(attackBOT)
+                        danoReal = danos[0] + danos[1]
+                        self.player.sufferDamage(danoReal)
+                        self.bot.userMana(attackBOT.mana)
+                        self.bot.restoreMana(danoReal)
+
+                        # DADOS ARMAZENÁVEIS
+                        self.damageFisicoSofrido += danos[0]
+                        self.damageMagicoSofrido += danos[1]
+
+                        if self.verificarGame():
+                            self.root.destroy()
+                        else:
+                            # SET DISPLAY DADOS
+                            self.setDisplay(danoReal, self.displayDanoReal)
+                            self.setDisplay(self.player.hp, self.displayLifePlayer)
+                            self.setDisplay(self.bot.mana, self.displayManaBOT)
                 else:
-                    # SET DISPLAY DADOS
-                    self.setDisplay(0, self.displayDanoReal)
+                    # ATAQUE NAO EFETIVO
+                    self.setCanvasStatus(0)
+                    self.setCanvasDICA(attackBOT)
+
+                    if self.verificarGame():
+                        self.root.destroy()
+                    else:
+                        # SET DISPLAY DADOS
+                        self.setDisplay(0, self.displayDanoReal)
+            self.Alternar = True
 
     def setDisplay(self, num, display):
         number = str(num)
@@ -408,9 +412,9 @@ class TelaMain:
                     Dano Físico : {self.damageFisico}
                     Attacks Falhos : {self.CONTAttackFalhos} 
                     Attacks Críticos : {self.CONTAttackCriticos}
-                    Attacks {self.CONTAttack}
-                    Dano Mágico Sofrido {self.damageMagicoSofrido}
-                    Dano Físico Sofrido {self.damageFisicoSofrido}
+                    Attacks : {self.CONTAttack}
+                    Dano Mágico Sofrido : {self.damageMagicoSofrido}
+                    Dano Físico Sofrido : {self.damageFisicoSofrido}
                     Mana Restaurada : {self.manaRestaurada}
                     Mana Gata : {self.manaGasta}
                         ''')
@@ -422,9 +426,9 @@ class TelaMain:
                     Dano Físico : {self.damageFisico}
                     Attacks Falhos : {self.CONTAttackFalhos} 
                     Attacks Críticos : {self.CONTAttackCriticos}
-                    Attacks {self.CONTAttack}
-                    Dano Mágico Sofrido {self.damageMagicoSofrido}
-                    Dano Físico Sofrido {self.damageFisicoSofrido}
+                    Attacks : {self.CONTAttack}
+                    Dano Mágico Sofrido : {self.damageMagicoSofrido}
+                    Dano Físico Sofrido : {self.damageFisicoSofrido}
                     Mana Restaurada : {self.manaRestaurada}
                     Mana Gata : {self.manaGasta}
                         ''')
@@ -432,93 +436,97 @@ class TelaMain:
         return False
 
     def defensiveMode(self):
-        self.setCanvasStatus(3)
-        self.setCanvasDICA()
-        manaRestore = self.player.restoreMana(0)
+        if self.Alternar:
+            self.setCanvasStatus(3)
+            self.setCanvasDICA()
+            manaRestore = self.player.restoreMana(0)
 
-        #SET DISPLAY DADOS
-        self.setDisplay(self.player.mana, self.displayManaPlayer)
-        self.setDisplay(0, self.displayDanoReal)
-        self.setDisplay(0, self.displayLatencia)
+            #SET DISPLAY DADOS
+            self.setDisplay(self.player.mana, self.displayManaPlayer)
+            self.setDisplay(0, self.displayDanoReal)
+            self.setDisplay(0, self.displayLatencia)
 
-        # DADOS ARMAZENÁVEIS
-        self.manaRestaurada += manaRestore
+            # DADOS ARMAZENÁVEIS
+            self.manaRestaurada += manaRestore
+            self.Alternar = False
 
     def knock(self, attack):
-        # o numero randomico para a latencia
-        randomLatenciaAtaque = randint(0, 9)
-        self.setDisplay(randomLatenciaAtaque, self.displayLatencia)
-        if attack.latencia <= randomLatenciaAtaque:
-            # ATAQUE EFETIVO
-            randomLatenciaDefesa = randint(0, 9)
+        if self.Alternar:
+            # o numero randomico para a latencia
+            randomLatenciaAtaque = randint(0, 9)
+            self.setDisplay(randomLatenciaAtaque, self.displayLatencia)
+            if attack.latencia <= randomLatenciaAtaque:
+                # ATAQUE EFETIVO
+                randomLatenciaDefesa = randint(0, 9)
 
-            if self.bot.shield.latencia <= randomLatenciaDefesa:
-                # DEFESA EFETIVA
-                self.setCanvasStatus(1)
-                self.setCanvasDICA(attack)
+                if self.bot.shield.latencia <= randomLatenciaDefesa:
+                    # DEFESA EFETIVA
+                    self.setCanvasStatus(1)
+                    self.setCanvasDICA(attack)
 
-                #DADOS JOGÁVEIS
-                danos = System.calculeteDamageShield(self.bot, attack)
-                danoReal = danos[0] + danos[1]
-                self.bot.sufferDamage(danoReal)
-                self.player.userMana(attack.mana)
-                manaRestore = self.player.restoreMana(danoReal)
+                    #DADOS JOGÁVEIS
+                    danos = System.calculeteDamageShield(self.bot, attack)
+                    danoReal = danos[0] + danos[1]
+                    self.bot.sufferDamage(danoReal)
+                    self.player.userMana(attack.mana)
+                    manaRestore = self.player.restoreMana(danoReal)
 
-                # DADOS ARMAZENÁVEIS
-                self.damageFisico += danos[0]
-                self.damageMagico += danos[1]
-                self.CONTAttack += 1
-                self.manaGasta += attack.mana
-                self.manaRestaurada += manaRestore
+                    # DADOS ARMAZENÁVEIS
+                    self.damageFisico += danos[0]
+                    self.damageMagico += danos[1]
+                    self.CONTAttack += 1
+                    self.manaGasta += attack.mana
+                    self.manaRestaurada += manaRestore
 
-                if self.verificarGame():
-                    self.root.destroy()
+                    if self.verificarGame():
+                        self.root.destroy()
+                    else:
+                        #SET DISPLAY DADOS
+                        self.setDisplay(danoReal, self.displayDanoReal)
+                        self.setDisplay(self.bot.hp, self.displayLifeBOT)
+                        self.setDisplay(self.player.mana, self.displayManaPlayer)
                 else:
-                    #SET DISPLAY DADOS
-                    self.setDisplay(danoReal, self.displayDanoReal)
-                    self.setDisplay(self.bot.hp, self.displayLifeBOT)
-                    self.setDisplay(self.player.mana, self.displayManaPlayer)
+                    # DEFESA NAO EFETIVA
+                    self.setCanvasStatus(2)
+                    self.setCanvasDICA(attack)
+
+                    # DADOS JOGÁVEIS
+                    danos = System.calculeteDamage(attack)
+                    danoReal = danos[0] + danos[1]
+                    self.bot.sufferDamage(danoReal)
+                    self.player.userMana(attack.mana)
+                    manaRestore = self.player.restoreMana(danoReal)
+
+                    # DADOS ARMAZENÁVEIS
+                    self.damageFisico += danos[0]
+                    self.damageMagico += danos[1]
+                    self.CONTAttack += 1
+                    self.CONTAttackCriticos += 1
+                    self.manaGasta += attack.mana
+                    self.manaRestaurada += manaRestore
+
+                    if self.verificarGame():
+                        self.root.destroy()
+                    else:
+                        # SET DISPLAY DADOS
+                        self.setDisplay(danoReal, self.displayDanoReal)
+                        self.setDisplay(self.bot.hp, self.displayLifeBOT)
+                        self.setDisplay(self.player.mana, self.displayManaPlayer)
             else:
-                # DEFESA NAO EFETIVA
-                self.setCanvasStatus(2)
+                # ATAQUE NAO EFETIVO
+                self.setCanvasStatus(0)
                 self.setCanvasDICA(attack)
 
-                # DADOS JOGÁVEIS
-                danos = System.calculeteDamage(attack)
-                danoReal = danos[0] + danos[1]
-                self.bot.sufferDamage(danoReal)
-                self.player.userMana(attack.mana)
-                manaRestore = self.player.restoreMana(danoReal)
-
                 # DADOS ARMAZENÁVEIS
-                self.damageFisico += danos[0]
-                self.damageMagico += danos[1]
                 self.CONTAttack += 1
-                self.CONTAttackCriticos += 1
-                self.manaGasta += attack.mana
-                self.manaRestaurada += manaRestore
+                self.CONTAttackFalhos += 1
 
                 if self.verificarGame():
                     self.root.destroy()
                 else:
                     # SET DISPLAY DADOS
-                    self.setDisplay(danoReal, self.displayDanoReal)
-                    self.setDisplay(self.bot.hp, self.displayLifeBOT)
-                    self.setDisplay(self.player.mana, self.displayManaPlayer)
-        else:
-            # ATAQUE NAO EFETIVO
-            self.setCanvasStatus(0)
-            self.setCanvasDICA(attack)
-
-            # DADOS ARMAZENÁVEIS
-            self.CONTAttack += 1
-            self.CONTAttackFalhos += 1
-
-            if self.verificarGame():
-                self.root.destroy()
-            else:
-                # SET DISPLAY DADOS
-                self.setDisplay(0, self.displayDanoReal)
+                    self.setDisplay(0, self.displayDanoReal)
+            self.Alternar = False
 
     def construtor(self):
         self.root.geometry("1500x780+12+0")
