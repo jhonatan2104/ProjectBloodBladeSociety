@@ -369,7 +369,33 @@ class Player:
 class InteligencePlayer:
     def __init__(self, player, baseDeMana):
         self.player = player
+        self.importanciaDANO = 4
+        self.importanciaMANA = 1
+        self.importanciaLATENCIA = 3
+        self.rank = list()
         self.baseDeMana = baseDeMana
+
+    def gerarRanckAttack(self, playerAdv):
+
+        ListAttack = self.player.sword.getAttack()
+        listaPontosAttack = []
+        for indexAttack in range(len(ListAttack)):
+            danos = System.calculeteDamageShield(playerAdv, ListAttack[indexAttack])
+            danoReal = danos[0] + danos[1]
+            attk = ListAttack[indexAttack]
+            listaPontosAttack.append([attk,danoReal,attk.mana,attk.latencia, indexAttack, 0])
+
+        rankDano = self.ADDpontos(sorted(listaPontosAttack, key=itemgetter(1)),self.importanciaDANO)
+        rankMana = self.ADDpontos(sorted(rankDano, key=itemgetter(2),  reverse=True),self.importanciaMANA)
+        rankLantancia = self.ADDpontos(sorted(rankMana, key=itemgetter(3),  reverse=True),self.importanciaLATENCIA)
+
+        self.rank = sorted(rankLantancia, key=itemgetter(5))
+    def ADDpontos(self, matriz, pontos):
+        cont = 0
+        for line in matriz:
+            line[5] += cont
+            cont += pontos
+        return matriz
 
     def rankAttack(self, PlayerAdv):
         '''
@@ -395,16 +421,14 @@ class InteligencePlayer:
         if self.player.mana == 0:
             return 3
         if self.player.mana <= self.baseDeMana:
-            ListRank = self.rankAttack(PlayerAdv)
-            for linhaMatrizAttack in ListRank:
+            for linhaMatrizAttack in self.rank:
                 if self.player.mana > linhaMatrizAttack[0].mana:
-                    return linhaMatrizAttack[2]
+                    return linhaMatrizAttack[4]
             return 3
         else:
-            ListRank = self.rankAttack(PlayerAdv)
-            for linhaMatrizAttack in ListRank[::-1]:
+            for linhaMatrizAttack in self.rank[::-1]:
                 if self.player.mana > linhaMatrizAttack[0].mana:
-                    return linhaMatrizAttack[2]
+                    return linhaMatrizAttack[4]
             return 3
 
 

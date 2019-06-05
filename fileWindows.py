@@ -123,8 +123,10 @@ class TelaMain:
         # PLAYER
         self.player = player
         self.bot = bot
+
         #CRIAR A UMA INSTÂNCIA DA INTALIGÊNCIA BOT
         self.intelBOT = InteligencePlayer(self.bot, 200)
+        self.intelBOT.gerarRanckAttack(self.player)
 
         # DADOS PLAYER
         self.damageTotal = 0
@@ -242,15 +244,17 @@ class TelaMain:
 
         #IMAGE DANO, LATÊNCIA
         self.imgLatencia = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png"
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/latancia.png"
         )
         self.imgDanoReal = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png"
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/danoReal.png"
         )
 
         #LABEL DANO, LATÊNCIA
-        self.lbLatencia = Label(self.root, width=200, height=60, highlightbackground="Black", image=self.imgLatencia)
-        self.lbDanoReal = Label(self.root, width=200, height=60, highlightbackground="Black", image=self.imgDanoReal)
+        self.lbLatencia = Label(self.root, width=200, height=60, bg="Black", highlightbackground="Black",
+                                image=self.imgLatencia)
+        self.lbDanoReal = Label(self.root, width=200, height=60, bg="Black", highlightbackground="Black",
+                                image=self.imgDanoReal)
 
         # DISPLAY DANO
         self.c21 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
