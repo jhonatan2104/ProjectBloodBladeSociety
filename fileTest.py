@@ -1,7 +1,7 @@
 from fileClass import *
 
-p1 = System.choosePlayer(3)
-p2 = System.choosePlayer(4)
+p1 = System.choosePlayer(2)
+p2 = System.choosePlayer(0)
 intel = InteligencePlayer(p1, 200)
 
 intel.gerarRanckAttack(p2)

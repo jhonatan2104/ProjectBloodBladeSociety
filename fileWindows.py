@@ -324,8 +324,9 @@ class TelaMain:
                         self.damageMagicoDefendido += attackBOT.danoMagico - danos[1]
                         self.damageFisicoDefendido += attackBOT.danoFisico - danos[0]
 
-                        if self.verificarGame():
-                            self.root.destroy()
+                        StatusGame = self.verificarGame()
+                        if any(StatusGame):
+                            self.abrirTelaOption(all(StatusGame))
                         else:
                             # SET DISPLAY DADOS
                             self.setDisplay(danoReal, self.displayDanoReal)
@@ -348,8 +349,9 @@ class TelaMain:
                         self.damageMagicoSofrido += danos[1]
                         self.FalhaDefesa += 1
 
-                        if self.verificarGame():
-                            self.root.destroy()
+                        StatusGame = self.verificarGame()
+                        if any(StatusGame):
+                            self.abrirTelaOption(all(StatusGame))
                         else:
                             # SET DISPLAY DADOS
                             self.setDisplay(danoReal, self.displayDanoReal)
@@ -360,8 +362,9 @@ class TelaMain:
                     self.setCanvasStatus(0)
                     self.setCanvasDICA(attackBOT)
 
-                    if self.verificarGame():
-                        self.root.destroy()
+                    StatusGame = self.verificarGame()
+                    if any(StatusGame):
+                        self.abrirTelaOption(all(StatusGame))
                     else:
                         # SET DISPLAY DADOS
                         self.setDisplay(0, self.displayDanoReal)
@@ -422,6 +425,7 @@ class TelaMain:
         if self.player.hp <= 0:
             print(f'''
                         VOCÊ PERDEU!1
+                    {self.player.name} x {self.bot.name}
                     Dano Total : {self.damageTotal}
                     Dano Mágico : {self.damageMagico}
                     Dano Físico : {self.damageFisico}
@@ -437,10 +441,13 @@ class TelaMain:
                     Mana Restaurada : {self.manaRestaurada}
                     Mana Gasta : {self.manaGasta}
                         ''')
-            return True
+            # index 1 : se o jogo acabou ou não
+            # index 2 : se o ele venceu ou não
+            return [True, False]
         if self.bot.hp <= 0:
             print(f'''
                         VOCÊ GANHOU!!1
+                    {self.player.name} x {self.bot.name}
                     Dano Total : {self.damageTotal}
                     Dano Mágico : {self.damageMagico}
                     Dano Físico : {self.damageFisico}
@@ -456,8 +463,8 @@ class TelaMain:
                     Mana Restaurada : {self.manaRestaurada}
                     Mana Gasta : {self.manaGasta}
                         ''')
-            return True
-        return False
+            return [True , True]
+        return [False, False]
 
     def defensiveMode(self):
         if self.Alternar:
@@ -473,6 +480,13 @@ class TelaMain:
             # DADOS ARMAZENÁVEIS
             self.manaRestaurada += manaRestore
             self.Alternar = False
+
+    def abrirTelaOption(self, status):
+        dic = {
+            "a":"a"
+        }
+        self.root.destroy()
+        TelaOption(self.player, dic, status).construtor()
 
     def knock(self, attack):
         if self.Alternar:
@@ -504,8 +518,9 @@ class TelaMain:
                     self.manaGasta += attack.mana
                     self.manaRestaurada += manaRestore
 
-                    if self.verificarGame():
-                        self.root.destroy()
+                    StatusGame = self.verificarGame()
+                    if any(StatusGame):
+                        self.abrirTelaOption(all(StatusGame))
                     else:
                         #SET DISPLAY DADOS
                         self.setDisplay(danoReal, self.displayDanoReal)
@@ -532,8 +547,9 @@ class TelaMain:
                     self.manaGasta += attack.mana
                     self.manaRestaurada += manaRestore
 
-                    if self.verificarGame():
-                        self.root.destroy()
+                    StatusGame = self.verificarGame()
+                    if any(StatusGame):
+                        self.abrirTelaOption(all(StatusGame))
                     else:
                         # SET DISPLAY DADOS
                         self.setDisplay(danoReal, self.displayDanoReal)
@@ -548,8 +564,9 @@ class TelaMain:
                 self.CONTAttack += 1
                 self.CONTAttackFalhos += 1
 
-                if self.verificarGame():
-                    self.root.destroy()
+                StatusGame = self.verificarGame()
+                if any(StatusGame):
+                    self.abrirTelaOption(all(StatusGame))
                 else:
                     # SET DISPLAY DADOS
                     self.setDisplay(0, self.displayDanoReal)
@@ -630,6 +647,58 @@ class TelaMain:
         self.setDisplay(str(self.player.mana), self.displayManaBOT)
         self.setDisplay(str(self.bot.mana), self.displayManaPlayer)
 
+        self.root.mainloop()
+
+class TelaOption:
+    def __init__(self, player, dic, status=True ):
+        self.root = Tk()
+
+        self.player = player
+        self.dic = dic
+
+        self.margeX = 0
+        self.margeY = 150
+        self.x = 265
+        self.y = 200
+        self.color = "Black"
+
+        self.imagemRelatorio = PhotoImage(
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/playerXbotPNG.png")
+
+        self.imagemContinue = PhotoImage(
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/OutroDesafio.png")
+
+        self.imagemVitoria = PhotoImage(
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/vitoria.png")
+        self.imagemDerrota = PhotoImage(
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/derrota.png")
+
+        self.bt1 = Button(self.root, image=self.imagemRelatorio)
+        self.bt2 = Button(self.root, image=self.imagemContinue)
+        if status:
+            self.lb = Label(self.root, image=self.imagemVitoria)
+        else:
+            self.lb = Label(self.root, image=self.imagemDerrota)
+
+    #def abrirRelatorio()
+
+    def abrirChoosePlayer(self):
+
+        self.root.destroy()
+        t = TelaEscolhaBot()
+        t.p1 = System.choosePlayer(System.listPlayer().index(self.player.name))
+        t.lb["image"] = t.imagemLabelBOT
+        t.construtor()
+
+    def construtor(self):
+        self.root.geometry("800x500+300+100")
+        self.root["bg"] = self.color
+        self.lb["bg"] = self.color
+        self.lb.pack(side=TOP)
+        self.bt1.place(x=self.x, y=self.y)
+        self.bt2.place(x=self.x+self.margeX, y=self.y+self.margeY)
+        #self.bt1["command"] = self.abrirRelatorio
+        self.bt2["command"] = self.abrirChoosePlayer
         self.root.mainloop()
 
 
