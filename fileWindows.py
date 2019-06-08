@@ -200,11 +200,11 @@ class TelaMain:
         self.canvasAttackDica = Canvas(self.root, width=725, height=200, highlightbackground="Black")
 
         #CONFIG DISPLAY
-        self.yDisplayLifi = 450
+        self.yDisplayLifi = 465
         self.xDisplayLifiPlayer = 50
         self.xDisplayLifiBOT = 1250
 
-        self.yDisplayMana = 610
+        self.yDisplayMana = 585
         self.xDisplayManaPlayer = 50
         self.xDisplayManaBOT = 1250
 
@@ -579,14 +579,14 @@ class TelaMain:
         self.lbBtBOT.place(x=self.xDisplayManaBOT+50, y=20)
         self.lbBtBOT["command"] = self.ActionBOT
 
-        self.nomePlAYER.place(x=self.xDisplayManaPlayer, y=200)
-        self.nomeBOT.place(x=self.xDisplayManaBOT, y=200)
+        self.nomePlAYER.place(x=self.xDisplayManaPlayer, y=180)
+        self.nomeBOT.place(x=self.xDisplayManaBOT, y=180)
 
-        self.swordPlAYER.place(x=self.xDisplayManaPlayer, y=270)
-        self.swordBOT.place(x=self.xDisplayManaBOT, y=270)
+        self.swordPlAYER.place(x=self.xDisplayManaPlayer, y=250)
+        self.swordBOT.place(x=self.xDisplayManaBOT, y=250)
 
-        self.shieldPlayer.place(x=self.xDisplayManaPlayer, y=340)
-        self.shieldBOT.place(x=self.xDisplayManaBOT, y=340)
+        self.shieldPlayer.place(x=self.xDisplayManaPlayer, y=320)
+        self.shieldBOT.place(x=self.xDisplayManaBOT, y=320)
 
         recuo = 20
         #Display LIFE PLAYER
