@@ -421,6 +421,11 @@ class TelaMain:
             self.canvasAttackDica.create_image(0, 0, image=imag)
             self.canvasAttackDica.image = imag
 
+    def gerarRELATORIO(self):
+        return [self.damageTotal, self.damageMagico, self.damageFisico, self.CONTAttackFalhos, self.CONTAttackCriticos,
+        self.CONTAttackNormais, self.CONTAttack, self.FalhaDefesa, self.damageMagicoSofrido, self.damageFisicoSofrido,
+        self.damageMagicoDefendido, self.damageFisicoDefendido, self.manaRestaurada, self.manaGasta]
+
     def verificarGame(self):
         if self.player.hp <= 0:
             print(f'''
@@ -482,11 +487,8 @@ class TelaMain:
             self.Alternar = False
 
     def abrirTelaOption(self, status):
-        dic = {
-            "a":"a"
-        }
         self.root.destroy()
-        TelaOption(self.player, dic, status).construtor()
+        TelaOption(self.player, self.gerarRELATORIO(), status).construtor()
 
     def knock(self, attack):
         if self.Alternar:
@@ -649,21 +651,22 @@ class TelaMain:
 
         self.root.mainloop()
 
+
 class TelaOption:
-    def __init__(self, player, dic, status=True ):
+    def __init__(self, player, dadosDaPatida, status=True ):
         self.root = Tk()
 
         self.player = player
-        self.dic = dic
+        self.dadosDaPatida = dadosDaPatida
 
         self.margeX = 0
         self.margeY = 150
         self.x = 265
-        self.y = 200
+        self.y = 270
         self.color = "Black"
 
         self.imagemRelatorio = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/playerXbotPNG.png")
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/relatorio.png")
 
         self.imagemContinue = PhotoImage(
             file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/OutroDesafio.png")
@@ -680,7 +683,9 @@ class TelaOption:
         else:
             self.lb = Label(self.root, image=self.imagemDerrota)
 
-    #def abrirRelatorio()
+    def abrirRelatorio(self):
+        self.root.destroy()
+        TelaRelatorio(self.dadosDaPatida).construtor()
 
     def abrirChoosePlayer(self):
 
@@ -697,8 +702,230 @@ class TelaOption:
         self.lb.pack(side=TOP)
         self.bt1.place(x=self.x, y=self.y)
         self.bt2.place(x=self.x+self.margeX, y=self.y+self.margeY)
-        #self.bt1["command"] = self.abrirRelatorio
+        self.bt1["command"] = self.abrirRelatorio
         self.bt2["command"] = self.abrirChoosePlayer
+        self.root.mainloop()
+
+
+class TelaRelatorio:
+    def __init__(self, dadosDaPartida):
+        self.root = Tk()
+
+        self.dadosDaPartida = dadosDaPartida
+
+        self.imageLBTitulo = PhotoImage(
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/vitoria.png")
+        self.lbTitulo = Label(self.root, image=self.imageLBTitulo)
+
+        #IMAGENS
+        self.imageLBDanoTotal = PhotoImage(
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+        self.imageLBDanoMagico = PhotoImage(
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+        self.imageLBDanoFisico = PhotoImage(
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+        self.imageLBAttacksFalhos = PhotoImage(
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+        self.imageLBAttacksCriticos = PhotoImage(
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+        self.imageLBAttacksNormais = PhotoImage(
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+        self.imageLBTotalAttacks = PhotoImage(
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+        self.imageLBFalhaDaArmadura = PhotoImage(
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+        self.imageLBDanoMagicoSofrido = PhotoImage(
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+        self.imageLBDanoFisicoSofrido = PhotoImage(
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+        self.imageLBDanoMagicoDefendido = PhotoImage(
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+        self.imageLBDanoFisicoDefendido = PhotoImage(
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+        self.imageLBManaRestaurada = PhotoImage(
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+        self.imageLBManaGasta = PhotoImage(
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+
+        #LABEL
+        self.LBDanoTotal = Label(self.root, image=self.imageLBDanoTotal, width=200, height=60)
+        self.LBDanoMagico = Label(self.root, image=self.imageLBDanoMagico, width=200, height=60)
+        self.LBDanoFisico = Label(self.root, image=self.imageLBDanoFisico, width=200, height=60)
+        self.LBAttacksFalhos = Label(self.root, image=self.imageLBAttacksFalhos, width=200, height=60)
+        self.LBAttacksCriticos = Label(self.root, image=self.imageLBAttacksCriticos, width=200, height=60)
+        self.LBAttacksNormais = Label(self.root, image=self.imageLBAttacksNormais, width=200, height=60)
+        self.LBTotalAttacks = Label(self.root, image=self.imageLBTotalAttacks, width=200, height=60)
+        self.LBFalhaDaArmadura = Label(self.root, image=self.imageLBFalhaDaArmadura, width=200, height=60)
+        self.LBDanoMagicoSofrido = Label(self.root, image=self.imageLBDanoMagicoSofrido, width=200, height=60)
+        self.LBDanoFisicoSofrido = Label(self.root, image=self.imageLBDanoFisicoSofrido, width=200, height=60)
+        self.LBDanoMagicoDefendido = Label(self.root, image=self.imageLBDanoMagicoDefendido, width=200, height=60)
+        self.LBDanoFisicoDefendido = Label(self.root, image=self.imageLBDanoFisicoDefendido, width=200, height=60)
+        self.LBManaRestaurada = Label(self.root, image=self.imageLBManaRestaurada, width=200, height=60)
+        self.LBManaGasta = Label(self.root, image=self.imageLBManaGasta, width=200, height=60)
+
+        #CONFIG LABEL
+        self.xLabel = 500
+        self.yLabel = 125
+        self.xMargerLabel = 20
+        self.yMargerLabel = 100
+
+        self.labels = [[self.LBDanoTotal, self.LBDanoMagico, self.LBDanoFisico, self.LBAttacksFalhos,
+                       self.LBAttacksCriticos], [self.LBAttacksNormais, self.LBTotalAttacks, self.LBFalhaDaArmadura,
+                       self.LBDanoMagicoSofrido, self.LBDanoFisicoSofrido], [self.LBDanoMagicoDefendido,
+                       self.LBDanoFisicoDefendido, self.LBManaRestaurada, self.LBManaGasta]]
+
+        # DISPLAY
+        self.c1 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c2 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c3 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c4 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c5 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.displayDanoTotal = [self.c1, self.c2, self.c3, self.c4, self.c5]
+
+        self.c6 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c7 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c8 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c9 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c10 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.displayDanoMagico = [self.c6, self.c7, self.c8, self.c9, self.c10]
+
+        self.c11 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c12 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c13 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c14 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c15 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.displayDanoFisico = [self.c11, self.c12, self.c13, self.c14, self.c15]
+
+        self.c16 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c17 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c18 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c19 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c20 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.displayAttacksFalhos = [self.c16, self.c17, self.c18, self.c19, self.c20]
+
+        self.c21 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c22 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c23 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c24 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c25 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.displayAttacksCriticos = [self.c21, self.c22, self.c23, self.c24, self.c25]
+
+        self.c26 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c27 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c28 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c29 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c30 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.displayAttacksNormais = [self.c26, self.c27, self.c28, self.c29, self.c30]
+
+        self.c31 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c32 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c33 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c34 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c35 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.displayTotalAttacks = [self.c31, self.c32, self.c33, self.c34, self.c35]
+
+        self.c36 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c37 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c38 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c39 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c40 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.displayFalhaDaArmadura = [self.c36, self.c37, self.c38, self.c39, self.c40]
+
+        self.c41 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c42 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c43 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c44 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c45 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.displayDanoMagicoSofrido = [self.c41, self.c42, self.c43, self.c44, self.c45]
+
+        self.c46 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c47 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c48 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c49 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c50 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.displayDanoFisicoSofrido = [self.c46, self.c47, self.c48, self.c49, self.c50]
+
+        self.c51 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c52 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c53 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c54 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c55 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.displayDanoMagicoDefendido = [self.c51, self.c52, self.c53, self.c54, self.c55]
+
+        self.c56 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c57 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c58 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c59 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c60 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.displayDanoFisicoDefendido = [self.c56, self.c57, self.c58, self.c59, self.c60]
+
+        self.c61 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c62 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c63 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c64 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c65 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.displayManaRestaurada = [self.c61, self.c62, self.c63, self.c64, self.c65]
+
+        self.c66 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c67 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c68 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c69 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c70 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.displayManaGasta = [self.c66, self.c67, self.c68, self.c69, self.c70]
+
+        self.displays = [[self.displayDanoTotal, self.displayDanoMagico, self.displayDanoFisico,
+                         self.displayAttacksFalhos, self.displayAttacksCriticos], [self.displayAttacksNormais,
+                         self.displayTotalAttacks, self.displayFalhaDaArmadura,
+                         self.displayDanoMagicoSofrido, self.displayDanoFisicoSofrido],
+                         [self.displayDanoMagicoDefendido, self.displayDanoFisicoDefendido,
+                         self.displayManaRestaurada, self.displayManaGasta]]
+        self.backPNG = PhotoImage(
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/backPNG.png")
+        self.btVolta = Button(self.root, image=self.backPNG, bg="Black")
+
+    def voltar(self):
+        self.root.destroy()
+        TelaInicio().construtor()
+
+    def setDisplay(self, num, display):
+        number = str(num)
+        dicImagens = {
+            "#": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/0.png"),
+            "0": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/0.png"),
+            "1": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/1.png"),
+            "2": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/2.png"),
+            "3": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/3.png"),
+            "4": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/4.png"),
+            "5": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/5.png"),
+            "6": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/6.png"),
+            "7": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/7.png"),
+            "8": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/8.png"),
+            "9": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/9.png")
+        }
+        strNumber = number if len(number) == len(display) else "#" * (len(display) - len(number)) + str(number)
+        for elem in range(len(display)):
+            imag = dicImagens[strNumber[elem]]
+            display[elem].create_image(30, 35, image=imag)
+            display[elem].image = imag
+
+    def construtor(self):
+        self.root.geometry("1500x780+12+0")
+        self.root["bg"] = "Black"
+        self.lbTitulo.pack(side=TOP)
+        cont = 0
+        for lbx in range(len(self.labels)):
+            for lby in range(len(self.labels[lbx])):
+                x = self.xLabel * lbx + self.xMargerLabel
+                y = self.yLabel * lby + self.yMargerLabel
+                self.labels[lbx][lby].place(x=x, y=y)
+                self.labels[lbx][lby]["bg"] = "Black"
+                for j in range(len(self.displays[lbx][lby])):
+                    self.displays[lbx][lby][j].config(bg="Black")
+                    self.displays[lbx][lby][j].place(x=j * 50 + x + 220, y=y)
+                self.setDisplay(self.dadosDaPartida[cont], self.displays[lbx][lby])
+                cont += 1
+        self.btVolta.pack(side=BOTTOM, anchor=SE)
+        self.btVolta["command"] = self.voltar
         self.root.mainloop()
 
 
