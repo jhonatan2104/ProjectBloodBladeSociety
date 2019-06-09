@@ -662,7 +662,7 @@ class TelaOption:
         self.margeX = 0
         self.margeY = 150
         self.x = 265
-        self.y = 270
+        self.y = 200
         self.color = "Black"
 
         self.imagemRelatorio = PhotoImage(
@@ -714,8 +714,8 @@ class TelaRelatorio:
         self.dadosDaPartida = dadosDaPartida
 
         self.imageLBTitulo = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/vitoria.png")
-        self.lbTitulo = Label(self.root, image=self.imageLBTitulo)
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/relatorioTitulo.png")
+        self.lbTitulo = Label(self.root, image=self.imageLBTitulo, highlightbackground="Black", bg="Black")
 
         #IMAGENS
         self.imageLBDanoTotal = PhotoImage(
@@ -767,7 +767,7 @@ class TelaRelatorio:
         self.xLabel = 500
         self.yLabel = 125
         self.xMargerLabel = 20
-        self.yMargerLabel = 100
+        self.yMargerLabel = 150
 
         self.labels = [[self.LBDanoTotal, self.LBDanoMagico, self.LBDanoFisico, self.LBAttacksFalhos,
                        self.LBAttacksCriticos], [self.LBAttacksNormais, self.LBTotalAttacks, self.LBFalhaDaArmadura,
