@@ -246,6 +246,9 @@ class TelaMain:
         self.imgLatencia = PhotoImage(
             file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/latancia.png"
         )
+        self.imgLatenciaDEF = PhotoImage(
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/latancia.png"
+        )
         self.imgDanoReal = PhotoImage(
             file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/danoReal.png"
         )
@@ -253,6 +256,8 @@ class TelaMain:
         #LABEL DANO, LATÊNCIA
         self.lbLatencia = Label(self.root, width=200, height=60, bg="Black", highlightbackground="Black",
                                 image=self.imgLatencia)
+        self.lbLatenciaDef = Label(self.root, width=200, height=60, bg="Black", highlightbackground="Black",
+                                image=self.imgLatenciaDEF)
         self.lbDanoReal = Label(self.root, width=200, height=60, bg="Black", highlightbackground="Black",
                                 image=self.imgDanoReal)
 
@@ -266,21 +271,27 @@ class TelaMain:
         # DISPLAY LATENCIA
         self.c25 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
         self.displayLatencia = [self.c25]
+        self.c26 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.displayLatenciaDef = [self.c26]
 
         #BOTÕES DE ATTACK
         self.canvasAttk = Canvas(self.root, width=725, height=170, highlightbackground="Black")
         self.imageATTK1 = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/atk1.png")
         self.imageATTK2 = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/atk2.png")
         self.imageATTK3 = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/atk3.png")
         self.imageDEF = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
-        self.btAttk1 = Button(self.canvasAttk, width=175, height=160, image= self.imageATTK1)
-        self.btAttk2 = Button(self.canvasAttk, width=175, height=160, image=self.imageATTK2)
-        self.btAttk3 = Button(self.canvasAttk, width=175, height=160, image=self.imageATTK3)
-        self.btdef1 = Button(self.canvasAttk, width=175, height=160, image=self.imageDEF)
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/deff.png")
+        self.btAttk1 = Button(self.canvasAttk, width=175, height=160, image= self.imageATTK1, bg='Black',
+                              highlightbackground="Black")
+        self.btAttk2 = Button(self.canvasAttk, width=175, height=160, image=self.imageATTK2, bg='Black',
+                              highlightbackground="Black")
+        self.btAttk3 = Button(self.canvasAttk, width=175, height=160, image=self.imageATTK3, bg='Black',
+                              highlightbackground="Black")
+        self.btdef1 = Button(self.canvasAttk, width=175, height=160, image=self.imageDEF, bg='Black',
+                             highlightbackground="Black")
         self.BTSCommands = [self.btAttk1, self.btAttk2, self.btAttk3, self.btdef1]
 
     def ActionBOT(self):
@@ -305,7 +316,7 @@ class TelaMain:
                 if attackBOT.latencia <= randomLatenciaAtaque:
                     # ATAQUE EFETIVO
                     randomLatenciaDefesa = randint(0, 9)
-
+                    self.setDisplay(randomLatenciaDefesa, self.displayLatenciaDef)
                     if self.player.shield.latencia <= randomLatenciaDefesa:
                         # DEFESA EFETIVA
                         self.setCanvasStatus(1)
@@ -498,7 +509,7 @@ class TelaMain:
             if attack.latencia <= randomLatenciaAtaque:
                 # ATAQUE EFETIVO
                 randomLatenciaDefesa = randint(0, 9)
-
+                self.setDisplay(randomLatenciaDefesa, self.displayLatenciaDef)
                 if self.bot.shield.latencia <= randomLatenciaDefesa:
                     # DEFESA EFETIVA
                     self.setCanvasStatus(1)
@@ -619,10 +630,14 @@ class TelaMain:
             self.displayDanoReal[j].place(x=j*50+self.xMargeDisplayDL, y=self.yMargeDisplayDL)
 
         self.displayLatencia[0].config(bg="Black")
-        self.displayLatencia[0].place(x=self.xMargeDisplayDL, y=self.yMargeDisplayDL+70)
+        self.displayLatencia[0].place(x=self.xMargeDisplayDL-100, y=self.yMargeDisplayDL+70)
+
+        self.displayLatenciaDef[0].config(bg="Black")
+        self.displayLatenciaDef[0].place(x=self.xMargeDisplayDL + 230, y=self.yMargeDisplayDL + 70)
 
         self.lbDanoReal.place(x=self.xMargeLabelDL, y=self.yMargeDisplayDL)
-        self.lbLatencia.place(x=self.xMargeLabelDL, y=self.yMargeDisplayDL+70)
+        self.lbLatencia.place(x=self.xMargeLabelDL-100, y=self.yMargeDisplayDL+70)
+        self.lbLatenciaDef.place(x=self.xMargeLabelDL + 230, y=self.yMargeDisplayDL + 70)
 
         self.canvasAttk.pack(side=BOTTOM, anchor=S)
         self.canvasAttk.config(bg="black")
@@ -643,6 +658,7 @@ class TelaMain:
         self.setCanvasStatus(-1)
 
         self.setDisplay(str(0), self.displayLatencia)
+        self.setDisplay(str(0), self.displayLatenciaDef)
         self.setDisplay(str(0), self.displayDanoReal)
         self.setDisplay(str(self.player.hp), self.displayLifePlayer)
         self.setDisplay(str(self.bot.hp), self.displayLifeBOT)
@@ -719,33 +735,33 @@ class TelaRelatorio:
 
         #IMAGENS
         self.imageLBDanoTotal = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/LBTelaRelatorio/danoTotal.png")
         self.imageLBDanoMagico = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/LBTelaRelatorio/dmagico.png")
         self.imageLBDanoFisico = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/LBTelaRelatorio/dfisico.png")
         self.imageLBAttacksFalhos = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/LBTelaRelatorio/atkfalhos.png")
         self.imageLBAttacksCriticos = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/LBTelaRelatorio/atkcritico.png")
         self.imageLBAttacksNormais = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/LBTelaRelatorio/atknormal.png")
         self.imageLBTotalAttacks = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/LBTelaRelatorio/ttAtk.png")
         self.imageLBFalhaDaArmadura = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/LBTelaRelatorio/falhaArmadura.png")
         self.imageLBDanoMagicoSofrido = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/LBTelaRelatorio/dmSofrido.png")
         self.imageLBDanoFisicoSofrido = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/LBTelaRelatorio/dfSofrido.png")
         self.imageLBDanoMagicoDefendido = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/LBTelaRelatorio/dmDef.png")
         self.imageLBDanoFisicoDefendido = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/LBTelaRelatorio/dfDef.png")
         self.imageLBManaRestaurada = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/LBTelaRelatorio/manaRest.png")
         self.imageLBManaGasta = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/LBTelaRelatorio/manaUsa.png")
 
         #LABEL
         self.LBDanoTotal = Label(self.root, image=self.imageLBDanoTotal, width=200, height=60)
