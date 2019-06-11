@@ -1,6 +1,6 @@
 from fileClass import *
 
-p1 = System.choosePlayer(0)
+p1 = System.choosePlayer(1)
 p2 = System.choosePlayer(3)
 intel = InteligencePlayer(p1, 200)
 

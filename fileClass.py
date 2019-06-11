@@ -84,7 +84,7 @@ class System:
             shield = Shield(name="Armor Berserker", latencia=2, defesaFisica=1000, defesaMagica=3000,
                             imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Shield/berserker.png")
 
-            player = Player(name="Ichigo Kurosaki", hp=10000, mana=1000, sword=sword, shield=shield,
+            player = Player(name="Ichigo Kurosaki", hp=10000, mana=10, sword=sword, shield=shield,
                             imageShow="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Personagens/ichico.png",
                             imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Personagens/nIchigo.png")
 
@@ -95,9 +95,9 @@ class System:
         elif nameChamp == 'Killer Bee':
             at1 = Attack(name="Crumbling the skin", mana=200, latencia=3, danoFisico=3000, danoMagico=600,
                          imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
-            at2 = Attack(name="Life Theft", mana=10, latencia=7, danoFisico=1000, danoMagico=5500,
+            at2 = Attack(name="Life Theft", mana=10, latencia=5, danoFisico=1000, danoMagico=5500,
                          imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
-            at3 = Attack(name="Samehada and the seven lightning swords", mana=500, latencia=5, danoFisico=3500,
+            at3 = Attack(name="Samehada and the seven lightning swords", mana=500, latencia=3, danoFisico=3500,
                          danoMagico=4500,
                          imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
 
