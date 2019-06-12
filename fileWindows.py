@@ -198,6 +198,9 @@ class TelaMain:
 
         #CANVAS ATTACK DICA
         self.canvasAttackDica = Canvas(self.root, width=725, height=200, highlightbackground="Black")
+        self.fontFixedsys = ("Comic Sans MS", "15", "bold")
+        self.lbDica = Label(self.canvasAttackDica, font=self.fontFixedsys, foreground="white", bg="black")
+        self.lbDica.pack(side=TOP, anchor=CENTER)
 
         #CONFIG DISPLAY
         self.yDisplayLifi = 465
@@ -301,7 +304,6 @@ class TelaMain:
 
             if value == 3:
                 self.setCanvasStatus(3)
-                self.setCanvasDICA()
                 self.bot.restoreMana(0)
 
                 # SET DISPLAY DADOS
@@ -310,6 +312,8 @@ class TelaMain:
                 self.setDisplay(0, self.displayLatencia)
             else:
                 attackBOT = attacksBOT[value]
+                self.lbDica["text"] = attackBOT.name
+                #self.setCanvasDICA(attackBOT)
                 # o numero randomico para a latencia
                 randomLatenciaAtaque = randint(0, 9)
                 self.setDisplay(randomLatenciaAtaque, self.displayLatencia)
@@ -320,7 +324,6 @@ class TelaMain:
                     if self.player.shield.latencia <= randomLatenciaDefesa:
                         # DEFESA EFETIVA
                         self.setCanvasStatus(1)
-                        self.setCanvasDICA(attackBOT)
 
                         # DADOS JOGÁVEIS
                         danos = System.calculeteDamageShield(self.player, attackBOT)
@@ -346,7 +349,6 @@ class TelaMain:
                     else:
                         # DEFESA NAO EFETIVA
                         self.setCanvasStatus(2)
-                        self.setCanvasDICA(attackBOT)
 
                         # DADOS JOGÁVEIS
                         danos = System.calculeteDamage(attackBOT)
@@ -371,7 +373,6 @@ class TelaMain:
                 else:
                     # ATAQUE NAO EFETIVO
                     self.setCanvasStatus(0)
-                    self.setCanvasDICA(attackBOT)
 
                     StatusGame = self.verificarGame()
                     if any(StatusGame):
@@ -424,13 +425,14 @@ class TelaMain:
             self.canvasStatus.create_image(365, 100, image=self.imageStatusManaAlerta)
             self.canvasStatus.image = self.imageStatusManaAlerta
 
-    def setCanvasDICA(self, attack=None):
-        if attack is None:
-            self.canvasAttackDica.config(bg="Black")
-        else:
-            imag = PhotoImage(file=attack.imageID)
-            self.canvasAttackDica.create_image(0, 0, image=imag)
-            self.canvasAttackDica.image = imag
+    def setCanvasDICAAttack(self,event, attack):
+        self.lbDica["text"] = attack.getDados()
+
+    def setCanvasDICASword(self, event):
+        self.lbDica["text"] = self.player.sword.getDados()
+
+    def setCanvasDICAShield(self, event):
+        self.lbDica["text"] = self.player.shield.getDados()
 
     def gerarRELATORIO(self):
         return [self.damageTotal, self.damageMagico, self.damageFisico, self.CONTAttackFalhos, self.CONTAttackCriticos,
@@ -483,9 +485,9 @@ class TelaMain:
         return [False, False]
 
     def defensiveMode(self):
+        self.lbDica["text"] = ""
         if self.Alternar:
             self.setCanvasStatus(3)
-            self.setCanvasDICA()
             manaRestore = self.player.restoreMana(0)
 
             #SET DISPLAY DADOS
@@ -502,6 +504,7 @@ class TelaMain:
         TelaOption(self.player, self.gerarRELATORIO(), status).construtor()
 
     def knock(self, attack):
+        self.lbDica["text"] = ""
         if self.Alternar:
             # o numero randomico para a latencia
             randomLatenciaAtaque = randint(0, 9)
@@ -517,7 +520,6 @@ class TelaMain:
                     if self.bot.shield.latencia <= randomLatenciaDefesa:
                         # DEFESA EFETIVA
                         self.setCanvasStatus(1)
-                        self.setCanvasDICA(attack)
 
                         #DADOS JOGÁVEIS
                         danos = System.calculeteDamageShield(self.bot, attack)
@@ -546,7 +548,6 @@ class TelaMain:
                     else:
                         # DEFESA NAO EFETIVA
                         self.setCanvasStatus(2)
-                        self.setCanvasDICA(attack)
 
                         # DADOS JOGÁVEIS
                         danos = System.calculeteDamage(attack)
@@ -575,7 +576,6 @@ class TelaMain:
             else:
                 # ATAQUE NAO EFETIVO
                 self.setCanvasStatus(0)
-                self.setCanvasDICA(attack)
 
                 # DADOS ARMAZENÁVEIS
                 self.CONTAttack += 1
@@ -600,9 +600,13 @@ class TelaMain:
         self.nomeBOT.place(x=self.xDisplayManaBOT, y=180)
 
         self.swordPlAYER.place(x=self.xDisplayManaPlayer, y=250)
+        self.swordPlAYER.bind("<Button-3>", self.setCanvasDICASword)
+
         self.swordBOT.place(x=self.xDisplayManaBOT, y=250)
 
         self.shieldPlayer.place(x=self.xDisplayManaPlayer, y=320)
+        self.shieldPlayer.bind("<Button-3>", self.setCanvasDICAShield)
+
         self.shieldBOT.place(x=self.xDisplayManaBOT, y=320)
 
         recuo = 20
@@ -651,6 +655,8 @@ class TelaMain:
             if bt < 3:
                 self.BTSCommands[bt].place(x=bt*185, y=0)
                 self.BTSCommands[bt]["command"] = partial(self.knock, attacksPlayer[bt])
+                self.BTSCommands[bt].bind("<Button-3>",
+                                          lambda event, atk=attacksPlayer[bt]: self.setCanvasDICAAttack(event, atk))
             else:
                 self.BTSCommands[bt].place(x=bt * 185, y=0)
                 self.BTSCommands[bt]["command"] = self.defensiveMode

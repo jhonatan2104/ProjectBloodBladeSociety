@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fefe4446-7a52-4355-8c4a-2041c4896d9f" name="Default Changelist" comment="Teste Hacker">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DirPNG/atk3.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/atk3.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fileClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/fileClass.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fileTest.py" beforeDir="false" afterPath="$PROJECT_DIR$/fileTest.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fileWindows.py" beforeDir="false" afterPath="$PROJECT_DIR$/fileWindows.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,8 +28,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fileClass.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="481">
-              <caret line="97" column="63" selection-start-line="97" selection-start-column="63" selection-end-line="97" selection-end-column="63" />
+            <state relative-caret-position="519">
+              <caret line="532" column="78" selection-start-line="532" selection-start-column="78" selection-end-line="532" selection-end-column="78" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -52,8 +49,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/fileWindows.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="142">
-              <caret line="510" column="42" selection-start-line="510" selection-start-column="42" selection-end-line="510" selection-end-column="42" />
+            <state relative-caret-position="290">
+              <caret line="608" column="8" selection-start-line="608" selection-start-column="8" selection-end-line="608" selection-end-column="8" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
               </folding>
@@ -96,8 +93,8 @@
         <option value="$PROJECT_DIR$/Interface/TelaEscolhaBot.py" />
         <option value="$PROJECT_DIR$/windows.py" />
         <option value="$PROJECT_DIR$/fileTest.py" />
-        <option value="$PROJECT_DIR$/fileWindows.py" />
         <option value="$PROJECT_DIR$/fileClass.py" />
+        <option value="$PROJECT_DIR$/fileWindows.py" />
       </list>
     </option>
   </component>
@@ -129,12 +126,6 @@
               <item name="ProjectBloodBladeSociety" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
               <item name="fileClass.py" type="8704e2dd:PyFileNode" />
-            </path>
-            <path>
-              <item name="ProjectBloodBladeSociety" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="fileClass.py" type="8704e2dd:PyFileNode" />
-              <item name="System" type="dd8bbb05:PyElementNode" />
             </path>
             <path>
               <item name="ProjectBloodBladeSociety" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
@@ -526,8 +517,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/fileClass.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="97" column="63" selection-start-line="97" selection-start-column="63" selection-end-line="97" selection-end-column="63" />
+        <state relative-caret-position="519">
+          <caret line="532" column="78" selection-start-line="532" selection-start-column="78" selection-end-line="532" selection-end-column="78" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
@@ -536,8 +527,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/fileWindows.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="510" column="42" selection-start-line="510" selection-start-column="42" selection-end-line="510" selection-end-column="42" />
+        <state relative-caret-position="290">
+          <caret line="608" column="8" selection-start-line="608" selection-start-column="8" selection-end-line="608" selection-end-column="8" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
           </folding>

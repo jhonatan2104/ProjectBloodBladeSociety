@@ -445,19 +445,47 @@ class Sword:
         ataques = self.getAttack()
         somaDanoMagico = 0
         somaDanoFisico = 0
+        somaMana = 0
         samaLatencia = 0
 
-        for ataque in ataques:
-            somaDanoMagico += ataque.danoMagico
-            somaDanoFisico += ataque.danoFisico
-            samaLatencia += ataque.latencia
-
+        for attack in ataques:
+            somaDanoMagico += attack.danoMagico
+            somaDanoFisico += attack.danoFisico
+            samaLatencia += attack.latencia
+            somaMana += attack.mana
         mediaDanoMagico = somaDanoMagico / 3
         mediaDanoFisico = somaDanoFisico / 3
         mediaLatencia = samaLatencia / 3
+        mediaMana = somaMana/3
 
-        return ("NOME: " + self.name + "\nLATENCIA (MEDIA): " + str(mediaLatencia) + "\nDEFESA MAGICA (MEDIA) : " + str(
-            mediaDanoMagico) + "\nDEFESA FISICA (MEDIA): " + str(mediaDanoFisico))
+        return '''Nome: {}
+Média DM : {:.2f}
+Média DF : {:.2f}
+Média Latência : {:.2f}
+Média Mana: {:.2f}'''.format(self.name,mediaDanoMagico, mediaDanoFisico,mediaLatencia, mediaMana)
+
+    def getDados(self):
+        ataques = self.getAttack()
+        somaDanoMagico = 0
+        somaDanoFisico = 0
+        somaMana = 0
+        samaLatencia = 0
+
+        for attack in ataques:
+            somaDanoMagico += attack.danoMagico
+            somaDanoFisico += attack.danoFisico
+            samaLatencia += attack.latencia
+            somaMana += attack.mana
+        mediaDanoMagico = somaDanoMagico / 3
+        mediaDanoFisico = somaDanoFisico / 3
+        mediaLatencia = samaLatencia / 3
+        mediaMana = somaMana / 3
+
+        return '''Nome: {}
+Média DM : {:.2f}
+Média DF : {:.2f}
+Média Mana: {:.2f}
+Média Latência : {:.2f}'''.format(self.name,mediaDanoMagico, mediaDanoFisico, mediaMana,mediaLatencia)
 
     def getAttack(self):
         '''
@@ -481,7 +509,9 @@ class Attack:
         # coverter para string
         return ("Nome: " + str(self.name) + "\nDano Magico: " + str(self.danoMagico) + "\nDano Fisico: " + str(
             self.danoFisico) + "\nMana: " + str(self.mana) + "\nLantenci: " + str(self.latencia))
-
+    def getDados(self):
+        return ("Nome: " + str(self.name) + "\nDano Magico: " + str(self.danoMagico) + "\nDano Fisico: " + str(
+            self.danoFisico) + "\nMana: " + str(self.mana) + "\nLantenci: " + str(self.latencia))
 
 class Shield:
     def __init__(self, name, latencia, defesaMagica, defesaFisica,
@@ -495,3 +525,9 @@ class Shield:
     def __str__(self):
         return (
                 "Nome: " + self.name + "\nLatencia: " + self.latencia + "\nDefesa Magica: " + self.defesaMagica + "\nDefesa Fisica: " + self.defesaFisica)
+    def getDados(self):
+        return '''Nome: {}
+Defesa Magica: {}
+Defesa Fisica: {}
+Latencia: {}
+        '''.format(self.name,self.defesaMagica,self.defesaFisica,self.latencia)
