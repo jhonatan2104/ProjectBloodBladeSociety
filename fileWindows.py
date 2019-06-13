@@ -1,7 +1,7 @@
+from tkinter import font
 from tkinter import *
 from fileClass import *
 from functools import partial
-
 
 class TelaEscolhaBot:
     def __init__(self):
@@ -198,7 +198,8 @@ class TelaMain:
 
         #CANVAS ATTACK DICA
         self.canvasAttackDica = Canvas(self.root, width=725, height=200, highlightbackground="Black")
-        self.fontFixedsys = ("Comic Sans MS", "15", "bold")
+        self.fontFixedsys = font.Font(family='Fixedsys', size=15, weight='bold')
+        font.families()
         self.lbDica = Label(self.canvasAttackDica, font=self.fontFixedsys, foreground="white", bg="black")
         self.lbDica.pack(side=TOP, anchor=CENTER)
 
@@ -247,10 +248,10 @@ class TelaMain:
 
         #IMAGE DANO, LATÊNCIA
         self.imgLatencia = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/latancia.png"
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/latenciaATTK.png"
         )
         self.imgLatenciaDEF = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/latancia.png"
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/latenciaDEF.png"
         )
         self.imgDanoReal = PhotoImage(
             file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/danoReal.png"
@@ -485,10 +486,10 @@ class TelaMain:
         return [False, False]
 
     def defensiveMode(self):
-        self.lbDica["text"] = ""
         if self.Alternar:
             self.setCanvasStatus(3)
             manaRestore = self.player.restoreMana(0)
+            self.lbDica["text"] = f"+{manaRestore}"
 
             #SET DISPLAY DADOS
             self.setDisplay(self.player.mana, self.displayManaPlayer)
@@ -504,7 +505,7 @@ class TelaMain:
         TelaOption(self.player, self.gerarRELATORIO(), status).construtor()
 
     def knock(self, attack):
-        self.lbDica["text"] = ""
+        self.lbDica["text"] = attack.name
         if self.Alternar:
             # o numero randomico para a latencia
             randomLatenciaAtaque = randint(0, 9)
@@ -672,8 +673,8 @@ class TelaMain:
         self.setDisplay(str(0), self.displayDanoReal)
         self.setDisplay(str(self.player.hp), self.displayLifePlayer)
         self.setDisplay(str(self.bot.hp), self.displayLifeBOT)
-        self.setDisplay(str(self.player.mana), self.displayManaBOT)
-        self.setDisplay(str(self.bot.mana), self.displayManaPlayer)
+        self.setDisplay(str(self.player.mana), self.displayManaPlayer)
+        self.setDisplay(str(self.bot.mana), self.displayManaBOT)
 
         self.root.mainloop()
 
