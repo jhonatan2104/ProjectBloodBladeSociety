@@ -3,6 +3,7 @@ from tkinter import *
 from fileClass import *
 from functools import partial
 
+
 class TelaEscolhaBot:
     def __init__(self):
         self.btSizeX = 100
@@ -108,7 +109,7 @@ class TelaInicio:
         self.lb["bg"] = self.color
         self.lb.pack(side=TOP)
         self.bt1.place(x=self.x, y=self.y)
-        self.bt2.place(x=self.x+self.margeX, y=self.y+self.margeY)
+        #self.bt2.place(x=self.x+self.margeX, y=self.y+self.margeY)
         self.bt1["command"] = self.abrirTelaEscolhaPlayerBOT
         self.bt2["command"] = self.abrirTelaEscolhaPlayer
         self.root.mainloop()
@@ -189,10 +190,15 @@ class TelaMain:
             file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/ataqueEfetivo.png")
         self.imageStatusCritico = PhotoImage(
             file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/critico.png")
+        self.imageStatusModoDef = PhotoImage(
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/modeDEFF.png")
         self.imageStatusHome = PhotoImage(
             file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/bemVindo.png")
         self.imageStatusManaAlerta = PhotoImage(
             file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/manaAlerta.png")
+        self.imageStatusErro = PhotoImage(
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/ERRO.png")
+
 
         self.canvasStatus = Canvas(self.root, width=725, height=200, highlightbackground="Black")
 
@@ -298,13 +304,30 @@ class TelaMain:
                              highlightbackground="Black")
         self.BTSCommands = [self.btAttk1, self.btAttk2, self.btAttk3, self.btdef1]
 
+        #TEXTOS DE DICAS
+        self.stringMODODEF = '''Você pode manter modo defensivo
+e recuperar mana para relaizar um ATTACK 
+ainda mais forte'''
+        self.stringRandLantDEF = '''Esse é o random de DEFESA.
+Ele presenta o dado lançado para definir a 
+falha ou a efetividade do bloqueio da 
+armadura
+        '''
+        self.stringRandLantATK = '''Esse é o random de ATTACK.
+Ele presenta o dado lançado para 
+definir a falha ou a efetividade 
+do ATTACK escolhido
+                '''
+        self.stringDanoReal = '''Valor de DANO VERDADEIRO
+(Dano Mágico - Amadura Mágica) + (Dano Físico - Armadura Físico)'''
+
     def ActionBOT(self):
         if not self.Alternar:
             attacksBOT = self.bot.sword.getAttack()
             value = self.intelBOT.resolverAttack(self.player)
 
             if value == 3:
-                self.setCanvasStatus(3)
+                self.setCanvasStatus(4)
                 self.bot.restoreMana(0)
 
                 # SET DISPLAY DADOS
@@ -382,6 +405,9 @@ class TelaMain:
                         # SET DISPLAY DADOS
                         self.setDisplay(0, self.displayDanoReal)
             self.Alternar = True
+        else:
+            self.lbDica["text"] = '''ERRO - É a sua vez de atacar! Escolha o seu ATTACK'''
+            self.setCanvasStatus(-2)
 
     def setDisplay(self, num, display):
         number = str(num)
@@ -406,11 +432,14 @@ class TelaMain:
 
     def setCanvasStatus(self, status):
         '''
-        :param status:  -1 - bem-vindo; 0 - falhou ;1 - efetivo; 2 - crítico; 3 - Mana insuficiente
+        :param status: -2 - erro; -1 - bem-vindo; 0 - falhou ;1 - efetivo; 2 - crítico; 3 - Mana insuficiente
         :return: Void
         '''
         self.canvasStatus.delete("all")
-        if status == -1:
+        if status == -2:
+            self.canvasStatus.create_image(365, 100, image=self.imageStatusErro)
+            self.canvasStatus.image = self.imageStatusErro
+        elif status == -1:
             self.canvasStatus.create_image(365, 100, image=self.imageStatusHome)
             self.canvasStatus.image = self.imageStatusHome
         elif status == 0:
@@ -425,6 +454,9 @@ class TelaMain:
         elif status == 3:
             self.canvasStatus.create_image(365, 100, image=self.imageStatusManaAlerta)
             self.canvasStatus.image = self.imageStatusManaAlerta
+        elif status == 4:
+            self.canvasStatus.create_image(365, 100, image=self.imageStatusModoDef)
+            self.canvasStatus.image = self.imageStatusModoDef
 
     def setCanvasDICAAttack(self,event, attack):
         self.lbDica["text"] = attack.getDados()
@@ -487,7 +519,7 @@ class TelaMain:
 
     def defensiveMode(self):
         if self.Alternar:
-            self.setCanvasStatus(3)
+            self.setCanvasStatus(4)
             manaRestore = self.player.restoreMana(0)
             self.lbDica["text"] = f"+{manaRestore}"
 
@@ -499,14 +531,18 @@ class TelaMain:
             # DADOS ARMAZENÁVEIS
             self.manaRestaurada += manaRestore
             self.Alternar = False
+        else:
+            self.lbDica["text"] = '''ERRO - Sua vez foi alternada, Click no Icon do BOT
+           para ele realizar o ATTACK'''
+            self.setCanvasStatus(-2)
 
     def abrirTelaOption(self, status):
         self.root.destroy()
         TelaOption(self.player, self.gerarRELATORIO(), status).construtor()
 
     def knock(self, attack):
-        self.lbDica["text"] = attack.name
         if self.Alternar:
+            self.lbDica["text"] = attack.name
             # o numero randomico para a latencia
             randomLatenciaAtaque = randint(0, 9)
             self.setDisplay(randomLatenciaAtaque, self.displayLatencia)
@@ -589,6 +625,16 @@ class TelaMain:
                     # SET DISPLAY DADOS
                     self.setDisplay(0, self.displayDanoReal)
             self.Alternar = False
+        else:
+            self.lbDica["text"] = '''ERRO - Sua vez foi alternada, Click no Icon do BOT
+    para ele realizar o ATTACK'''
+            self.setCanvasStatus(-2)
+
+    def limparCanvasDica(self,event):
+        self.lbDica["text"] = ""
+
+    def escreverNoCanvasDica(self, event, txt):
+        self.lbDica["text"] = txt
 
     def construtor(self):
         self.root.geometry("1500x780+12+0")
@@ -601,12 +647,14 @@ class TelaMain:
         self.nomeBOT.place(x=self.xDisplayManaBOT, y=180)
 
         self.swordPlAYER.place(x=self.xDisplayManaPlayer, y=250)
-        self.swordPlAYER.bind("<Button-3>", self.setCanvasDICASword)
+        self.swordPlAYER.bind("<Enter>", self.setCanvasDICASword)
+        self.swordPlAYER.bind("<Leave>", self.limparCanvasDica)
 
         self.swordBOT.place(x=self.xDisplayManaBOT, y=250)
 
         self.shieldPlayer.place(x=self.xDisplayManaPlayer, y=320)
-        self.shieldPlayer.bind("<Button-3>", self.setCanvasDICAShield)
+        self.shieldPlayer.bind("<Enter>", self.setCanvasDICAShield)
+        self.shieldPlayer.bind("<Leave>", self.limparCanvasDica)
 
         self.shieldBOT.place(x=self.xDisplayManaBOT, y=320)
 
@@ -645,8 +693,19 @@ class TelaMain:
         self.displayLatenciaDef[0].place(x=self.xMargeDisplayDL + 230, y=self.yMargeDisplayDL + 70)
 
         self.lbDanoReal.place(x=self.xMargeLabelDL, y=self.yMargeDisplayDL)
+        self.lbDanoReal.bind("<Enter>",
+                             lambda event, txt=self.stringDanoReal: self.escreverNoCanvasDica(event, txt))
+        self.lbDanoReal.bind("<Leave>", self.limparCanvasDica)
+
         self.lbLatencia.place(x=self.xMargeLabelDL-100, y=self.yMargeDisplayDL+70)
+        self.lbLatencia.bind("<Enter>",
+                                lambda event, txt=self.stringRandLantATK: self.escreverNoCanvasDica(event, txt))
+        self.lbLatencia.bind("<Leave>", self.limparCanvasDica)
+
         self.lbLatenciaDef.place(x=self.xMargeLabelDL + 230, y=self.yMargeDisplayDL + 70)
+        self.lbLatenciaDef.bind("<Enter>",
+                                  lambda event, txt=self.stringRandLantDEF: self.escreverNoCanvasDica(event, txt))
+        self.lbLatenciaDef.bind("<Leave>", self.limparCanvasDica)
 
         self.canvasAttk.pack(side=BOTTOM, anchor=S)
         self.canvasAttk.config(bg="black")
@@ -656,11 +715,15 @@ class TelaMain:
             if bt < 3:
                 self.BTSCommands[bt].place(x=bt*185, y=0)
                 self.BTSCommands[bt]["command"] = partial(self.knock, attacksPlayer[bt])
-                self.BTSCommands[bt].bind("<Button-3>",
+                self.BTSCommands[bt].bind("<Enter>",
                                           lambda event, atk=attacksPlayer[bt]: self.setCanvasDICAAttack(event, atk))
+                self.BTSCommands[bt].bind("<Leave>", self.limparCanvasDica)
             else:
                 self.BTSCommands[bt].place(x=bt * 185, y=0)
                 self.BTSCommands[bt]["command"] = self.defensiveMode
+                self.BTSCommands[bt].bind("<Enter>",
+                                          lambda event, txt=self.stringMODODEF: self.escreverNoCanvasDica(event, txt))
+                self.BTSCommands[bt].bind("<Leave>", self.limparCanvasDica)
 
         self.canvasStatus.pack(side=TOP, anchor=N)
         self.canvasStatus.config(bg="Black")
