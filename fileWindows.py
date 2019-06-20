@@ -546,14 +546,15 @@ do ATTACK escolhido
             # o numero randomico para a latencia
             randomLatenciaAtaque = randint(0, 9)
             self.setDisplay(randomLatenciaAtaque, self.displayLatencia)
+
+            randomLatenciaDefesa = randint(0, 9)
+            self.setDisplay(randomLatenciaDefesa, self.displayLatenciaDef)
+
             if attack.latencia <= randomLatenciaAtaque:
                 if self.player.mana <= attack.mana:
                     self.setCanvasStatus(3)
                 else:
                     # ATAQUE EFETIVO
-                    randomLatenciaDefesa = randint(0, 9)
-                    self.setDisplay(randomLatenciaDefesa, self.displayLatenciaDef)
-
                     if self.bot.shield.latencia <= randomLatenciaDefesa:
                         # DEFESA EFETIVA
                         self.setCanvasStatus(1)

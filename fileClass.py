@@ -1,4 +1,4 @@
-from random import randint
+from random import randint, shuffle
 from operator import itemgetter
 import winsound
 
@@ -180,6 +180,26 @@ class System:
             return player
 
     @staticmethod
+    def allItens():
+        return [
+            Item("SANGUE DE DRAGÃO",100,15,alterMana=-100,alterDanoFisico=500),
+            Item("LÁGRIMA DE PRINCESA",300,1,alterLatenciaDeff=-3,alterDanoMagico=1000),
+            Item("ANEL DE ADÃO",200,15,alterDanoFisico=500,alterDanoMagico=600),
+            Item("ESCUDO VIVO", 100, 15, alterDefesaFisica=300,alterDefesaMagica=-300),
+            Item("LÁGRIMA DE PRINCESA", 300, 1, alterLatenciaDeff=-3, alterDanoMagico=1000),
+            Item("ANEL DE ADÃO", 200, 15, alterDanoFisico=500, alterDanoMagico=600),
+            Item("SANGUE DE DRAGÃO", 100, 15, alterMana=-100, alterDanoFisico=500),
+            Item("LÁGRIMA DE PRINCESA", 300, 1, alterLatenciaDeff=-3, alterDanoMagico=1000),
+            Item("ANEL DE ADÃO", 200, 15, alterDanoFisico=500, alterDanoMagico=600),
+        ]
+
+    @staticmethod
+    def filterItens():
+        lista = System.allItens()
+        shuffle(lista)
+        return lista[0:6]
+
+    @staticmethod
     def calculeteDamageShield(player, attack):
         '''
         Funcao responsavel por CALCULAR o dano com base na ARMADURA do adversario
@@ -242,6 +262,7 @@ class Player:
         self.imageShow = imageShow
         self.imageID = imageID
         self.arqWAV = ["", ""]
+        self.inventory = []
 
     def __str__(self, ):
         return ("Nome: " + str(self.name) + "\nHP: " + str(self.hp) + "\nSword: " + str(
@@ -364,6 +385,8 @@ class Player:
                 print(str(attackIndice) + " - Manter modo defensivo")
                 break
             print(str(attackIndice) + " - " + str(attacksUser[attackIndice]) + "\n")
+    def addItem(self, item):
+        self.inventory.append(item)
 
 
 class InteligencePlayer:
@@ -531,3 +554,55 @@ Defesa Magica: {}
 Defesa Fisica: {}
 Latencia: {}
         '''.format(self.name,self.defesaMagica,self.defesaFisica,self.latencia)
+class Item:
+    def __init__(self, name, valor, quatidade,
+                 imag = "C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png",
+                 alterLife = 0, alterMana = 0,alterDefesaMagica = 0, alterDefesaFisica = 0, alterLatenciaAttk = 0,
+                 alterLatenciaDeff = 0, alterDanoMagico = 0, alterDanoFisico = 0):
+        self.name = name
+        self.valor = valor
+        self.quatidade = quatidade
+        self.imag = imag
+        self.alterLife = alterLife
+        self.alterMana =  alterMana
+        self.alterDefesaMagica = alterDefesaMagica
+        self.alterDefesaFisica = alterDefesaFisica
+        self.alterLatenciaAttk = alterLatenciaAttk
+        self.alterLatenciaDeff = alterLatenciaDeff
+        self.alterDanoMagico = alterDanoMagico
+        self.alterDanoFisico = alterDanoFisico
+    def usarItem(self):
+        self.quatidade -= 1
+    def ended(self):
+        return self.quatidade > 0
+    def aplicarItem(self, player, attack, latATTK, latDEFF):
+        self.usarItem()
+        #ALTERAR O PLAYER
+        player.hp += self.alterLife
+        player.mana += self.alterMana
+        # ALTERAR O PLAYER.SHIELD
+        player.shield.defesaFisica += self.alterDefesaFisica
+        player.shield.defesaMagica += self.alterDefesaMagica
+        #LATÊNCIA
+        latATTK += self.alterLatenciaAttk
+        latDEFF += self.alterLatenciaDeff
+        #ATTACK
+        attack.danoMagico += self.alterDanoMagico
+        attack.danoFisico += self.alterDanoFisico
+        return [latATTK,latDEFF]
+    def getDados(self):
+        info = {"Life":self.alterLife ,
+                "Mana":self.alterMana,
+                "Defesa Magica":self.alterDefesaMagica,
+                "Defesa Física":self.alterDefesaFisica,
+                "LatenciaAttk":self.alterLatenciaAttk,
+                "LatenciaDeff":self.alterLatenciaDeff,
+                "Dano Magico":self.alterDanoMagico,
+                "Dano Físico":self.alterDanoFisico}
+        dados = f'''Nome : {self.name}\n'''
+        for infoDic in info:
+            if info[infoDic] > 0:
+                dados += f"{infoDic} : + {info[infoDic]}\n"
+            elif info[infoDic] < 0:
+                dados += f"{infoDic} : - {abs(info[infoDic])}\n"
+        return dados
