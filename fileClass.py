@@ -387,6 +387,7 @@ class Player:
             print(str(attackIndice) + " - " + str(attacksUser[attackIndice]) + "\n")
     def addItem(self, item):
         self.inventory.append(item)
+        print("1")
 
 
 class InteligencePlayer:
@@ -588,7 +589,7 @@ class Item:
         #ATTACK
         attack.danoMagico += self.alterDanoMagico
         attack.danoFisico += self.alterDanoFisico
-        return [latATTK,latDEFF]
+        return [latATTK,latDEFF, self.alterMana]
     def getDados(self):
         info = {"Life":self.alterLife ,
                 "Mana":self.alterMana,

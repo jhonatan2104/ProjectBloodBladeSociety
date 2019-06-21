@@ -46,8 +46,6 @@ class TelaEscolhaBot:
         if self.p1 is None:
             player.PlayWAVShow()
             self.p1 = player
-            #TESTE
-            self.p1.inventory = System.filterItens()[0:3]
             self.lb["image"] = self.imagemLabelBOT
         elif self.BOT is None:
             player.PlayWAVShow()
@@ -351,8 +349,9 @@ do ATTACK escolhido
                 newLatATTK, newLatDEF = randomLatenciaAtaque, randomLatenciaDefesa
                 for item in self.player.inventory:
                     if item.ended():
-                        newLatATTK, newLatDEF = item.aplicarItem(self.bot, attackBOT, newLatATTK, newLatDEF)
-                        print(item.getDados())
+                        info = item.aplicarItem(self.bot, attackBOT, newLatATTK, newLatDEF)
+                        newLatATTK, newLatDEF = info[0], info[1]
+                        print(self.bot.name, item.getDados())
 
                 if attackBOT.latencia <= newLatATTK:
                     # ATAQUE EFETIVO
@@ -569,11 +568,13 @@ do ATTACK escolhido
             randomLatenciaDefesa = randint(0, 9)
             self.setDisplay(randomLatenciaDefesa, self.displayLatenciaDef)
 
-            newLatATTK, newLatDEF = randomLatenciaAtaque, randomLatenciaDefesa
+            newLatATTK, newLatDEF, manaItens = randomLatenciaAtaque, randomLatenciaDefesa,0
             for item in self.player.inventory:
                 if item.ended():
-                    newLatATTK, newLatDEF = item.aplicarItem(self.player, attack, newLatATTK, newLatDEF)
-                    print(item.getDados())
+                    info = item.aplicarItem(self.player, attack, newLatATTK, newLatDEF)
+                    newLatATTK, newLatDEF = info[0],info[1]
+                    manaItens += info[2]
+                    print(self.player.name, item.getDados())
 
             if attack.latencia <= newLatATTK:
                 if self.player.mana <= attack.mana:
@@ -599,6 +600,11 @@ do ATTACK escolhido
                         self.CONTAttackNormais += 1
                         self.manaGasta += attack.mana
                         self.manaRestaurada += manaRestore
+
+                        if manaItens > 0:
+                            self.manaRestaurada += manaItens
+                        else:
+                            self.manaGasta += abs(manaItens)
 
                         StatusGame = self.verificarGame()
                         if any(StatusGame):
@@ -631,6 +637,11 @@ do ATTACK escolhido
                         self.CONTAttackCriticos += 1
                         self.manaGasta += attack.mana
                         self.manaRestaurada += manaRestore
+
+                        if manaItens > 0:
+                            self.manaRestaurada += manaItens
+                        else:
+                            self.manaGasta += abs(manaItens)
 
                         StatusGame = self.verificarGame()
                         if any(StatusGame):
