@@ -336,7 +336,7 @@ do ATTACK escolhido
                 self.setDisplay(0, self.displayLatencia)
             else:
                 attackBOT = attacksBOT[value]
-                self.lbDica["text"] = attackBOT.name
+                self.lbDica["text"] = f"\n{attackBOT.name}"
 
 
                 # o numero randomico para a latencia
@@ -347,10 +347,11 @@ do ATTACK escolhido
                 self.setDisplay(randomLatenciaDefesa, self.displayLatenciaDef)
 
                 newLatATTK, newLatDEF = randomLatenciaAtaque, randomLatenciaDefesa
-                for item in self.player.inventory:
+                for item in self.bot.inventory:
                     if item.ended():
                         info = item.aplicarItem(self.bot, attackBOT, newLatATTK, newLatDEF)
                         newLatATTK, newLatDEF = info[0], info[1]
+                        self.lbDica["text"] += f"\n+ {item.name}"
                         print(self.bot.name, item.getDados())
 
                 if attackBOT.latencia <= newLatATTK:
@@ -560,7 +561,7 @@ do ATTACK escolhido
 
     def knock(self, attack):
         if self.Alternar:
-            self.lbDica["text"] = attack.name
+            self.lbDica["text"] = f"\n{attack.name}"
             # o numero randomico para a latencia
             randomLatenciaAtaque = randint(0, 9)
             self.setDisplay(randomLatenciaAtaque, self.displayLatencia)
@@ -574,6 +575,7 @@ do ATTACK escolhido
                     info = item.aplicarItem(self.player, attack, newLatATTK, newLatDEF)
                     newLatATTK, newLatDEF = info[0],info[1]
                     manaItens += info[2]
+                    self.lbDica["text"] += f"\n+ {item.name}"
                     print(self.player.name, item.getDados())
 
             if attack.latencia <= newLatATTK:
@@ -1074,11 +1076,16 @@ class TelaItens:
 
         #CONFIG
         self.margeEX_x = 50
-        self.margeEX_y = 70
+        self.margeEX_y = 130
         self.margeIN_x = 340
         self.margeIN_y = 210
         self.fontFixedsys15 = font.Font(family='Fixedsys', size=15, weight='bold')
         self.fontFixedsys25 = font.Font(family='Fixedsys', size=17, weight='bold')
+
+        self.imageLb = PhotoImage(
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/escolhaItens.png"
+        )
+        self.lbTitulo = Label(self.root, image=self.imageLb, highlightbackground="Black", bg="black")
 
         self.lb = Label(self.root, font=self.fontFixedsys25,  bg="Black", fg="white")
 
@@ -1108,7 +1115,7 @@ class TelaItens:
             file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/continue.png"
         )
 
-        self.btContinuar = Button(self.root, image=self.image, width=300, height=150)
+        self.btContinuar = Button(self.root, image=self.image, width=300, height=150, bg="black")
 
         self.backPNG = PhotoImage(
             file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/backPNG.png")
@@ -1121,12 +1128,13 @@ class TelaItens:
     def dinheiroERRO(self):
         self.lb["text"] = "VOCÊ NÃO POSSUE MOEDAS\nPARA COMPRAR ESSE ITEM"
 
-    def addItem(self, item):
+    def addItem(self, item, bt):
         if self.money >= item.valor:
             self.player.addItem(item)
             self.lb["text"] = f"ITEM {item.name}\nCOMPRADO COM SUCESSO!"
             self.money -= item.valor
             self.setDisplay(str(self.money), self.displayMoney)
+            bt["bg"] = "Blue"
         else:
             self.dinheiroERRO()
 
@@ -1167,6 +1175,7 @@ class TelaItens:
         self.lb.place(x=1150, y=250)
         self.btContinuar.place(x=380, y=600)
         self.btContinuar["command"] = self.abrirTelaMain
+        self.lbTitulo.place(x=280, y=0)
         cont = 0
         for line in range(len(self.listBt)):
             for colunn in range(len(self.listBt[line])):
@@ -1176,10 +1185,10 @@ class TelaItens:
                 self.listBt[line][colunn].bind("<Enter>",
                                                lambda event, item=self.listItens[cont]: self.setLABEitem(event,item))
                 self.listBt[line][colunn].bind("<Leave>", self.resetarLabelitem)
-                self.listBt[line][colunn]["command"] = partial(self.addItem, self.listItens[cont])
+                self.listBt[line][colunn]["command"] = partial(self.addItem, self.listItens[cont], self.listBt[line][colunn])
                 cont += 1
         for index in range(len(self.displayMoney)):
-            self.displayMoney[index].place(x=70*index+300, y=450)
+            self.displayMoney[index].place(x=70*index+300, y=510)
 
         self.btVolta.pack(side=BOTTOM, anchor=SW)
         self.btVolta["command"] = self.voltar
