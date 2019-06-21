@@ -339,15 +339,24 @@ do ATTACK escolhido
             else:
                 attackBOT = attacksBOT[value]
                 self.lbDica["text"] = attackBOT.name
-                #self.setCanvasDICA(attackBOT)
+
+
                 # o numero randomico para a latencia
                 randomLatenciaAtaque = randint(0, 9)
                 self.setDisplay(randomLatenciaAtaque, self.displayLatencia)
-                if attackBOT.latencia <= randomLatenciaAtaque:
+
+                randomLatenciaDefesa = randint(0, 9)
+                self.setDisplay(randomLatenciaDefesa, self.displayLatenciaDef)
+
+                newLatATTK, newLatDEF = randomLatenciaAtaque, randomLatenciaDefesa
+                for item in self.player.inventory:
+                    if item.ended():
+                        newLatATTK, newLatDEF = item.aplicarItem(self.bot, attackBOT, newLatATTK, newLatDEF)
+                        print(item.getDados())
+
+                if attackBOT.latencia <= newLatATTK:
                     # ATAQUE EFETIVO
-                    randomLatenciaDefesa = randint(0, 9)
-                    self.setDisplay(randomLatenciaDefesa, self.displayLatenciaDef)
-                    if self.player.shield.latencia <= randomLatenciaDefesa:
+                    if self.player.shield.latencia <= newLatDEF:
                         # DEFESA EFETIVA
                         self.setCanvasStatus(1)
 
@@ -371,7 +380,11 @@ do ATTACK escolhido
                             # SET DISPLAY DADOS
                             self.setDisplay(danoReal, self.displayDanoReal)
                             self.setDisplay(self.player.hp, self.displayLifePlayer)
-                            self.setDisplay(self.bot.mana, self.displayManaBOT)
+                            if self.bot.mana < 0:
+                                self.bot.mana = 0
+                                self.setDisplay(self.bot.mana, self.displayManaBOT)
+                            else:
+                                self.setDisplay(self.bot.mana, self.displayManaBOT)
                     else:
                         # DEFESA NAO EFETIVA
                         self.setCanvasStatus(2)
@@ -395,7 +408,11 @@ do ATTACK escolhido
                             # SET DISPLAY DADOS
                             self.setDisplay(danoReal, self.displayDanoReal)
                             self.setDisplay(self.player.hp, self.displayLifePlayer)
-                            self.setDisplay(self.bot.mana, self.displayManaBOT)
+                            if self.bot.mana < 0:
+                                self.bot.mana = 0
+                                self.setDisplay(self.bot.mana, self.displayManaBOT)
+                            else:
+                                self.setDisplay(self.bot.mana, self.displayManaBOT)
                 else:
                     # ATAQUE NAO EFETIVO
                     self.setCanvasStatus(0)
@@ -590,7 +607,11 @@ do ATTACK escolhido
                             #SET DISPLAY DADOS
                             self.setDisplay(danoReal, self.displayDanoReal)
                             self.setDisplay(self.bot.hp, self.displayLifeBOT)
-                            self.setDisplay(self.player.mana, self.displayManaPlayer)
+                            if self.player.mana < 0:
+                                self.player.mana = 0
+                                self.setDisplay(self.player.mana, self.displayManaPlayer)
+                            else:
+                                self.setDisplay(self.player.mana, self.displayManaPlayer)
                     else:
                         # DEFESA NAO EFETIVA
                         self.setCanvasStatus(2)
@@ -618,7 +639,11 @@ do ATTACK escolhido
                             # SET DISPLAY DADOS
                             self.setDisplay(danoReal, self.displayDanoReal)
                             self.setDisplay(self.bot.hp, self.displayLifeBOT)
-                            self.setDisplay(self.player.mana, self.displayManaPlayer)
+                            if self.player.mana < 0:
+                                self.player.mana = 0
+                                self.setDisplay(self.player.mana, self.displayManaPlayer)
+                            else:
+                                self.setDisplay(self.player.mana, self.displayManaPlayer)
             else:
                 # ATAQUE NAO EFETIVO
                 self.setCanvasStatus(0)
@@ -1101,7 +1126,6 @@ class TelaItens:
         self.lb["text"] = ""
 
     def abrirTelaMain(self):
-        self.bot.inventory = self.listItens[0:2]
         self.root.destroy()
         TelaMain(self.player, self.bot).construtor()
 
