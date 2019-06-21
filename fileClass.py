@@ -555,14 +555,13 @@ Defesa Fisica: {}
 Latencia: {}
         '''.format(self.name,self.defesaMagica,self.defesaFisica,self.latencia)
 class Item:
-    def __init__(self, name, valor, quatidade,
-                 imag = "C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png",
+    def __init__(self, name, valor, quatidade, desc="",
                  alterLife = 0, alterMana = 0,alterDefesaMagica = 0, alterDefesaFisica = 0, alterLatenciaAttk = 0,
                  alterLatenciaDeff = 0, alterDanoMagico = 0, alterDanoFisico = 0):
         self.name = name
         self.valor = valor
         self.quatidade = quatidade
-        self.imag = imag
+        self.desc = desc
         self.alterLife = alterLife
         self.alterMana =  alterMana
         self.alterDefesaMagica = alterDefesaMagica
@@ -599,10 +598,11 @@ class Item:
                 "LatenciaDeff":self.alterLatenciaDeff,
                 "Dano Magico":self.alterDanoMagico,
                 "Dano Físico":self.alterDanoFisico}
-        dados = f'''Nome : {self.name}\n'''
+        dados = f'''{self.name}\n\n'''
         for infoDic in info:
             if info[infoDic] > 0:
                 dados += f"{infoDic} : + {info[infoDic]}\n"
             elif info[infoDic] < 0:
                 dados += f"{infoDic} : - {abs(info[infoDic])}\n"
+        dados += f'''\n{self.valor}U$\n\n\n{self.desc}'''
         return dados

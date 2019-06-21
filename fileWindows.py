@@ -46,6 +46,8 @@ class TelaEscolhaBot:
         if self.p1 is None:
             player.PlayWAVShow()
             self.p1 = player
+            #TESTE
+            self.p1.inventory = System.filterItens()[0:3]
             self.lb["image"] = self.imagemLabelBOT
         elif self.BOT is None:
             player.PlayWAVShow()
@@ -53,7 +55,7 @@ class TelaEscolhaBot:
             #Alter essa parte do código quando CRIAR A TELA MAIN
             print(self.p1.name, self.BOT.name)
             self.root.destroy()
-            TelaMain(self.p1, self.BOT).construtor()
+            TelaItens(self.p1, self.BOT).construtor()
 
     def voltar(self):
         self.root.destroy()
@@ -550,12 +552,18 @@ do ATTACK escolhido
             randomLatenciaDefesa = randint(0, 9)
             self.setDisplay(randomLatenciaDefesa, self.displayLatenciaDef)
 
-            if attack.latencia <= randomLatenciaAtaque:
+            newLatATTK, newLatDEF = randomLatenciaAtaque, randomLatenciaDefesa
+            for item in self.player.inventory:
+                if item.ended():
+                    newLatATTK, newLatDEF = item.aplicarItem(self.player, attack, newLatATTK, newLatDEF)
+                    print(item.getDados())
+
+            if attack.latencia <= newLatATTK:
                 if self.player.mana <= attack.mana:
                     self.setCanvasStatus(3)
                 else:
                     # ATAQUE EFETIVO
-                    if self.bot.shield.latencia <= randomLatenciaDefesa:
+                    if self.bot.shield.latencia <= newLatDEF:
                         # DEFESA EFETIVA
                         self.setCanvasStatus(1)
 
@@ -1019,5 +1027,129 @@ class TelaRelatorio:
         self.btVolta["command"] = self.voltar
         self.root.mainloop()
 
+
+class TelaItens:
+    def __init__(self, player, bot):
+        self.root = Tk()
+        self.listItens = System.filterItens()
+        self.player = player
+        self.bot = bot
+        self.money = 600
+
+        #CONFIG
+        self.margeEX_x = 50
+        self.margeEX_y = 70
+        self.margeIN_x = 340
+        self.margeIN_y = 210
+        self.fontFixedsys15 = font.Font(family='Fixedsys', size=15, weight='bold')
+        self.fontFixedsys25 = font.Font(family='Fixedsys', size=17, weight='bold')
+
+        self.lb = Label(self.root, font=self.fontFixedsys25,  bg="Black", fg="white")
+
+        self.bt1 = Button(self.root, width=25, height=7, bg="Black",
+                          fg="white", font=self.fontFixedsys15)
+        self.bt2 = Button(self.root, width=25, height=7, bg="Black",
+                          fg="white", font=self.fontFixedsys15)
+        self.bt3 = Button(self.root, width=25, height=7, bg="Black",
+                          fg="white", font=self.fontFixedsys15)
+        self.bt4 = Button(self.root, width=25, height=7, bg="Black",
+                          fg="white", font=self.fontFixedsys15)
+        self.bt5 = Button(self.root, width=25, height=7, bg="Black",
+                          fg="white", font=self.fontFixedsys15)
+        self.bt6 = Button(self.root, width=25, height=7, bg="Black",
+                          fg="white", font=self.fontFixedsys15)
+
+        self.listBt = [[self.bt1, self.bt2, self.bt3], [self.bt4, self.bt5, self.bt6]]
+
+        self.c1 = Canvas(self.root, width=60, height=60, highlightbackground="Black", bg="black")
+        self.c2 = Canvas(self.root, width=60, height=60, highlightbackground="Black", bg="black")
+        self.c3 = Canvas(self.root, width=60, height=60, highlightbackground="Black", bg="black")
+        self.c4 = Canvas(self.root, width=60, height=60, highlightbackground="Black", bg="black")
+        self.c5 = Canvas(self.root, width=60, height=60, highlightbackground="Black", bg="black")
+        self.displayMoney = [self.c1, self.c2, self.c3, self.c4, self.c5]
+
+        self.image = PhotoImage(
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/continue.png"
+        )
+
+        self.btContinuar = Button(self.root, image=self.image, width=300, height=150)
+
+        self.backPNG = PhotoImage(
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/backPNG.png")
+        self.btVolta = Button(self.root, image=self.backPNG, bg="Black")
+
+    def voltar(self):
+        self.root.destroy()
+        TelaEscolhaBot().construtor()
+
+    def dinheiroERRO(self):
+        self.lb["text"] = "VOCÊ NÃO POSSUE MOEDAS\nPARA COMPRAR ESSE ITEM"
+
+    def addItem(self, item):
+        if self.money >= item.valor:
+            self.player.addItem(item)
+            self.lb["text"] = f"ITEM {item.name}\nCOMPRADO COM SUCESSO!"
+            self.money -= item.valor
+            self.setDisplay(str(self.money), self.displayMoney)
+        else:
+            self.dinheiroERRO()
+
+    def setLABEitem(self, event, item):
+        self.lb["text"] = item.getDados()
+
+    def resetarLabelitem(self,event):
+        self.lb["text"] = ""
+
+    def abrirTelaMain(self):
+        self.bot.inventory = self.listItens[0:2]
+        self.root.destroy()
+        TelaMain(self.player, self.bot).construtor()
+
+    def setDisplay(self, num, display):
+        number = str(num)
+        dicImagens = {
+            "#": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/#.png"),
+            "0": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/0.png"),
+            "1": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/1.png"),
+            "2": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/2.png"),
+            "3": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/3.png"),
+            "4": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/4.png"),
+            "5": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/5.png"),
+            "6": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/6.png"),
+            "7": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/7.png"),
+            "8": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/8.png"),
+            "9": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/9.png")
+        }
+        strNumber = number if len(number) == len(display) else "#" * (len(display) - len(number)) + str(number)
+        for elem in range(len(display)):
+            imag = dicImagens[strNumber[elem]]
+            display[elem].create_image(30, 35, image=imag)
+            display[elem].image = imag
+
+    def construtor(self):
+        self.root.geometry("1500x780+20+0")
+        self.root["bg"] = "Black"
+        self.lb.place(x=1150, y=250)
+        self.btContinuar.place(x=380, y=600)
+        self.btContinuar["command"] = self.abrirTelaMain
+        cont = 0
+        for line in range(len(self.listBt)):
+            for colunn in range(len(self.listBt[line])):
+                self.listBt[line][colunn].place(x=colunn*self.margeIN_x+self.margeEX_x,
+                                                y=line*self.margeIN_y+self.margeEX_y)
+                self.listBt[line][colunn]["text"] = f'''{self.listItens[cont].name}\n\nx{self.listItens[cont].quatidade}\n{self.listItens[cont].valor}U$'''
+                self.listBt[line][colunn].bind("<Enter>",
+                                               lambda event, item=self.listItens[cont]: self.setLABEitem(event,item))
+                self.listBt[line][colunn].bind("<Leave>", self.resetarLabelitem)
+                self.listBt[line][colunn]["command"] = partial(self.addItem, self.listItens[cont])
+                cont += 1
+        for index in range(len(self.displayMoney)):
+            self.displayMoney[index].place(x=70*index+300, y=450)
+
+        self.btVolta.pack(side=BOTTOM, anchor=SW)
+        self.btVolta["command"] = self.voltar
+
+        self.setDisplay(str(self.money),self.displayMoney)
+        self.root.mainloop()
 
 TelaInicio().construtor()
