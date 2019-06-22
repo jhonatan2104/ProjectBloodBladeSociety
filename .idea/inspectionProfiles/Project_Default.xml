@@ -22,6 +22,7 @@
         <list>
           <option value="fileMain.*" />
           <option value="fileClass" />
+          <option value="int.place" />
         </list>
       </option>
     </inspection_tool>

@@ -1,4 +1,4 @@
-from random import randint
+from random import randint, shuffle
 from operator import itemgetter
 import winsound
 
@@ -71,79 +71,131 @@ class System:
     def choosePlayer(indexPlayer):
         nameChamp = System.listPlayer()[indexPlayer]
         if nameChamp == 'Ichigo Kurosaki':
-            at1 = Attack(name="Getsuga Tenshou", mana=400, latencia=6, danoFisico=1000, danoMagico=6000)
-            at2 = Attack(name="Piercer of Heaven", mana=200, latencia=3, danoFisico=600, danoMagico=2000)
-            at3 = Attack(name="Getsuga Jūjishō", mana=350, latencia=3, danoFisico=2500, danoMagico=1500)
+            at1 = Attack(name="Getsuga Tenshou", mana=400, latencia=5, danoFisico=300, danoMagico=2000)
+            at2 = Attack(name="Piercer of Heaven", mana=200, latencia=2, danoFisico=100, danoMagico=1000)
+            at3 = Attack(name="Getsuga Jūjishō", mana=350, latencia=2, danoFisico=250, danoMagico=1500)
 
-            sword = Sword("Zanpakutō", at1, at2, at3)
+            sword = Sword("Zanpakutō", at1, at2, at3,
+                          imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Sword/zampakuto.png")
 
-            shield = Shield(name="Armor Berserker", latencia=2, defesaFisica=1000, defesaMagica=3000)
-            player = Player(name="Ichigo Kurosaki", hp=10000, mana=1000, sword=sword, shield=shield)
+            shield = Shield(name="Armor Berserker", latencia=2, defesaFisica=400, defesaMagica=1500,
+                            imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Shield/berserker.png")
+
+            player = Player(name="Ichigo Kurosaki", hp=10000, mana=600, sword=sword, shield=shield,
+                            imageShow="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Personagens/ichico.png",
+                            imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Personagens/nIchigo.png")
 
             player.setWAVShow("DirWAV/ICHIGOPERSONAGEM.wav")
             player.setWAVSlang("DirWAV/go.wav")
 
             return player
         elif nameChamp == 'Killer Bee':
-            at1 = Attack(name="Crumbling the skin", mana=200, latencia=3, danoFisico=3000, danoMagico=600)
-            at2 = Attack(name="Life Theft", mana=10, latencia=7, danoFisico=1000, danoMagico=5500)
-            at3 = Attack(name="Samehada and the seven lightning swords", mana=500, latencia=5, danoFisico=3500,
-                         danoMagico=4500)
+            at1 = Attack(name="Crumbling the skin", mana=800, latencia=6, danoFisico=3000, danoMagico=600)
+            at2 = Attack(name="Life Theft", mana=250, latencia=3, danoFisico=400, danoMagico=1500)
+            at3 = Attack(name="Samehada and the seven lightning swords", mana=500, latencia=3, danoFisico=1000,
+                         danoMagico=1500)
 
-            sword = Sword("Samehada", at1, at2, at3)
+            sword = Sword("Samehada", at1, at2, at3,
+                          imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Sword/samehada.png")
 
-            shield = Shield(name="Armor of Gemini", latencia=4, defesaFisica=2000, defesaMagica=1000)
-            player = Player(name="Killer Bee", hp=10000, mana=1500, sword=sword, shield=shield)
+            shield = Shield(name="Armor of Gemini", latencia=4, defesaFisica=500, defesaMagica=1200,
+                            imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Shield/gemeos.png")
+
+            player = Player(name="Killer Bee", hp=12500, mana=1000, sword=sword, shield=shield,
+                            imageShow="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Personagens/bee.png",
+                            imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Personagens/nBee.png")
 
             player.setWAVShow("DirWAV/KILLERBEEPERSONAGEM.wav")
             player.setWAVSlang("DirWAV/go.wav")
 
             return player
         elif nameChamp == 'Xena':
-            at1 = Attack(name="Full Counter", mana=200, latencia=3, danoFisico=3000, danoMagico=500)
-            at2 = Attack(name="Counter Vanish", mana=100, latencia=1, danoFisico=2500, danoMagico=100)
-            at3 = Attack(name="Hellblaze", mana=400, latencia=5, danoFisico=4000, danoMagico=3000)
+            at1 = Attack(name="Full Counter", mana=700, latencia=3, danoFisico=3000, danoMagico=500)
+            at2 = Attack(name="Counter Vanish", mana=200, latencia=1, danoFisico=2000, danoMagico=0)
+            at3 = Attack(name="Hellblaze", mana=400, latencia=4, danoFisico=1500, danoMagico=300)
 
-            sword = Sword("Excalibur", at1, at2, at3)
+            sword = Sword("Excalibur", at1, at2, at3,
+                          imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Sword/excalibur.png")
 
-            shield = Shield(name="Armor Knight", latencia=3, defesaFisica=1000, defesaMagica=1000)
+            shield = Shield(name="Armor Knight", latencia=3, defesaFisica=1600, defesaMagica=300,
+                            imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Shield/knight.png")
 
-            player = Player(name="Xena", hp=7000, mana=1000, sword=sword, shield=shield)
+            player = Player(name="Xena", hp=9900, mana=1500, sword=sword, shield=shield,
+                            imageShow="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Personagens/xena.png",
+                            imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Personagens/nXena.png")
 
             player.setWAVShow("DirWAV/XENAPERSONAGEM.wav")
             player.setWAVSlang("DirWAV/go.wav")
 
             return player
         elif nameChamp == 'Roronoa Zoro':
-            at1 = Attack(name="Shishi SonSon", mana=100, latencia=1, danoFisico=1500, danoMagico=0)
-            at2 = Attack(name="Sanjuroku Pound Ho", mana=200, latencia=4, danoFisico=3500, danoMagico=500)
-            at3 = Attack(name="Yakkodori", mana=500, latencia=3, danoFisico=3000, danoMagico=4000)
+            at1 = Attack(name="Shishi SonSon", mana=50, latencia=4, danoFisico=1500, danoMagico=0,
+                         imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+            at2 = Attack(name="Sanjuroku Pound Ho", mana=200, latencia=7, danoFisico=3500, danoMagico=500,
+                         imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+            at3 = Attack(name="Yakkodori", mana=100, latencia=5, danoFisico=2500, danoMagico=500,
+                         imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
 
-            sword = Sword("Sandai Kitetsu", at1, at2, at3)
+            sword = Sword("Sandai Kitetsu", at1, at2, at3,
+                          imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Sword/sandaiKitetsu.png")
 
-            shield = Shield(name="Black Armor", latencia=4, defesaFisica=1000, defesaMagica=1000)
+            shield = Shield(name="Black Armor", latencia=1, defesaFisica=2000, defesaMagica=0,
+                            imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Shield/negra.png")
 
-            player = Player(name="Roronoa Zoro", hp=7000, mana=1000, sword=sword, shield=shield)
+            player = Player(name="Roronoa Zoro", hp=11000, mana=1000, sword=sword, shield=shield,
+                            imageShow="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Personagens/zoro.png",
+                            imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Personagens/nZoro.png")
 
             player.setWAVShow("DirWAV/ZOROPERSONAGEM.wav")
             player.setWAVSlang("DirWAV/go.wav")
 
             return player
         elif nameChamp == 'Gohan':
-            at1 = Attack(name="Fulminant Strike", mana=400, latencia=3, danoFisico=1000, danoMagico=3000)
-            at2 = Attack(name="Blade Combo", mana=300, latencia=1, danoFisico=1500, danoMagico=1500)
-            at3 = Attack(name="Rage of the Blade", mana=600, latencia=7, danoFisico=6500, danoMagico=1000)
+            at1 = Attack(name="Fulminant Strike", mana=900, latencia=4, danoFisico=900, danoMagico=3000,
+                         imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+            at2 = Attack(name="Blade Combo", mana=700, latencia=1, danoFisico=920, danoMagico=1100,
+                         imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+            at3 = Attack(name="Rage of the Blade", mana=500, latencia=1, danoFisico=500, danoMagico=900,
+                         imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
 
-            sword = Sword("Espada Z", at1, at2, at3)
+            sword = Sword("Espada Z", at1, at2, at3,
+                          imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Sword/espadaZ.png")
 
-            shield = Shield(name="Metal Tech", latencia=3, defesaFisica=700, defesaMagica=500)
+            shield = Shield(name="Metal Tech", latencia=4, defesaFisica=700, defesaMagica=600,
+                            imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Shield/metalTech.png")
 
-            player = Player(name="Gohan", hp=15000, mana=2000, sword=sword, shield=shield)
+            player = Player(name="Gohan", hp=14000, mana=1800, sword=sword, shield=shield,
+                            imageShow="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Personagens/gohan.png",
+                            imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Personagens/nGohan.png")
 
             player.setWAVShow("DirWAV/GOHANPERSONAGEM.wav")
             player.setWAVSlang("DirWAV/go.wav")
 
             return player
+
+    @staticmethod
+    def allItens():
+        return [
+            Item("SANGUE DE DRAGÃO",100,4,alterMana=-20,alterDanoMagico=200),
+            Item("LÁGRIMA DE PRINCESA",600,1,alterLatenciaDeff=-5,alterDanoMagico=1000),
+            Item("ANEL DE ADÃO",200,2,alterLatenciaAttk=3,alterDanoMagico=200),
+            Item("ESCUDO VIVO", 300, 1, alterDefesaMagica=200,alterLife=500),
+            Item("ELMO DE ULISSES", 400, 1, alterDefesaFisica=1000),
+            Item("ADAGA DE LOKI", 400, 1, alterDanoMagico=200, alterLife=500, alterMana=400),
+            Item("COURAÇA DA JUSTIÇA", 400, 5, alterLife=800, alterLatenciaAttk=9, alterDanoMagico=-100),
+            Item("ADAGA DE HERMES", 100, 1, alterLatenciaDeff=-5),
+            Item("ESPADA (Akame ga Kill)", 600, 3, alterDanoFisico=200, alterDanoMagico=600, alterLatenciaAttk=4,alterMana=200),
+        ]
+
+    @staticmethod
+    def filterItens():
+        lista = System.allItens()
+        shuffle(lista)
+        return lista[0:6]
+
+    @staticmethod
+    def calculeteRestareMoney():
+        return 50
 
     @staticmethod
     def calculeteDamageShield(player, attack):
@@ -166,19 +218,19 @@ class System:
         # validando os valores de retorno da funcao
         if danoRealMagico >= 0 and danoRealFisico >= 0:
             # significa que o ataque foi efetivo tanto de modo magico como fisico
-            danoReal = danoRealFisico + danoRealMagico
+            danoReal = [danoRealFisico, danoRealMagico]
             return danoReal
         elif danoRealMagico < 0 and danoRealFisico < 0:
             # significa que o ataque foi totalmente defendido
-            return 0
+            return [0,0]
         else:
             # significa que apenas uma das formas foi efetiva ao realizar o dano
             if danoRealMagico < 0:
                 # Dano Fisico foi efetivo
-                return danoRealFisico
+                return [danoRealFisico, 0]
             else:
                 # Dano Magico foi efetivo
-                return danoRealMagico
+                return [0, danoRealMagico]
 
     @staticmethod
     def calculeteDamage(attack):
@@ -191,19 +243,24 @@ class System:
         danoMagico = attack.danoMagico
         danoFisico = attack.danoFisico
 
-        danoReal = danoFisico + danoMagico
+        danoReal = [danoFisico, danoMagico]
 
         return danoReal
 
 
 class Player:
-    def __init__(self, name, hp, mana, sword, shield):
+    def __init__(self, name, hp, mana, sword, shield,
+                 imageShow = "C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png",
+                 imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png"):
         self.name = name
         self.hp = hp
         self.sword = sword
         self.shield = shield
         self.mana = mana
+        self.imageShow = imageShow
+        self.imageID = imageID
         self.arqWAV = ["", ""]
+        self.inventory = []
 
     def __str__(self, ):
         return ("Nome: " + str(self.name) + "\nHP: " + str(self.hp) + "\nSword: " + str(
@@ -278,20 +335,22 @@ class Player:
 
             if (playerAdversario.shield.latencia <= randomLatenciaDefesa):
                 # DEFESA EFETIVA
-                dano = System.calculeteDamageShield(playerAdversario, attack)
-                playerAdversario.sufferDamage(dano)
+                danos = System.calculeteDamageShield(playerAdversario, attack)
+                danoReal = danos[0] + danos[1]
+                playerAdversario.sufferDamage(danoReal)
                 self.userMana(attack.mana)
-                manaRestore = self.restoreMana(dano)
-                System.printKnock(dano, manaRestore, attack, self, playerAdversario)
+                manaRestore = self.restoreMana(danoReal)
+                System.printKnock(danoReal, manaRestore, attack, self, playerAdversario)
 
             else:
                 # DEFESA NAO EFETIVA
                 System.print("DANO CRITICO", 'NEGRITO')
-                dano = System.calculeteDamage(attack)
-                playerAdversario.sufferDamage(dano)
+                danos = System.calculeteDamage(attack)
+                danoReal = danos[0]+danos[1]
+                playerAdversario.sufferDamage(danoReal)
                 self.userMana(attack.mana)
-                manaRestore = self.restoreMana(dano)
-                System.printKnock(dano, manaRestore, attack, self, playerAdversario)
+                manaRestore = self.restoreMana(danoReal)
+                System.printKnock(danoReal, manaRestore, attack, self, playerAdversario)
         else:
             # ATAQUE NAO EFETIVO
             System.print('''SEU ATAQUE FALHOU
@@ -324,12 +383,41 @@ class Player:
                 print(str(attackIndice) + " - Manter modo defensivo")
                 break
             print(str(attackIndice) + " - " + str(attacksUser[attackIndice]) + "\n")
+    def addItem(self, item):
+        self.inventory.append(item)
+        print("1")
 
 
 class InteligencePlayer:
     def __init__(self, player, baseDeMana):
         self.player = player
+        self.importanciaDANO = 4
+        self.importanciaMANA = 1
+        self.importanciaLATENCIA = 3
+        self.rank = list()
         self.baseDeMana = baseDeMana
+
+    def gerarRanckAttack(self, playerAdv):
+
+        ListAttack = self.player.sword.getAttack()
+        listaPontosAttack = []
+        for indexAttack in range(len(ListAttack)):
+            danos = System.calculeteDamageShield(playerAdv, ListAttack[indexAttack])
+            danoReal = danos[0] + danos[1]
+            attk = ListAttack[indexAttack]
+            listaPontosAttack.append([attk,danoReal,attk.mana,attk.latencia, indexAttack, 0])
+
+        rankDano = self.ADDpontos(sorted(listaPontosAttack, key=itemgetter(1)),self.importanciaDANO)
+        rankMana = self.ADDpontos(sorted(rankDano, key=itemgetter(2),  reverse=True),self.importanciaMANA)
+        rankLantancia = self.ADDpontos(sorted(rankMana, key=itemgetter(3),  reverse=True),self.importanciaLATENCIA)
+
+        self.rank = sorted(rankLantancia, key=itemgetter(5))
+    def ADDpontos(self, matriz, pontos):
+        cont = 0
+        for line in matriz:
+            line[5] += cont
+            cont += pontos
+        return matriz
 
     def rankAttack(self, PlayerAdv):
         '''
@@ -341,8 +429,9 @@ class InteligencePlayer:
         ListAttack = self.player.sword.getAttack()
         ListRank = []
         for indexAttack in range(len(ListAttack)):
-            Dano = System.calculeteDamageShield(PlayerAdv, ListAttack[indexAttack])
-            ListRank.append([ListAttack[indexAttack], Dano, indexAttack])
+            danos = System.calculeteDamageShield(PlayerAdv, ListAttack[indexAttack])
+            danoReal = danos[0]+danos[1]
+            ListRank.append([ListAttack[indexAttack], danoReal, indexAttack])
         return sorted(ListRank, key=itemgetter(1))
 
     def resolverAttack(self, PlayerAdv):
@@ -354,22 +443,22 @@ class InteligencePlayer:
         if self.player.mana == 0:
             return 3
         if self.player.mana <= self.baseDeMana:
-            ListRank = self.rankAttack(PlayerAdv)
-            for linhaMatrizAttack in ListRank:
+            for linhaMatrizAttack in self.rank:
                 if self.player.mana > linhaMatrizAttack[0].mana:
-                    return linhaMatrizAttack[2]
+                    return linhaMatrizAttack[4]
             return 3
         else:
-            ListRank = self.rankAttack(PlayerAdv)
-            for linhaMatrizAttack in ListRank[::-1]:
+            for linhaMatrizAttack in self.rank[::-1]:
                 if self.player.mana > linhaMatrizAttack[0].mana:
-                    return linhaMatrizAttack[2]
+                    return linhaMatrizAttack[4]
             return 3
 
 
 class Sword:
-    def __init__(self, name, attackI, attackII, attackIII):
+    def __init__(self, name, attackI, attackII, attackIII,
+                 imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png"):
         self.name = name
+        self.imageID = imageID
         self.attackI = attackI
         self.attackII = attackII
         self.attackIII = attackIII
@@ -378,19 +467,47 @@ class Sword:
         ataques = self.getAttack()
         somaDanoMagico = 0
         somaDanoFisico = 0
+        somaMana = 0
         samaLatencia = 0
 
-        for ataque in ataques:
-            somaDanoMagico += ataque.danoMagico
-            somaDanoFisico += ataque.danoFisico
-            samaLatencia += ataque.latencia
-
+        for attack in ataques:
+            somaDanoMagico += attack.danoMagico
+            somaDanoFisico += attack.danoFisico
+            samaLatencia += attack.latencia
+            somaMana += attack.mana
         mediaDanoMagico = somaDanoMagico / 3
         mediaDanoFisico = somaDanoFisico / 3
         mediaLatencia = samaLatencia / 3
+        mediaMana = somaMana/3
 
-        return ("NOME: " + self.name + "\nLATENCIA (MEDIA): " + str(mediaLatencia) + "\nDEFESA MAGICA (MEDIA) : " + str(
-            mediaDanoMagico) + "\nDEFESA FISICA (MEDIA): " + str(mediaDanoFisico))
+        return '''Nome: {}
+Média DM : {:.2f}
+Média DF : {:.2f}
+Média Latência : {:.2f}
+Média Mana: {:.2f}'''.format(self.name,mediaDanoMagico, mediaDanoFisico,mediaLatencia, mediaMana)
+
+    def getDados(self):
+        ataques = self.getAttack()
+        somaDanoMagico = 0
+        somaDanoFisico = 0
+        somaMana = 0
+        samaLatencia = 0
+
+        for attack in ataques:
+            somaDanoMagico += attack.danoMagico
+            somaDanoFisico += attack.danoFisico
+            samaLatencia += attack.latencia
+            somaMana += attack.mana
+        mediaDanoMagico = somaDanoMagico / 3
+        mediaDanoFisico = somaDanoFisico / 3
+        mediaLatencia = samaLatencia / 3
+        mediaMana = somaMana / 3
+
+        return '''Nome: {}
+Média DM : {:.2f}
+Média DF : {:.2f}
+Média Mana: {:.2f}
+Média Latência : {:.2f}'''.format(self.name,mediaDanoMagico, mediaDanoFisico, mediaMana,mediaLatencia)
 
     def getAttack(self):
         '''
@@ -401,22 +518,28 @@ class Sword:
 
 
 class Attack:
-    def __init__(self, name, mana, latencia, danoMagico, danoFisico):
+    def __init__(self, name, mana, latencia, danoMagico, danoFisico,
+                 imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png"):
         self.name = name
         self.mana = mana
         self.latencia = latencia
         self.danoMagico = danoMagico
         self.danoFisico = danoFisico
+        self.imageID = "C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png"
 
     def __str__(self):
         # coverter para string
         return ("Nome: " + str(self.name) + "\nDano Magico: " + str(self.danoMagico) + "\nDano Fisico: " + str(
             self.danoFisico) + "\nMana: " + str(self.mana) + "\nLantenci: " + str(self.latencia))
-
+    def getDados(self):
+        return ("Nome: " + str(self.name) + "\nDano Magico: " + str(self.danoMagico) + "\nDano Fisico: " + str(
+            self.danoFisico) + "\nMana: " + str(self.mana) + "\nLantenci: " + str(self.latencia))
 
 class Shield:
-    def __init__(self, name, latencia, defesaMagica, defesaFisica):
+    def __init__(self, name, latencia, defesaMagica, defesaFisica,
+                 imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png"):
         self.name = name
+        self.imageID = imageID
         self.latencia = latencia
         self.defesaMagica = defesaMagica
         self.defesaFisica = defesaFisica
@@ -424,3 +547,61 @@ class Shield:
     def __str__(self):
         return (
                 "Nome: " + self.name + "\nLatencia: " + self.latencia + "\nDefesa Magica: " + self.defesaMagica + "\nDefesa Fisica: " + self.defesaFisica)
+    def getDados(self):
+        return '''Nome: {}
+Defesa Magica: {}
+Defesa Fisica: {}
+Latencia: {}
+        '''.format(self.name,self.defesaMagica,self.defesaFisica,self.latencia)
+class Item:
+    def __init__(self, name, valor, quatidade, desc="",
+                 alterLife = 0, alterMana = 0,alterDefesaMagica = 0, alterDefesaFisica = 0, alterLatenciaAttk = 0,
+                 alterLatenciaDeff = 0, alterDanoMagico = 0, alterDanoFisico = 0):
+        self.name = name
+        self.valor = valor
+        self.quatidade = quatidade
+        self.desc = desc
+        self.alterLife = alterLife
+        self.alterMana =  alterMana
+        self.alterDefesaMagica = alterDefesaMagica
+        self.alterDefesaFisica = alterDefesaFisica
+        self.alterLatenciaAttk = alterLatenciaAttk
+        self.alterLatenciaDeff = alterLatenciaDeff
+        self.alterDanoMagico = alterDanoMagico
+        self.alterDanoFisico = alterDanoFisico
+    def usarItem(self):
+        self.quatidade -= 1
+    def ended(self):
+        return self.quatidade > 0
+    def aplicarItem(self, player, attack, latATTK, latDEFF):
+        self.usarItem()
+        #ALTERAR O PLAYER
+        player.hp += self.alterLife
+        player.mana += self.alterMana
+        # ALTERAR O PLAYER.SHIELD
+        player.shield.defesaFisica += self.alterDefesaFisica
+        player.shield.defesaMagica += self.alterDefesaMagica
+        #LATÊNCIA
+        latATTK += self.alterLatenciaAttk
+        latDEFF += self.alterLatenciaDeff
+        #ATTACK
+        attack.danoMagico += self.alterDanoMagico
+        attack.danoFisico += self.alterDanoFisico
+        return [latATTK,latDEFF, self.alterMana]
+    def getDados(self):
+        info = {"Life":self.alterLife ,
+                "Mana":self.alterMana,
+                "Defesa Magica":self.alterDefesaMagica,
+                "Defesa Física":self.alterDefesaFisica,
+                "LatenciaAttk":self.alterLatenciaAttk,
+                "LatenciaDeff":self.alterLatenciaDeff,
+                "Dano Magico":self.alterDanoMagico,
+                "Dano Físico":self.alterDanoFisico}
+        dados = f'''{self.name}\n\n'''
+        for infoDic in info:
+            if info[infoDic] > 0:
+                dados += f"{infoDic} : + {info[infoDic]}\n"
+            elif info[infoDic] < 0:
+                dados += f"{infoDic} : - {abs(info[infoDic])}\n"
+        dados += f'''\n{self.valor}U$\n\n\n{self.desc}'''
+        return dados
