@@ -117,7 +117,7 @@ class TelaInicio:
 
 
 class TelaMain:
-    def __init__(self, player, bot, money=600, alternar=True):
+    def __init__(self, player, bot, money=600, alternar=True, dicDados=None):
         self.root = Tk()
 
         #Alternar Ataques
@@ -132,20 +132,36 @@ class TelaMain:
         self.intelBOT.gerarRanckAttack(self.player)
 
         # DADOS PLAYER
-        self.damageTotal = 0
-        self.damageMagico = 0
-        self.damageFisico = 0
-        self.CONTAttackFalhos = 0
-        self.CONTAttackCriticos = 0
-        self.CONTAttackNormais = 0
-        self.CONTAttack = 0
-        self.FalhaDefesa = 0
-        self.damageMagicoSofrido = 0
-        self.damageFisicoSofrido = 0
-        self.damageMagicoDefendido = 0
-        self.damageFisicoDefendido = 0
-        self.manaRestaurada = 0
-        self.manaGasta = 0
+        if dicDados is None:
+            self.damageTotal = 0
+            self.damageMagico = 0
+            self.damageFisico = 0
+            self.CONTAttackFalhos = 0
+            self.CONTAttackCriticos = 0
+            self.CONTAttackNormais = 0
+            self.CONTAttack = 0
+            self.FalhaDefesa = 0
+            self.damageMagicoSofrido = 0
+            self.damageFisicoSofrido = 0
+            self.damageMagicoDefendido = 0
+            self.damageFisicoDefendido = 0
+            self.manaRestaurada = 0
+            self.manaGasta = 0
+        else:
+            self.damageTotal = dicDados["damageTotal"]
+            self.damageMagico = dicDados["damageMagico"]
+            self.damageFisico = dicDados["damageFisico"]
+            self.CONTAttackFalhos = dicDados["CONTAttackFalhos"]
+            self.CONTAttackCriticos = dicDados["CONTAttackCriticos"]
+            self.CONTAttackNormais = dicDados["CONTAttackNormais"]
+            self.CONTAttack = dicDados["CONTAttack"]
+            self.FalhaDefesa = dicDados["FalhaDefesa"]
+            self.damageMagicoSofrido = dicDados["damageMagicoSofrido"]
+            self.damageFisicoSofrido = dicDados["damageFisicoSofrido"]
+            self.damageMagicoDefendido = dicDados["damageMagicoDefendido"]
+            self.damageFisicoDefendido = dicDados["damageFisicoDefendido"]
+            self.manaRestaurada = dicDados["manaRestaurada"]
+            self.manaGasta = dicDados["manaGasta"]
 
         # IMAGE PLAYER
         self.ImageShowPlayer = PhotoImage(file=self.player.imageShow)
@@ -473,6 +489,24 @@ do ATTACK escolhido
             display[elem].create_image(30, 35, image=imag)
             display[elem].image = imag
 
+    def gerarDic(self):
+        return {
+            "damageTotal" : self.damageTotal,
+            "damageMagico" : self.damageMagico,
+            "damageFisico" : self.damageFisico,
+            "CONTAttackFalhos": self.CONTAttackFalhos,
+            "CONTAttackCriticos" : self.CONTAttackCriticos,
+            "CONTAttackNormais" : self.CONTAttackNormais,
+            "CONTAttack" : self.CONTAttack,
+            "FalhaDefesa" : self.FalhaDefesa,
+            "damageMagicoSofrido" : self.damageMagicoSofrido,
+            "damageFisicoSofrido" : self.damageFisicoSofrido,
+            "damageMagicoDefendido" : self.damageMagicoDefendido,
+            "damageFisicoDefendido" :  self.damageFisicoDefendido,
+            "manaRestaurada" : self.manaRestaurada,
+            "manaGasta" : self.manaGasta
+        }
+
     def setCanvasStatus(self, status):
         '''
         :param status: -2 - erro; -1 - bem-vindo; 0 - falhou ;1 - efetivo; 2 - crítico; 3 - Mana insuficiente
@@ -509,6 +543,12 @@ do ATTACK escolhido
 
     def setCanvasDICAShield(self, event):
         self.lbDica["text"] = self.player.shield.getDados()
+
+    def setCanvasDICAInventario(self, event):
+        txt = "INVENTÁRIO\n"
+        for item in self.player.inventory:
+            txt += f"{item.name} x{item.quatidade}\n"
+        self.lbDica["text"] = txt
 
     def gerarRELATORIO(self):
         return [self.damageTotal, self.damageMagico, self.damageFisico, self.CONTAttackFalhos, self.CONTAttackCriticos,
@@ -585,7 +625,7 @@ do ATTACK escolhido
 
     def abrirTelaItens(self,event):
         self.root.destroy()
-        TelaItens(self.player, self.bot, self.money, self.Alternar).construtor()
+        TelaItens(self.player, self.bot, self.money, self.Alternar, self.gerarDic()).construtor()
 
     def knock(self, attack):
         if self.Alternar:
@@ -604,7 +644,6 @@ do ATTACK escolhido
                     newLatATTK, newLatDEF = info[0],info[1]
                     manaItens += info[2]
                     self.lbDica["text"] += f"\n+ {item.name}"
-                    print(self.player.name, item.getDados())
 
             if attack.latencia <= newLatATTK:
                 if self.player.mana < attack.mana:
@@ -735,6 +774,9 @@ do ATTACK escolhido
         self.lbBtBOT["command"] = self.ActionBOT
 
         self.nomePlAYER.place(x=self.xDisplayManaPlayer, y=180)
+        self.nomePlAYER.bind("<Enter>", self.setCanvasDICAInventario)
+        self.nomePlAYER.bind("<Leave>", self.limparCanvasDica)
+
         self.nomeBOT.place(x=self.xDisplayManaBOT, y=180)
 
         self.swordPlAYER.place(x=self.xDisplayManaPlayer, y=250)
@@ -1113,13 +1155,14 @@ class TelaRelatorio:
 
 
 class TelaItens:
-    def __init__(self, player, bot, money=600, alternar=True):
+    def __init__(self, player, bot, money=600, alternar=True, dicInfo=None):
         self.root = Tk()
         self.listItens = System.filterItens()
         self.player = player
         self.bot = bot
         self.money = money
         self.alternar = alternar
+        self.dicInfo = dicInfo
 
         #CONFIG
         self.margeEX_x = 50
@@ -1193,7 +1236,7 @@ class TelaItens:
 
     def abrirTelaMain(self):
         self.root.destroy()
-        TelaMain(self.player, self.bot, money=self.money, alternar=self.alternar).construtor()
+        TelaMain(self.player, self.bot, money=self.money, alternar=self.alternar, dicDados=self.dicInfo).construtor()
 
     def setDisplay(self, num, display):
         number = str(num)

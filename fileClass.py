@@ -603,5 +603,5 @@ class Item:
                 dados += f"{infoDic} : + {info[infoDic]}\n"
             elif info[infoDic] < 0:
                 dados += f"{infoDic} : - {abs(info[infoDic])}\n"
-        dados += f'''\n{self.valor}U$\n\n\n{self.desc}'''
+        dados += f'''\n{self.valor}U$\n\n{self.desc}'''
         return dados
