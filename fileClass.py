@@ -71,20 +71,17 @@ class System:
     def choosePlayer(indexPlayer):
         nameChamp = System.listPlayer()[indexPlayer]
         if nameChamp == 'Ichigo Kurosaki':
-            at1 = Attack(name="Getsuga Tenshou", mana=400, latencia=6, danoFisico=1000, danoMagico=6000,
-                         imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
-            at2 = Attack(name="Piercer of Heaven", mana=200, latencia=3, danoFisico=600, danoMagico=2000,
-                         imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
-            at3 = Attack(name="Getsuga Jūjishō", mana=350, latencia=3, danoFisico=2500, danoMagico=1500,
-                         imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+            at1 = Attack(name="Getsuga Tenshou", mana=400, latencia=5, danoFisico=300, danoMagico=2000)
+            at2 = Attack(name="Piercer of Heaven", mana=200, latencia=2, danoFisico=100, danoMagico=1000)
+            at3 = Attack(name="Getsuga Jūjishō", mana=350, latencia=2, danoFisico=250, danoMagico=1500)
 
             sword = Sword("Zanpakutō", at1, at2, at3,
                           imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Sword/zampakuto.png")
 
-            shield = Shield(name="Armor Berserker", latencia=2, defesaFisica=1000, defesaMagica=3000,
+            shield = Shield(name="Armor Berserker", latencia=2, defesaFisica=400, defesaMagica=1500,
                             imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Shield/berserker.png")
 
-            player = Player(name="Ichigo Kurosaki", hp=10000, mana=10, sword=sword, shield=shield,
+            player = Player(name="Ichigo Kurosaki", hp=10000, mana=600, sword=sword, shield=shield,
                             imageShow="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Personagens/ichico.png",
                             imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Personagens/nIchigo.png")
 
@@ -93,21 +90,18 @@ class System:
 
             return player
         elif nameChamp == 'Killer Bee':
-            at1 = Attack(name="Crumbling the skin", mana=200, latencia=3, danoFisico=3000, danoMagico=600,
-                         imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
-            at2 = Attack(name="Life Theft", mana=10, latencia=5, danoFisico=1000, danoMagico=5500,
-                         imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
-            at3 = Attack(name="Samehada and the seven lightning swords", mana=500, latencia=3, danoFisico=3500,
-                         danoMagico=4500,
-                         imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+            at1 = Attack(name="Crumbling the skin", mana=800, latencia=6, danoFisico=3000, danoMagico=600)
+            at2 = Attack(name="Life Theft", mana=250, latencia=3, danoFisico=400, danoMagico=1500)
+            at3 = Attack(name="Samehada and the seven lightning swords", mana=500, latencia=3, danoFisico=1000,
+                         danoMagico=1500)
 
             sword = Sword("Samehada", at1, at2, at3,
                           imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Sword/samehada.png")
 
-            shield = Shield(name="Armor of Gemini", latencia=4, defesaFisica=2000, defesaMagica=1000,
+            shield = Shield(name="Armor of Gemini", latencia=4, defesaFisica=500, defesaMagica=1200,
                             imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Shield/gemeos.png")
 
-            player = Player(name="Killer Bee", hp=9900, mana=1500, sword=sword, shield=shield,
+            player = Player(name="Killer Bee", hp=12500, mana=1000, sword=sword, shield=shield,
                             imageShow="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Personagens/bee.png",
                             imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Personagens/nBee.png")
 
@@ -116,17 +110,17 @@ class System:
 
             return player
         elif nameChamp == 'Xena':
-            at1 = Attack(name="Full Counter", mana=200, latencia=3, danoFisico=3000, danoMagico=500)
-            at2 = Attack(name="Counter Vanish", mana=100, latencia=1, danoFisico=2500, danoMagico=100)
-            at3 = Attack(name="Hellblaze", mana=400, latencia=5, danoFisico=4000, danoMagico=3000)
+            at1 = Attack(name="Full Counter", mana=700, latencia=3, danoFisico=3000, danoMagico=500)
+            at2 = Attack(name="Counter Vanish", mana=200, latencia=1, danoFisico=2000, danoMagico=0)
+            at3 = Attack(name="Hellblaze", mana=400, latencia=4, danoFisico=1500, danoMagico=300)
 
             sword = Sword("Excalibur", at1, at2, at3,
                           imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Sword/excalibur.png")
 
-            shield = Shield(name="Armor Knight", latencia=3, defesaFisica=1000, defesaMagica=1000,
+            shield = Shield(name="Armor Knight", latencia=3, defesaFisica=1600, defesaMagica=300,
                             imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Shield/knight.png")
 
-            player = Player(name="Xena", hp=7000, mana=1000, sword=sword, shield=shield,
+            player = Player(name="Xena", hp=9900, mana=1500, sword=sword, shield=shield,
                             imageShow="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Personagens/xena.png",
                             imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Personagens/nXena.png")
 
@@ -135,20 +129,20 @@ class System:
 
             return player
         elif nameChamp == 'Roronoa Zoro':
-            at1 = Attack(name="Shishi SonSon", mana=100, latencia=1, danoFisico=1500, danoMagico=0,
+            at1 = Attack(name="Shishi SonSon", mana=50, latencia=4, danoFisico=1500, danoMagico=0,
                          imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
-            at2 = Attack(name="Sanjuroku Pound Ho", mana=200, latencia=4, danoFisico=3500, danoMagico=500,
+            at2 = Attack(name="Sanjuroku Pound Ho", mana=200, latencia=7, danoFisico=3500, danoMagico=500,
                          imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
-            at3 = Attack(name="Yakkodori", mana=500, latencia=3, danoFisico=3000, danoMagico=4000,
+            at3 = Attack(name="Yakkodori", mana=100, latencia=5, danoFisico=2500, danoMagico=500,
                          imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
 
             sword = Sword("Sandai Kitetsu", at1, at2, at3,
                           imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Sword/sandaiKitetsu.png")
 
-            shield = Shield(name="Black Armor", latencia=4, defesaFisica=1000, defesaMagica=1000,
+            shield = Shield(name="Black Armor", latencia=1, defesaFisica=2000, defesaMagica=0,
                             imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Shield/negra.png")
 
-            player = Player(name="Roronoa Zoro", hp=7000, mana=1000, sword=sword, shield=shield,
+            player = Player(name="Roronoa Zoro", hp=11000, mana=1000, sword=sword, shield=shield,
                             imageShow="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Personagens/zoro.png",
                             imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Personagens/nZoro.png")
 
@@ -157,20 +151,20 @@ class System:
 
             return player
         elif nameChamp == 'Gohan':
-            at1 = Attack(name="Fulminant Strike", mana=400, latencia=3, danoFisico=1000, danoMagico=3000,
+            at1 = Attack(name="Fulminant Strike", mana=900, latencia=4, danoFisico=900, danoMagico=3000,
                          imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
-            at2 = Attack(name="Blade Combo", mana=300, latencia=1, danoFisico=1500, danoMagico=1500,
+            at2 = Attack(name="Blade Combo", mana=700, latencia=1, danoFisico=920, danoMagico=1100,
                          imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
-            at3 = Attack(name="Rage of the Blade", mana=600, latencia=7, danoFisico=6500, danoMagico=1000,
+            at3 = Attack(name="Rage of the Blade", mana=500, latencia=1, danoFisico=500, danoMagico=900,
                          imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
 
             sword = Sword("Espada Z", at1, at2, at3,
                           imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Sword/espadaZ.png")
 
-            shield = Shield(name="Metal Tech", latencia=3, defesaFisica=700, defesaMagica=500,
+            shield = Shield(name="Metal Tech", latencia=4, defesaFisica=700, defesaMagica=600,
                             imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Shield/metalTech.png")
 
-            player = Player(name="Gohan", hp=9999, mana=2000, sword=sword, shield=shield,
+            player = Player(name="Gohan", hp=14000, mana=1800, sword=sword, shield=shield,
                             imageShow="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Personagens/gohan.png",
                             imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Personagens/nGohan.png")
 
@@ -182,15 +176,15 @@ class System:
     @staticmethod
     def allItens():
         return [
-            Item("SANGUE DE DRAGÃO",100,15,alterMana=-100,alterDanoFisico=500),
-            Item("LÁGRIMA DE PRINCESA",300,1,alterLatenciaDeff=-3,alterDanoMagico=1000),
-            Item("ANEL DE ADÃO",200,15,alterDanoFisico=500,alterDanoMagico=600),
-            Item("ESCUDO VIVO", 100, 15, alterDefesaFisica=300,alterDefesaMagica=-300),
-            Item("LÁGRIMA DE PRINCESA", 300, 1, alterLatenciaDeff=-3, alterDanoMagico=1000),
-            Item("ANEL DE ADÃO", 200, 15, alterDanoFisico=500, alterDanoMagico=600),
-            Item("SANGUE DE DRAGÃO", 100, 15, alterMana=-100, alterDanoFisico=500),
-            Item("LÁGRIMA DE PRINCESA", 300, 1, alterLatenciaDeff=-3, alterDanoMagico=1000),
-            Item("ANEL DE ADÃO", 200, 15, alterDanoFisico=500, alterDanoMagico=600),
+            Item("SANGUE DE DRAGÃO",100,4,alterMana=-20,alterDanoMagico=200),
+            Item("LÁGRIMA DE PRINCESA",600,1,alterLatenciaDeff=-5,alterDanoMagico=1000),
+            Item("ANEL DE ADÃO",200,2,alterLatenciaAttk=3,alterDanoMagico=200),
+            Item("ESCUDO VIVO", 300, 1, alterDefesaMagica=200,alterLife=500),
+            Item("ELMO DE ULISSES", 400, 1, alterDefesaFisica=1000),
+            Item("ADAGA DE LOKI", 400, 1, alterDanoMagico=200, alterLife=500, alterMana=400),
+            Item("COURAÇA DA JUSTIÇA", 400, 5, alterLife=800, alterLatenciaAttk=9, alterDanoMagico=-100),
+            Item("ADAGA DE HERMES", 100, 1, alterLatenciaDeff=-5),
+            Item("ESPADA (Akame ga Kill)", 600, 3, alterDanoFisico=200, alterDanoMagico=600, alterLatenciaAttk=4,alterMana=200),
         ]
 
     @staticmethod
@@ -198,6 +192,10 @@ class System:
         lista = System.allItens()
         shuffle(lista)
         return lista[0:6]
+
+    @staticmethod
+    def calculeteRestareMoney():
+        return 50
 
     @staticmethod
     def calculeteDamageShield(player, attack):

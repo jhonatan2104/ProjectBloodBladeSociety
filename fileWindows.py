@@ -42,7 +42,8 @@ class TelaEscolhaBot:
         self.p1 = None
         self.BOT = None
 
-    def choose(self,player):
+    def choose(self, contCamp):
+        player = System.choosePlayer(contCamp)
         if self.p1 is None:
             player.PlayWAVShow()
             self.p1 = player
@@ -65,7 +66,7 @@ class TelaEscolhaBot:
         contCamp = 0
         for line in range(len(self.bts)):
             for column in range(len(self.bts[line])):
-                self.bts[line][column]["command"] = partial(self.choose, System.choosePlayer(contCamp))
+                self.bts[line][column]["command"] = partial(self.choose, contCamp)
                 contCamp += 1
                 self.bts[line][column].place(x=self.x*column+self.margeX, y=self.y*line+self.margeY)
         self.lb.pack(side=TOP)
@@ -116,13 +117,14 @@ class TelaInicio:
 
 
 class TelaMain:
-    def __init__(self, player, bot):
+    def __init__(self, player, bot, money=600, alternar=True):
         self.root = Tk()
 
         #Alternar Ataques
-        self.Alternar = True
+        self.Alternar = alternar
         # PLAYER
         self.player = player
+        self.money = money
         self.bot = bot
 
         #CRIAR A UMA INSTÂNCIA DA INTALIGÊNCIA BOT
@@ -321,6 +323,18 @@ do ATTACK escolhido
         self.stringDanoReal = '''Valor de DANO VERDADEIRO
 (Dano Mágico - Amadura Mágica) + (Dano Físico - Armadura Físico)'''
 
+    def alterarBorda(self, vez):
+        if vez:
+            self.lbPlAYER["relief"] = "flat"
+            self.lbPlAYER["border"] = 5
+            self.lbBtBOT["relief"] = "flat"
+            self.lbBtBOT["border"] = 1
+        else:
+            self.lbBtBOT["relief"] = "flat"
+            self.lbBtBOT["border"] = 5
+            self.lbPlAYER["relief"] = "flat"
+            self.lbPlAYER["border"] = 1
+
     def ActionBOT(self):
         if not self.Alternar:
             attacksBOT = self.bot.sword.getAttack()
@@ -380,6 +394,7 @@ do ATTACK escolhido
                             # SET DISPLAY DADOS
                             self.setDisplay(danoReal, self.displayDanoReal)
                             self.setDisplay(self.player.hp, self.displayLifePlayer)
+                            self.setDisplay(self.bot.hp, self.displayLifeBOT)
                             if self.bot.mana < 0:
                                 self.bot.mana = 0
                                 self.setDisplay(self.bot.mana, self.displayManaBOT)
@@ -408,6 +423,7 @@ do ATTACK escolhido
                             # SET DISPLAY DADOS
                             self.setDisplay(danoReal, self.displayDanoReal)
                             self.setDisplay(self.player.hp, self.displayLifePlayer)
+                            self.setDisplay(self.bot.hp, self.displayLifeBOT)
                             if self.bot.mana < 0:
                                 self.bot.mana = 0
                                 self.setDisplay(self.bot.mana, self.displayManaBOT)
@@ -423,7 +439,15 @@ do ATTACK escolhido
                     else:
                         # SET DISPLAY DADOS
                         self.setDisplay(0, self.displayDanoReal)
+                        self.setDisplay(self.player.hp, self.displayLifePlayer)
+                        self.setDisplay(self.bot.hp, self.displayLifeBOT)
+                        if self.bot.mana < 0:
+                            self.bot.mana = 0
+                            self.setDisplay(self.bot.mana, self.displayManaBOT)
+                        else:
+                            self.setDisplay(self.bot.mana, self.displayManaBOT)
             self.Alternar = True
+            self.alterarBorda(True)
         else:
             self.lbDica["text"] = '''ERRO - É a sua vez de atacar! Escolha o seu ATTACK'''
             self.setCanvasStatus(-2)
@@ -559,6 +583,10 @@ do ATTACK escolhido
         self.root.destroy()
         TelaOption(self.player, self.gerarRELATORIO(), status).construtor()
 
+    def abrirTelaItens(self,event):
+        self.root.destroy()
+        TelaItens(self.player, self.bot, self.money, self.Alternar).construtor()
+
     def knock(self, attack):
         if self.Alternar:
             self.lbDica["text"] = f"\n{attack.name}"
@@ -579,10 +607,11 @@ do ATTACK escolhido
                     print(self.player.name, item.getDados())
 
             if attack.latencia <= newLatATTK:
-                if self.player.mana <= attack.mana:
+                if self.player.mana < attack.mana:
                     self.setCanvasStatus(3)
                 else:
                     # ATAQUE EFETIVO
+                    self.money += System.calculeteRestareMoney()
                     if self.bot.shield.latencia <= newLatDEF:
                         # DEFESA EFETIVA
                         self.setCanvasStatus(1)
@@ -614,6 +643,7 @@ do ATTACK escolhido
                         else:
                             #SET DISPLAY DADOS
                             self.setDisplay(danoReal, self.displayDanoReal)
+                            self.setDisplay(self.player.hp, self.displayLifePlayer)
                             self.setDisplay(self.bot.hp, self.displayLifeBOT)
                             if self.player.mana < 0:
                                 self.player.mana = 0
@@ -651,6 +681,7 @@ do ATTACK escolhido
                         else:
                             # SET DISPLAY DADOS
                             self.setDisplay(danoReal, self.displayDanoReal)
+                            self.setDisplay(self.player.hp, self.displayLifePlayer)
                             self.setDisplay(self.bot.hp, self.displayLifeBOT)
                             if self.player.mana < 0:
                                 self.player.mana = 0
@@ -671,7 +702,15 @@ do ATTACK escolhido
                 else:
                     # SET DISPLAY DADOS
                     self.setDisplay(0, self.displayDanoReal)
+                    self.setDisplay(self.player.hp, self.displayLifePlayer)
+                    self.setDisplay(self.bot.hp, self.displayLifeBOT)
+                    if self.player.mana < 0:
+                        self.player.mana = 0
+                        self.setDisplay(self.player.mana, self.displayManaPlayer)
+                    else:
+                        self.setDisplay(self.player.mana, self.displayManaPlayer)
             self.Alternar = False
+            self.alterarBorda(False)
         else:
             self.lbDica["text"] = '''ERRO - Sua vez foi alternada, Click no Icon do BOT
     para ele realizar o ATTACK'''
@@ -687,6 +726,11 @@ do ATTACK escolhido
         self.root.geometry("1500x780+12+0")
         self.root["bg"] = "Black"
         self.lbPlAYER.place(x=self.xDisplayManaPlayer+50, y=20)
+        self.lbPlAYER.bind("<Button-1>", self.abrirTelaItens)
+        self.lbPlAYER.bind("<Enter>",
+                           lambda event, txt="COMPRE NOVOS ITENS\nPARA O INVENTÁRIO": self.escreverNoCanvasDica(event,txt))
+        self.lbPlAYER.bind("<Leave>", self.limparCanvasDica)
+
         self.lbBtBOT.place(x=self.xDisplayManaBOT+50, y=20)
         self.lbBtBOT["command"] = self.ActionBOT
 
@@ -777,6 +821,8 @@ do ATTACK escolhido
         self.canvasAttackDica.pack(side=TOP, anchor=CENTER)
         self.canvasAttackDica.config(bg="Black")
         self.setCanvasStatus(-1)
+
+        self.alterarBorda(self.Alternar)
 
         self.setDisplay(str(0), self.displayLatencia)
         self.setDisplay(str(0), self.displayLatenciaDef)
@@ -1067,12 +1113,13 @@ class TelaRelatorio:
 
 
 class TelaItens:
-    def __init__(self, player, bot):
+    def __init__(self, player, bot, money=600, alternar=True):
         self.root = Tk()
         self.listItens = System.filterItens()
         self.player = player
         self.bot = bot
-        self.money = 600
+        self.money = money
+        self.alternar = alternar
 
         #CONFIG
         self.margeEX_x = 50
@@ -1146,7 +1193,7 @@ class TelaItens:
 
     def abrirTelaMain(self):
         self.root.destroy()
-        TelaMain(self.player, self.bot).construtor()
+        TelaMain(self.player, self.bot, money=self.money, alternar=self.alternar).construtor()
 
     def setDisplay(self, num, display):
         number = str(num)

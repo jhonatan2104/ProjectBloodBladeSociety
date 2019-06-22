@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fefe4446-7a52-4355-8c4a-2041c4896d9f" name="Default Changelist" comment="Teste Hacker">
+      <change beforePath="$PROJECT_DIR$/fileClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/fileClass.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fileWindows.py" beforeDir="false" afterPath="$PROJECT_DIR$/fileWindows.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,8 +28,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fileClass.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2765">
-              <caret line="389" column="16" selection-start-line="389" selection-start-column="16" selection-end-line="389" selection-end-column="16" />
+            <state relative-caret-position="45">
+              <caret line="147" lean-forward="true" selection-start-line="70" selection-start-column="8" selection-end-line="147" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -51,8 +52,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/fileWindows.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="1177" column="32" selection-start-line="1177" selection-start-column="32" selection-end-line="1177" selection-end-column="32" />
+            <state relative-caret-position="4">
+              <caret line="44" column="21" selection-start-line="44" selection-start-column="21" selection-end-line="44" selection-end-column="21" />
               <folding>
                 <element signature="e#0#24#0" expanded="true" />
               </folding>
@@ -133,7 +134,13 @@
               <item name="ProjectBloodBladeSociety" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
               <item name="fileClass.py" type="8704e2dd:PyFileNode" />
-              <item name="Player" type="dd8bbb05:PyElementNode" />
+              <item name="Attack" type="dd8bbb05:PyElementNode" />
+            </path>
+            <path>
+              <item name="ProjectBloodBladeSociety" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="fileClass.py" type="8704e2dd:PyFileNode" />
+              <item name="System" type="dd8bbb05:PyElementNode" />
             </path>
             <path>
               <item name="ProjectBloodBladeSociety" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
@@ -211,7 +218,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.fileTest">
+  <component name="RunManager" selected="Python.fileWindows">
     <configuration name="Strategy" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="ProjectBloodBladeSociety" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -340,8 +347,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.fileTest" />
         <item itemvalue="Python.fileWindows" />
+        <item itemvalue="Python.fileTest" />
         <item itemvalue="Python.TelaEscolhaBot" />
         <item itemvalue="Python.Strategy" />
         <item itemvalue="Python.hacker" />
@@ -387,7 +394,7 @@
       <window_info id="Favorites" order="2" sideWeight="0.5021962" side_tool="true" weight="0.2247191" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.329429" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.59297216" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.59297216" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39824304" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -508,8 +515,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/fileClass.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2765">
-          <caret line="389" column="16" selection-start-line="389" selection-start-column="16" selection-end-line="389" selection-end-column="16" />
+        <state relative-caret-position="45">
+          <caret line="147" lean-forward="true" selection-start-line="70" selection-start-column="8" selection-end-line="147" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
@@ -518,8 +525,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/fileWindows.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="1177" column="32" selection-start-line="1177" selection-start-column="32" selection-end-line="1177" selection-end-column="32" />
+        <state relative-caret-position="4">
+          <caret line="44" column="21" selection-start-line="44" selection-start-column="21" selection-end-line="44" selection-end-column="21" />
           <folding>
             <element signature="e#0#24#0" expanded="true" />
           </folding>
