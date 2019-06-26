@@ -23,6 +23,7 @@
           <option value="fileMain.*" />
           <option value="fileClass" />
           <option value="int.place" />
+          <option value="cx_Freeze" />
         </list>
       </option>
     </inspection_tool>

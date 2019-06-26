@@ -6,23 +6,32 @@ from functools import partial
 
 class TelaEscolhaBot:
     def __init__(self):
+        self.root = Tk()
+
+        # CONFIG
+        self.color = "Black"
         self.btSizeX = 100
         self.btSizeY = 150
         self.margeX = 150
         self.margeY = 100
         self.x = 200
         self.y = 200
-        self.color = "Black"
-        self.root = Tk()
+
+        self.p1 = None
+        self.BOT = None
+
         self.imagemLabelBOT = PhotoImage(
             file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/ImagemLabelBOT.png")
         self.imagemLabelPlayer = PhotoImage(
             file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/ImagemLabelPlayer.png")
+
+        # IMAGENS DOS PLAYER
         self.IchigoKurosakiPNG = PhotoImage(file=System.choosePlayer(0).imageShow)
         self.KillerBeePNG = PhotoImage(file=System.choosePlayer(1).imageShow)
         self.XenaPNG = PhotoImage(file=System.choosePlayer(2).imageShow)
         self.RoronoaZoroPNG = PhotoImage(file=System.choosePlayer(3).imageShow)
         self.GohanPNG = PhotoImage(file=System.choosePlayer(4).imageShow)
+
         self.backPNG = PhotoImage(
             file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/backPNG.png")
         self.bt1 = Button(self.root, image= self.IchigoKurosakiPNG, width=self.btSizeX,
@@ -39,20 +48,24 @@ class TelaEscolhaBot:
 
         self.btVoltar = Button(self.root,image=self.backPNG,bg="Black")
         self.bts = [[self.bt1, self.bt2, self.bt3], [self.bt4, self.bt5]]
-        self.p1 = None
-        self.BOT = None
 
     def choose(self, contCamp):
+
+        # OBJETO Player
         player = System.choosePlayer(contCamp)
         if self.p1 is None:
+            # TOCAR ÁUDIO
             player.PlayWAVShow()
             self.p1 = player
+
+            # MUDAR IMAGENS DE TÍTULO
             self.lb["image"] = self.imagemLabelBOT
         elif self.BOT is None:
+            # TOCAR ÁUDIO
             player.PlayWAVShow()
             self.BOT = player
-            #Alter essa parte do código quando CRIAR A TELA MAIN
-            print(self.p1.name, self.BOT.name)
+
+            # CHAMAR OUTRA TELA
             self.root.destroy()
             TelaItens(self.p1, self.BOT).construtor()
 
@@ -63,12 +76,17 @@ class TelaEscolhaBot:
     def construtor(self):
         self.root.geometry("800x500+300+100")
         self.root["bg"] = self.color
+
+        # VARIÁVEL AUXILIAR PARA INDEX DO PLAYER { self.choose(contCamp) }
         contCamp = 0
+
+        # GRADEADO DOS BUTTONS
         for line in range(len(self.bts)):
             for column in range(len(self.bts[line])):
                 self.bts[line][column]["command"] = partial(self.choose, contCamp)
                 contCamp += 1
                 self.bts[line][column].place(x=self.x*column+self.margeX, y=self.y*line+self.margeY)
+
         self.lb.pack(side=TOP)
         self.btVoltar.pack(side=BOTTOM, anchor=SE)
         self.btVoltar["command"] = self.voltar
@@ -77,12 +95,15 @@ class TelaEscolhaBot:
 
 class TelaInicio:
     def __init__(self):
+        self.root = Tk()
+
+        # CONFIG
+        self.color = "Black"
         self.margeX = 0
         self.margeY = 150
         self.x = 265
         self.y = 200
-        self.color = "Black"
-        self.root = Tk()
+
         self.imagemPlayerXbot = PhotoImage(
             file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/playerXbotPNG.png")
 
@@ -110,7 +131,7 @@ class TelaInicio:
         self.lb["bg"] = self.color
         self.lb.pack(side=TOP)
         self.bt1.place(x=self.x, y=self.y)
-        #self.bt2.place(x=self.x+self.margeX, y=self.y+self.margeY)
+        # self.bt2.place(x=self.x+self.margeX, y=self.y+self.margeY)
         self.bt1["command"] = self.abrirTelaEscolhaPlayerBOT
         self.bt2["command"] = self.abrirTelaEscolhaPlayer
         self.root.mainloop()
@@ -217,17 +238,16 @@ class TelaMain:
         self.imageStatusErro = PhotoImage(
             file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/ERRO.png")
 
-
         self.canvasStatus = Canvas(self.root, width=725, height=200, highlightbackground="Black")
 
-        #CANVAS ATTACK DICA
+        # CANVAS ATTACK DICA
         self.canvasAttackDica = Canvas(self.root, width=725, height=200, highlightbackground="Black")
         self.fontFixedsys = font.Font(family='Fixedsys', size=15, weight='bold')
         font.families()
         self.lbDica = Label(self.canvasAttackDica, font=self.fontFixedsys, foreground="white", bg="black")
         self.lbDica.pack(side=TOP, anchor=CENTER)
 
-        #CONFIG DISPLAY
+        # CONFIG DISPLAY
         self.yDisplayLifi = 465
         self.xDisplayLifiPlayer = 50
         self.xDisplayLifiBOT = 1250
@@ -236,7 +256,7 @@ class TelaMain:
         self.xDisplayManaPlayer = 50
         self.xDisplayManaBOT = 1250
 
-        #DISPLAY
+        # DISPLAY
         self.c1 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
         self.c2 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
         self.c3 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
@@ -270,7 +290,7 @@ class TelaMain:
         self.xMargeLabelDL = 550
         self.yMargeDisplayDL = 450
 
-        #IMAGE DANO, LATÊNCIA
+        # IMAGE DANO, LATÊNCIA
         self.imgLatencia = PhotoImage(
             file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/latenciaATTK.png"
         )
@@ -281,7 +301,7 @@ class TelaMain:
             file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/danoReal.png"
         )
 
-        #LABEL DANO, LATÊNCIA
+        # LABEL DANO, LATÊNCIA
         self.lbLatencia = Label(self.root, width=200, height=60, bg="Black", highlightbackground="Black",
                                 image=self.imgLatencia)
         self.lbLatenciaDef = Label(self.root, width=200, height=60, bg="Black", highlightbackground="Black",
@@ -302,14 +322,14 @@ class TelaMain:
         self.c26 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
         self.displayLatenciaDef = [self.c26]
 
-        #BOTÕES DE ATTACK
+        # BOTÕES DE ATTACK
         self.canvasAttk = Canvas(self.root, width=725, height=170, highlightbackground="Black")
         self.imageATTK1 = PhotoImage(
             file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/atk1.png")
         self.imageATTK2 = PhotoImage(
             file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/atk2.png")
         self.imageATTK3 = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/atk3.png")
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/atk1.png")
         self.imageDEF = PhotoImage(
             file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/deff.png")
         self.btAttk1 = Button(self.canvasAttk, width=175, height=160, image= self.imageATTK1, bg='Black',
@@ -322,7 +342,7 @@ class TelaMain:
                              highlightbackground="Black")
         self.BTSCommands = [self.btAttk1, self.btAttk2, self.btAttk3, self.btdef1]
 
-        #TEXTOS DE DICAS
+        # TEXTOS DE DICAS
         self.stringMODODEF = '''Você pode manter modo defensivo
 e recuperar mana para relaizar um ATTACK 
 ainda mais forte'''
@@ -341,14 +361,14 @@ do ATTACK escolhido
 
     def alterarBorda(self, vez):
         if vez:
-            self.lbPlAYER["relief"] = "flat"
+            self.lbPlAYER["relief"] = "groove"
             self.lbPlAYER["border"] = 5
-            self.lbBtBOT["relief"] = "flat"
+            self.lbBtBOT["relief"] = "groove"
             self.lbBtBOT["border"] = 1
         else:
-            self.lbBtBOT["relief"] = "flat"
+            self.lbBtBOT["relief"] = "groove"
             self.lbBtBOT["border"] = 5
-            self.lbPlAYER["relief"] = "flat"
+            self.lbPlAYER["relief"] = "groove"
             self.lbPlAYER["border"] = 1
 
     def ActionBOT(self):
@@ -614,6 +634,7 @@ do ATTACK escolhido
             # DADOS ARMAZENÁVEIS
             self.manaRestaurada += manaRestore
             self.Alternar = False
+            self.alterarBorda(False)
         else:
             self.lbDica["text"] = '''ERRO - Sua vez foi alternada, Click no Icon do BOT
            para ele realizar o ATTACK'''
@@ -1225,6 +1246,7 @@ class TelaItens:
             self.money -= item.valor
             self.setDisplay(str(self.money), self.displayMoney)
             bt["bg"] = "Blue"
+            bt["command"] = lambda : None
         else:
             self.dinheiroERRO()
 
@@ -1286,4 +1308,3 @@ class TelaItens:
         self.setDisplay(str(self.money),self.displayMoney)
         self.root.mainloop()
 
-TelaInicio().construtor()

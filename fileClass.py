@@ -85,7 +85,7 @@ class System:
                             imageShow="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Personagens/ichico.png",
                             imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Personagens/nIchigo.png")
 
-            player.setWAVShow("DirWAV/ICHIGOPERSONAGEM.wav")
+            player.setWAVShow("C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirWAV/ICHIGOPERSONAGEM.wav")
             player.setWAVSlang("DirWAV/go.wav")
 
             return player
@@ -105,7 +105,7 @@ class System:
                             imageShow="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Personagens/bee.png",
                             imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Personagens/nBee.png")
 
-            player.setWAVShow("DirWAV/KILLERBEEPERSONAGEM.wav")
+            player.setWAVShow("C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirWAV/KILLERBEEPERSONAGEM.wav")
             player.setWAVSlang("DirWAV/go.wav")
 
             return player
@@ -124,7 +124,7 @@ class System:
                             imageShow="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Personagens/xena.png",
                             imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Personagens/nXena.png")
 
-            player.setWAVShow("DirWAV/XENAPERSONAGEM.wav")
+            player.setWAVShow("C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirWAV/XENAPERSONAGEM.wav")
             player.setWAVSlang("DirWAV/go.wav")
 
             return player
@@ -146,7 +146,7 @@ class System:
                             imageShow="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Personagens/zoro.png",
                             imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Personagens/nZoro.png")
 
-            player.setWAVShow("DirWAV/ZOROPERSONAGEM.wav")
+            player.setWAVShow("C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirWAV/ZOROPERSONAGEM.wav")
             player.setWAVSlang("DirWAV/go.wav")
 
             return player
@@ -168,7 +168,7 @@ class System:
                             imageShow="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Personagens/gohan.png",
                             imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Personagens/nGohan.png")
 
-            player.setWAVShow("DirWAV/GOHANPERSONAGEM.wav")
+            player.setWAVShow("C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirWAV/GOHANPERSONAGEM.wav")
             player.setWAVSlang("DirWAV/go.wav")
 
             return player
@@ -385,7 +385,6 @@ class Player:
             print(str(attackIndice) + " - " + str(attacksUser[attackIndice]) + "\n")
     def addItem(self, item):
         self.inventory.append(item)
-        print("1")
 
 
 class InteligencePlayer:
@@ -553,6 +552,7 @@ Defesa Magica: {}
 Defesa Fisica: {}
 Latencia: {}
         '''.format(self.name,self.defesaMagica,self.defesaFisica,self.latencia)
+
 class Item:
     def __init__(self, name, valor, quatidade, desc="",
                  alterLife = 0, alterMana = 0,alterDefesaMagica = 0, alterDefesaFisica = 0, alterLatenciaAttk = 0,
