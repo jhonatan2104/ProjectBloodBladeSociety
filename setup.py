@@ -30,7 +30,8 @@ buildOptions = dict(
     include_files=allArqDir,
     excludes=[]
 )
-
+allArqDir.append(r"C:\Users\User\AppData\Local\Programs\Python\Python37\DLLs\tcl86t.dll")
+allArqDir.append(r"C:\Users\User\AppData\Local\Programs\Python\Python37\DLLs\tk86t.dll")
 setup(
     name="ProjectBloodBladeSociety",
     version="BETA",
