@@ -34,19 +34,19 @@ class TelaEscolhaBot:
 
         self.backPNG = PhotoImage(
             file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/backPNG.png")
-        self.bt1 = Button(self.root, image= self.IchigoKurosakiPNG, width=self.btSizeX,
+        self.bt1 = Button(self.root, image=self.IchigoKurosakiPNG, width=self.btSizeX,
                           height=self.btSizeY)
-        self.bt2 = Button(self.root, image= self.KillerBeePNG, width=self.btSizeX,
+        self.bt2 = Button(self.root, image=self.KillerBeePNG, width=self.btSizeX,
                           height=self.btSizeY)
-        self.bt3 = Button(self.root, image= self.XenaPNG, width=self.btSizeX,
+        self.bt3 = Button(self.root, image=self.XenaPNG, width=self.btSizeX,
                           height=self.btSizeY)
-        self.bt4 = Button(self.root, image= self.RoronoaZoroPNG, width=self.btSizeX,
+        self.bt4 = Button(self.root, image=self.RoronoaZoroPNG, width=self.btSizeX,
                           height=self.btSizeY)
-        self.bt5 = Button(self.root, image= self.GohanPNG, width=self.btSizeX,
+        self.bt5 = Button(self.root, image=self.GohanPNG, width=self.btSizeX,
                           height=self.btSizeY)
         self.lb = Label(self.root, image=self.imagemLabelPlayer, bg=self.color)
 
-        self.btVoltar = Button(self.root,image=self.backPNG,bg="Black")
+        self.btVoltar = Button(self.root, image=self.backPNG, bg="Black")
         self.bts = [[self.bt1, self.bt2, self.bt3], [self.bt4, self.bt5]]
 
     def choose(self, contCamp):
@@ -75,6 +75,7 @@ class TelaEscolhaBot:
 
     def construtor(self):
         self.root.geometry("800x500+300+100")
+        self.root.focus_force()
         self.root["bg"] = self.color
 
         # VARIÁVEL AUXILIAR PARA INDEX DO PLAYER { self.choose(contCamp) }
@@ -85,7 +86,7 @@ class TelaEscolhaBot:
             for column in range(len(self.bts[line])):
                 self.bts[line][column]["command"] = partial(self.choose, contCamp)
                 contCamp += 1
-                self.bts[line][column].place(x=self.x*column+self.margeX, y=self.y*line+self.margeY)
+                self.bts[line][column].place(x=self.x * column + self.margeX, y=self.y * line + self.margeY)
 
         self.lb.pack(side=TOP)
         self.btVoltar.pack(side=BOTTOM, anchor=SE)
@@ -107,33 +108,34 @@ class TelaInicio:
         self.imagemPlayerXbot = PhotoImage(
             file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/playerXbotPNG.png")
 
-        self.imagemPlayerXplayer = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/playerXplayerPNG.png")
+        self.imagemTutor = PhotoImage(
+            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/TUTORIAL.png")
         self.imagemLabel = PhotoImage(
             file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/ESCOLHA-O-MODO-DE-JOGO.png")
 
-        self.bt1 = Button(self.root, image=self.imagemPlayerXbot)
-        self.bt2 = Button(self.root, image=self.imagemPlayerXplayer)
+        self.bt1 = Button(self.root, image=self.imagemPlayerXbot, border=0)
+        self.bt2 = Button(self.root, image=self.imagemTutor, border=0)
         self.lb = Label(self.root, image=self.imagemLabel)
 
     def abrirTelaEscolhaPlayerBOT(self):
         self.root.destroy()
         TelaEscolhaBot().construtor()
 
-    def abrirTelaEscolhaPlayer(self):
-        self.root.destroy()
-        #MUDAR ESSA PARTE DO CÓDIGO
-        TelaEscolhaBot().construtor()
+    def abrirTelaTutor(self):
+        pass
 
     def construtor(self):
         self.root.geometry("800x500+300+100")
+        self.root.focus_force()
+
+        self.root.bind("<Return>", lambda event : self.abrirTelaEscolhaPlayerBOT())
         self.root["bg"] = self.color
         self.lb["bg"] = self.color
         self.lb.pack(side=TOP)
         self.bt1.place(x=self.x, y=self.y)
-        # self.bt2.place(x=self.x+self.margeX, y=self.y+self.margeY)
+        self.bt2.place(x=self.x+self.margeX, y=self.y+self.margeY)
         self.bt1["command"] = self.abrirTelaEscolhaPlayerBOT
-        self.bt2["command"] = self.abrirTelaEscolhaPlayer
+        self.bt2["command"] = self.abrirTelaTutor
         self.root.mainloop()
 
 
@@ -141,14 +143,14 @@ class TelaMain:
     def __init__(self, player, bot, money=600, alternar=True, dicDados=None):
         self.root = Tk()
 
-        #Alternar Ataques
+        # Alternar Ataques
         self.Alternar = alternar
         # PLAYER
         self.player = player
         self.money = money
         self.bot = bot
 
-        #CRIAR A UMA INSTÂNCIA DA INTALIGÊNCIA BOT
+        # CRIAR A UMA INSTÂNCIA DA INTALIGÊNCIA BOT
         self.intelBOT = InteligencePlayer(self.bot, 200)
         self.intelBOT.gerarRanckAttack(self.player)
 
@@ -217,12 +219,12 @@ class TelaMain:
         self.imageMana2 = PhotoImage(
             file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/mana.png")
 
-        self.lbLifePlayer = Label(self.root, width=200, height=60, image=self.imageLife1,  bg="Black")
+        self.lbLifePlayer = Label(self.root, width=200, height=60, image=self.imageLife1, bg="Black")
         self.lbLifeBOT = Label(self.root, width=200, height=60, image=self.imageLife2, bg="Black")
         self.lbManaPlayer = Label(self.root, width=200, height=60, image=self.imageMana1, bg="Black")
         self.lbManaBOT = Label(self.root, width=200, height=60, image=self.imageMana2, bg="Black")
 
-        #CANVAS STATUS
+        # CANVAS STATUS
         self.imageStatusFalhou = PhotoImage(
             file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/ataqueFalhou.png")
         self.imageStatusEfetivo = PhotoImage(
@@ -305,7 +307,7 @@ class TelaMain:
         self.lbLatencia = Label(self.root, width=200, height=60, bg="Black", highlightbackground="Black",
                                 image=self.imgLatencia)
         self.lbLatenciaDef = Label(self.root, width=200, height=60, bg="Black", highlightbackground="Black",
-                                image=self.imgLatenciaDEF)
+                                   image=self.imgLatenciaDEF)
         self.lbDanoReal = Label(self.root, width=200, height=60, bg="Black", highlightbackground="Black",
                                 image=self.imgDanoReal)
 
@@ -332,7 +334,7 @@ class TelaMain:
             file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/atk1.png")
         self.imageDEF = PhotoImage(
             file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/deff.png")
-        self.btAttk1 = Button(self.canvasAttk, width=175, height=160, image= self.imageATTK1, bg='Black',
+        self.btAttk1 = Button(self.canvasAttk, width=175, height=160, image=self.imageATTK1, bg='Black',
                               highlightbackground="Black")
         self.btAttk2 = Button(self.canvasAttk, width=175, height=160, image=self.imageATTK2, bg='Black',
                               highlightbackground="Black")
@@ -341,6 +343,17 @@ class TelaMain:
         self.btdef1 = Button(self.canvasAttk, width=175, height=160, image=self.imageDEF, bg='Black',
                              highlightbackground="Black")
         self.BTSCommands = [self.btAttk1, self.btAttk2, self.btAttk3, self.btdef1]
+        self.teclasAttkConfig = ["<q>", "<w>", "<e>", "<r>"]
+        self.teclasConfig = {
+            "Inventário" : "<c>",
+            "compraInventário" : "<v>",
+            "attkBOT" : "<Return>",
+            "attk1-dica" : "<a>",
+            "attk2-dica": "<s>",
+            "attk3-dica": "<d>",
+            "DadosArmadura": "<k>",
+            "DadosEspada": "<j>"
+        }
 
         # TEXTOS DE DICAS
         self.stringMODODEF = '''Você pode manter modo defensivo
@@ -380,10 +393,12 @@ do ATTACK escolhido
                 self.setDisplay(self.bot.mana, self.displayManaBOT)
                 self.setDisplay(0, self.displayDanoReal)
                 self.setDisplay(0, self.displayLatencia)
+
+                self.Alternar = True
+                self.alterarBorda(True)
             else:
                 attackBOT = attacksBOT[value]
-                self.lbDica["text"] = f"\n{attackBOT.name}"
-
+                self.escreverNoCanvasDica(None, f"\n{attackBOT.name}")
 
                 # o numero randomico para a latencia
                 randomLatenciaAtaque = randint(0, 9)
@@ -508,7 +523,7 @@ do ATTACK escolhido
             "8": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/8.png"),
             "9": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/9.png")
         }
-        strNumber = number if len(number) == len(display) else "#"*(len(display)-len(number))+str(number)
+        strNumber = number if len(number) == len(display) else "#" * (len(display) - len(number)) + str(number)
         for elem in range(len(display)):
             imag = dicImagens[strNumber[elem]]
             display[elem].create_image(30, 35, image=imag)
@@ -516,20 +531,20 @@ do ATTACK escolhido
 
     def gerarDic(self):
         return {
-            "damageTotal" : self.damageTotal,
-            "damageMagico" : self.damageMagico,
-            "damageFisico" : self.damageFisico,
+            "damageTotal": self.damageTotal,
+            "damageMagico": self.damageMagico,
+            "damageFisico": self.damageFisico,
             "CONTAttackFalhos": self.CONTAttackFalhos,
-            "CONTAttackCriticos" : self.CONTAttackCriticos,
-            "CONTAttackNormais" : self.CONTAttackNormais,
-            "CONTAttack" : self.CONTAttack,
-            "FalhaDefesa" : self.FalhaDefesa,
-            "damageMagicoSofrido" : self.damageMagicoSofrido,
-            "damageFisicoSofrido" : self.damageFisicoSofrido,
-            "damageMagicoDefendido" : self.damageMagicoDefendido,
-            "damageFisicoDefendido" :  self.damageFisicoDefendido,
-            "manaRestaurada" : self.manaRestaurada,
-            "manaGasta" : self.manaGasta
+            "CONTAttackCriticos": self.CONTAttackCriticos,
+            "CONTAttackNormais": self.CONTAttackNormais,
+            "CONTAttack": self.CONTAttack,
+            "FalhaDefesa": self.FalhaDefesa,
+            "damageMagicoSofrido": self.damageMagicoSofrido,
+            "damageFisicoSofrido": self.damageFisicoSofrido,
+            "damageMagicoDefendido": self.damageMagicoDefendido,
+            "damageFisicoDefendido": self.damageFisicoDefendido,
+            "manaRestaurada": self.manaRestaurada,
+            "manaGasta": self.manaGasta
         }
 
     def setCanvasStatus(self, status):
@@ -560,13 +575,12 @@ do ATTACK escolhido
             self.canvasStatus.create_image(365, 100, image=self.imageStatusModoDef)
             self.canvasStatus.image = self.imageStatusModoDef
 
-    def setCanvasDICAAttack(self,event, attack):
-        self.lbDica["text"] = attack.getDados()
-
     def setCanvasDICASword(self, event):
+        self.lbDica.configure(fg="white")
         self.lbDica["text"] = self.player.sword.getDados()
 
     def setCanvasDICAShield(self, event):
+        self.lbDica.configure(fg="white")
         self.lbDica["text"] = self.player.shield.getDados()
 
     def setCanvasDICAInventario(self, event):
@@ -577,8 +591,9 @@ do ATTACK escolhido
 
     def gerarRELATORIO(self):
         return [self.damageTotal, self.damageMagico, self.damageFisico, self.CONTAttackFalhos, self.CONTAttackCriticos,
-        self.CONTAttackNormais, self.CONTAttack, self.FalhaDefesa, self.damageMagicoSofrido, self.damageFisicoSofrido,
-        self.damageMagicoDefendido, self.damageFisicoDefendido, self.manaRestaurada, self.manaGasta]
+                self.CONTAttackNormais, self.CONTAttack, self.FalhaDefesa, self.damageMagicoSofrido,
+                self.damageFisicoSofrido,
+                self.damageMagicoDefendido, self.damageFisicoDefendido, self.manaRestaurada, self.manaGasta]
 
     def verificarGame(self):
         if self.player.hp <= 0:
@@ -622,7 +637,7 @@ do ATTACK escolhido
                     Mana Restaurada : {self.manaRestaurada}
                     Mana Gasta : {self.manaGasta}
                         ''')
-            return [True , True]
+            return [True, True]
         return [False, False]
 
     def defensiveMode(self):
@@ -631,7 +646,7 @@ do ATTACK escolhido
             manaRestore = self.player.restoreMana(0)
             self.lbDica["text"] = f"+{manaRestore}"
 
-            #SET DISPLAY DADOS
+            # SET DISPLAY DADOS
             self.setDisplay(self.player.mana if self.player.mana >= 0 else 0, self.displayManaPlayer)
             self.setDisplay(0, self.displayDanoReal)
             self.setDisplay(0, self.displayLatencia)
@@ -649,13 +664,12 @@ do ATTACK escolhido
         self.root.destroy()
         TelaOption(self.player, self.gerarRELATORIO(), status).construtor()
 
-    def abrirTelaItens(self,event):
+    def abrirTelaItens(self, event):
         self.root.destroy()
         TelaItens(self.player, self.bot, self.money, self.Alternar, self.gerarDic()).construtor()
 
     def knock(self, attack):
         if self.Alternar:
-            self.lbDica["text"] = f"\n{attack.name}"
             # o numero randomico para a latencia
             randomLatenciaAtaque = randint(0, 9)
             self.setDisplay(randomLatenciaAtaque, self.displayLatencia)
@@ -663,26 +677,29 @@ do ATTACK escolhido
             randomLatenciaDefesa = randint(0, 9)
             self.setDisplay(randomLatenciaDefesa, self.displayLatenciaDef)
 
-            newLatATTK, newLatDEF, manaItens = randomLatenciaAtaque, randomLatenciaDefesa,0
+            newLatATTK, newLatDEF, manaItens, textLbDica = randomLatenciaAtaque, randomLatenciaDefesa, 0, "\n"
             for item in self.player.inventory:
                 if item.ended():
                     info = item.aplicarItem(self.player, attack, newLatATTK, newLatDEF)
-                    newLatATTK, newLatDEF = info[0],info[1]
+                    newLatATTK, newLatDEF = info[0], info[1]
                     manaItens += info[2]
-                    self.lbDica["text"] += f"\n+ {item.name}"
-
+                    textLbDica += f"\n+ {item.name}"
+            self.escreverNoCanvasDica(None, attack.getDados() + textLbDica, 'red')
             if attack.latencia <= newLatATTK:
                 if self.player.mana < attack.mana:
                     self.setCanvasStatus(3)
                     self.setDisplay(self.player.mana if self.player.mana >= 0 else 0, self.displayManaPlayer)
                     self.setDisplay(self.player.hp if self.player.hp >= 0 else 0, self.displayLifePlayer)
+
+                    self.Alternar = False
+                    self.alterarBorda(False)
                 else:
                     # ATAQUE EFETIVO
                     if self.bot.shield.latencia <= newLatDEF:
                         # DEFESA EFETIVA
                         self.setCanvasStatus(1)
 
-                        #DADOS JOGÁVEIS
+                        # DADOS JOGÁVEIS
                         danos = System.calculeteDamageShield(self.bot, attack)
                         danoReal = danos[0] + danos[1]
                         self.bot.sufferDamage(danoReal)
@@ -710,7 +727,7 @@ do ATTACK escolhido
                         if any(StatusGame):
                             self.abrirTelaOption(all(StatusGame))
                         else:
-                            #SET DISPLAY DADOS
+                            # SET DISPLAY DADOS
                             self.setDisplay(danoReal, self.displayDanoReal)
                             self.setDisplay(self.player.hp, self.displayLifePlayer)
                             self.setDisplay(self.bot.hp, self.displayLifeBOT)
@@ -802,22 +819,47 @@ do ATTACK escolhido
     para ele realizar o ATTACK'''
             self.setCanvasStatus(-2)
 
-    def limparCanvasDica(self,event):
+    def limparCanvasDica(self, event):
         self.lbDica["text"] = ""
 
-    def escreverNoCanvasDica(self, event, txt):
+    def escreverNoCanvasDica(self, event, txt, cor="white"):
+        self.lbDica.configure(fg=cor)
         self.lbDica["text"] = txt
 
     def construtor(self):
         self.root.geometry("1500x780+12+0")
+        self.root.focus_force()
+
+        #List de ataques do player
+        attacksPlayer = self.player.sword.getAttack()
+
+        # EVENTOS NO TECLADO
+        self.root.bind(self.teclasConfig["Inventário"], self.setCanvasDICAInventario)
+        self.root.bind(self.teclasConfig["compraInventário"], self.abrirTelaItens)
+        self.root.bind(self.teclasConfig["attkBOT"], lambda event : self.ActionBOT())
+        self.root.bind(self.teclasConfig["attk1-dica"],
+                       lambda event, atk=attacksPlayer[0]: self.escreverNoCanvasDica(event, atk.getDados()))
+        self.root.bind(self.teclasConfig["attk2-dica"],
+                       lambda event, atk=attacksPlayer[1]: self.escreverNoCanvasDica(event, atk.getDados()))
+        self.root.bind(self.teclasConfig["attk3-dica"],
+                       lambda event, atk=attacksPlayer[2]: self.escreverNoCanvasDica(event, atk.getDados()))
+        self.root.bind(self.teclasConfig["DadosArmadura"], self.setCanvasDICAShield)
+        self.root.bind(self.teclasConfig["DadosEspada"], self.setCanvasDICASword)
+
+
         self.root["bg"] = "Black"
-        self.lbPlAYER.place(x=self.xDisplayManaPlayer+50, y=20)
+        self.lbPlAYER.place(x=self.xDisplayManaPlayer + 50, y=20)
+
+        # Atribuindo a abertura da tela Compra itens a label de imagem do player
         self.lbPlAYER.bind("<Button-1>", self.abrirTelaItens)
         self.lbPlAYER.bind("<Enter>",
-                           lambda event, txt="COMPRE NOVOS ITENS\nPARA O INVENTÁRIO": self.escreverNoCanvasDica(event,txt))
+                           lambda event, txt="COMPRE NOVOS ITENS\nPARA O INVENTÁRIO": self.escreverNoCanvasDica(event,
+                                                                                                                txt))
         self.lbPlAYER.bind("<Leave>", self.limparCanvasDica)
 
-        self.lbBtBOT.place(x=self.xDisplayManaBOT+50, y=20)
+        self.lbBtBOT.place(x=self.xDisplayManaBOT + 50, y=20)
+
+        # Atribuindo a função de ataque ao botão de imagens do bot
         self.lbBtBOT["command"] = self.ActionBOT
 
         self.nomePlAYER.place(x=self.xDisplayManaPlayer, y=180)
@@ -839,35 +881,35 @@ do ATTACK escolhido
         self.shieldBOT.place(x=self.xDisplayManaBOT, y=320)
 
         recuo = 20
-        #Display LIFE PLAYER
+        # Display LIFE PLAYER
         for j in range(len(self.displayLifePlayer)):
             self.displayLifePlayer[j].config(bg="Black")
-            self.displayLifePlayer[j].place(x=j*50+self.xDisplayLifiPlayer-recuo, y=self.yDisplayLifi+60)
+            self.displayLifePlayer[j].place(x=j * 50 + self.xDisplayLifiPlayer - recuo, y=self.yDisplayLifi + 60)
         self.lbLifePlayer.place(x=self.xDisplayLifiPlayer, y=self.yDisplayLifi)
 
         for j in range(len(self.displayManaPlayer)):
             self.displayManaPlayer[j].config(bg="Black")
-            self.displayManaPlayer[j].place(x=j*50+self.xDisplayManaPlayer-recuo, y=self.yDisplayMana+60)
+            self.displayManaPlayer[j].place(x=j * 50 + self.xDisplayManaPlayer - recuo, y=self.yDisplayMana + 60)
         self.lbManaPlayer.place(x=self.xDisplayManaPlayer, y=self.yDisplayMana)
 
         # Display LIFE BOT
         for j in range(len(self.displayLifeBOT)):
             self.displayLifeBOT[j].config(bg="Black")
-            self.displayLifeBOT[j].place(x=j*50+self.xDisplayLifiBOT-recuo, y=self.yDisplayLifi+60)
+            self.displayLifeBOT[j].place(x=j * 50 + self.xDisplayLifiBOT - recuo, y=self.yDisplayLifi + 60)
         self.lbLifeBOT.place(x=self.xDisplayLifiBOT, y=self.yDisplayLifi)
 
         for j in range(len(self.displayManaBOT)):
             self.displayManaBOT[j].config(bg="Black")
-            self.displayManaBOT[j].place(x=j*50+self.xDisplayManaBOT-recuo, y=self.yDisplayMana+60)
+            self.displayManaBOT[j].place(x=j * 50 + self.xDisplayManaBOT - recuo, y=self.yDisplayMana + 60)
         self.lbManaBOT.place(x=self.xDisplayManaBOT, y=self.yDisplayMana)
 
         # DISPLAY DL
         for j in range(len(self.displayDanoReal)):
             self.displayDanoReal[j].config(bg="Black")
-            self.displayDanoReal[j].place(x=j*50+self.xMargeDisplayDL, y=self.yMargeDisplayDL)
+            self.displayDanoReal[j].place(x=j * 50 + self.xMargeDisplayDL, y=self.yMargeDisplayDL)
 
         self.displayLatencia[0].config(bg="Black")
-        self.displayLatencia[0].place(x=self.xMargeDisplayDL-100, y=self.yMargeDisplayDL+70)
+        self.displayLatencia[0].place(x=self.xMargeDisplayDL - 100, y=self.yMargeDisplayDL + 70)
 
         self.displayLatenciaDef[0].config(bg="Black")
         self.displayLatenciaDef[0].place(x=self.xMargeDisplayDL + 230, y=self.yMargeDisplayDL + 70)
@@ -877,30 +919,42 @@ do ATTACK escolhido
                              lambda event, txt=self.stringDanoReal: self.escreverNoCanvasDica(event, txt))
         self.lbDanoReal.bind("<Leave>", self.limparCanvasDica)
 
-        self.lbLatencia.place(x=self.xMargeLabelDL-100, y=self.yMargeDisplayDL+70)
+        self.lbLatencia.place(x=self.xMargeLabelDL - 100, y=self.yMargeDisplayDL + 70)
         self.lbLatencia.bind("<Enter>",
-                                lambda event, txt=self.stringRandLantATK: self.escreverNoCanvasDica(event, txt))
+                             lambda event, txt=self.stringRandLantATK: self.escreverNoCanvasDica(event, txt))
         self.lbLatencia.bind("<Leave>", self.limparCanvasDica)
 
         self.lbLatenciaDef.place(x=self.xMargeLabelDL + 230, y=self.yMargeDisplayDL + 70)
         self.lbLatenciaDef.bind("<Enter>",
-                                  lambda event, txt=self.stringRandLantDEF: self.escreverNoCanvasDica(event, txt))
+                                lambda event, txt=self.stringRandLantDEF: self.escreverNoCanvasDica(event, txt))
         self.lbLatenciaDef.bind("<Leave>", self.limparCanvasDica)
 
         self.canvasAttk.pack(side=BOTTOM, anchor=S)
         self.canvasAttk.config(bg="black")
 
-        attacksPlayer = self.player.sword.getAttack()
         for bt in range(len(self.BTSCommands)):
             if bt < 3:
-                self.BTSCommands[bt].place(x=bt*185, y=0)
+                self.BTSCommands[bt].place(x=bt * 185, y=0)
+                # Evento onclik
                 self.BTSCommands[bt]["command"] = partial(self.knock, attacksPlayer[bt])
+
+                # Evento de teclado
+                self.root.bind(self.teclasAttkConfig[bt],
+                               lambda event, func=self.knock, par=attacksPlayer[bt]: func(par))
+
+                # Evento entrada e saida da área widget
                 self.BTSCommands[bt].bind("<Enter>",
-                                          lambda event, atk=attacksPlayer[bt]: self.setCanvasDICAAttack(event, atk))
+                                          lambda event, atk=attacksPlayer[bt]: self.escreverNoCanvasDica(event,
+                                                                                                         atk.getDados()))
                 self.BTSCommands[bt].bind("<Leave>", self.limparCanvasDica)
             else:
                 self.BTSCommands[bt].place(x=bt * 185, y=0)
+                # Evento onclik
                 self.BTSCommands[bt]["command"] = self.defensiveMode
+                # Evento de teclado
+                self.root.bind(self.teclasAttkConfig[bt], lambda event: self.defensiveMode())
+
+                # Evento entrada e saida da área widget
                 self.BTSCommands[bt].bind("<Enter>",
                                           lambda event, txt=self.stringMODODEF: self.escreverNoCanvasDica(event, txt))
                 self.BTSCommands[bt].bind("<Leave>", self.limparCanvasDica)
@@ -925,7 +979,7 @@ do ATTACK escolhido
 
 
 class TelaOption:
-    def __init__(self, player, dadosDaPatida, status=True ):
+    def __init__(self, player, dadosDaPatida, status=True):
         self.root = Tk()
 
         self.player = player
@@ -969,11 +1023,12 @@ class TelaOption:
 
     def construtor(self):
         self.root.geometry("800x500+300+100")
+        self.root.focus_force()
         self.root["bg"] = self.color
         self.lb["bg"] = self.color
         self.lb.pack(side=TOP)
         self.bt1.place(x=self.x, y=self.y)
-        self.bt2.place(x=self.x+self.margeX, y=self.y+self.margeY)
+        self.bt2.place(x=self.x + self.margeX, y=self.y + self.margeY)
         self.bt1["command"] = self.abrirRelatorio
         self.bt2["command"] = self.abrirChoosePlayer
         self.root.mainloop()
@@ -989,7 +1044,7 @@ class TelaRelatorio:
             file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/relatorioTitulo.png")
         self.lbTitulo = Label(self.root, image=self.imageLBTitulo, highlightbackground="Black", bg="Black")
 
-        #IMAGENS
+        # IMAGENS
         self.imageLBDanoTotal = PhotoImage(
             file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/LBTelaRelatorio/danoTotal.png")
         self.imageLBDanoMagico = PhotoImage(
@@ -1019,7 +1074,7 @@ class TelaRelatorio:
         self.imageLBManaGasta = PhotoImage(
             file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/LBTelaRelatorio/manaUsa.png")
 
-        #LABEL
+        # LABEL
         self.LBDanoTotal = Label(self.root, image=self.imageLBDanoTotal, width=200, height=60)
         self.LBDanoMagico = Label(self.root, image=self.imageLBDanoMagico, width=200, height=60)
         self.LBDanoFisico = Label(self.root, image=self.imageLBDanoFisico, width=200, height=60)
@@ -1035,16 +1090,17 @@ class TelaRelatorio:
         self.LBManaRestaurada = Label(self.root, image=self.imageLBManaRestaurada, width=200, height=60)
         self.LBManaGasta = Label(self.root, image=self.imageLBManaGasta, width=200, height=60)
 
-        #CONFIG LABEL
+        # CONFIG LABEL
         self.xLabel = 500
         self.yLabel = 125
         self.xMargerLabel = 20
         self.yMargerLabel = 150
 
         self.labels = [[self.LBDanoTotal, self.LBDanoMagico, self.LBDanoFisico, self.LBAttacksFalhos,
-                       self.LBAttacksCriticos], [self.LBAttacksNormais, self.LBTotalAttacks, self.LBFalhaDaArmadura,
-                       self.LBDanoMagicoSofrido, self.LBDanoFisicoSofrido], [self.LBDanoMagicoDefendido,
-                       self.LBDanoFisicoDefendido, self.LBManaRestaurada, self.LBManaGasta]]
+                        self.LBAttacksCriticos], [self.LBAttacksNormais, self.LBTotalAttacks, self.LBFalhaDaArmadura,
+                                                  self.LBDanoMagicoSofrido, self.LBDanoFisicoSofrido],
+                       [self.LBDanoMagicoDefendido,
+                        self.LBDanoFisicoDefendido, self.LBManaRestaurada, self.LBManaGasta]]
 
         # DISPLAY
         self.c1 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
@@ -1146,11 +1202,11 @@ class TelaRelatorio:
         self.displayManaGasta = [self.c66, self.c67, self.c68, self.c69, self.c70]
 
         self.displays = [[self.displayDanoTotal, self.displayDanoMagico, self.displayDanoFisico,
-                         self.displayAttacksFalhos, self.displayAttacksCriticos], [self.displayAttacksNormais,
-                         self.displayTotalAttacks, self.displayFalhaDaArmadura,
-                         self.displayDanoMagicoSofrido, self.displayDanoFisicoSofrido],
+                          self.displayAttacksFalhos, self.displayAttacksCriticos],
+                         [self.displayAttacksNormais,self.displayTotalAttacks,self.displayFalhaDaArmadura,
+                        self.displayDanoMagicoSofrido,self.displayDanoFisicoSofrido],
                          [self.displayDanoMagicoDefendido, self.displayDanoFisicoDefendido,
-                         self.displayManaRestaurada, self.displayManaGasta]]
+                          self.displayManaRestaurada, self.displayManaGasta]]
         self.backPNG = PhotoImage(
             file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/backPNG.png")
         self.btVolta = Button(self.root, image=self.backPNG, bg="Black")
@@ -1182,6 +1238,7 @@ class TelaRelatorio:
 
     def construtor(self):
         self.root.geometry("1500x780+12+0")
+        self.root.focus_force()
         self.root["bg"] = "Black"
         self.lbTitulo.pack(side=TOP)
         cont = 0
@@ -1212,7 +1269,7 @@ class TelaItens:
         self.alternar = alternar
         self.dicInfo = dicInfo
 
-        #CONFIG
+        # CONFIG
         self.margeEX_x = 50
         self.margeEX_y = 130
         self.margeIN_x = 340
@@ -1225,7 +1282,7 @@ class TelaItens:
         )
         self.lbTitulo = Label(self.root, image=self.imageLb, highlightbackground="Black", bg="black")
 
-        self.lb = Label(self.root, font=self.fontFixedsys25,  bg="Black", fg="white")
+        self.lb = Label(self.root, font=self.fontFixedsys25, bg="Black", fg="white")
 
         self.bt1 = Button(self.root, width=25, height=7, bg="Black",
                           fg="white", font=self.fontFixedsys15)
@@ -1273,14 +1330,14 @@ class TelaItens:
             self.money -= item.valor
             self.setDisplay(str(self.money), self.displayMoney)
             bt["bg"] = "Blue"
-            bt["command"] = lambda : None
+            bt["command"] = lambda: None
         else:
             self.dinheiroERRO()
 
     def setLABEitem(self, event, item):
         self.lb["text"] = item.getDados()
 
-    def resetarLabelitem(self,event):
+    def resetarLabelitem(self, event):
         self.lb["text"] = ""
 
     def abrirTelaMain(self):
@@ -1310,6 +1367,11 @@ class TelaItens:
 
     def construtor(self):
         self.root.geometry("1500x780+20+0")
+        self.root.focus_force()
+
+        # Eventos TECLADOS
+        self.root.bind("<Return>", lambda event: self.abrirTelaMain())
+
         self.root["bg"] = "Black"
         self.lb.place(x=1150, y=250)
         self.btContinuar.place(x=380, y=600)
@@ -1318,20 +1380,21 @@ class TelaItens:
         cont = 0
         for line in range(len(self.listBt)):
             for colunn in range(len(self.listBt[line])):
-                self.listBt[line][colunn].place(x=colunn*self.margeIN_x+self.margeEX_x,
-                                                y=line*self.margeIN_y+self.margeEX_y)
-                self.listBt[line][colunn]["text"] = f'''{self.listItens[cont].name}\n\nx{self.listItens[cont].quatidade}\n{self.listItens[cont].valor}U$'''
+                self.listBt[line][colunn].place(x=colunn * self.margeIN_x + self.margeEX_x,
+                                                y=line * self.margeIN_y + self.margeEX_y)
+                self.listBt[line][colunn]["text"] = f'''{self.listItens[cont].name}\n\nx{self.listItens[
+                    cont].quatidade}\n{self.listItens[cont].valor}U$'''
                 self.listBt[line][colunn].bind("<Enter>",
-                                               lambda event, item=self.listItens[cont]: self.setLABEitem(event,item))
+                                               lambda event, item=self.listItens[cont]: self.setLABEitem(event, item))
                 self.listBt[line][colunn].bind("<Leave>", self.resetarLabelitem)
-                self.listBt[line][colunn]["command"] = partial(self.addItem, self.listItens[cont], self.listBt[line][colunn])
+                self.listBt[line][colunn]["command"] = partial(self.addItem, self.listItens[cont],
+                                                               self.listBt[line][colunn])
                 cont += 1
         for index in range(len(self.displayMoney)):
-            self.displayMoney[index].place(x=70*index+300, y=510)
+            self.displayMoney[index].place(x=70 * index + 300, y=510)
 
         self.btVolta.pack(side=BOTTOM, anchor=SW)
         self.btVolta["command"] = self.voltar
 
-        self.setDisplay(str(self.money),self.displayMoney)
+        self.setDisplay(str(self.money), self.displayMoney)
         self.root.mainloop()
-
