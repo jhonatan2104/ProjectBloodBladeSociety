@@ -197,13 +197,13 @@ class TelaMain:
         self.ImageIDShieldBOT = PhotoImage(file=bot.shield.imageID)
 
         # Lb Player
-        self.lbPlAYER = Label(self.root, image=self.ImageShowPlayer, width=100, height=150)
+        self.lbPlAYER = Label(self.root, image=self.ImageShowPlayer, width=100, height=150, relief="groove")
         self.nomePlAYER = Label(self.root, image=self.ImageIDPlayer, width=200, height=60, bg="Black")
         self.swordPlAYER = Label(self.root, image=self.ImageIDSwordPlayer, width=200, height=60, bg="Black")
         self.shieldPlayer = Label(self.root, image=self.ImageIDShieldPlayer, width=200, height=60, bg="Black")
 
         # Lb BOT
-        self.lbBtBOT = Button(self.root, image=self.ImageShowBOT, width=100, height=150)
+        self.lbBtBOT = Button(self.root, image=self.ImageShowBOT, width=100, height=150, relief="groove")
         self.nomeBOT = Label(self.root, image=self.ImageIDBOT, width=200, height=60, bg="Black")
         self.swordBOT = Label(self.root, image=self.ImageIDSwordBOT, width=200, height=60, bg="Black")
         self.shieldBOT = Label(self.root, image=self.ImageIDShieldBOT, width=200, height=60, bg="Black")
@@ -361,14 +361,10 @@ do ATTACK escolhido
 
     def alterarBorda(self, vez):
         if vez:
-            self.lbPlAYER["relief"] = "groove"
             self.lbPlAYER["border"] = 5
-            self.lbBtBOT["relief"] = "groove"
             self.lbBtBOT["border"] = 1
         else:
-            self.lbBtBOT["relief"] = "groove"
             self.lbBtBOT["border"] = 5
-            self.lbPlAYER["relief"] = "groove"
             self.lbPlAYER["border"] = 1
 
     def ActionBOT(self):
@@ -431,6 +427,9 @@ do ATTACK escolhido
                             self.setDisplay(danoReal, self.displayDanoReal)
                             self.setDisplay(self.player.hp, self.displayLifePlayer)
                             self.setDisplay(self.bot.hp, self.displayLifeBOT)
+
+                            self.Alternar = True
+                            self.alterarBorda(True)
                             if self.bot.mana < 0:
                                 self.bot.mana = 0
                                 self.setDisplay(self.bot.mana, self.displayManaBOT)
@@ -460,6 +459,10 @@ do ATTACK escolhido
                             self.setDisplay(danoReal, self.displayDanoReal)
                             self.setDisplay(self.player.hp, self.displayLifePlayer)
                             self.setDisplay(self.bot.hp, self.displayLifeBOT)
+
+                            self.Alternar = True
+                            self.alterarBorda(True)
+
                             if self.bot.mana < 0:
                                 self.bot.mana = 0
                                 self.setDisplay(self.bot.mana, self.displayManaBOT)
@@ -477,13 +480,15 @@ do ATTACK escolhido
                         self.setDisplay(0, self.displayDanoReal)
                         self.setDisplay(self.player.hp, self.displayLifePlayer)
                         self.setDisplay(self.bot.hp, self.displayLifeBOT)
+
+                        self.Alternar = True
+                        self.alterarBorda(True)
+
                         if self.bot.mana < 0:
                             self.bot.mana = 0
                             self.setDisplay(self.bot.mana, self.displayManaBOT)
                         else:
                             self.setDisplay(self.bot.mana, self.displayManaBOT)
-            self.Alternar = True
-            self.alterarBorda(True)
         else:
             self.lbDica["text"] = '''ERRO - É a sua vez de atacar! Escolha o seu ATTACK'''
             self.setCanvasStatus(-2)
@@ -627,7 +632,7 @@ do ATTACK escolhido
             self.lbDica["text"] = f"+{manaRestore}"
 
             #SET DISPLAY DADOS
-            self.setDisplay(self.player.mana, self.displayManaPlayer)
+            self.setDisplay(self.player.mana if self.player.mana >= 0 else 0, self.displayManaPlayer)
             self.setDisplay(0, self.displayDanoReal)
             self.setDisplay(0, self.displayLatencia)
 
@@ -669,9 +674,10 @@ do ATTACK escolhido
             if attack.latencia <= newLatATTK:
                 if self.player.mana < attack.mana:
                     self.setCanvasStatus(3)
+                    self.setDisplay(self.player.mana if self.player.mana >= 0 else 0, self.displayManaPlayer)
+                    self.setDisplay(self.player.hp if self.player.hp >= 0 else 0, self.displayLifePlayer)
                 else:
                     # ATAQUE EFETIVO
-                    self.money += System.calculeteRestareMoney()
                     if self.bot.shield.latencia <= newLatDEF:
                         # DEFESA EFETIVA
                         self.setCanvasStatus(1)
@@ -682,6 +688,9 @@ do ATTACK escolhido
                         self.bot.sufferDamage(danoReal)
                         self.player.userMana(attack.mana)
                         manaRestore = self.player.restoreMana(danoReal)
+
+                        # RESTAURA MONEY
+                        self.money += System.calculeteRestareMoney(type="an", dano=danoReal)
 
                         # DADOS ARMAZENÁVEIS
                         self.damageTotal += danoReal
@@ -705,6 +714,10 @@ do ATTACK escolhido
                             self.setDisplay(danoReal, self.displayDanoReal)
                             self.setDisplay(self.player.hp, self.displayLifePlayer)
                             self.setDisplay(self.bot.hp, self.displayLifeBOT)
+
+                            self.Alternar = False
+                            self.alterarBorda(False)
+
                             if self.player.mana < 0:
                                 self.player.mana = 0
                                 self.setDisplay(self.player.mana, self.displayManaPlayer)
@@ -720,6 +733,9 @@ do ATTACK escolhido
                         self.bot.sufferDamage(danoReal)
                         self.player.userMana(attack.mana)
                         manaRestore = self.player.restoreMana(danoReal)
+
+                        # RESTAURA MONEY
+                        self.money += System.calculeteRestareMoney(type="ac", dano=danoReal)
 
                         # DADOS ARMAZENÁVEIS
                         self.damageTotal += danoReal
@@ -743,6 +759,10 @@ do ATTACK escolhido
                             self.setDisplay(danoReal, self.displayDanoReal)
                             self.setDisplay(self.player.hp, self.displayLifePlayer)
                             self.setDisplay(self.bot.hp, self.displayLifeBOT)
+
+                            self.Alternar = False
+                            self.alterarBorda(False)
+
                             if self.player.mana < 0:
                                 self.player.mana = 0
                                 self.setDisplay(self.player.mana, self.displayManaPlayer)
@@ -756,6 +776,9 @@ do ATTACK escolhido
                 self.CONTAttack += 1
                 self.CONTAttackFalhos += 1
 
+                # RESTAURA MONEY
+                self.money += System.calculeteRestareMoney(type="ac", dano=0)
+
                 StatusGame = self.verificarGame()
                 if any(StatusGame):
                     self.abrirTelaOption(all(StatusGame))
@@ -764,13 +787,16 @@ do ATTACK escolhido
                     self.setDisplay(0, self.displayDanoReal)
                     self.setDisplay(self.player.hp, self.displayLifePlayer)
                     self.setDisplay(self.bot.hp, self.displayLifeBOT)
+
+                    self.Alternar = False
+                    self.alterarBorda(False)
+
                     if self.player.mana < 0:
                         self.player.mana = 0
                         self.setDisplay(self.player.mana, self.displayManaPlayer)
                     else:
                         self.setDisplay(self.player.mana, self.displayManaPlayer)
-            self.Alternar = False
-            self.alterarBorda(False)
+
         else:
             self.lbDica["text"] = '''ERRO - Sua vez foi alternada, Click no Icon do BOT
     para ele realizar o ATTACK'''
@@ -1168,7 +1194,8 @@ class TelaRelatorio:
                 for j in range(len(self.displays[lbx][lby])):
                     self.displays[lbx][lby][j].config(bg="Black")
                     self.displays[lbx][lby][j].place(x=j * 50 + x + 220, y=y)
-                self.setDisplay(self.dadosDaPartida[cont], self.displays[lbx][lby])
+                infoPartida = self.dadosDaPartida[cont]
+                self.setDisplay(infoPartida if infoPartida >= 0 else 0, self.displays[lbx][lby])
                 cont += 1
         self.btVolta.pack(side=BOTTOM, anchor=SE)
         self.btVolta["command"] = self.voltar

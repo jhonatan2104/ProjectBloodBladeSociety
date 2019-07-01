@@ -11,7 +11,7 @@ base = None
 if sys.platform == "win32":
     base = "Win32GUI"
 executables = [
-    Executable("fileWindows.py", base=base)
+    Executable("fileMain.py", base=base)
 ]
 
 # VARREDURA NOS DIRETÓRIOS { DIRPNG , DIRWAV }
@@ -26,7 +26,7 @@ for diretirio in ["DirPNG", "DirWAV"]:
 
 buildOptions = dict(
     packages=["tkinter"],
-    includes=["winsound", "operator", "fileClass", "functools", "tkinter.font"],
+    includes=["winsound", "operator", "fileClass", "functools", "tkinter.font","fileWindows"],
     include_files=allArqDir,
     excludes=[]
 )

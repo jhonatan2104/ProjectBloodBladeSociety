@@ -129,11 +129,11 @@ class System:
 
             return player
         elif nameChamp == 'Roronoa Zoro':
-            at1 = Attack(name="Shishi SonSon", mana=50, latencia=4, danoFisico=1500, danoMagico=0,
+            at1 = Attack(name="Shishi SonSon", mana=50, latencia=1, danoFisico=1500, danoMagico=0,
                          imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
-            at2 = Attack(name="Sanjuroku Pound Ho", mana=200, latencia=7, danoFisico=3500, danoMagico=500,
+            at2 = Attack(name="Sanjuroku Pound Ho", mana=200, latencia=3, danoFisico=3500, danoMagico=30,
                          imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
-            at3 = Attack(name="Yakkodori", mana=100, latencia=5, danoFisico=2500, danoMagico=500,
+            at3 = Attack(name="Yakkodori", mana=100, latencia=2, danoFisico=3000, danoMagico=10,
                          imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
 
             sword = Sword("Sandai Kitetsu", at1, at2, at3,
@@ -176,15 +176,17 @@ class System:
     @staticmethod
     def allItens():
         return [
-            Item("SANGUE DE DRAGÃO",100,4,alterMana=-20,alterDanoMagico=200),
-            Item("LÁGRIMA DE PRINCESA",600,1,alterLatenciaDeff=-5,alterDanoMagico=1000),
-            Item("ANEL DE ADÃO",200,2,alterLatenciaAttk=3,alterDanoMagico=200),
-            Item("ESCUDO VIVO", 300, 1, alterDefesaMagica=200,alterLife=500),
-            Item("ELMO DE ULISSES", 400, 1, alterDefesaFisica=1000),
-            Item("ADAGA DE LOKI", 400, 1, alterDanoMagico=200, alterLife=500, alterMana=400),
-            Item("COURAÇA DA JUSTIÇA", 400, 5, alterLife=800, alterLatenciaAttk=9, alterDanoMagico=-100),
-            Item("ADAGA DE HERMES", 100, 1, alterLatenciaDeff=-5),
-            Item("ESPADA (Akame ga Kill)", 600, 3, alterDanoFisico=200, alterDanoMagico=600, alterLatenciaAttk=4,alterMana=200),
+            Item("GARRAS DE DRAGÃO",150,5,alterDanoMagico=200,alterLatenciaAttk=9),
+            Item("LÁGRIMA DE PRINCESA",500,1,alterLatenciaDeff=-5,alterDanoMagico=2000, alterLife=1000,alterDefesaMagica=500),
+            Item("ANEL DE ADÃO",200,5,alterLatenciaAttk=9,alterLatenciaDeff=4, alterLife=150),
+            Item("ESCUDO VIVO", 200, 1,alterLife=2500, alterDefesaMagica=550,alterLatenciaAttk=-1),
+            Item("ELMO DE ULISSES", 250, 1, alterDefesaFisica=1000),
+            Item("ADAGA DE LOKI", 350, 1, alterLife=3000, alterMana=1000),
+            Item("COURAÇA DA JUSTIÇA", 400, 1, alterLife=5000,alterDefesaMagica=500, alterDefesaFisica=500),
+            Item("ADAGA DE HERMES", 50, 1, alterLatenciaDeff=-5),
+            Item("ADAGA DE APOLO", 100, 3, alterLatenciaAttk=9, alterDefesaFisica=-100, alterLatenciaDeff=4),
+            Item("ELMO DE ÁQUILA", 350, 3, alterDanoFisico=200,alterLatenciaAttk=6,alterMana=200,alterDefesaFisica=200),
+            Item("TRIDENTE DE JAIME", 350, 1, alterDanoMagico=1500, alterLatenciaDeff=-9, alterMana=-1000),
         ]
 
     @staticmethod
@@ -194,8 +196,11 @@ class System:
         return lista[0:6]
 
     @staticmethod
-    def calculeteRestareMoney():
-        return 50
+    def calculeteRestareMoney(type="f",dano=0):
+        base = 25
+        extraType = 5 if type == "f" else 25 if type == "an" else 55 if type == "ac" else 0
+        extraDano = 5 if dano < 1000 else 7 if dano < 2000 else 10 if dano < 3000 else 15 if dano < 4000 else 30 if dano < 5000 else 45
+        return base+extraType+extraDano
 
     @staticmethod
     def calculeteDamageShield(player, attack):
