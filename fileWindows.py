@@ -21,9 +21,9 @@ class TelaEscolhaBot:
         self.BOT = None
 
         self.imagemLabelBOT = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/ImagemLabelBOT.png")
+            file="DirPNG/ImagemLabelBOT.png")
         self.imagemLabelPlayer = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/ImagemLabelPlayer.png")
+            file="DirPNG/ImagemLabelPlayer.png")
 
         # IMAGENS DOS PLAYER
         self.IchigoKurosakiPNG = PhotoImage(file=System.choosePlayer(0).imageShow)
@@ -33,7 +33,7 @@ class TelaEscolhaBot:
         self.GohanPNG = PhotoImage(file=System.choosePlayer(4).imageShow)
 
         self.backPNG = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/backPNG.png")
+            file="DirPNG/backPNG.png")
         self.bt1 = Button(self.root, image=self.IchigoKurosakiPNG, width=self.btSizeX,
                           height=self.btSizeY)
         self.bt2 = Button(self.root, image=self.KillerBeePNG, width=self.btSizeX,
@@ -106,23 +106,18 @@ class TelaInicio:
         self.y = 200
 
         self.imagemPlayerXbot = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/playerXbotPNG.png")
+            file="DirPNG/playerXbotPNG.png")
 
-        self.imagemTutor = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/TUTORIAL.png")
         self.imagemLabel = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/ESCOLHA-O-MODO-DE-JOGO.png")
+            file="DirPNG/ESCOLHA-O-MODO-DE-JOGO.png")
 
         self.bt1 = Button(self.root, image=self.imagemPlayerXbot, border=0)
-        self.bt2 = Button(self.root, image=self.imagemTutor, border=0)
         self.lb = Label(self.root, image=self.imagemLabel)
 
     def abrirTelaEscolhaPlayerBOT(self):
         self.root.destroy()
         TelaEscolhaBot().construtor()
 
-    def abrirTelaTutor(self):
-        pass
 
     def construtor(self):
         self.root.geometry("800x500+300+100")
@@ -133,9 +128,7 @@ class TelaInicio:
         self.lb["bg"] = self.color
         self.lb.pack(side=TOP)
         self.bt1.place(x=self.x, y=self.y)
-        self.bt2.place(x=self.x+self.margeX, y=self.y+self.margeY)
         self.bt1["command"] = self.abrirTelaEscolhaPlayerBOT
-        self.bt2["command"] = self.abrirTelaTutor
         self.root.mainloop()
 
 
@@ -210,14 +203,10 @@ class TelaMain:
         self.swordBOT = Label(self.root, image=self.ImageIDSwordBOT, width=200, height=60, bg="Black")
         self.shieldBOT = Label(self.root, image=self.ImageIDShieldBOT, width=200, height=60, bg="Black")
 
-        self.imageLife1 = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/life.png")
-        self.imageLife2 = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/life.png")
-        self.imageMana1 = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/mana.png")
-        self.imageMana2 = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/mana.png")
+        self.imageLife1 = PhotoImage(file="DirPNG/life.png")
+        self.imageLife2 = PhotoImage(file="DirPNG/life.png")
+        self.imageMana1 = PhotoImage(file="DirPNG/mana.png")
+        self.imageMana2 = PhotoImage(file="DirPNG/mana.png")
 
         self.lbLifePlayer = Label(self.root, width=200, height=60, image=self.imageLife1, bg="Black")
         self.lbLifeBOT = Label(self.root, width=200, height=60, image=self.imageLife2, bg="Black")
@@ -225,20 +214,13 @@ class TelaMain:
         self.lbManaBOT = Label(self.root, width=200, height=60, image=self.imageMana2, bg="Black")
 
         # CANVAS STATUS
-        self.imageStatusFalhou = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/ataqueFalhou.png")
-        self.imageStatusEfetivo = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/ataqueEfetivo.png")
-        self.imageStatusCritico = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/critico.png")
-        self.imageStatusModoDef = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/modeDEFF.png")
-        self.imageStatusHome = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/bemVindo.png")
-        self.imageStatusManaAlerta = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/manaAlerta.png")
-        self.imageStatusErro = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/ERRO.png")
+        self.imageStatusFalhou = PhotoImage(file="DirPNG/ataqueFalhou.png")
+        self.imageStatusEfetivo = PhotoImage(file="DirPNG/ataqueEfetivo.png")
+        self.imageStatusCritico = PhotoImage(file="DirPNG/critico.png")
+        self.imageStatusModoDef = PhotoImage(file="DirPNG/modeDEFF.png")
+        self.imageStatusHome = PhotoImage(file="DirPNG/bemVindo.png")
+        self.imageStatusManaAlerta = PhotoImage(file="DirPNG/manaAlerta.png")
+        self.imageStatusErro = PhotoImage(file="DirPNG/ERRO.png")
 
         self.canvasStatus = Canvas(self.root, width=725, height=200, highlightbackground="Black")
 
@@ -293,15 +275,9 @@ class TelaMain:
         self.yMargeDisplayDL = 450
 
         # IMAGE DANO, LATÊNCIA
-        self.imgLatencia = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/latenciaATTK.png"
-        )
-        self.imgLatenciaDEF = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/latenciaDEF.png"
-        )
-        self.imgDanoReal = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/danoReal.png"
-        )
+        self.imgLatencia = PhotoImage(file="DirPNG/latenciaATTK.png")
+        self.imgLatenciaDEF = PhotoImage(file="DirPNG/latenciaDEF.png")
+        self.imgDanoReal = PhotoImage(file="DirPNG/danoReal.png")
 
         # LABEL DANO, LATÊNCIA
         self.lbLatencia = Label(self.root, width=200, height=60, bg="Black", highlightbackground="Black",
@@ -326,14 +302,10 @@ class TelaMain:
 
         # BOTÕES DE ATTACK
         self.canvasAttk = Canvas(self.root, width=725, height=170, highlightbackground="Black")
-        self.imageATTK1 = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/atk1.png")
-        self.imageATTK2 = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/atk2.png")
-        self.imageATTK3 = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/atk1.png")
-        self.imageDEF = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/deff.png")
+        self.imageATTK1 = PhotoImage(file="DirPNG/atk1.png")
+        self.imageATTK2 = PhotoImage(file="DirPNG/atk2.png")
+        self.imageATTK3 = PhotoImage(file="DirPNG/atk1.png")
+        self.imageDEF = PhotoImage(file="DirPNG/deff.png")
         self.btAttk1 = Button(self.canvasAttk, width=175, height=160, image=self.imageATTK1, bg='Black',
                               highlightbackground="Black")
         self.btAttk2 = Button(self.canvasAttk, width=175, height=160, image=self.imageATTK2, bg='Black',
@@ -511,17 +483,17 @@ do ATTACK escolhido
     def setDisplay(self, num, display):
         number = str(num)
         dicImagens = {
-            "#": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/0.png"),
-            "0": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/0.png"),
-            "1": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/1.png"),
-            "2": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/2.png"),
-            "3": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/3.png"),
-            "4": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/4.png"),
-            "5": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/5.png"),
-            "6": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/6.png"),
-            "7": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/7.png"),
-            "8": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/8.png"),
-            "9": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/9.png")
+            "#": PhotoImage(file="DirPNG/DirPNGnumber/0.png"),
+            "0": PhotoImage(file="DirPNG/DirPNGnumber/0.png"),
+            "1": PhotoImage(file="DirPNG/DirPNGnumber/1.png"),
+            "2": PhotoImage(file="DirPNG/DirPNGnumber/2.png"),
+            "3": PhotoImage(file="DirPNG/DirPNGnumber/3.png"),
+            "4": PhotoImage(file="DirPNG/DirPNGnumber/4.png"),
+            "5": PhotoImage(file="DirPNG/DirPNGnumber/5.png"),
+            "6": PhotoImage(file="DirPNG/DirPNGnumber/6.png"),
+            "7": PhotoImage(file="DirPNG/DirPNGnumber/7.png"),
+            "8": PhotoImage(file="DirPNG/DirPNGnumber/8.png"),
+            "9": PhotoImage(file="DirPNG/DirPNGnumber/9.png")
         }
         strNumber = number if len(number) == len(display) else "#" * (len(display) - len(number)) + str(number)
         for elem in range(len(display)):
@@ -992,15 +964,15 @@ class TelaOption:
         self.color = "Black"
 
         self.imagemRelatorio = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/relatorio.png")
+            file="DirPNG/relatorio.png")
 
         self.imagemContinue = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/OutroDesafio.png")
+            file="DirPNG/OutroDesafio.png")
 
         self.imagemVitoria = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/vitoria.png")
+            file="DirPNG/vitoria.png")
         self.imagemDerrota = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/derrota.png")
+            file="DirPNG/derrota.png")
 
         self.bt1 = Button(self.root, image=self.imagemRelatorio)
         self.bt2 = Button(self.root, image=self.imagemContinue)
@@ -1041,38 +1013,24 @@ class TelaRelatorio:
         self.dadosDaPartida = dadosDaPartida
 
         self.imageLBTitulo = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/relatorioTitulo.png")
+            file="DirPNG/relatorioTitulo.png")
         self.lbTitulo = Label(self.root, image=self.imageLBTitulo, highlightbackground="Black", bg="Black")
 
         # IMAGENS
-        self.imageLBDanoTotal = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/LBTelaRelatorio/danoTotal.png")
-        self.imageLBDanoMagico = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/LBTelaRelatorio/dmagico.png")
-        self.imageLBDanoFisico = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/LBTelaRelatorio/dfisico.png")
-        self.imageLBAttacksFalhos = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/LBTelaRelatorio/atkfalhos.png")
-        self.imageLBAttacksCriticos = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/LBTelaRelatorio/atkcritico.png")
-        self.imageLBAttacksNormais = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/LBTelaRelatorio/atknormal.png")
-        self.imageLBTotalAttacks = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/LBTelaRelatorio/ttAtk.png")
-        self.imageLBFalhaDaArmadura = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/LBTelaRelatorio/falhaArmadura.png")
-        self.imageLBDanoMagicoSofrido = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/LBTelaRelatorio/dmSofrido.png")
-        self.imageLBDanoFisicoSofrido = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/LBTelaRelatorio/dfSofrido.png")
-        self.imageLBDanoMagicoDefendido = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/LBTelaRelatorio/dmDef.png")
-        self.imageLBDanoFisicoDefendido = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/LBTelaRelatorio/dfDef.png")
-        self.imageLBManaRestaurada = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/LBTelaRelatorio/manaRest.png")
-        self.imageLBManaGasta = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/LBTelaRelatorio/manaUsa.png")
+        self.imageLBDanoTotal = PhotoImage(file="DirPNG/LBTelaRelatorio/danoTotal.png")
+        self.imageLBDanoMagico = PhotoImage(file="DirPNG/LBTelaRelatorio/dmagico.png")
+        self.imageLBDanoFisico = PhotoImage(file="DirPNG/LBTelaRelatorio/dfisico.png")
+        self.imageLBAttacksFalhos = PhotoImage(file="DirPNG/LBTelaRelatorio/atkfalhos.png")
+        self.imageLBAttacksCriticos = PhotoImage(file="DirPNG/LBTelaRelatorio/atkcritico.png")
+        self.imageLBAttacksNormais = PhotoImage(file="DirPNG/LBTelaRelatorio/atknormal.png")
+        self.imageLBTotalAttacks = PhotoImage(file="DirPNG/LBTelaRelatorio/ttAtk.png")
+        self.imageLBFalhaDaArmadura = PhotoImage(file="DirPNG/LBTelaRelatorio/falhaArmadura.png")
+        self.imageLBDanoMagicoSofrido = PhotoImage(file="DirPNG/LBTelaRelatorio/dmSofrido.png")
+        self.imageLBDanoFisicoSofrido = PhotoImage(file="DirPNG/LBTelaRelatorio/dfSofrido.png")
+        self.imageLBDanoMagicoDefendido = PhotoImage(file="DirPNG/LBTelaRelatorio/dmDef.png")
+        self.imageLBDanoFisicoDefendido = PhotoImage(file="DirPNG/LBTelaRelatorio/dfDef.png")
+        self.imageLBManaRestaurada = PhotoImage(file="DirPNG/LBTelaRelatorio/manaRest.png")
+        self.imageLBManaGasta = PhotoImage(file="DirPNG/LBTelaRelatorio/manaUsa.png")
 
         # LABEL
         self.LBDanoTotal = Label(self.root, image=self.imageLBDanoTotal, width=200, height=60)
@@ -1208,7 +1166,7 @@ class TelaRelatorio:
                          [self.displayDanoMagicoDefendido, self.displayDanoFisicoDefendido,
                           self.displayManaRestaurada, self.displayManaGasta]]
         self.backPNG = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/backPNG.png")
+            file="DirPNG/backPNG.png")
         self.btVolta = Button(self.root, image=self.backPNG, bg="Black")
 
     def voltar(self):
@@ -1218,17 +1176,17 @@ class TelaRelatorio:
     def setDisplay(self, num, display):
         number = str(num)
         dicImagens = {
-            "#": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/0.png"),
-            "0": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/0.png"),
-            "1": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/1.png"),
-            "2": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/2.png"),
-            "3": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/3.png"),
-            "4": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/4.png"),
-            "5": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/5.png"),
-            "6": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/6.png"),
-            "7": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/7.png"),
-            "8": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/8.png"),
-            "9": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/9.png")
+             "#": PhotoImage(file="DirPNG/DirPNGnumber/0.png"),
+            "0": PhotoImage(file="DirPNG/DirPNGnumber/0.png"),
+            "1": PhotoImage(file="DirPNG/DirPNGnumber/1.png"),
+            "2": PhotoImage(file="DirPNG/DirPNGnumber/2.png"),
+            "3": PhotoImage(file="DirPNG/DirPNGnumber/3.png"),
+            "4": PhotoImage(file="DirPNG/DirPNGnumber/4.png"),
+            "5": PhotoImage(file="DirPNG/DirPNGnumber/5.png"),
+            "6": PhotoImage(file="DirPNG/DirPNGnumber/6.png"),
+            "7": PhotoImage(file="DirPNG/DirPNGnumber/7.png"),
+            "8": PhotoImage(file="DirPNG/DirPNGnumber/8.png"),
+            "9": PhotoImage(file="DirPNG/DirPNGnumber/9.png")
         }
         strNumber = number if len(number) == len(display) else "#" * (len(display) - len(number)) + str(number)
         for elem in range(len(display)):
@@ -1278,7 +1236,7 @@ class TelaItens:
         self.fontFixedsys25 = font.Font(family='Fixedsys', size=17, weight='bold')
 
         self.imageLb = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/escolhaItens.png"
+            file="DirPNG/escolhaItens.png"
         )
         self.lbTitulo = Label(self.root, image=self.imageLb, highlightbackground="Black", bg="black")
 
@@ -1307,13 +1265,13 @@ class TelaItens:
         self.displayMoney = [self.c1, self.c2, self.c3, self.c4, self.c5]
 
         self.image = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/continue.png"
+            file="DirPNG/continue.png"
         )
 
         self.btContinuar = Button(self.root, image=self.image, width=300, height=150, bg="black")
 
         self.backPNG = PhotoImage(
-            file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/backPNG.png")
+            file="DirPNG/backPNG.png")
         self.btVolta = Button(self.root, image=self.backPNG, bg="Black")
 
     def voltar(self):
@@ -1347,17 +1305,18 @@ class TelaItens:
     def setDisplay(self, num, display):
         number = str(num)
         dicImagens = {
-            "#": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/#.png"),
-            "0": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/0.png"),
-            "1": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/1.png"),
-            "2": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/2.png"),
-            "3": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/3.png"),
-            "4": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/4.png"),
-            "5": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/5.png"),
-            "6": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/6.png"),
-            "7": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/7.png"),
-            "8": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/8.png"),
-            "9": PhotoImage(file="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/DirPNGnumber/9.png")
+             "#": PhotoImage(file="DirPNG/DirPNGnumber/#.png"),
+            "0": PhotoImage(file="DirPNG/DirPNGnumber/0.png"),
+            "1": PhotoImage(file="DirPNG/DirPNGnumber/1.png"),
+            "2": PhotoImage(file="DirPNG/DirPNGnumber/2.png"),
+            "3": PhotoImage(file="DirPNG/DirPNGnumber/3.png"),
+            "4": PhotoImage(file="DirPNG/DirPNGnumber/4.png"),
+            "5": PhotoImage(file="DirPNG/DirPNGnumber/5.png"),
+            "6": PhotoImage(file="DirPNG/DirPNGnumber/6.png"),
+            "7": PhotoImage(file="DirPNG/DirPNGnumber/7.png"),
+            "8": PhotoImage(file="DirPNG/DirPNGnumber/8.png"),
+            "9": PhotoImage(file="DirPNG/DirPNGnumber/9.png")
+
         }
         strNumber = number if len(number) == len(display) else "#" * (len(display) - len(number)) + str(number)
         for elem in range(len(display)):
