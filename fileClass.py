@@ -76,36 +76,36 @@ class System:
             at3 = Attack(name="Getsuga Jūjishō", mana=350, latencia=2, danoFisico=250, danoMagico=1500)
 
             sword = Sword("Zanpakutō", at1, at2, at3,
-                          imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Sword/zampakuto.png")
+                          imageID="DirPNG/Sword/zampakuto.png")
 
             shield = Shield(name="Armor Berserker", latencia=2, defesaFisica=400, defesaMagica=1500,
-                            imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Shield/berserker.png")
+                            imageID="DirPNG/Shield/berserker.png")
 
-            player = Player(name="Ichigo Kurosaki", hp=10000, mana=600, sword=sword, shield=shield,
-                            imageShow="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Personagens/ichico.png",
-                            imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Personagens/nIchigo.png")
+            player = Player(name="Ichigo Kurosaki", hp=10000, mana=600, sword=sword, shield=shield, personality=[5,4,1],
+                            imageShow="DirPNG/Personagens/ichico.png",
+                            imageID="DirPNG/Personagens/nIchigo.png")
 
-            player.setWAVShow("C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirWAV/ICHIGOPERSONAGEM.wav")
+            player.setWAVShow("DirWAV/ICHIGOPERSONAGEM.wav")
             player.setWAVSlang("DirWAV/go.wav")
 
             return player
         elif nameChamp == 'Killer Bee':
             at1 = Attack(name="Crumbling the skin", mana=800, latencia=6, danoFisico=3000, danoMagico=600)
             at2 = Attack(name="Life Theft", mana=250, latencia=3, danoFisico=400, danoMagico=1500)
-            at3 = Attack(name="Samehada and the seven lightning swords", mana=500, latencia=3, danoFisico=1000,
+            at3 = Attack(name="Samehada and the 7 swords", mana=500, latencia=3, danoFisico=1000,
                          danoMagico=1500)
 
             sword = Sword("Samehada", at1, at2, at3,
-                          imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Sword/samehada.png")
+                          imageID="DirPNG/Sword/samehada.png")
 
             shield = Shield(name="Armor of Gemini", latencia=4, defesaFisica=500, defesaMagica=1200,
-                            imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Shield/gemeos.png")
+                            imageID="DirPNG/Shield/gemeos.png")
 
-            player = Player(name="Killer Bee", hp=12500, mana=1000, sword=sword, shield=shield,
-                            imageShow="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Personagens/bee.png",
-                            imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Personagens/nBee.png")
+            player = Player(name="Killer Bee", hp=12500, mana=1000, sword=sword, shield=shield, personality=[6,3,4],
+                            imageShow="DirPNG/Personagens/bee.png",
+                            imageID="DirPNG/Personagens/nBee.png")
 
-            player.setWAVShow("C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirWAV/KILLERBEEPERSONAGEM.wav")
+            player.setWAVShow("DirWAV/KILLERBEEPERSONAGEM.wav")
             player.setWAVSlang("DirWAV/go.wav")
 
             return player
@@ -115,60 +115,54 @@ class System:
             at3 = Attack(name="Hellblaze", mana=400, latencia=4, danoFisico=1500, danoMagico=300)
 
             sword = Sword("Excalibur", at1, at2, at3,
-                          imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Sword/excalibur.png")
+                          imageID="DirPNG/Sword/excalibur.png")
 
             shield = Shield(name="Armor Knight", latencia=3, defesaFisica=1600, defesaMagica=300,
-                            imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Shield/knight.png")
+                            imageID="DirPNG/Shield/knight.png")
 
-            player = Player(name="Xena", hp=9900, mana=1500, sword=sword, shield=shield,
-                            imageShow="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Personagens/xena.png",
-                            imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Personagens/nXena.png")
+            player = Player(name="Xena", hp=9900, mana=1500, sword=sword, shield=shield, personality=[6,3,3],
+                            imageShow="DirPNG/Personagens/xena.png",
+                            imageID="DirPNG/Personagens/nXena.png")
 
-            player.setWAVShow("C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirWAV/XENAPERSONAGEM.wav")
+            player.setWAVShow("DirWAV/XENAPERSONAGEM.wav")
             player.setWAVSlang("DirWAV/go.wav")
 
             return player
         elif nameChamp == 'Roronoa Zoro':
-            at1 = Attack(name="Shishi SonSon", mana=50, latencia=1, danoFisico=1500, danoMagico=0,
-                         imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
-            at2 = Attack(name="Sanjuroku Pound Ho", mana=200, latencia=3, danoFisico=3500, danoMagico=30,
-                         imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
-            at3 = Attack(name="Yakkodori", mana=100, latencia=2, danoFisico=3000, danoMagico=10,
-                         imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+            at1 = Attack(name="Shishi SonSon", mana=50, latencia=1, danoFisico=1500, danoMagico=0)
+            at2 = Attack(name="Sanjuroku Pound Ho", mana=200, latencia=3, danoFisico=3500, danoMagico=30)
+            at3 = Attack(name="Yakkodori", mana=100, latencia=2, danoFisico=3000, danoMagico=10)
 
             sword = Sword("Sandai Kitetsu", at1, at2, at3,
-                          imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Sword/sandaiKitetsu.png")
+                          imageID="DirPNG/Sword/sandaiKitetsu.png")
 
             shield = Shield(name="Black Armor", latencia=1, defesaFisica=2000, defesaMagica=0,
-                            imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Shield/negra.png")
+                            imageID="DirPNG/Shield/negra.png")
 
-            player = Player(name="Roronoa Zoro", hp=11000, mana=1000, sword=sword, shield=shield,
-                            imageShow="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Personagens/zoro.png",
-                            imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Personagens/nZoro.png")
+            player = Player(name="Roronoa Zoro", hp=11000, mana=1000, sword=sword, shield=shield, personality=[5,2,1],
+                            imageShow="DirPNG/Personagens/zoro.png",
+                            imageID="DirPNG/Personagens/nZoro.png")
 
-            player.setWAVShow("C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirWAV/ZOROPERSONAGEM.wav")
+            player.setWAVShow("DirWAV/ZOROPERSONAGEM.wav")
             player.setWAVSlang("DirWAV/go.wav")
 
             return player
         elif nameChamp == 'Gohan':
-            at1 = Attack(name="Fulminant Strike", mana=900, latencia=4, danoFisico=900, danoMagico=3000,
-                         imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
-            at2 = Attack(name="Blade Combo", mana=700, latencia=1, danoFisico=920, danoMagico=1100,
-                         imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
-            at3 = Attack(name="Rage of the Blade", mana=500, latencia=1, danoFisico=500, danoMagico=900,
-                         imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png")
+            at1 = Attack(name="Fulminant Strike", mana=900, latencia=4, danoFisico=900, danoMagico=3000)
+            at2 = Attack(name="Blade Combo", mana=700, latencia=1, danoFisico=920, danoMagico=1100)
+            at3 = Attack(name="Rage of the Blade", mana=500, latencia=1, danoFisico=500, danoMagico=900)
 
             sword = Sword("Espada Z", at1, at2, at3,
-                          imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Sword/espadaZ.png")
+                          imageID="DirPNG/Sword/espadaZ.png")
 
             shield = Shield(name="Metal Tech", latencia=4, defesaFisica=700, defesaMagica=600,
-                            imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Shield/metalTech.png")
+                            imageID="DirPNG/Shield/metalTech.png")
 
-            player = Player(name="Gohan", hp=14000, mana=1800, sword=sword, shield=shield,
-                            imageShow="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Personagens/gohan.png",
-                            imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/Personagens/nGohan.png")
+            player = Player(name="Gohan", hp=14000, mana=1800, sword=sword, shield=shield, personality=[5,4,2],
+                            imageShow="DirPNG/Personagens/gohan.png",
+                            imageID="DirPNG/Personagens/nGohan.png")
 
-            player.setWAVShow("C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirWAV/GOHANPERSONAGEM.wav")
+            player.setWAVShow("DirWAV/GOHANPERSONAGEM.wav")
             player.setWAVSlang("DirWAV/go.wav")
 
             return player
@@ -254,9 +248,9 @@ class System:
 
 
 class Player:
-    def __init__(self, name, hp, mana, sword, shield,
-                 imageShow = "C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png",
-                 imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png"):
+    def __init__(self, name, hp, mana, sword, shield, personality=[4,1,3],
+                 imageShow = "DirPNG/matrix-wallpaper.png",
+                 imageID="DirPNG/matrix-wallpaper.png"):
         self.name = name
         self.hp = hp
         self.sword = sword
@@ -266,6 +260,10 @@ class Player:
         self.imageID = imageID
         self.arqWAV = ["", ""]
         self.inventory = []
+        self.personality = {"importanciaDANO": personality[0],
+                            "importanciaMANA": personality[1],
+                            "importanciaLATENCIA": personality[2]
+                            }
 
     def __str__(self, ):
         return ("Nome: " + str(self.name) + "\nHP: " + str(self.hp) + "\nSword: " + str(
@@ -393,11 +391,11 @@ class Player:
 
 
 class InteligencePlayer:
-    def __init__(self, player, baseDeMana):
+    def __init__(self, player, baseDeMana, importanciaDANO=4,importanciaMANA=1, importanciaLATENCIA=3):
         self.player = player
-        self.importanciaDANO = 4
-        self.importanciaMANA = 1
-        self.importanciaLATENCIA = 3
+        self.importanciaDANO = importanciaDANO
+        self.importanciaMANA = importanciaMANA
+        self.importanciaLATENCIA = importanciaLATENCIA
         self.rank = list()
         self.baseDeMana = baseDeMana
 
@@ -541,7 +539,7 @@ class Attack:
 
 class Shield:
     def __init__(self, name, latencia, defesaMagica, defesaFisica,
-                 imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png"):
+                 imageID="DirPNG/matrix-wallpaper.png"):
         self.name = name
         self.imageID = imageID
         self.latencia = latencia

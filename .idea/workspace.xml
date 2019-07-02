@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fefe4446-7a52-4355-8c4a-2041c4896d9f" name="Default Changelist" comment="Teste Hacker">
-      <change afterPath="$PROJECT_DIR$/TutorialTEXT.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TutorialTEXT.txt" beforeDir="false" afterPath="$PROJECT_DIR$/TutorialTEXT.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fileClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/fileClass.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fileWindows.py" beforeDir="false" afterPath="$PROJECT_DIR$/fileWindows.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -29,15 +29,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/fileClass.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="415">
-              <caret line="375" column="22" lean-forward="true" selection-start-line="369" selection-start-column="8" selection-end-line="375" selection-end-column="22" />
+            <state relative-caret-position="323">
+              <caret line="539" column="13" selection-start-line="539" selection-start-column="13" selection-end-line="539" selection-end-column="13" />
               <folding>
-                <element signature="e#17416#19896#0" />
+                <element signature="e#94#347#0" />
+                <element signature="e#368#12342#0" />
+                <element signature="e#10610#16074#0" />
+                <element signature="e#12561#15194#0" />
+                <element signature="e#16106#18692#0" />
                 <element signature="e#19916#21882#0" />
                 <element signature="e#21903#22843#0" />
+                <element signature="e#21659#22380#0" />
                 <element signature="e#23602#25816#0" />
               </folding>
             </state>
@@ -47,27 +52,27 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fileWindows.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="1307" column="56" selection-start-line="1307" selection-start-column="56" selection-end-line="1307" selection-end-column="56" />
+            <state relative-caret-position="76">
+              <caret line="149" column="70" selection-start-line="149" selection-start-column="70" selection-end-line="149" selection-end-column="70" />
               <folding>
                 <element signature="e#129#3475#0" />
                 <element signature="e#3500#5007#0" />
-                <element signature="e#5030#44253#0" />
                 <element signature="e#43090#44980#0" />
                 <element signature="e#45008#60439#0" />
                 <element signature="e#57017#57169#0" />
                 <element signature="e#57171#57366#0" />
                 <element signature="e#57393#57535#0" />
+                <element signature="e#60463#67334#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TutorialTEXT.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1258">
-              <caret line="74" lean-forward="true" selection-start-line="74" selection-end-line="74" />
+            <state relative-caret-position="556">
+              <caret line="73" selection-start-line="73" selection-end-line="73" />
             </state>
           </provider>
         </entry>
@@ -122,10 +127,11 @@
         <option value="$USER_HOME$/Downloads/setup (1).py" />
         <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/setup.py" />
-        <option value="$PROJECT_DIR$/fileClass.py" />
         <option value="$PROJECT_DIR$/fileMain.py" />
         <option value="$PROJECT_DIR$/TutorialTEXT" />
+        <option value="$PROJECT_DIR$/TutorialTEXT.txt" />
         <option value="$PROJECT_DIR$/fileWindows.py" />
+        <option value="$PROJECT_DIR$/fileClass.py" />
       </list>
     </option>
   </component>
@@ -162,7 +168,7 @@
               <item name="ProjectBloodBladeSociety" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
               <item name="fileClass.py" type="8704e2dd:PyFileNode" />
-              <item name="Player" type="dd8bbb05:PyElementNode" />
+              <item name="Shield" type="dd8bbb05:PyElementNode" />
             </path>
             <path>
               <item name="ProjectBloodBladeSociety" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
@@ -179,13 +185,7 @@
               <item name="ProjectBloodBladeSociety" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
               <item name="fileWindows.py" type="8704e2dd:PyFileNode" />
-              <item name="TelaInicio" type="dd8bbb05:PyElementNode" />
-            </path>
-            <path>
-              <item name="ProjectBloodBladeSociety" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="fileWindows.py" type="8704e2dd:PyFileNode" />
-              <item name="TelaRelatorio" type="dd8bbb05:PyElementNode" />
+              <item name="TelaMain" type="dd8bbb05:PyElementNode" />
             </path>
           </expand>
           <select />
@@ -632,40 +632,45 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/TutorialTEXT.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="556">
+          <caret line="73" selection-start-line="73" selection-end-line="73" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/fileWindows.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="1307" column="56" selection-start-line="1307" selection-start-column="56" selection-end-line="1307" selection-end-column="56" />
+        <state relative-caret-position="76">
+          <caret line="149" column="70" selection-start-line="149" selection-start-column="70" selection-end-line="149" selection-end-column="70" />
           <folding>
             <element signature="e#129#3475#0" />
             <element signature="e#3500#5007#0" />
-            <element signature="e#5030#44253#0" />
             <element signature="e#43090#44980#0" />
             <element signature="e#45008#60439#0" />
             <element signature="e#57017#57169#0" />
             <element signature="e#57171#57366#0" />
             <element signature="e#57393#57535#0" />
+            <element signature="e#60463#67334#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/fileClass.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="415">
-          <caret line="375" column="22" lean-forward="true" selection-start-line="369" selection-start-column="8" selection-end-line="375" selection-end-column="22" />
+        <state relative-caret-position="323">
+          <caret line="539" column="13" selection-start-line="539" selection-start-column="13" selection-end-line="539" selection-end-column="13" />
           <folding>
-            <element signature="e#17416#19896#0" />
+            <element signature="e#94#347#0" />
+            <element signature="e#368#12342#0" />
+            <element signature="e#10610#16074#0" />
+            <element signature="e#12561#15194#0" />
+            <element signature="e#16106#18692#0" />
             <element signature="e#19916#21882#0" />
             <element signature="e#21903#22843#0" />
+            <element signature="e#21659#22380#0" />
             <element signature="e#23602#25816#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TutorialTEXT.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1258">
-          <caret line="74" lean-forward="true" selection-start-line="74" selection-end-line="74" />
         </state>
       </provider>
     </entry>

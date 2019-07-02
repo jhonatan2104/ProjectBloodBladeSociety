@@ -144,7 +144,10 @@ class TelaMain:
         self.bot = bot
 
         # CRIAR A UMA INSTÂNCIA DA INTALIGÊNCIA BOT
-        self.intelBOT = InteligencePlayer(self.bot, 200)
+        self.intelBOT = InteligencePlayer(self.bot, 200,
+                                          importanciaDANO=self.bot.personality["importanciaDANO"],
+                                          importanciaMANA=self.bot.personality["importanciaMANA"],
+                                          importanciaLATENCIA=self.bot.personality["importanciaLATENCIA"])
         self.intelBOT.gerarRanckAttack(self.player)
 
         # DADOS PLAYER
