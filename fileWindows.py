@@ -133,14 +133,13 @@ class TelaInicio:
 
 
 class TelaMain:
-    def __init__(self, player, bot, money=600, alternar=True, dicDados=None):
+    def __init__(self, player, bot, alternar=True, dicDados=None):
         self.root = Tk()
 
         # Alternar Ataques
         self.Alternar = alternar
         # PLAYER
         self.player = player
-        self.money = money
         self.bot = bot
 
         # CRIAR A UMA INSTÂNCIA DA INTALIGÊNCIA BOT
@@ -323,9 +322,9 @@ class TelaMain:
             "Inventário" : "<c>",
             "compraInventário" : "<v>",
             "attkBOT" : "<Return>",
-            "attk1-dica" : "<a>",
-            "attk2-dica": "<s>",
-            "attk3-dica": "<d>",
+            "attk1-dica" : "<Q>",
+            "attk2-dica": "<W>",
+            "attk3-dica": "<E>",
             "DadosArmadura": "<k>",
             "DadosEspada": "<j>"
         }
@@ -641,7 +640,7 @@ do ATTACK escolhido
 
     def abrirTelaItens(self, event):
         self.root.destroy()
-        TelaItens(self.player, self.bot, self.money, self.Alternar, self.gerarDic()).construtor()
+        TelaItens(self.player, self.bot, self.Alternar, self.gerarDic()).construtor()
 
     def knock(self, attack):
         if self.Alternar:
@@ -682,7 +681,7 @@ do ATTACK escolhido
                         manaRestore = self.player.restoreMana(danoReal)
 
                         # RESTAURA MONEY
-                        self.money += System.calculeteRestareMoney(type="an", dano=danoReal)
+                        self.player.money += System.calculeteRestareMoney(type="an", dano=danoReal)
 
                         # DADOS ARMAZENÁVEIS
                         self.damageTotal += danoReal
@@ -727,7 +726,7 @@ do ATTACK escolhido
                         manaRestore = self.player.restoreMana(danoReal)
 
                         # RESTAURA MONEY
-                        self.money += System.calculeteRestareMoney(type="ac", dano=danoReal)
+                        self.player.money += System.calculeteRestareMoney(type="ac", dano=danoReal)
 
                         # DADOS ARMAZENÁVEIS
                         self.damageTotal += danoReal
@@ -769,7 +768,7 @@ do ATTACK escolhido
                 self.CONTAttackFalhos += 1
 
                 # RESTAURA MONEY
-                self.money += System.calculeteRestareMoney(type="ac", dano=0)
+                self.player.money += System.calculeteRestareMoney(type="ac", dano=0)
 
                 StatusGame = self.verificarGame()
                 if any(StatusGame):
@@ -1221,12 +1220,11 @@ class TelaRelatorio:
 
 
 class TelaItens:
-    def __init__(self, player, bot, money=600, alternar=True, dicInfo=None):
+    def __init__(self, player, bot, alternar=True, dicInfo=None):
         self.root = Tk()
         self.listItens = System.filterItens()
         self.player = player
         self.bot = bot
-        self.money = money
         self.alternar = alternar
         self.dicInfo = dicInfo
 
@@ -1285,11 +1283,10 @@ class TelaItens:
         self.lb["text"] = "VOCÊ NÃO POSSUE MOEDAS\nPARA COMPRAR ESSE ITEM"
 
     def addItem(self, item, bt):
-        if self.money >= item.valor:
+        if self.player.money >= item.valor:
             self.player.addItem(item)
             self.lb["text"] = f"ITEM {item.name}\nCOMPRADO COM SUCESSO!"
-            self.money -= item.valor
-            self.setDisplay(str(self.money), self.displayMoney)
+            self.setDisplay(str(self.player.money), self.displayMoney)
             bt["bg"] = "Blue"
             bt["command"] = lambda: None
         else:
@@ -1303,7 +1300,7 @@ class TelaItens:
 
     def abrirTelaMain(self):
         self.root.destroy()
-        TelaMain(self.player, self.bot, money=self.money, alternar=self.alternar, dicDados=self.dicInfo).construtor()
+        TelaMain(self.player, self.bot, alternar=self.alternar, dicDados=self.dicInfo).construtor()
 
     def setDisplay(self, num, display):
         number = str(num)
@@ -1358,5 +1355,5 @@ class TelaItens:
         self.btVolta.pack(side=BOTTOM, anchor=SW)
         self.btVolta["command"] = self.voltar
 
-        self.setDisplay(str(self.money), self.displayMoney)
+        self.setDisplay(str(self.player.money), self.displayMoney)
         self.root.mainloop()

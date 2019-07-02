@@ -260,6 +260,7 @@ class Player:
         self.imageID = imageID
         self.arqWAV = ["", ""]
         self.inventory = []
+        self.money = 600
         self.personality = {"importanciaDANO": personality[0],
                             "importanciaMANA": personality[1],
                             "importanciaLATENCIA": personality[2]
@@ -388,6 +389,7 @@ class Player:
             print(str(attackIndice) + " - " + str(attacksUser[attackIndice]) + "\n")
     def addItem(self, item):
         self.inventory.append(item)
+        self.money -= item.valor
 
 
 class InteligencePlayer:
