@@ -358,7 +358,6 @@ class TelaMain:
             self.lbPlAYER["border"] = 1
 
     def ActionBOT(self):
-        print([[item[0].name, item[1]] for item in self.intelBOT.resolverListCompraItens()])
         if not self.Alternar:
             attacksBOT = self.bot.sword.getAttack()
             value = self.intelBOT.resolverAttack(self.player)
@@ -385,16 +384,20 @@ class TelaMain:
                 randomLatenciaDefesa = randint(0, 9)
                 self.setDisplay(randomLatenciaDefesa, self.displayLatenciaDef)
 
-                newLatATTK, newLatDEF = randomLatenciaAtaque, randomLatenciaDefesa
+                newLatATTK, newLatDEF, textLbDica = randomLatenciaAtaque, randomLatenciaDefesa, "\n"
                 for item in self.bot.inventory:
                     if item.ended():
                         info = item.aplicarItem(self.bot, attackBOT, newLatATTK, newLatDEF)
                         newLatATTK, newLatDEF = info[0], info[1]
-                        self.lbDica["text"] += f"\n+ {item.name}"
-                        print(self.bot.name, item.getDados())
+                        textLbDica += f"\n+ {item.name}"
+                self.escreverNoCanvasDica(None, attackBOT.getDados() + textLbDica, 'red')
 
                 if attackBOT.latencia <= newLatATTK:
                     # ATAQUE EFETIVO
+
+                    ## COMPRA DE ITEM
+                    self.intelBOT.buyItems()
+
                     if self.player.shield.latencia <= newLatDEF:
                         # DEFESA EFETIVA
                         self.setCanvasStatus(1)
@@ -405,6 +408,9 @@ class TelaMain:
                         self.player.sufferDamage(danoReal)
                         self.bot.userMana(attackBOT.mana)
                         self.bot.restoreMana(danoReal)
+
+                        # RESTAURA MONEY
+                        self.bot.money += System.calculeteRestareMoney(type="an", dano=danoReal)
 
                         # DADOS ARMAZENÁVEIS
                         self.damageFisicoSofrido += danos[0]
@@ -439,6 +445,9 @@ class TelaMain:
                         self.bot.userMana(attackBOT.mana)
                         self.bot.restoreMana(danoReal)
 
+                        # RESTAURA MONEY
+                        self.bot.money += System.calculeteRestareMoney(type="ac", dano=danoReal)
+
                         # DADOS ARMAZENÁVEIS
                         self.damageFisicoSofrido += danos[0]
                         self.damageMagicoSofrido += danos[1]
@@ -464,6 +473,9 @@ class TelaMain:
                 else:
                     # ATAQUE NAO EFETIVO
                     self.setCanvasStatus(0)
+
+                    # RESTAURA MONEY
+                    self.player.money += System.calculeteRestareMoney(type="f", dano=0)
 
                     StatusGame = self.verificarGame()
                     if any(StatusGame):
@@ -772,7 +784,7 @@ class TelaMain:
                 self.CONTAttackFalhos += 1
 
                 # RESTAURA MONEY
-                self.player.money += System.calculeteRestareMoney(type="ac", dano=0)
+                self.player.money += System.calculeteRestareMoney(type="f", dano=0)
 
                 StatusGame = self.verificarGame()
                 if any(StatusGame):

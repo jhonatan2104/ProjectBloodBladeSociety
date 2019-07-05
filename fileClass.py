@@ -474,6 +474,12 @@ class InteligencePlayer:
 
         return listaPontosGeralItens
 
+    def buyItems(self):
+        print("1")
+        for listItem in self.resolverListCompraItens():
+            if listItem[0].valor <= self.player.money:
+                self.player.addItem(listItem[0])
+                break
 
     def gerarRanckAttack(self, playerAdv):
         ListAttack = self.player.sword.getAttack()
