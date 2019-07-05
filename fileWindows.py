@@ -1,7 +1,8 @@
-from tkinter import font
-from tkinter import *
-from fileClass import *
 from functools import partial
+from tkinter import *
+from tkinter import font
+
+from fileClass import *
 
 
 class TelaEscolhaBot:
@@ -143,10 +144,12 @@ class TelaMain:
         self.bot = bot
 
         # CRIAR A UMA INSTÂNCIA DA INTALIGÊNCIA BOT
-        self.intelBOT = InteligencePlayer(self.bot, 200,
+        self.intelBOT = InteligencePlayer(self.bot, 500,
                                           importanciaDANO=self.bot.personality["importanciaDANO"],
                                           importanciaMANA=self.bot.personality["importanciaMANA"],
-                                          importanciaLATENCIA=self.bot.personality["importanciaLATENCIA"])
+                                          importanciaLATENCIA=self.bot.personality["importanciaLATENCIA"],
+                                          activeStrategyLatAttk=True,
+                                          activeStrategyMana=True)
         self.intelBOT.gerarRanckAttack(self.player)
 
         # DADOS PLAYER
@@ -331,20 +334,20 @@ class TelaMain:
 
         # TEXTOS DE DICAS
         self.stringMODODEF = '''Você pode manter modo defensivo
-e recuperar mana para relaizar um ATTACK 
-ainda mais forte'''
+ e recuperar mana para relaizar um ATTACK 
+ ainda mais forte'''
         self.stringRandLantDEF = '''Esse é o random de DEFESA.
-Ele presenta o dado lançado para definir a 
-falha ou a efetividade do bloqueio da 
-armadura
+ Ele presenta o dado lançado para definir a 
+ falha ou a efetividade do bloqueio da 
+ armadura
         '''
         self.stringRandLantATK = '''Esse é o random de ATTACK.
-Ele presenta o dado lançado para 
-definir a falha ou a efetividade 
-do ATTACK escolhido
+ Ele presenta o dado lançado para 
+ definir a falha ou a efetividade 
+ do ATTACK escolhido
                 '''
         self.stringDanoReal = '''Valor de DANO VERDADEIRO
-(Dano Mágico - Amadura Mágica) + (Dano Físico - Armadura Físico)'''
+ (Dano Mágico - Amadura Mágica) + (Dano Físico - Armadura Físico)'''
 
     def alterarBorda(self, vez):
         if vez:
@@ -355,6 +358,7 @@ do ATTACK escolhido
             self.lbPlAYER["border"] = 1
 
     def ActionBOT(self):
+        print([[item[0].name, item[1]] for item in self.intelBOT.resolverListCompraItens()])
         if not self.Alternar:
             attacksBOT = self.bot.sword.getAttack()
             value = self.intelBOT.resolverAttack(self.player)

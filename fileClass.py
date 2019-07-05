@@ -1,6 +1,7 @@
 from random import randint, shuffle
 from operator import itemgetter
 import winsound
+import sys
 
 Config = {
     "RED": '\033[31m',
@@ -393,16 +394,88 @@ class Player:
 
 
 class InteligencePlayer:
-    def __init__(self, player, baseDeMana, importanciaDANO=4,importanciaMANA=1, importanciaLATENCIA=3):
+    def __init__(self, player, baseDeMana, importanciaDANO=4,importanciaMANA=1, importanciaLATENCIA=3,
+                 activeStrategyMana = False, activeStrategyLatAttk= False):
         self.player = player
         self.importanciaDANO = importanciaDANO
         self.importanciaMANA = importanciaMANA
         self.importanciaLATENCIA = importanciaLATENCIA
-        self.rank = list()
         self.baseDeMana = baseDeMana
 
-    def gerarRanckAttack(self, playerAdv):
+        self.rankAttack = list()
 
+        # Estratégias de Mana
+        self.strategyItens = {
+            # Nome da Estratégia
+            "Mana" : {
+                # Estratégia Ativa
+                "active" : activeStrategyMana,
+                # Condição de Ativação Durante a Partida
+                "condition" : lambda : self.player.mana < self.baseDeMana,
+                # Atributos para o Rankamento
+                "attribute" : {
+                    "alterMana": {
+                        "priority":1,
+                        "reverse" :  False
+                    }
+                }
+            },
+            "Latência Attk": {
+                "active": activeStrategyLatAttk,
+                "condition": lambda : True,
+                "attribute": {
+                    "alterLatenciaAttk": {
+                        "priority": 1,
+                        "reverse": False
+                    },
+                    "alterMana": {
+                        "priority": 3,
+                        "reverse": False
+                    }
+                }
+            }
+        }
+
+    def buscaIndexItem(self, item, matriz):
+        for l in range(len(matriz)):
+            if matriz[l][0].name == item.name:
+                return l
+        print("ERRO NÃO ENCONTRADO O ITEM")
+        sys.exit()
+
+    def gerarRankItensAttr(self, attributeKey, attributeDic, listaPoint=[]):
+        allItens = System.allItens()
+        listaPontosGeralItens = [[item, 0] for item in allItens] if len(listaPoint) == 0 else listaPoint
+        auxListaAttributeItens = []
+        #GERAR MATRIZ COM O ATRIBUTO
+        for item in allItens:
+            auxListaAttributeItens.append([item, item.__getattribute__(attributeKey)])
+
+        rank = sorted(auxListaAttributeItens, key=itemgetter(1), reverse=attributeDic["reverse"])
+
+        cont = 0
+        for listItemRank in rank:
+            index = self.buscaIndexItem(listItemRank[0],listaPontosGeralItens)
+            listaPontosGeralItens[index][1] += cont
+            cont  += attributeDic["priority"]
+
+        return listaPontosGeralItens
+
+    def resolverListCompraItens(self):
+        listaPontosGeralItens = []
+        for strategy in self.strategyItens:
+            # Verica se a estratégia está ativada e a sua condição está presente
+            if self.strategyItens[strategy]["active"] and self.strategyItens[strategy]["condition"]():
+                # Add pontuação para todos os atributos dessa estratégia
+                for attr in self.strategyItens[strategy]["attribute"]:
+                    listaPontosGeralItens = self.gerarRankItensAttr(attr, self.strategyItens[strategy]["attribute"][attr],
+                                                                listaPontosGeralItens)
+        listaPontosGeralItens = sorted(listaPontosGeralItens, key=itemgetter(1), reverse=True)
+
+        return listaPontosGeralItens
+
+
+    def gerarRanckAttack(self, playerAdv):
         ListAttack = self.player.sword.getAttack()
         listaPontosAttack = []
         for indexAttack in range(len(ListAttack)):
@@ -415,28 +488,14 @@ class InteligencePlayer:
         rankMana = self.ADDpontos(sorted(rankDano, key=itemgetter(2),  reverse=True),self.importanciaMANA)
         rankLantancia = self.ADDpontos(sorted(rankMana, key=itemgetter(3),  reverse=True),self.importanciaLATENCIA)
 
-        self.rank = sorted(rankLantancia, key=itemgetter(5))
-    def ADDpontos(self, matriz, pontos):
+        self.rankAttack = sorted(rankLantancia, key=itemgetter(5))
+
+    def ADDpontos(self, matriz, pontos, index=5):
         cont = 0
         for line in matriz:
-            line[5] += cont
+            line[index] += cont
             cont += pontos
         return matriz
-
-    def rankAttack(self, PlayerAdv):
-        '''
-        Funcao responsavel por rankear os ataques do player
-        :param PlayerAdv: Player
-        :return: Matriz[3][3]
-        '''
-
-        ListAttack = self.player.sword.getAttack()
-        ListRank = []
-        for indexAttack in range(len(ListAttack)):
-            danos = System.calculeteDamageShield(PlayerAdv, ListAttack[indexAttack])
-            danoReal = danos[0]+danos[1]
-            ListRank.append([ListAttack[indexAttack], danoReal, indexAttack])
-        return sorted(ListRank, key=itemgetter(1))
 
     def resolverAttack(self, PlayerAdv):
         '''
@@ -447,12 +506,12 @@ class InteligencePlayer:
         if self.player.mana == 0:
             return 3
         if self.player.mana <= self.baseDeMana:
-            for linhaMatrizAttack in self.rank:
+            for linhaMatrizAttack in self.rankAttack:
                 if self.player.mana > linhaMatrizAttack[0].mana:
                     return linhaMatrizAttack[4]
             return 3
         else:
-            for linhaMatrizAttack in self.rank[::-1]:
+            for linhaMatrizAttack in self.rankAttack[::-1]:
                 if self.player.mana > linhaMatrizAttack[0].mana:
                     return linhaMatrizAttack[4]
             return 3
