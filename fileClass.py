@@ -83,6 +83,10 @@ class System:
                             imageID="DirPNG/Shield/berserker.png")
 
             player = Player(name="Ichigo Kurosaki", hp=10000, mana=600, sword=sword, shield=shield, personality=[5,4,1],
+                            activeStrategyMana=False,
+                            activeStrategyLatAttk=False,
+                            activeStrategyDMC=False,
+                            activeStrategyLatDeff=True,
                             imageShow="DirPNG/Personagens/ichico.png",
                             imageID="DirPNG/Personagens/nIchigo.png")
 
@@ -103,6 +107,10 @@ class System:
                             imageID="DirPNG/Shield/gemeos.png")
 
             player = Player(name="Killer Bee", hp=12500, mana=1000, sword=sword, shield=shield, personality=[6,3,4],
+                            activeStrategyMana=True,
+                            activeStrategyLatAttk=True,
+                            activeStrategyDMC=True,
+                            activeStrategyLatDeff=False,
                             imageShow="DirPNG/Personagens/bee.png",
                             imageID="DirPNG/Personagens/nBee.png")
 
@@ -122,6 +130,10 @@ class System:
                             imageID="DirPNG/Shield/knight.png")
 
             player = Player(name="Xena", hp=9900, mana=1500, sword=sword, shield=shield, personality=[6,3,3],
+                            activeStrategyMana=False,
+                            activeStrategyLatAttk=False,
+                            activeStrategyDMC=False,
+                            activeStrategyLatDeff=True,
                             imageShow="DirPNG/Personagens/xena.png",
                             imageID="DirPNG/Personagens/nXena.png")
 
@@ -141,6 +153,10 @@ class System:
                             imageID="DirPNG/Shield/negra.png")
 
             player = Player(name="Roronoa Zoro", hp=11000, mana=1000, sword=sword, shield=shield, personality=[5,2,1],
+                            activeStrategyMana=False,
+                            activeStrategyLatAttk=True,
+                            activeStrategyDMC=False,
+                            activeStrategyLatDeff=True,
                             imageShow="DirPNG/Personagens/zoro.png",
                             imageID="DirPNG/Personagens/nZoro.png")
 
@@ -160,6 +176,10 @@ class System:
                             imageID="DirPNG/Shield/metalTech.png")
 
             player = Player(name="Gohan", hp=14000, mana=1800, sword=sword, shield=shield, personality=[5,4,2],
+                            activeStrategyMana=True,
+                            activeStrategyLatAttk=True,
+                            activeStrategyDMC=True,
+                            activeStrategyLatDeff=True,
                             imageShow="DirPNG/Personagens/gohan.png",
                             imageID="DirPNG/Personagens/nGohan.png")
 
@@ -250,6 +270,10 @@ class System:
 
 class Player:
     def __init__(self, name, hp, mana, sword, shield, personality=[4,1,3],
+                 activeStrategyMana = False,
+                 activeStrategyLatAttk=False,
+                 activeStrategyDMC=False,
+                 activeStrategyLatDeff=False,
                  imageShow = "DirPNG/matrix-wallpaper.png",
                  imageID="DirPNG/matrix-wallpaper.png"):
         self.name = name
@@ -264,7 +288,11 @@ class Player:
         self.money = 600
         self.personality = {"importanciaDANO": personality[0],
                             "importanciaMANA": personality[1],
-                            "importanciaLATENCIA": personality[2]
+                            "importanciaLATENCIA": personality[2],
+                            "activeStrategyMana" : activeStrategyMana,
+                            "activeStrategyLatAttk": activeStrategyLatAttk,
+                            "activeStrategyDMC" : activeStrategyDMC,
+                            "activeStrategyLatDeff": activeStrategyLatDeff
                             }
 
     def __str__(self, ):
@@ -394,9 +422,11 @@ class Player:
 
 
 class InteligencePlayer:
-    def __init__(self, player, baseDeMana, importanciaDANO=4,importanciaMANA=1, importanciaLATENCIA=3,
-                 activeStrategyMana = False, activeStrategyLatAttk= False):
+    def __init__(self, player, adv, baseDeMana, importanciaDANO=4,importanciaMANA=1, importanciaLATENCIA=3,
+                 activeStrategyMana = False, activeStrategyLatAttk= False, activeStrategyDMC=False,
+                 activeStrategyLatDeff=False):
         self.player = player
+        self.adv = adv
         self.importanciaDANO = importanciaDANO
         self.importanciaMANA = importanciaMANA
         self.importanciaLATENCIA = importanciaLATENCIA
@@ -422,15 +452,39 @@ class InteligencePlayer:
             },
             "Latência Attk": {
                 "active": activeStrategyLatAttk,
+                "condition": lambda : self.player.sword.getAttack()[self.resolverAttack(self.adv)].latencia > 5,
+                "attribute": {
+                    "alterLatenciaAttk": {
+                        "priority": 1,
+                        "reverse": False
+                    }
+                }
+            },
+            "Dano Mágico Críticos": {
+                "active": activeStrategyDMC,
                 "condition": lambda : True,
+                "attribute": {
+                    "alterDanoMagico": {
+                        "priority": 4,
+                        "reverse": False
+                    },
+                    "alterLatenciaDeff": {
+                        "priority": 2,
+                        "reverse": True
+                    }
+                }
+            },
+            "Latência Deff": {
+                "active": activeStrategyLatDeff,
+                "condition": lambda: self.player.shield.latencia < 4,
                 "attribute": {
                     "alterLatenciaAttk": {
                         "priority": 1,
                         "reverse": False
                     },
-                    "alterMana": {
-                        "priority": 3,
-                        "reverse": False
+                    "alterLatenciaDeff": {
+                        "priority": 5,
+                        "reverse": True
                     }
                 }
             }
@@ -475,7 +529,6 @@ class InteligencePlayer:
         return listaPontosGeralItens
 
     def buyItems(self):
-        print("1")
         for listItem in self.resolverListCompraItens():
             if listItem[0].valor <= self.player.money:
                 self.player.addItem(listItem[0])
@@ -587,14 +640,12 @@ Média Latência : {:.2f}'''.format(self.name,mediaDanoMagico, mediaDanoFisico, 
 
 
 class Attack:
-    def __init__(self, name, mana, latencia, danoMagico, danoFisico,
-                 imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png"):
+    def __init__(self, name, mana, latencia, danoMagico, danoFisico,):
         self.name = name
         self.mana = mana
         self.latencia = latencia
         self.danoMagico = danoMagico
         self.danoFisico = danoFisico
-        self.imageID = "C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png"
 
     def __str__(self):
         # coverter para string

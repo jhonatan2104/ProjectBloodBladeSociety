@@ -144,12 +144,14 @@ class TelaMain:
         self.bot = bot
 
         # CRIAR A UMA INSTÂNCIA DA INTALIGÊNCIA BOT
-        self.intelBOT = InteligencePlayer(self.bot, 500,
+        self.intelBOT = InteligencePlayer(self.bot, self.player, 500,
                                           importanciaDANO=self.bot.personality["importanciaDANO"],
                                           importanciaMANA=self.bot.personality["importanciaMANA"],
                                           importanciaLATENCIA=self.bot.personality["importanciaLATENCIA"],
-                                          activeStrategyLatAttk=True,
-                                          activeStrategyMana=True)
+                                          activeStrategyLatAttk=self.bot.personality["activeStrategyLatAttk"],
+                                          activeStrategyMana=self.bot.personality["activeStrategyMana"],
+                                          activeStrategyDMC=self.bot.personality["activeStrategyDMC"],
+                                          activeStrategyLatDeff=self.bot.personality["activeStrategyLatDeff"])
         self.intelBOT.gerarRanckAttack(self.player)
 
         # DADOS PLAYER
@@ -383,6 +385,10 @@ class TelaMain:
 
                 randomLatenciaDefesa = randint(0, 9)
                 self.setDisplay(randomLatenciaDefesa, self.displayLatenciaDef)
+                ## COMPRA DE ITEM
+                self.intelBOT.buyItems()
+
+                print(self.bot.inventory)
 
                 newLatATTK, newLatDEF, textLbDica = randomLatenciaAtaque, randomLatenciaDefesa, "\n"
                 for item in self.bot.inventory:
@@ -394,9 +400,6 @@ class TelaMain:
 
                 if attackBOT.latencia <= newLatATTK:
                     # ATAQUE EFETIVO
-
-                    ## COMPRA DE ITEM
-                    self.intelBOT.buyItems()
 
                     if self.player.shield.latencia <= newLatDEF:
                         # DEFESA EFETIVA
