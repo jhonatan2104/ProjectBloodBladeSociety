@@ -88,7 +88,8 @@ class System:
                             activeStrategyDMC=False,
                             activeStrategyLatDeff=True,
                             imageShow="DirPNG/Personagens/ichico.png",
-                            imageID="DirPNG/Personagens/nIchigo.png")
+                            imageID="DirPNG/Personagens/nIchigo.png",
+                            imageShowChoose="DirPNG/Personagens/ICHIGO-show.png")
 
             player.setWAVShow("DirWAV/ICHIGOPERSONAGEM.wav")
             player.setWAVSlang("DirWAV/go.wav")
@@ -112,7 +113,8 @@ class System:
                             activeStrategyDMC=True,
                             activeStrategyLatDeff=False,
                             imageShow="DirPNG/Personagens/bee.png",
-                            imageID="DirPNG/Personagens/nBee.png")
+                            imageID="DirPNG/Personagens/nBee.png",
+                            imageShowChoose="DirPNG/Personagens/BEE-show.png")
 
             player.setWAVShow("DirWAV/KILLERBEEPERSONAGEM.wav")
             player.setWAVSlang("DirWAV/go.wav")
@@ -135,7 +137,8 @@ class System:
                             activeStrategyDMC=False,
                             activeStrategyLatDeff=True,
                             imageShow="DirPNG/Personagens/xena.png",
-                            imageID="DirPNG/Personagens/nXena.png")
+                            imageID="DirPNG/Personagens/nXena.png",
+                            imageShowChoose="DirPNG/Personagens/XENA-show.png")
 
             player.setWAVShow("DirWAV/XENAPERSONAGEM.wav")
             player.setWAVSlang("DirWAV/go.wav")
@@ -158,7 +161,8 @@ class System:
                             activeStrategyDMC=False,
                             activeStrategyLatDeff=True,
                             imageShow="DirPNG/Personagens/zoro.png",
-                            imageID="DirPNG/Personagens/nZoro.png")
+                            imageID="DirPNG/Personagens/nZoro.png",
+                            imageShowChoose="DirPNG/Personagens/ZORO-show.png")
 
             player.setWAVShow("DirWAV/ZOROPERSONAGEM.wav")
             player.setWAVSlang("DirWAV/go.wav")
@@ -181,7 +185,8 @@ class System:
                             activeStrategyDMC=True,
                             activeStrategyLatDeff=True,
                             imageShow="DirPNG/Personagens/gohan.png",
-                            imageID="DirPNG/Personagens/nGohan.png")
+                            imageID="DirPNG/Personagens/nGohan.png",
+                            imageShowChoose="DirPNG/Personagens/GOHAN-show.png")
 
             player.setWAVShow("DirWAV/GOHANPERSONAGEM.wav")
             player.setWAVSlang("DirWAV/go.wav")
@@ -274,8 +279,8 @@ class Player:
                  activeStrategyLatAttk=False,
                  activeStrategyDMC=False,
                  activeStrategyLatDeff=False,
-                 imageShow = "DirPNG/matrix-wallpaper.png",
-                 imageID="DirPNG/matrix-wallpaper.png"):
+                 imageShow = "DirPNG/matrix-wallpaper.png",imageID="DirPNG/matrix-wallpaper.png",
+                 imageShowChoose = "DirPNG/matrix-wallpaper.png"):
         self.name = name
         self.hp = hp
         self.sword = sword
@@ -283,6 +288,7 @@ class Player:
         self.mana = mana
         self.imageShow = imageShow
         self.imageID = imageID
+        self.imageShowChoose = imageShowChoose
         self.arqWAV = ["", ""]
         self.inventory = []
         self.money = 600
@@ -424,7 +430,7 @@ class Player:
 class InteligencePlayer:
     def __init__(self, player, adv, baseDeMana, importanciaDANO=4,importanciaMANA=1, importanciaLATENCIA=3,
                  activeStrategyMana = False, activeStrategyLatAttk= False, activeStrategyDMC=False,
-                 activeStrategyLatDeff=False):
+                 activeStrategyLatDeff=False, activeStrategyLife=False, activeStrategyDF=False):
         self.player = player
         self.adv = adv
         self.importanciaDANO = importanciaDANO
@@ -485,6 +491,26 @@ class InteligencePlayer:
                     "alterLatenciaDeff": {
                         "priority": 5,
                         "reverse": True
+                    }
+                }
+            },
+            "Vida": {
+                "active": activeStrategyLife,
+                "condition": lambda: self.player.hp < 1000,
+                "attribute": {
+                    "alterLife": {
+                        "priority": 1,
+                        "reverse": False
+                    }
+                }
+            },
+            "Dano Físico": {
+                "active": activeStrategyDF,
+                "condition": lambda: self.player.sword.getAttack()[self.resolverAttack(self.adv)].danoFisico < 700,
+                "attribute": {
+                    "alterDanoFisico": {
+                        "priority": 1,
+                        "reverse": False
                     }
                 }
             }

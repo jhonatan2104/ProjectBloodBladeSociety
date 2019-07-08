@@ -11,12 +11,12 @@ class TelaEscolhaBot:
 
         # CONFIG
         self.color = "Black"
-        self.btSizeX = 100
-        self.btSizeY = 150
-        self.margeX = 150
-        self.margeY = 100
-        self.x = 200
-        self.y = 200
+        self.btSizeX = 400
+        self.btSizeY = 200
+        self.margeX = 100
+        self.margeY = 200
+        self.x = 490
+        self.y = 250
 
         self.p1 = None
         self.BOT = None
@@ -27,11 +27,11 @@ class TelaEscolhaBot:
             file="DirPNG/ImagemLabelPlayer.png")
 
         # IMAGENS DOS PLAYER
-        self.IchigoKurosakiPNG = PhotoImage(file=System.choosePlayer(0).imageShow)
-        self.KillerBeePNG = PhotoImage(file=System.choosePlayer(1).imageShow)
-        self.XenaPNG = PhotoImage(file=System.choosePlayer(2).imageShow)
-        self.RoronoaZoroPNG = PhotoImage(file=System.choosePlayer(3).imageShow)
-        self.GohanPNG = PhotoImage(file=System.choosePlayer(4).imageShow)
+        self.IchigoKurosakiPNG = PhotoImage(file=System.choosePlayer(0).imageShowChoose)
+        self.KillerBeePNG = PhotoImage(file=System.choosePlayer(1).imageShowChoose)
+        self.XenaPNG = PhotoImage(file=System.choosePlayer(2).imageShowChoose)
+        self.RoronoaZoroPNG = PhotoImage(file=System.choosePlayer(3).imageShowChoose)
+        self.GohanPNG = PhotoImage(file=System.choosePlayer(4).imageShowChoose)
 
         self.backPNG = PhotoImage(
             file="DirPNG/backPNG.png")
@@ -75,7 +75,7 @@ class TelaEscolhaBot:
         TelaInicio().construtor()
 
     def construtor(self):
-        self.root.geometry("800x500+300+100")
+        self.root.attributes('-fullscreen',True)
         self.root.focus_force()
         self.root["bg"] = self.color
 
@@ -101,35 +101,40 @@ class TelaInicio:
 
         # CONFIG
         self.color = "Black"
-        self.margeX = 0
-        self.margeY = 150
-        self.x = 265
-        self.y = 200
 
-        self.imagemPlayerXbot = PhotoImage(
-            file="DirPNG/playerXbotPNG.png")
+        self.imagemLabel = PhotoImage(file="DirPNG/bemVindo.png")
 
-        self.imagemLabel = PhotoImage(
-            file="DirPNG/ESCOLHA-O-MODO-DE-JOGO.png")
+        self.imagemPlayerXbot = PhotoImage(file="DirPNG/playerXbotPNG.png")
+        self.imageSair = PhotoImage(file="DirPNG/sair.png")
+        self.imageTutor = PhotoImage(file="DirPNG/tutorial.png")
 
-        self.bt1 = Button(self.root, image=self.imagemPlayerXbot, border=0)
-        self.lb = Label(self.root, image=self.imagemLabel)
+        self.bt1 = Button(self.root, image=self.imagemPlayerXbot, border=0, width=400, height=200, relief="groove")
+        self.btSair = Button(self.root, image=self.imageSair, border=0, width=400, height=200, relief="groove")
+        self.btTutor = Button(self.root, image=self.imageTutor, border=0, width=400, height=200, relief="groove")
+
+        self.lb = Label(self.root, image=self.imagemLabel, bg="Black")
 
     def abrirTelaEscolhaPlayerBOT(self):
         self.root.destroy()
         TelaEscolhaBot().construtor()
 
+    def sair(self):
+        self.root.destroy()
+        sys.exit()
 
     def construtor(self):
-        self.root.geometry("800x500+300+100")
+        self.root.attributes('-fullscreen',True)
         self.root.focus_force()
 
-        self.root.bind("<Return>", lambda event : self.abrirTelaEscolhaPlayerBOT())
+        self.root.bind("<Return>", lambda event: self.abrirTelaEscolhaPlayerBOT())
         self.root["bg"] = self.color
         self.lb["bg"] = self.color
         self.lb.pack(side=TOP)
-        self.bt1.place(x=self.x, y=self.y)
+        self.bt1.place(x=555, y=465)
+        self.btSair.place(x=125, y=300)
+        self.btTutor.place(x=990, y=300)
         self.bt1["command"] = self.abrirTelaEscolhaPlayerBOT
+        self.btSair["command"] = self.sair
         self.root.mainloop()
 
 
@@ -152,7 +157,6 @@ class TelaMain:
                                           activeStrategyMana=self.bot.personality["activeStrategyMana"],
                                           activeStrategyDMC=self.bot.personality["activeStrategyDMC"],
                                           activeStrategyLatDeff=self.bot.personality["activeStrategyLatDeff"])
-        self.intelBOT.gerarRanckAttack(self.player)
 
         # DADOS PLAYER
         if dicDados is None:
@@ -351,6 +355,13 @@ class TelaMain:
         self.stringDanoReal = '''Valor de DANO VERDADEIRO
  (Dano Mágico - Amadura Mágica) + (Dano Físico - Armadura Físico)'''
 
+    def dadosBot(self, event):
+        txt = "INVENTÁRIO\n"
+        for item in self.bot.inventory:
+            txt += f"{item.name} x{item.quatidade}\n"
+        txt += f"\n{self.bot.money}"
+        self.lbDica["text"] = txt
+
     def alterarBorda(self, vez):
         if vez:
             self.lbPlAYER["border"] = 5
@@ -362,6 +373,8 @@ class TelaMain:
     def ActionBOT(self):
         if not self.Alternar:
             attacksBOT = self.bot.sword.getAttack()
+
+            self.intelBOT.gerarRanckAttack(self.player)
             value = self.intelBOT.resolverAttack(self.player)
 
             if value == 3:
@@ -387,8 +400,6 @@ class TelaMain:
                 self.setDisplay(randomLatenciaDefesa, self.displayLatenciaDef)
                 ## COMPRA DE ITEM
                 self.intelBOT.buyItems()
-
-                print(self.bot.inventory)
 
                 newLatATTK, newLatDEF, textLbDica = randomLatenciaAtaque, randomLatenciaDefesa, "\n"
                 for item in self.bot.inventory:
@@ -820,7 +831,7 @@ class TelaMain:
         self.lbDica["text"] = txt
 
     def construtor(self):
-        self.root.geometry("1500x780+12+0")
+        self.root.attributes('-fullscreen',True)
         self.root.focus_force()
 
         #List de ataques do player
@@ -854,6 +865,8 @@ class TelaMain:
 
         # Atribuindo a função de ataque ao botão de imagens do bot
         self.lbBtBOT["command"] = self.ActionBOT
+        self.lbBtBOT.bind("<Enter>", self.dadosBot)
+        self.lbBtBOT.bind("<Leave>", self.limparCanvasDica)
 
         self.nomePlAYER.place(x=self.xDisplayManaPlayer, y=180)
         self.nomePlAYER.bind("<Enter>", self.setCanvasDICAInventario)
@@ -1015,7 +1028,7 @@ class TelaOption:
         t.construtor()
 
     def construtor(self):
-        self.root.geometry("800x500+300+100")
+        self.root.attributes('-fullscreen',True)
         self.root.focus_force()
         self.root["bg"] = self.color
         self.lb["bg"] = self.color
@@ -1216,7 +1229,7 @@ class TelaRelatorio:
             display[elem].image = imag
 
     def construtor(self):
-        self.root.geometry("1500x780+12+0")
+        self.root.attributes('-fullscreen',True)
         self.root.focus_force()
         self.root["bg"] = "Black"
         self.lbTitulo.pack(side=TOP)
@@ -1344,7 +1357,7 @@ class TelaItens:
             display[elem].image = imag
 
     def construtor(self):
-        self.root.geometry("1500x780+20+0")
+        self.root.attributes('-fullscreen',True)
         self.root.focus_force()
 
         # Eventos TECLADOS
