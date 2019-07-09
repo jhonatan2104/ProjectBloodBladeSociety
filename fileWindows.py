@@ -312,9 +312,10 @@ class TelaMain:
 
         # BOTÕES DE ATTACK
         self.canvasAttk = Canvas(self.root, width=925, height=205, highlightbackground="Black")
-        self.imageATTK1 = PhotoImage(file="DirPNG/atk1.png")
-        self.imageATTK2 = PhotoImage(file="DirPNG/atk2.png")
-        self.imageATTK3 = PhotoImage(file="DirPNG/atk3.png")
+        Attacks = self.player.sword.getAttack()
+        self.imageATTK1 = PhotoImage(file=Attacks[0].imageBt)
+        self.imageATTK2 = PhotoImage(file=Attacks[1].imageBt)
+        self.imageATTK3 = PhotoImage(file=Attacks[2].imageBt)
         self.imageDEF = PhotoImage(file="DirPNG/deff.png")
         self.btAttk1 = Button(self.canvasAttk, width=220, height=200, image=self.imageATTK1, bg='Black',
                               highlightbackground="Black")

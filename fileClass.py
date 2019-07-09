@@ -72,9 +72,12 @@ class System:
     def choosePlayer(indexPlayer):
         nameChamp = System.listPlayer()[indexPlayer]
         if nameChamp == 'Ichigo Kurosaki':
-            at1 = Attack(name="Getsuga Tenshou", mana=400, latencia=5, danoFisico=300, danoMagico=2000)
-            at2 = Attack(name="Piercer of Heaven", mana=200, latencia=2, danoFisico=100, danoMagico=1000)
-            at3 = Attack(name="Getsuga Jūjishō", mana=350, latencia=2, danoFisico=250, danoMagico=1500)
+            at1 = Attack(name="Getsuga Tenshou", mana=400, latencia=5, danoFisico=300, danoMagico=2000,
+                         imageBT="DirPNG/atk3.png")
+            at2 = Attack(name="Piercer of Heaven", mana=200, latencia=2, danoFisico=100, danoMagico=1000,
+                         imageBT="DirPNG/atk3.png")
+            at3 = Attack(name="Getsuga Jūjishō", mana=350, latencia=2, danoFisico=250, danoMagico=1500,
+                         imageBT="DirPNG/atk3.png")
 
             sword = Sword("Zanpakutō", at1, at2, at3,
                           imageID="DirPNG/Sword/zampakuto.png")
@@ -96,10 +99,13 @@ class System:
 
             return player
         elif nameChamp == 'Killer Bee':
-            at1 = Attack(name="Crumbling the skin", mana=800, latencia=6, danoFisico=3000, danoMagico=600)
-            at2 = Attack(name="Life Theft", mana=250, latencia=3, danoFisico=400, danoMagico=1500)
+            at1 = Attack(name="Crumbling the skin", mana=800, latencia=6, danoFisico=3000, danoMagico=600,
+                         imageBT="DirPNG/atk1.png")
+            at2 = Attack(name="Life Theft", mana=250, latencia=3, danoFisico=400, danoMagico=1500,
+                         imageBT="DirPNG/atk3.png")
             at3 = Attack(name="Samehada and the 7 swords", mana=500, latencia=3, danoFisico=1000,
-                         danoMagico=1500)
+                         danoMagico=1500,
+                         imageBT="DirPNG/atk2.png")
 
             sword = Sword("Samehada", at1, at2, at3,
                           imageID="DirPNG/Sword/samehada.png")
@@ -121,9 +127,12 @@ class System:
 
             return player
         elif nameChamp == 'Xena':
-            at1 = Attack(name="Full Counter", mana=700, latencia=3, danoFisico=3000, danoMagico=500)
-            at2 = Attack(name="Counter Vanish", mana=200, latencia=1, danoFisico=2000, danoMagico=0)
-            at3 = Attack(name="Hellblaze", mana=400, latencia=4, danoFisico=1500, danoMagico=300)
+            at1 = Attack(name="Full Counter", mana=700, latencia=3, danoFisico=3000, danoMagico=500,
+                         imageBT="DirPNG/atk1.png")
+            at2 = Attack(name="Counter Vanish", mana=200, latencia=1, danoFisico=2000, danoMagico=0,
+                         imageBT="DirPNG/atk1.png")
+            at3 = Attack(name="Hellblaze", mana=400, latencia=4, danoFisico=1500, danoMagico=300,
+                         imageBT="DirPNG/atk1.png")
 
             sword = Sword("Excalibur", at1, at2, at3,
                           imageID="DirPNG/Sword/excalibur.png")
@@ -145,9 +154,12 @@ class System:
 
             return player
         elif nameChamp == 'Roronoa Zoro':
-            at1 = Attack(name="Shishi SonSon", mana=50, latencia=1, danoFisico=1500, danoMagico=0)
-            at2 = Attack(name="Sanjuroku Pound Ho", mana=200, latencia=3, danoFisico=3500, danoMagico=30)
-            at3 = Attack(name="Yakkodori", mana=100, latencia=2, danoFisico=3000, danoMagico=10)
+            at1 = Attack(name="Shishi SonSon", mana=50, latencia=1, danoFisico=1500, danoMagico=0,
+                         imageBT="DirPNG/atk1.png")
+            at2 = Attack(name="Sanjuroku Pound Ho", mana=200, latencia=3, danoFisico=3500, danoMagico=30,
+                         imageBT="DirPNG/atk1.png")
+            at3 = Attack(name="Yakkodori", mana=100, latencia=2, danoFisico=3000, danoMagico=10,
+                         imageBT="DirPNG/atk1.png")
 
             sword = Sword("Sandai Kitetsu", at1, at2, at3,
                           imageID="DirPNG/Sword/sandaiKitetsu.png")
@@ -169,9 +181,12 @@ class System:
 
             return player
         elif nameChamp == 'Gohan':
-            at1 = Attack(name="Fulminant Strike", mana=900, latencia=4, danoFisico=900, danoMagico=3000)
-            at2 = Attack(name="Blade Combo", mana=700, latencia=1, danoFisico=920, danoMagico=1100)
-            at3 = Attack(name="Rage of the Blade", mana=500, latencia=1, danoFisico=500, danoMagico=900)
+            at1 = Attack(name="Fulminant Strike", mana=900, latencia=4, danoFisico=900, danoMagico=3000,
+                         imageBT="DirPNG/atk3.png")
+            at2 = Attack(name="Blade Combo", mana=700, latencia=1, danoFisico=920, danoMagico=1100,
+                         imageBT="DirPNG/atk2.png")
+            at3 = Attack(name="Rage of the Blade", mana=500, latencia=1, danoFisico=500, danoMagico=900,
+                         imageBT="DirPNG/atk2.png")
 
             sword = Sword("Espada Z", at1, at2, at3,
                           imageID="DirPNG/Sword/espadaZ.png")
@@ -604,7 +619,7 @@ class InteligencePlayer:
 
 class Sword:
     def __init__(self, name, attackI, attackII, attackIII,
-                 imageID="C:/Users/User/PycharmProjects/ProjectBloodBladeSociety/DirPNG/matrix-wallpaper.png"):
+                 imageID="DirPNG/matrix-wallpaper.png"):
         self.name = name
         self.imageID = imageID
         self.attackI = attackI
@@ -666,12 +681,13 @@ Média Latência : {:.2f}'''.format(self.name,mediaDanoMagico, mediaDanoFisico, 
 
 
 class Attack:
-    def __init__(self, name, mana, latencia, danoMagico, danoFisico,):
+    def __init__(self, name, mana, latencia, danoMagico, danoFisico, imageBT = "DirPNG/matrix-wallpaper.png"):
         self.name = name
         self.mana = mana
         self.latencia = latencia
         self.danoMagico = danoMagico
         self.danoFisico = danoFisico
+        self.imageBt = imageBT
 
     def __str__(self):
         # coverter para string
