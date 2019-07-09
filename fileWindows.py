@@ -1270,6 +1270,8 @@ class TelaItens:
         # Caminho diretório
         self.caminhoDirNum = "DirPNG/DirPNGnumber/numberGold/"
 
+        self.canvaLayaot = Canvas(self.root, bg="Black", width=300, height=700, highlightbackground="Black")
+
         self.imageLb = PhotoImage(
             file="DirPNG/escolhaItens.png"
         )
@@ -1278,7 +1280,8 @@ class TelaItens:
         )
         self.lbTitulo = Label(self.root, image=self.imageLb, highlightbackground="Black", bg="black")
 
-        self.lb = Label(self.root, font=self.fontFixedsys25, bg="Black", fg="white")
+        self.canvasImage = Canvas(self.canvaLayaot, width=200, height=200, bg="Black", highlightbackground="Black")
+        self.lb = Label(self.canvaLayaot, font=self.fontFixedsys25, bg="Black", fg="white")
         self.lbSimbol = Label(self.root, width=80, height=80, image=self.imageLbSimbol, highlightbackground="Black",
                               bg="Black")
 
@@ -1330,11 +1333,15 @@ class TelaItens:
         else:
             self.dinheiroERRO()
 
-    def setLABEitem(self, event, item):
-        self.lb["text"] = item.getDados()
-
-    def resetarLabelitem(self, event):
-        self.lb["text"] = ""
+    def setLABEitem(self, event, item=None):
+        if not item is None:
+            self.lb["text"] = item.getDados()
+            image = PhotoImage(file=item.image)
+            self.canvasImage.create_image(80, 80, image=image)
+            self.canvasImage.image = image
+        else:
+            self.lb["text"] = ""
+            self.canvasImage.delete("all")
 
     def abrirTelaMain(self):
         self.root.destroy()
@@ -1370,7 +1377,9 @@ class TelaItens:
         self.root.bind("<Return>", lambda event: self.abrirTelaMain())
 
         self.root["bg"] = "Black"
-        self.lb.place(x=1150, y=250)
+        self.canvaLayaot.place(x=1170, y=150)
+        self.canvasImage.pack(anchor=CENTER)
+        self.lb.pack(anchor=CENTER)
         self.btContinuar.place(x=320, y=600)
         self.btContinuar["command"] = self.abrirTelaMain
         self.lbTitulo.place(x=280, y=0)
@@ -1384,7 +1393,7 @@ class TelaItens:
                     cont].quatidade}\n{self.listItens[cont].valor}U$'''
                 self.listBt[line][colunn].bind("<Enter>",
                                                lambda event, item=self.listItens[cont]: self.setLABEitem(event, item))
-                self.listBt[line][colunn].bind("<Leave>", self.resetarLabelitem)
+                self.listBt[line][colunn].bind("<Leave>", self.setLABEitem)
                 self.listBt[line][colunn]["command"] = partial(self.addItem, self.listItens[cont],
                                                                self.listBt[line][colunn])
                 cont += 1

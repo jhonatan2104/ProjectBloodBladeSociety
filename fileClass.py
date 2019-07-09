@@ -717,13 +717,14 @@ Latencia: {}
         '''.format(self.name,self.defesaMagica,self.defesaFisica,self.latencia)
 
 class Item:
-    def __init__(self, name, valor, quatidade, desc="",
+    def __init__(self, name, valor, quatidade, desc="", image="DirPNG/matrix-wallpaper.png",
                  alterLife = 0, alterMana = 0,alterDefesaMagica = 0, alterDefesaFisica = 0, alterLatenciaAttk = 0,
                  alterLatenciaDeff = 0, alterDanoMagico = 0, alterDanoFisico = 0):
         self.name = name
         self.valor = valor
         self.quatidade = quatidade
         self.desc = desc
+        self.image = image
         self.alterLife = alterLife
         self.alterMana =  alterMana
         self.alterDefesaMagica = alterDefesaMagica

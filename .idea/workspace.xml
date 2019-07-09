@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fefe4446-7a52-4355-8c4a-2041c4896d9f" name="Default Changelist" comment="Teste Hacker">
-      <change beforePath="$PROJECT_DIR$/DirPNG/Personagens/nBee.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/Personagens/nBee.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DirPNG/Personagens/nGohan.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/Personagens/nGohan.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DirPNG/Personagens/nIchigo.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/Personagens/nIchigo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DirPNG/Personagens/nXena.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/Personagens/nXena.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DirPNG/Personagens/nZoro.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/Personagens/nZoro.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DirPNG/Sword/espadaZ.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/Sword/espadaZ.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DirPNG/Sword/excalibur.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/Sword/excalibur.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DirPNG/Sword/samehada.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/Sword/samehada.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DirPNG/Sword/sandaiKitetsu.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/Sword/sandaiKitetsu.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DirPNG/Sword/zampakuto.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/Sword/zampakuto.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fileClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/fileClass.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fileWindows.py" beforeDir="false" afterPath="$PROJECT_DIR$/fileWindows.py" afterDir="false" />
     </list>
@@ -41,8 +32,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/fileWindows.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="118">
-              <caret line="317" column="61" lean-forward="true" selection-start-line="317" selection-start-column="61" selection-end-line="317" selection-end-column="61" />
+            <state relative-caret-position="315">
+              <caret line="1282" column="84" selection-start-line="1282" selection-start-column="84" selection-end-line="1282" selection-end-column="84" />
             </state>
           </provider>
         </entry>
@@ -71,8 +62,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fileClass.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="211">
-              <caret line="71" column="8" selection-start-line="71" selection-start-column="8" selection-end-line="71" selection-end-column="8" />
+            <state relative-caret-position="347">
+              <caret line="727" column="34" lean-forward="true" selection-start-line="727" selection-start-column="34" selection-end-line="727" selection-end-column="34" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -143,6 +134,33 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+          <expand>
+            <path>
+              <item name="ProjectBloodBladeSociety" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+            </path>
+            <path>
+              <item name="ProjectBloodBladeSociety" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="fileClass.py" type="8704e2dd:PyFileNode" />
+            </path>
+            <path>
+              <item name="ProjectBloodBladeSociety" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="fileWindows.py" type="8704e2dd:PyFileNode" />
+            </path>
+            <path>
+              <item name="ProjectBloodBladeSociety" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="fileWindows.py" type="8704e2dd:PyFileNode" />
+              <item name="TelaItens" type="dd8bbb05:PyElementNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -187,39 +205,6 @@
               <item name="ProjectBloodBladeSociety" type="462c0819:PsiDirectoryNode" />
               <item name="fileWindows.py" type="8704e2dd:PyFileNode" />
               <item name="TelaEscolhaBot" type="dd8bbb05:PyElementNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope">
-        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
-          <expand>
-            <path>
-              <item name="ProjectBloodBladeSociety" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-            </path>
-            <path>
-              <item name="ProjectBloodBladeSociety" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="fileClass.py" type="8704e2dd:PyFileNode" />
-            </path>
-            <path>
-              <item name="ProjectBloodBladeSociety" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="fileClass.py" type="8704e2dd:PyFileNode" />
-              <item name="System" type="dd8bbb05:PyElementNode" />
-            </path>
-            <path>
-              <item name="ProjectBloodBladeSociety" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="fileWindows.py" type="8704e2dd:PyFileNode" />
-            </path>
-            <path>
-              <item name="ProjectBloodBladeSociety" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="fileWindows.py" type="8704e2dd:PyFileNode" />
-              <item name="TelaMain" type="dd8bbb05:PyElementNode" />
             </path>
           </expand>
           <select />
@@ -620,8 +605,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/fileClass.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="71" column="8" selection-start-line="71" selection-start-column="8" selection-end-line="71" selection-end-column="8" />
+        <state relative-caret-position="347">
+          <caret line="727" column="34" lean-forward="true" selection-start-line="727" selection-start-column="34" selection-end-line="727" selection-end-column="34" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>
@@ -630,8 +615,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/fileWindows.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="317" column="61" lean-forward="true" selection-start-line="317" selection-start-column="61" selection-end-line="317" selection-end-column="61" />
+        <state relative-caret-position="315">
+          <caret line="1282" column="84" selection-start-line="1282" selection-start-column="84" selection-end-line="1282" selection-end-column="84" />
         </state>
       </provider>
     </entry>
