@@ -33,8 +33,7 @@ class TelaEscolhaBot:
         self.RoronoaZoroPNG = PhotoImage(file=System.choosePlayer(3).imageShowChoose)
         self.GohanPNG = PhotoImage(file=System.choosePlayer(4).imageShowChoose)
 
-        self.backPNG = PhotoImage(
-            file="DirPNG/backPNG.png")
+        self.backPNG = PhotoImage(file="DirPNG/backPNG.png")
         self.bt1 = Button(self.root, image=self.IchigoKurosakiPNG, width=self.btSizeX,
                           height=self.btSizeY)
         self.bt2 = Button(self.root, image=self.KillerBeePNG, width=self.btSizeX,
@@ -237,17 +236,17 @@ class TelaMain:
 
         # CANVAS ATTACK DICA
         self.canvasAttackDica = Canvas(self.root, width=725, height=200, highlightbackground="Black")
-        self.fontFixedsys = font.Font(family='Fixedsys', size=15, weight='bold')
+        self.fontFixedsys = font.Font(family='Fixedsys', size=17)
         font.families()
         self.lbDica = Label(self.canvasAttackDica, font=self.fontFixedsys, foreground="white", bg="black")
         self.lbDica.pack(side=TOP, anchor=CENTER)
 
         # CONFIG DISPLAY
-        self.yDisplayLifi = 465
+        self.yDisplayLifi = 490
         self.xDisplayLifiPlayer = 50
         self.xDisplayLifiBOT = 1250
 
-        self.yDisplayMana = 585
+        self.yDisplayMana = 635
         self.xDisplayManaPlayer = 50
         self.xDisplayManaBOT = 1250
 
@@ -291,11 +290,11 @@ class TelaMain:
         self.imgDanoReal = PhotoImage(file="DirPNG/danoReal.png")
 
         # LABEL DANO, LATÊNCIA
-        self.lbLatencia = Label(self.root, width=200, height=60, bg="Black", highlightbackground="Black",
+        self.lbLatencia = Label(self.root, width=200, height=80, bg="Black", highlightbackground="Black",
                                 image=self.imgLatencia)
-        self.lbLatenciaDef = Label(self.root, width=200, height=60, bg="Black", highlightbackground="Black",
+        self.lbLatenciaDef = Label(self.root, width=200, height=80, bg="Black", highlightbackground="Black",
                                    image=self.imgLatenciaDEF)
-        self.lbDanoReal = Label(self.root, width=200, height=60, bg="Black", highlightbackground="Black",
+        self.lbDanoReal = Label(self.root, width=200, height=80, bg="Black", highlightbackground="Black",
                                 image=self.imgDanoReal)
 
         # DISPLAY DANO
@@ -312,18 +311,18 @@ class TelaMain:
         self.displayLatenciaDef = [self.c26]
 
         # BOTÕES DE ATTACK
-        self.canvasAttk = Canvas(self.root, width=725, height=170, highlightbackground="Black")
+        self.canvasAttk = Canvas(self.root, width=925, height=205, highlightbackground="Black")
         self.imageATTK1 = PhotoImage(file="DirPNG/atk1.png")
         self.imageATTK2 = PhotoImage(file="DirPNG/atk2.png")
-        self.imageATTK3 = PhotoImage(file="DirPNG/atk1.png")
+        self.imageATTK3 = PhotoImage(file="DirPNG/atk3.png")
         self.imageDEF = PhotoImage(file="DirPNG/deff.png")
-        self.btAttk1 = Button(self.canvasAttk, width=175, height=160, image=self.imageATTK1, bg='Black',
+        self.btAttk1 = Button(self.canvasAttk, width=220, height=200, image=self.imageATTK1, bg='Black',
                               highlightbackground="Black")
-        self.btAttk2 = Button(self.canvasAttk, width=175, height=160, image=self.imageATTK2, bg='Black',
+        self.btAttk2 = Button(self.canvasAttk, width=220, height=200, image=self.imageATTK2, bg='Black',
                               highlightbackground="Black")
-        self.btAttk3 = Button(self.canvasAttk, width=175, height=160, image=self.imageATTK3, bg='Black',
+        self.btAttk3 = Button(self.canvasAttk, width=220, height=200, image=self.imageATTK3, bg='Black',
                               highlightbackground="Black")
-        self.btdef1 = Button(self.canvasAttk, width=175, height=160, image=self.imageDEF, bg='Black',
+        self.btdef1 = Button(self.canvasAttk, width=220, height=200, image=self.imageDEF, bg='Black',
                              highlightbackground="Black")
         self.BTSCommands = [self.btAttk1, self.btAttk2, self.btAttk3, self.btdef1]
         self.teclasAttkConfig = ["<q>", "<w>", "<e>", "<r>"]
@@ -379,6 +378,7 @@ class TelaMain:
 
             if value == 3:
                 self.setCanvasStatus(4)
+                self.limparCanvasDica(None)
                 self.bot.restoreMana(0)
 
                 # SET DISPLAY DADOS
@@ -850,7 +850,6 @@ class TelaMain:
         self.root.bind(self.teclasConfig["DadosArmadura"], self.setCanvasDICAShield)
         self.root.bind(self.teclasConfig["DadosEspada"], self.setCanvasDICASword)
 
-
         self.root["bg"] = "Black"
         self.lbPlAYER.place(x=self.xDisplayManaPlayer + 50, y=20)
 
@@ -915,22 +914,22 @@ class TelaMain:
             self.displayDanoReal[j].place(x=j * 50 + self.xMargeDisplayDL, y=self.yMargeDisplayDL)
 
         self.displayLatencia[0].config(bg="Black")
-        self.displayLatencia[0].place(x=self.xMargeDisplayDL - 100, y=self.yMargeDisplayDL + 70)
+        self.displayLatencia[0].place(x=self.xMargeDisplayDL - 100, y=self.yMargeDisplayDL + 100)
 
         self.displayLatenciaDef[0].config(bg="Black")
-        self.displayLatenciaDef[0].place(x=self.xMargeDisplayDL + 230, y=self.yMargeDisplayDL + 70)
+        self.displayLatenciaDef[0].place(x=self.xMargeDisplayDL + 230, y=self.yMargeDisplayDL + 100)
 
         self.lbDanoReal.place(x=self.xMargeLabelDL, y=self.yMargeDisplayDL)
         self.lbDanoReal.bind("<Enter>",
                              lambda event, txt=self.stringDanoReal: self.escreverNoCanvasDica(event, txt))
         self.lbDanoReal.bind("<Leave>", self.limparCanvasDica)
 
-        self.lbLatencia.place(x=self.xMargeLabelDL - 100, y=self.yMargeDisplayDL + 70)
+        self.lbLatencia.place(x=self.xMargeLabelDL - 100, y=self.yMargeDisplayDL + 90)
         self.lbLatencia.bind("<Enter>",
                              lambda event, txt=self.stringRandLantATK: self.escreverNoCanvasDica(event, txt))
         self.lbLatencia.bind("<Leave>", self.limparCanvasDica)
 
-        self.lbLatenciaDef.place(x=self.xMargeLabelDL + 230, y=self.yMargeDisplayDL + 70)
+        self.lbLatenciaDef.place(x=self.xMargeLabelDL + 230, y=self.yMargeDisplayDL + 90)
         self.lbLatenciaDef.bind("<Enter>",
                                 lambda event, txt=self.stringRandLantDEF: self.escreverNoCanvasDica(event, txt))
         self.lbLatenciaDef.bind("<Leave>", self.limparCanvasDica)
@@ -940,7 +939,7 @@ class TelaMain:
 
         for bt in range(len(self.BTSCommands)):
             if bt < 3:
-                self.BTSCommands[bt].place(x=bt * 185, y=0)
+                self.BTSCommands[bt].place(x=bt * 230, y=0)
                 # Evento onclik
                 self.BTSCommands[bt]["command"] = partial(self.knock, attacksPlayer[bt])
 
@@ -954,7 +953,7 @@ class TelaMain:
                                                                                                          atk.getDados()))
                 self.BTSCommands[bt].bind("<Leave>", self.limparCanvasDica)
             else:
-                self.BTSCommands[bt].place(x=bt * 185, y=0)
+                self.BTSCommands[bt].place(x=bt * 230, y=0)
                 # Evento onclik
                 self.BTSCommands[bt]["command"] = self.defensiveMode
                 # Evento de teclado
@@ -1265,43 +1264,49 @@ class TelaItens:
         self.margeEX_y = 130
         self.margeIN_x = 340
         self.margeIN_y = 210
-        self.fontFixedsys15 = font.Font(family='Fixedsys', size=15, weight='bold')
-        self.fontFixedsys25 = font.Font(family='Fixedsys', size=17, weight='bold')
+        self.fontFixedsys15 = font.Font(family='Fixedsys', size=15)
+        self.fontFixedsys25 = font.Font(family='Fixedsys', size=17)
+        # Caminho diretório
+        self.caminhoDirNum = "DirPNG/DirPNGnumber/numberGold/"
 
         self.imageLb = PhotoImage(
             file="DirPNG/escolhaItens.png"
         )
+        self.imageLbSimbol = PhotoImage(
+            file="DirPNG/DirPNGnumber/numberGold/u.png"
+        )
         self.lbTitulo = Label(self.root, image=self.imageLb, highlightbackground="Black", bg="black")
 
         self.lb = Label(self.root, font=self.fontFixedsys25, bg="Black", fg="white")
+        self.lbSimbol = Label(self.root, width=80, height=80, image=self.imageLbSimbol, highlightbackground="Black",
+                              bg="Black")
 
-        self.bt1 = Button(self.root, width=25, height=7, bg="Black",
-                          fg="white", font=self.fontFixedsys15)
-        self.bt2 = Button(self.root, width=25, height=7, bg="Black",
-                          fg="white", font=self.fontFixedsys15)
-        self.bt3 = Button(self.root, width=25, height=7, bg="Black",
-                          fg="white", font=self.fontFixedsys15)
-        self.bt4 = Button(self.root, width=25, height=7, bg="Black",
-                          fg="white", font=self.fontFixedsys15)
-        self.bt5 = Button(self.root, width=25, height=7, bg="Black",
-                          fg="white", font=self.fontFixedsys15)
-        self.bt6 = Button(self.root, width=25, height=7, bg="Black",
-                          fg="white", font=self.fontFixedsys15)
+        self.bt1 = Button(self.root, width=25, height=7, bg="#ec352e",
+                          fg="Black", font=self.fontFixedsys15)
+        self.bt2 = Button(self.root, width=25, height=7, bg="#ec352e",
+                          fg="Black", font=self.fontFixedsys15)
+        self.bt3 = Button(self.root, width=25, height=7, bg="#ec352e",
+                          fg="Black", font=self.fontFixedsys15)
+        self.bt4 = Button(self.root, width=25, height=7, bg="#ec352e",
+                          fg="Black", font=self.fontFixedsys15)
+        self.bt5 = Button(self.root, width=25, height=7, bg="#ec352e",
+                          fg="Black", font=self.fontFixedsys15)
+        self.bt6 = Button(self.root, width=25, height=7, bg="#ec352e",
+                          fg="Black", font=self.fontFixedsys15)
 
         self.listBt = [[self.bt1, self.bt2, self.bt3], [self.bt4, self.bt5, self.bt6]]
 
-        self.c1 = Canvas(self.root, width=60, height=60, highlightbackground="Black", bg="black")
-        self.c2 = Canvas(self.root, width=60, height=60, highlightbackground="Black", bg="black")
-        self.c3 = Canvas(self.root, width=60, height=60, highlightbackground="Black", bg="black")
-        self.c4 = Canvas(self.root, width=60, height=60, highlightbackground="Black", bg="black")
-        self.c5 = Canvas(self.root, width=60, height=60, highlightbackground="Black", bg="black")
-        self.displayMoney = [self.c1, self.c2, self.c3, self.c4, self.c5]
+        self.c1 = Canvas(self.root, width=80, height=80, highlightbackground="Black", bg="black")
+        self.c2 = Canvas(self.root, width=80, height=80, highlightbackground="Black", bg="black")
+        self.c3 = Canvas(self.root, width=80, height=80, highlightbackground="Black", bg="black")
+        self.c4 = Canvas(self.root, width=80, height=80, highlightbackground="Black", bg="black")
+        self.displayMoney = [self.c1, self.c2, self.c3, self.c4]
 
         self.image = PhotoImage(
             file="DirPNG/continue.png"
         )
 
-        self.btContinuar = Button(self.root, image=self.image, width=300, height=150, bg="black")
+        self.btContinuar = Button(self.root, image=self.image, width=400, height=200, bg="black")
 
         self.backPNG = PhotoImage(
             file="DirPNG/backPNG.png")
@@ -1337,23 +1342,23 @@ class TelaItens:
     def setDisplay(self, num, display):
         number = str(num)
         dicImagens = {
-             "#": PhotoImage(file="DirPNG/DirPNGnumber/#.png"),
-            "0": PhotoImage(file="DirPNG/DirPNGnumber/0.png"),
-            "1": PhotoImage(file="DirPNG/DirPNGnumber/1.png"),
-            "2": PhotoImage(file="DirPNG/DirPNGnumber/2.png"),
-            "3": PhotoImage(file="DirPNG/DirPNGnumber/3.png"),
-            "4": PhotoImage(file="DirPNG/DirPNGnumber/4.png"),
-            "5": PhotoImage(file="DirPNG/DirPNGnumber/5.png"),
-            "6": PhotoImage(file="DirPNG/DirPNGnumber/6.png"),
-            "7": PhotoImage(file="DirPNG/DirPNGnumber/7.png"),
-            "8": PhotoImage(file="DirPNG/DirPNGnumber/8.png"),
-            "9": PhotoImage(file="DirPNG/DirPNGnumber/9.png")
+            "#": PhotoImage(file=self.caminhoDirNum + "0.png"),
+            "0": PhotoImage(file=self.caminhoDirNum + "0.png"),
+            "1": PhotoImage(file=self.caminhoDirNum + "1.png"),
+            "2": PhotoImage(file=self.caminhoDirNum + "2.png"),
+            "3": PhotoImage(file=self.caminhoDirNum + "3.png"),
+            "4": PhotoImage(file=self.caminhoDirNum + "4.png"),
+            "5": PhotoImage(file=self.caminhoDirNum + "5.png"),
+            "6": PhotoImage(file=self.caminhoDirNum + "6.png"),
+            "7": PhotoImage(file=self.caminhoDirNum + "7.png"),
+            "8": PhotoImage(file=self.caminhoDirNum + "8.png"),
+            "9": PhotoImage(file=self.caminhoDirNum + "9.png")
 
         }
         strNumber = number if len(number) == len(display) else "#" * (len(display) - len(number)) + str(number)
         for elem in range(len(display)):
             imag = dicImagens[strNumber[elem]]
-            display[elem].create_image(30, 35, image=imag)
+            display[elem].create_image(50, 50, image=imag)
             display[elem].image = imag
 
     def construtor(self):
@@ -1365,9 +1370,10 @@ class TelaItens:
 
         self.root["bg"] = "Black"
         self.lb.place(x=1150, y=250)
-        self.btContinuar.place(x=380, y=600)
+        self.btContinuar.place(x=320, y=600)
         self.btContinuar["command"] = self.abrirTelaMain
         self.lbTitulo.place(x=280, y=0)
+        self.lbSimbol.place(x=1020, y=700)
         cont = 0
         for line in range(len(self.listBt)):
             for colunn in range(len(self.listBt[line])):
@@ -1382,7 +1388,7 @@ class TelaItens:
                                                                self.listBt[line][colunn])
                 cont += 1
         for index in range(len(self.displayMoney)):
-            self.displayMoney[index].place(x=70 * index + 300, y=510)
+            self.displayMoney[index].place(x=90 * index + 1110, y=690)
 
         self.btVolta.pack(side=BOTTOM, anchor=SW)
         self.btVolta["command"] = self.voltar

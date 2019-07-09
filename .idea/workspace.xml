@@ -3,10 +3,27 @@
   <component name="ChangeListManager">
     <list default="true" id="fefe4446-7a52-4355-8c4a-2041c4896d9f" name="Default Changelist" comment="Teste Hacker">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DirPNG/ESCOLHA-O-MODO-DE-JOGO.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DirPNG/TUTORIAL.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/TUTORIAL.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DirPNG/playerXbotPNG.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/playerXbotPNG.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fileClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/fileClass.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DirPNG/DirPNGnumber/0.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/DirPNGnumber/0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DirPNG/DirPNGnumber/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/DirPNGnumber/1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DirPNG/DirPNGnumber/2.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/DirPNGnumber/2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DirPNG/DirPNGnumber/3.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/DirPNGnumber/3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DirPNG/DirPNGnumber/4.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/DirPNGnumber/4.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DirPNG/DirPNGnumber/5.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/DirPNGnumber/5.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DirPNG/DirPNGnumber/6.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/DirPNGnumber/6.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DirPNG/DirPNGnumber/7.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/DirPNGnumber/7.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DirPNG/DirPNGnumber/8.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/DirPNGnumber/8.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DirPNG/DirPNGnumber/9.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/DirPNGnumber/9.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DirPNG/ImagemLabelBOT.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/ImagemLabelBOT.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DirPNG/ImagemLabelPlayer.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/ImagemLabelPlayer.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DirPNG/atk1.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/atk1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DirPNG/atk2.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/atk2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DirPNG/continue.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/continue.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DirPNG/deff.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/deff.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DirPNG/latancia.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DirPNG/latenciaATTK.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/latenciaATTK.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DirPNG/latenciaDEF.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/latenciaDEF.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DirPNG/life.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/life.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DirPNG/mana.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/mana.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fileWindows.py" beforeDir="false" afterPath="$PROJECT_DIR$/fileWindows.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -32,11 +49,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/fileWindows.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="118">
-              <caret line="33" column="78" selection-start-line="33" selection-start-column="78" selection-end-line="33" selection-end-column="78" />
+            <state relative-caret-position="109">
+              <caret line="380" column="42" selection-start-line="380" selection-start-column="42" selection-end-line="380" selection-end-column="42" />
             </state>
           </provider>
         </entry>
@@ -62,10 +79,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fileClass.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="118">
+            <state relative-caret-position="2329">
               <caret line="140" column="68" selection-start-line="140" selection-start-column="68" selection-end-line="140" selection-end-column="68" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
@@ -115,8 +132,8 @@
         <option value="$PROJECT_DIR$/TutorialTEXT" />
         <option value="$PROJECT_DIR$/TutorialTEXT.txt" />
         <option value="$PROJECT_DIR$/fileMain.py" />
-        <option value="$PROJECT_DIR$/fileWindows.py" />
         <option value="$PROJECT_DIR$/fileClass.py" />
+        <option value="$PROJECT_DIR$/fileWindows.py" />
       </list>
     </option>
   </component>
@@ -137,39 +154,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
-          <expand>
-            <path>
-              <item name="ProjectBloodBladeSociety" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-            </path>
-            <path>
-              <item name="ProjectBloodBladeSociety" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="fileClass.py" type="8704e2dd:PyFileNode" />
-            </path>
-            <path>
-              <item name="ProjectBloodBladeSociety" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="fileClass.py" type="8704e2dd:PyFileNode" />
-              <item name="System" type="dd8bbb05:PyElementNode" />
-            </path>
-            <path>
-              <item name="ProjectBloodBladeSociety" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="fileWindows.py" type="8704e2dd:PyFileNode" />
-            </path>
-            <path>
-              <item name="ProjectBloodBladeSociety" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="fileWindows.py" type="8704e2dd:PyFileNode" />
-              <item name="TelaInicio" type="dd8bbb05:PyElementNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -214,6 +198,33 @@
               <item name="ProjectBloodBladeSociety" type="462c0819:PsiDirectoryNode" />
               <item name="fileWindows.py" type="8704e2dd:PyFileNode" />
               <item name="TelaEscolhaBot" type="dd8bbb05:PyElementNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope">
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+          <expand>
+            <path>
+              <item name="ProjectBloodBladeSociety" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+            </path>
+            <path>
+              <item name="ProjectBloodBladeSociety" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="fileClass.py" type="8704e2dd:PyFileNode" />
+            </path>
+            <path>
+              <item name="ProjectBloodBladeSociety" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="fileWindows.py" type="8704e2dd:PyFileNode" />
+            </path>
+            <path>
+              <item name="ProjectBloodBladeSociety" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="fileWindows.py" type="8704e2dd:PyFileNode" />
+              <item name="TelaMain" type="dd8bbb05:PyElementNode" />
             </path>
           </expand>
           <select />
@@ -612,20 +623,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fileWindows.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="33" column="78" selection-start-line="33" selection-start-column="78" selection-end-line="33" selection-end-column="78" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/fileClass.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
+        <state relative-caret-position="2329">
           <caret line="140" column="68" selection-start-line="140" selection-start-column="68" selection-end-line="140" selection-end-column="68" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fileWindows.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="109">
+          <caret line="380" column="42" selection-start-line="380" selection-start-column="42" selection-end-line="380" selection-end-column="42" />
         </state>
       </provider>
     </entry>
