@@ -211,17 +211,21 @@ class System:
     @staticmethod
     def allItens():
         return [
-            Item("GARRAS DE DRAGÃO",150,5,alterDanoMagico=200,alterLatenciaAttk=9),
-            Item("LÁGRIMA DE PRINCESA",500,1,alterLatenciaDeff=-5,alterDanoMagico=2000, alterLife=1000,alterDefesaMagica=500),
-            Item("ANEL DE ADÃO",200,5,alterLatenciaAttk=9,alterLatenciaDeff=4, alterLife=150),
-            Item("ESCUDO VIVO", 200, 1,alterLife=2500, alterDefesaMagica=550,alterLatenciaAttk=-1),
-            Item("ELMO DE ULISSES", 250, 1, alterDefesaFisica=1000),
-            Item("ADAGA DE LOKI", 350, 1, alterLife=3000, alterMana=1000),
+            Item("Dragon claws",150,5,alterDanoMagico=200,alterLatenciaAttk=9, image="DirPNG/Itens/Dragonclaws.png"),
+            Item("3 warriors of David",600,3,alterLatenciaDeff=-5,alterDanoFisico=700, alterDanoMagico=300,
+                 image="DirPNG/Itens/3warriorsofDavid.png"),
+            Item("Adam's ring",200,5,alterLatenciaAttk=9,alterLatenciaDeff=4, alterLife=150,
+                 image="DirPNG/Itens/Adamsring.png"),
+            Item("living shield", 200, 1,alterLife=2500, alterDefesaMagica=550,alterLatenciaAttk=-1,
+            image="DirPNG/Itens/livingshield.png"),
+            Item("helmet of Ulysses", 250, 1, alterDefesaFisica=1000, image="DirPNG/Itens/helmetofUlysses.png"),
+            Item("Loki's dagger", 350, 1, alterLife=3000, alterMana=1000, image="DirPNG/Itens/Lokisdagger.png"),
             Item("COURAÇA DA JUSTIÇA", 400, 1, alterLife=5000,alterDefesaMagica=500, alterDefesaFisica=500),
-            Item("ADAGA DE HERMES", 50, 1, alterLatenciaDeff=-5),
-            Item("ADAGA DE APOLO", 100, 3, alterLatenciaAttk=9, alterDefesaFisica=-100, alterLatenciaDeff=4),
+            Item("hermes dagger", 50, 1, alterLatenciaDeff=-5, image="DirPNG/Itens/hermesdagger.png"),
+            Item("apollo dagger", 250, 3, alterLatenciaAttk=9, alterDefesaFisica=-50, alterLatenciaDeff=2,
+                 alterDanoFisico=200, image="DirPNG/Itens/apollodagger.png"),
             Item("ELMO DE ÁQUILA", 350, 3, alterDanoFisico=200,alterLatenciaAttk=6,alterMana=200,alterDefesaFisica=200),
-            Item("TRIDENTE DE JAIME", 350, 1, alterDanoMagico=1500, alterLatenciaDeff=-9, alterMana=-1000),
+            Item("trident of jaime", 450, 1, alterDanoMagico=1500, alterLatenciaDeff=-9, alterMana=-400, image="DirPNG/Itens/tridentofjaime.png"),
         ]
 
     @staticmethod
@@ -761,7 +765,7 @@ class Item:
                 "LatenciaDeff":self.alterLatenciaDeff,
                 "Dano Magico":self.alterDanoMagico,
                 "Dano Físico":self.alterDanoFisico}
-        dados = f'''{self.name}\n\n'''
+        dados = f'''{self.name.upper()}\n\n'''
         for infoDic in info:
             if info[infoDic] > 0:
                 dados += f"{infoDic} : + {info[infoDic]}\n"

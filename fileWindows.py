@@ -407,7 +407,7 @@ class TelaMain:
                     if item.ended():
                         info = item.aplicarItem(self.bot, attackBOT, newLatATTK, newLatDEF)
                         newLatATTK, newLatDEF = info[0], info[1]
-                        textLbDica += f"\n+ {item.name}"
+                        textLbDica += f"\n+ {item.name.upper()}"
                 self.escreverNoCanvasDica(None, attackBOT.getDados() + textLbDica, 'red')
 
                 if attackBOT.latencia <= newLatATTK:
@@ -1270,7 +1270,7 @@ class TelaItens:
         # Caminho diretório
         self.caminhoDirNum = "DirPNG/DirPNGnumber/numberGold/"
 
-        self.canvaLayaot = Canvas(self.root, bg="Black", width=300, height=700, highlightbackground="Black")
+        self.canvaLayaot = Canvas(self.root, bg="Black", width=400, height=700, highlightbackground="Black")
 
         self.imageLb = PhotoImage(
             file="DirPNG/escolhaItens.png"
@@ -1280,7 +1280,7 @@ class TelaItens:
         )
         self.lbTitulo = Label(self.root, image=self.imageLb, highlightbackground="Black", bg="black")
 
-        self.canvasImage = Canvas(self.canvaLayaot, width=200, height=200, bg="Black", highlightbackground="Black")
+        self.canvasImage = Canvas(self.canvaLayaot, width=250, height=250, bg="Black", highlightbackground="Black")
         self.lb = Label(self.canvaLayaot, font=self.fontFixedsys25, bg="Black", fg="white")
         self.lbSimbol = Label(self.root, width=80, height=80, image=self.imageLbSimbol, highlightbackground="Black",
                               bg="Black")
@@ -1337,7 +1337,7 @@ class TelaItens:
         if not item is None:
             self.lb["text"] = item.getDados()
             image = PhotoImage(file=item.image)
-            self.canvasImage.create_image(80, 80, image=image)
+            self.canvasImage.create_image(120, 100, image=image)
             self.canvasImage.image = image
         else:
             self.lb["text"] = ""
@@ -1389,7 +1389,7 @@ class TelaItens:
             for colunn in range(len(self.listBt[line])):
                 self.listBt[line][colunn].place(x=colunn * self.margeIN_x + self.margeEX_x,
                                                 y=line * self.margeIN_y + self.margeEX_y)
-                self.listBt[line][colunn]["text"] = f'''{self.listItens[cont].name}\n\nx{self.listItens[
+                self.listBt[line][colunn]["text"] = f'''{self.listItens[cont].name.upper()}\n\nx{self.listItens[
                     cont].quatidade}\n{self.listItens[cont].valor}U$'''
                 self.listBt[line][colunn].bind("<Enter>",
                                                lambda event, item=self.listItens[cont]: self.setLABEitem(event, item))
