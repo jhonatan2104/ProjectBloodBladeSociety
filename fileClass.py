@@ -220,11 +220,13 @@ class System:
             image="DirPNG/Itens/livingshield.png"),
             Item("helmet of Ulysses", 250, 1, alterDefesaFisica=1000, image="DirPNG/Itens/helmetofUlysses.png"),
             Item("Loki's dagger", 350, 1, alterLife=3000, alterMana=1000, image="DirPNG/Itens/Lokisdagger.png"),
-            Item("COURAÇA DA JUSTIÇA", 400, 1, alterLife=5000,alterDefesaMagica=500, alterDefesaFisica=500),
+            Item("breastplate", 400, 1, alterLife=5000,alterDefesaMagica=500, alterDefesaFisica=500,
+                 image="DirPNG/Itens/breastplate.png"),
             Item("hermes dagger", 50, 1, alterLatenciaDeff=-5, image="DirPNG/Itens/hermesdagger.png"),
             Item("apollo dagger", 250, 3, alterLatenciaAttk=9, alterDefesaFisica=-50, alterLatenciaDeff=2,
                  alterDanoFisico=200, image="DirPNG/Itens/apollodagger.png"),
-            Item("ELMO DE ÁQUILA", 350, 3, alterDanoFisico=200,alterLatenciaAttk=6,alterMana=200,alterDefesaFisica=200),
+            Item("Spiked Shoulder Armor", 350, 1, alterDanoFisico=500,alterLatenciaAttk=6,alterMana=200,alterDefesaFisica=400,
+                 image="DirPNG/Itens/spikedshoulderarmor.png"),
             Item("trident of jaime", 450, 1, alterDanoMagico=1500, alterLatenciaDeff=-9, alterMana=-400, image="DirPNG/Itens/tridentofjaime.png"),
         ]
 

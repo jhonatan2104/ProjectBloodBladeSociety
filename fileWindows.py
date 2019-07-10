@@ -358,7 +358,7 @@ class TelaMain:
     def dadosBot(self, event):
         txt = "INVENTÁRIO\n"
         for item in self.bot.inventory:
-            txt += f"{item.name} x{item.quatidade}\n"
+            txt += f"{item.name.upper()} x{item.quatidade}\n"
         txt += f"\n{self.bot.money}"
         self.lbDica["text"] = txt
 
@@ -591,7 +591,7 @@ class TelaMain:
     def setCanvasDICAInventario(self, event):
         txt = "INVENTÁRIO\n"
         for item in self.player.inventory:
-            txt += f"{item.name} x{item.quatidade}\n"
+            txt += f"{item.name.upper()} x{item.quatidade}\n"
         self.lbDica["text"] = txt
 
     def gerarRELATORIO(self):
