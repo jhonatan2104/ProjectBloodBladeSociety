@@ -86,10 +86,12 @@ class System:
                             imageID="DirPNG/Shield/berserker.png")
 
             player = Player(name="Ichigo Kurosaki", hp=10000, mana=600, sword=sword, shield=shield, personality=[5,4,1],
-                            activeStrategyMana=False,
+                            activeStrategyMana=True,
                             activeStrategyLatAttk=False,
                             activeStrategyDMC=False,
                             activeStrategyLatDeff=True,
+                            activeStrategyLife=True,
+                            activeStrategyDF=False,
                             imageShow="DirPNG/Personagens/ichico.png",
                             imageID="DirPNG/Personagens/nIchigo.png",
                             imageShowChoose="DirPNG/Personagens/ICHIGO-show.png")
@@ -117,7 +119,9 @@ class System:
                             activeStrategyMana=True,
                             activeStrategyLatAttk=True,
                             activeStrategyDMC=True,
-                            activeStrategyLatDeff=False,
+                            activeStrategyLatDeff=True,
+                            activeStrategyLife=True,
+                            activeStrategyDF=True,
                             imageShow="DirPNG/Personagens/bee.png",
                             imageID="DirPNG/Personagens/nBee.png",
                             imageShowChoose="DirPNG/Personagens/BEE-show.png")
@@ -145,6 +149,8 @@ class System:
                             activeStrategyLatAttk=False,
                             activeStrategyDMC=False,
                             activeStrategyLatDeff=True,
+                            activeStrategyLife=True,
+                            activeStrategyDF=True,
                             imageShow="DirPNG/Personagens/xena.png",
                             imageID="DirPNG/Personagens/nXena.png",
                             imageShowChoose="DirPNG/Personagens/XENA-show.png")
@@ -172,6 +178,8 @@ class System:
                             activeStrategyLatAttk=True,
                             activeStrategyDMC=False,
                             activeStrategyLatDeff=True,
+                            activeStrategyLife=False,
+                            activeStrategyDF=True,
                             imageShow="DirPNG/Personagens/zoro.png",
                             imageID="DirPNG/Personagens/nZoro.png",
                             imageShowChoose="DirPNG/Personagens/ZORO-show.png")
@@ -199,6 +207,8 @@ class System:
                             activeStrategyLatAttk=True,
                             activeStrategyDMC=True,
                             activeStrategyLatDeff=True,
+                            activeStrategyLife=False,
+                            activeStrategyDF=True,
                             imageShow="DirPNG/Personagens/gohan.png",
                             imageID="DirPNG/Personagens/nGohan.png",
                             imageShowChoose="DirPNG/Personagens/GOHAN-show.png")
@@ -300,6 +310,8 @@ class Player:
                  activeStrategyLatAttk=False,
                  activeStrategyDMC=False,
                  activeStrategyLatDeff=False,
+                 activeStrategyLife=False,
+                 activeStrategyDF=False,
                  imageShow = "DirPNG/matrix-wallpaper.png",imageID="DirPNG/matrix-wallpaper.png",
                  imageShowChoose = "DirPNG/matrix-wallpaper.png"):
         self.name = name
@@ -319,7 +331,9 @@ class Player:
                             "activeStrategyMana" : activeStrategyMana,
                             "activeStrategyLatAttk": activeStrategyLatAttk,
                             "activeStrategyDMC" : activeStrategyDMC,
-                            "activeStrategyLatDeff": activeStrategyLatDeff
+                            "activeStrategyLatDeff": activeStrategyLatDeff,
+                            "activeStrategyLife":activeStrategyLife,
+                            "activeStrategyDF":activeStrategyDF
                             }
 
     def __str__(self, ):
@@ -503,7 +517,7 @@ class InteligencePlayer:
             },
             "Latência Deff": {
                 "active": activeStrategyLatDeff,
-                "condition": lambda: self.player.shield.latencia < 4,
+                "condition": lambda: self.adv.shield.latencia < 4,
                 "attribute": {
                     "alterLatenciaAttk": {
                         "priority": 1,
@@ -527,7 +541,7 @@ class InteligencePlayer:
             },
             "Dano Físico": {
                 "active": activeStrategyDF,
-                "condition": lambda: self.player.sword.getAttack()[self.resolverAttack(self.adv)].danoFisico < 700,
+                "condition": lambda: True,
                 "attribute": {
                     "alterDanoFisico": {
                         "priority": 1,
@@ -567,6 +581,7 @@ class InteligencePlayer:
         for strategy in self.strategyItens:
             # Verica se a estratégia está ativada e a sua condição está presente
             if self.strategyItens[strategy]["active"] and self.strategyItens[strategy]["condition"]():
+                print(strategy)
                 # Add pontuação para todos os atributos dessa estratégia
                 for attr in self.strategyItens[strategy]["attribute"]:
                     listaPontosGeralItens = self.gerarRankItensAttr(attr, self.strategyItens[strategy]["attribute"][attr],
@@ -579,7 +594,6 @@ class InteligencePlayer:
         for listItem in self.resolverListCompraItens():
             if listItem[0].valor <= self.player.money:
                 self.player.addItem(listItem[0])
-                break
 
     def gerarRanckAttack(self, playerAdv):
         ListAttack = self.player.sword.getAttack()

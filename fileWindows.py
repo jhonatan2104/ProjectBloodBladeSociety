@@ -155,7 +155,9 @@ class TelaMain:
                                           activeStrategyLatAttk=self.bot.personality["activeStrategyLatAttk"],
                                           activeStrategyMana=self.bot.personality["activeStrategyMana"],
                                           activeStrategyDMC=self.bot.personality["activeStrategyDMC"],
-                                          activeStrategyLatDeff=self.bot.personality["activeStrategyLatDeff"])
+                                          activeStrategyLatDeff=self.bot.personality["activeStrategyLatDeff"],
+                                          activeStrategyLife=self.bot.personality["activeStrategyLife"],
+                                          activeStrategyDF=self.bot.personality["activeStrategyDF"])
 
         # DADOS PLAYER
         if dicDados is None:
