@@ -18,205 +18,159 @@ Config = {
 
 
 class System:
-    @staticmethod
-    def listPlayer():
-        return ["Ichigo Kurosaki", "Killer Bee", "Xena", "Roronoa Zoro", "Gohan"]
 
     @staticmethod
-    def printPlayers():
-        player = System.listPlayer()
-        for index in range(len(player)):
-            print("%i - %s \n" % (index, player[index]))
+    def choosePlayer(indexPlayer=None,nameChamp=None):
+        if indexPlayer != None or nameChamp!=None:
+            if nameChamp == 'Ichigo Kurosaki' or indexPlayer==0 :
+                at1 = Attack(name="Getsuga Tenshou", mana=400, latencia=5, danoFisico=300, danoMagico=2000,
+                             imageBT="DirPNG/atk3.png")
+                at2 = Attack(name="Piercer of Heaven", mana=200, latencia=2, danoFisico=100, danoMagico=1000,
+                             imageBT="DirPNG/atk3.png")
+                at3 = Attack(name="Getsuga Jūjishō", mana=350, latencia=2, danoFisico=250, danoMagico=1500,
+                             imageBT="DirPNG/atk3.png")
 
-    @staticmethod
-    def printPlayer(player, flagConfig):
-        print(Config[flagConfig], end="")
-        print('''
+                sword = Sword("Zanpakutō", at1, at2, at3,
+                              imageID="DirPNG/Sword/zampakuto.png")
 
-            Nome : {}
-            Vida : {}
-            Mana : {}
-            Sword : {}
-            Shield : {}
+                shield = Shield(name="Shielding Berserker", latencia=2, defesaFisica=400, defesaMagica=1500,
+                                imageID="DirPNG/Shield/berserker.png")
 
-        '''.format(player.name, player.hp, player.mana, player.sword.name, player.shield.name))
-        print(Config['RESET'], end="")
+                player = Player(name="Ichigo Kurosaki", hp=10000, mana=600, sword=sword, shield=shield, personality=[5,4,1],
+                                activeStrategyMana=True,
+                                activeStrategyLatAttk=False,
+                                activeStrategyDMC=False,
+                                activeStrategyLatDeff=True,
+                                activeStrategyLife=True,
+                                activeStrategyDF=False,
+                                imageShow="DirPNG/Personagens/ichico.png",
+                                imageID="DirPNG/Personagens/nIchigo.png",
+                                imageShowChoose="DirPNG/Personagens/ICHIGO-show.png")
 
-    @staticmethod
-    def print(st, flagConfig):
-        print(Config[flagConfig])
-        print(st)
-        print(Config['RESET'])
+                player.setWAVShow("DirWAV/ICHIGOPERSONAGEM.wav")
+                player.setWAVSlang("DirWAV/go.wav")
 
-    @staticmethod
-    def printKnock(danoVerdadeiro, mana, attack, player, advPlayer):
-        print(Config["BLACK"], Config['NEGRITO'], end='')
-        print(''' {} 
-        Utiliza {} para atacar {} '''.format(player.name.upper(), attack.name.upper(), advPlayer.name.upper()))
+                return player
+            elif nameChamp == 'Killer Bee' or indexPlayer==1:
+                at1 = Attack(name="Crumbling the skin", mana=800, latencia=6, danoFisico=3000, danoMagico=600,
+                             imageBT="DirPNG/atk1.png")
+                at2 = Attack(name="Life Theft", mana=250, latencia=3, danoFisico=400, danoMagico=1500,
+                             imageBT="DirPNG/atk3.png")
+                at3 = Attack(name="Samehada and the 7 swords", mana=500, latencia=3, danoFisico=1000,
+                             danoMagico=1500,
+                             imageBT="DirPNG/atk2.png")
 
-        print(Config["BLACK"], Config['NEGRITO'], end='')
-        print("Dano verdadeiro :", end='')
-        print(Config["RED"], end='')
-        print(danoVerdadeiro)
+                sword = Sword("Samehada", at1, at2, at3,
+                              imageID="DirPNG/Sword/samehada.png")
 
-        print(Config["CIANO"])
-        print('''
-        HP {} : {}
-        '''.format(advPlayer.name.upper(), advPlayer.hp))
+                shield = Shield(name="Shielding of Gemini", latencia=4, defesaFisica=500, defesaMagica=1200,
+                                imageID="DirPNG/Shield/gemeos.png")
 
-        print(Config["BLUE"], end='')
-        print("MANA RESTAURADA : {}".format(mana))
-        print(Config['RESET'])
+                player = Player(name="Killer Bee", hp=12500, mana=1000, sword=sword, shield=shield, personality=[6,3,4],
+                                activeStrategyMana=True,
+                                activeStrategyLatAttk=True,
+                                activeStrategyDMC=True,
+                                activeStrategyLatDeff=True,
+                                activeStrategyLife=True,
+                                activeStrategyDF=True,
+                                imageShow="DirPNG/Personagens/bee.png",
+                                imageID="DirPNG/Personagens/nBee.png",
+                                imageShowChoose="DirPNG/Personagens/BEE-show.png")
 
-    @staticmethod
-    def choosePlayer(indexPlayer):
-        nameChamp = System.listPlayer()[indexPlayer]
-        if nameChamp == 'Ichigo Kurosaki':
-            at1 = Attack(name="Getsuga Tenshou", mana=400, latencia=5, danoFisico=300, danoMagico=2000,
-                         imageBT="DirPNG/atk3.png")
-            at2 = Attack(name="Piercer of Heaven", mana=200, latencia=2, danoFisico=100, danoMagico=1000,
-                         imageBT="DirPNG/atk3.png")
-            at3 = Attack(name="Getsuga Jūjishō", mana=350, latencia=2, danoFisico=250, danoMagico=1500,
-                         imageBT="DirPNG/atk3.png")
+                player.setWAVShow("DirWAV/KILLERBEEPERSONAGEM.wav")
+                player.setWAVSlang("DirWAV/go.wav")
 
-            sword = Sword("Zanpakutō", at1, at2, at3,
-                          imageID="DirPNG/Sword/zampakuto.png")
+                return player
+            elif nameChamp == 'Xena' or indexPlayer==2:
+                at1 = Attack(name="Full Counter", mana=700, latencia=3, danoFisico=3000, danoMagico=500,
+                             imageBT="DirPNG/atk1.png")
+                at2 = Attack(name="Counter Vanish", mana=200, latencia=1, danoFisico=2000, danoMagico=0,
+                             imageBT="DirPNG/atk1.png")
+                at3 = Attack(name="Hellblaze", mana=400, latencia=4, danoFisico=1500, danoMagico=300,
+                             imageBT="DirPNG/atk1.png")
 
-            shield = Shield(name="Armor Berserker", latencia=2, defesaFisica=400, defesaMagica=1500,
-                            imageID="DirPNG/Shield/berserker.png")
+                sword = Sword("Excalibur", at1, at2, at3,
+                              imageID="DirPNG/Sword/excalibur.png")
 
-            player = Player(name="Ichigo Kurosaki", hp=10000, mana=600, sword=sword, shield=shield, personality=[5,4,1],
-                            activeStrategyMana=True,
-                            activeStrategyLatAttk=False,
-                            activeStrategyDMC=False,
-                            activeStrategyLatDeff=True,
-                            activeStrategyLife=True,
-                            activeStrategyDF=False,
-                            imageShow="DirPNG/Personagens/ichico.png",
-                            imageID="DirPNG/Personagens/nIchigo.png",
-                            imageShowChoose="DirPNG/Personagens/ICHIGO-show.png")
+                shield = Shield(name="Shielding Knight", latencia=3, defesaFisica=1600, defesaMagica=300,
+                                imageID="DirPNG/Shield/knight.png")
 
-            player.setWAVShow("DirWAV/ICHIGOPERSONAGEM.wav")
-            player.setWAVSlang("DirWAV/go.wav")
+                player = Player(name="Xena", hp=9900, mana=1500, sword=sword, shield=shield, personality=[6,3,3],
+                                activeStrategyMana=False,
+                                activeStrategyLatAttk=False,
+                                activeStrategyDMC=False,
+                                activeStrategyLatDeff=True,
+                                activeStrategyLife=True,
+                                activeStrategyDF=True,
+                                imageShow="DirPNG/Personagens/xena.png",
+                                imageID="DirPNG/Personagens/nXena.png",
+                                imageShowChoose="DirPNG/Personagens/XENA-show.png")
 
-            return player
-        elif nameChamp == 'Killer Bee':
-            at1 = Attack(name="Crumbling the skin", mana=800, latencia=6, danoFisico=3000, danoMagico=600,
-                         imageBT="DirPNG/atk1.png")
-            at2 = Attack(name="Life Theft", mana=250, latencia=3, danoFisico=400, danoMagico=1500,
-                         imageBT="DirPNG/atk3.png")
-            at3 = Attack(name="Samehada and the 7 swords", mana=500, latencia=3, danoFisico=1000,
-                         danoMagico=1500,
-                         imageBT="DirPNG/atk2.png")
+                player.setWAVShow("DirWAV/XENAPERSONAGEM.wav")
+                player.setWAVSlang("DirWAV/go.wav")
 
-            sword = Sword("Samehada", at1, at2, at3,
-                          imageID="DirPNG/Sword/samehada.png")
+                return player
+            elif nameChamp == 'Roronoa Zoro' or indexPlayer==3:
+                at1 = Attack(name="Shishi SonSon", mana=50, latencia=1, danoFisico=1500, danoMagico=0,
+                             imageBT="DirPNG/atk1.png")
+                at2 = Attack(name="Sanjuroku Pound Ho", mana=200, latencia=3, danoFisico=3500, danoMagico=30,
+                             imageBT="DirPNG/atk1.png")
+                at3 = Attack(name="Yakkodori", mana=100, latencia=2, danoFisico=3000, danoMagico=10,
+                             imageBT="DirPNG/atk1.png")
 
-            shield = Shield(name="Armor of Gemini", latencia=4, defesaFisica=500, defesaMagica=1200,
-                            imageID="DirPNG/Shield/gemeos.png")
+                sword = Sword("Sandai Kitetsu", at1, at2, at3,
+                              imageID="DirPNG/Sword/sandaiKitetsu.png")
 
-            player = Player(name="Killer Bee", hp=12500, mana=1000, sword=sword, shield=shield, personality=[6,3,4],
-                            activeStrategyMana=True,
-                            activeStrategyLatAttk=True,
-                            activeStrategyDMC=True,
-                            activeStrategyLatDeff=True,
-                            activeStrategyLife=True,
-                            activeStrategyDF=True,
-                            imageShow="DirPNG/Personagens/bee.png",
-                            imageID="DirPNG/Personagens/nBee.png",
-                            imageShowChoose="DirPNG/Personagens/BEE-show.png")
+                shield = Shield(name="Black Armor", latencia=1, defesaFisica=2000, defesaMagica=0,
+                                imageID="DirPNG/Shield/negra.png")
 
-            player.setWAVShow("DirWAV/KILLERBEEPERSONAGEM.wav")
-            player.setWAVSlang("DirWAV/go.wav")
+                player = Player(name="Roronoa Zoro", hp=11000, mana=1000, sword=sword, shield=shield, personality=[5,2,1],
+                                activeStrategyMana=False,
+                                activeStrategyLatAttk=True,
+                                activeStrategyDMC=False,
+                                activeStrategyLatDeff=True,
+                                activeStrategyLife=False,
+                                activeStrategyDF=True,
+                                imageShow="DirPNG/Personagens/zoro.png",
+                                imageID="DirPNG/Personagens/nZoro.png",
+                                imageShowChoose="DirPNG/Personagens/ZORO-show.png")
 
-            return player
-        elif nameChamp == 'Xena':
-            at1 = Attack(name="Full Counter", mana=700, latencia=3, danoFisico=3000, danoMagico=500,
-                         imageBT="DirPNG/atk1.png")
-            at2 = Attack(name="Counter Vanish", mana=200, latencia=1, danoFisico=2000, danoMagico=0,
-                         imageBT="DirPNG/atk1.png")
-            at3 = Attack(name="Hellblaze", mana=400, latencia=4, danoFisico=1500, danoMagico=300,
-                         imageBT="DirPNG/atk1.png")
+                player.setWAVShow("DirWAV/ZOROPERSONAGEM.wav")
+                player.setWAVSlang("DirWAV/go.wav")
 
-            sword = Sword("Excalibur", at1, at2, at3,
-                          imageID="DirPNG/Sword/excalibur.png")
+                return player
+            elif nameChamp == 'Gohan' or indexPlayer==4:
+                at1 = Attack(name="Fulminant Strike", mana=900, latencia=4, danoFisico=900, danoMagico=3000,
+                             imageBT="DirPNG/atk3.png")
+                at2 = Attack(name="Blade Combo", mana=700, latencia=1, danoFisico=920, danoMagico=1100,
+                             imageBT="DirPNG/atk2.png")
+                at3 = Attack(name="Rage of the Blade", mana=500, latencia=1, danoFisico=500, danoMagico=900,
+                             imageBT="DirPNG/atk2.png")
 
-            shield = Shield(name="Armor Knight", latencia=3, defesaFisica=1600, defesaMagica=300,
-                            imageID="DirPNG/Shield/knight.png")
+                sword = Sword("Espada Z", at1, at2, at3,
+                              imageID="DirPNG/Sword/espadaZ.png")
 
-            player = Player(name="Xena", hp=9900, mana=1500, sword=sword, shield=shield, personality=[6,3,3],
-                            activeStrategyMana=False,
-                            activeStrategyLatAttk=False,
-                            activeStrategyDMC=False,
-                            activeStrategyLatDeff=True,
-                            activeStrategyLife=True,
-                            activeStrategyDF=True,
-                            imageShow="DirPNG/Personagens/xena.png",
-                            imageID="DirPNG/Personagens/nXena.png",
-                            imageShowChoose="DirPNG/Personagens/XENA-show.png")
+                shield = Shield(name="Metal Tech", latencia=4, defesaFisica=700, defesaMagica=600,
+                                imageID="DirPNG/Shield/metalTech.png")
 
-            player.setWAVShow("DirWAV/XENAPERSONAGEM.wav")
-            player.setWAVSlang("DirWAV/go.wav")
+                player = Player(name="Gohan", hp=14000, mana=1800, sword=sword, shield=shield, personality=[5,4,2],
+                                activeStrategyMana=True,
+                                activeStrategyLatAttk=True,
+                                activeStrategyDMC=True,
+                                activeStrategyLatDeff=True,
+                                activeStrategyLife=False,
+                                activeStrategyDF=True,
+                                imageShow="DirPNG/Personagens/gohan.png",
+                                imageID="DirPNG/Personagens/nGohan.png",
+                                imageShowChoose="DirPNG/Personagens/GOHAN-show.png")
 
-            return player
-        elif nameChamp == 'Roronoa Zoro':
-            at1 = Attack(name="Shishi SonSon", mana=50, latencia=1, danoFisico=1500, danoMagico=0,
-                         imageBT="DirPNG/atk1.png")
-            at2 = Attack(name="Sanjuroku Pound Ho", mana=200, latencia=3, danoFisico=3500, danoMagico=30,
-                         imageBT="DirPNG/atk1.png")
-            at3 = Attack(name="Yakkodori", mana=100, latencia=2, danoFisico=3000, danoMagico=10,
-                         imageBT="DirPNG/atk1.png")
+                player.setWAVShow("DirWAV/GOHANPERSONAGEM.wav")
+                player.setWAVSlang("DirWAV/go.wav")
 
-            sword = Sword("Sandai Kitetsu", at1, at2, at3,
-                          imageID="DirPNG/Sword/sandaiKitetsu.png")
+                return player
+        else:
+            return None
 
-            shield = Shield(name="Black Armor", latencia=1, defesaFisica=2000, defesaMagica=0,
-                            imageID="DirPNG/Shield/negra.png")
-
-            player = Player(name="Roronoa Zoro", hp=11000, mana=1000, sword=sword, shield=shield, personality=[5,2,1],
-                            activeStrategyMana=False,
-                            activeStrategyLatAttk=True,
-                            activeStrategyDMC=False,
-                            activeStrategyLatDeff=True,
-                            activeStrategyLife=False,
-                            activeStrategyDF=True,
-                            imageShow="DirPNG/Personagens/zoro.png",
-                            imageID="DirPNG/Personagens/nZoro.png",
-                            imageShowChoose="DirPNG/Personagens/ZORO-show.png")
-
-            player.setWAVShow("DirWAV/ZOROPERSONAGEM.wav")
-            player.setWAVSlang("DirWAV/go.wav")
-
-            return player
-        elif nameChamp == 'Gohan':
-            at1 = Attack(name="Fulminant Strike", mana=900, latencia=4, danoFisico=900, danoMagico=3000,
-                         imageBT="DirPNG/atk3.png")
-            at2 = Attack(name="Blade Combo", mana=700, latencia=1, danoFisico=920, danoMagico=1100,
-                         imageBT="DirPNG/atk2.png")
-            at3 = Attack(name="Rage of the Blade", mana=500, latencia=1, danoFisico=500, danoMagico=900,
-                         imageBT="DirPNG/atk2.png")
-
-            sword = Sword("Espada Z", at1, at2, at3,
-                          imageID="DirPNG/Sword/espadaZ.png")
-
-            shield = Shield(name="Metal Tech", latencia=4, defesaFisica=700, defesaMagica=600,
-                            imageID="DirPNG/Shield/metalTech.png")
-
-            player = Player(name="Gohan", hp=14000, mana=1800, sword=sword, shield=shield, personality=[5,4,2],
-                            activeStrategyMana=True,
-                            activeStrategyLatAttk=True,
-                            activeStrategyDMC=True,
-                            activeStrategyLatDeff=True,
-                            activeStrategyLife=False,
-                            activeStrategyDF=True,
-                            imageShow="DirPNG/Personagens/gohan.png",
-                            imageID="DirPNG/Personagens/nGohan.png",
-                            imageShowChoose="DirPNG/Personagens/GOHAN-show.png")
-
-            player.setWAVShow("DirWAV/GOHANPERSONAGEM.wav")
-            player.setWAVSlang("DirWAV/go.wav")
-
-            return player
 
     @staticmethod
     def allItens():
@@ -336,10 +290,6 @@ class Player:
                             "activeStrategyDF":activeStrategyDF
                             }
 
-    def __str__(self, ):
-        return ("Nome: " + str(self.name) + "\nHP: " + str(self.hp) + "\nSword: " + str(
-            self.sword.name) + "\nShield: " + str(self.shield.name) + "\nMana: " + str(self.mana))
-
     def sufferDamage(self, damage):
         '''
         Funcao responsavel subtrair o dano sofrido no HP
@@ -380,56 +330,6 @@ class Player:
 
         self.mana -= mana
 
-    def knock(self, playerAdversario, attack):
-        '''
-        Realizar o Ataque. Calcular latência.
-        :param playerAdversario: Player
-        :param attack: Attack
-        :return: void
-        '''
-        # o numero randomico para a latencia
-        randomLatenciaAtaque = randint(0, 9)
-        # ESTRUTURA DA LATENCIA
-        '''
-                A latencia e a possibilidade de erro do ataque. Entao, e jagado um random e comparado esse o valor do random com a latencia do Player
-                Se a latencia do individuo for 5, significa que ele tem uma margem de erro [0,5[. 
-                Quando comparado com o valor randomico, se o valor estiver fora dessa margem o ataque foi efetivo
-                QUANTO MENOR A LATENCIA, MAIS MAIOR E A POSSIBILIDADE DE ATQUE EFETIVO
-                #ESTRUTURA DA LATENCIA
-                A latencia e a possibilidade de erro do ataque. Entao, e jagado um random e comparado esse o valor do random com a latencia do Player
-                Se a latencia do individuo for 5, significa que ele tem uma margem de erro [0,5[. 
-                Quando comparado com o valor randomico, se o valor estiver fora dessa margem o ataque foi efetivo
-                QUANTO MENOR A LATENCIA, MAIS MAIOR E A POSSIBILIDADE DE ATQUE EFETIVO
-        '''
-        if (attack.latencia <= randomLatenciaAtaque):
-            # ATAQUE EFETIVO
-            System.print('''SEU ATAQUE FOI EFETIVO
-            -------------RANDOM LATENCIA: {}'''.format(str(randomLatenciaAtaque)), "GREEN")
-            randomLatenciaDefesa = randint(0, 9)
-
-            if (playerAdversario.shield.latencia <= randomLatenciaDefesa):
-                # DEFESA EFETIVA
-                danos = System.calculeteDamageShield(playerAdversario, attack)
-                danoReal = danos[0] + danos[1]
-                playerAdversario.sufferDamage(danoReal)
-                self.userMana(attack.mana)
-                manaRestore = self.restoreMana(danoReal)
-                System.printKnock(danoReal, manaRestore, attack, self, playerAdversario)
-
-            else:
-                # DEFESA NAO EFETIVA
-                System.print("DANO CRITICO", 'NEGRITO')
-                danos = System.calculeteDamage(attack)
-                danoReal = danos[0]+danos[1]
-                playerAdversario.sufferDamage(danoReal)
-                self.userMana(attack.mana)
-                manaRestore = self.restoreMana(danoReal)
-                System.printKnock(danoReal, manaRestore, attack, self, playerAdversario)
-        else:
-            # ATAQUE NAO EFETIVO
-            System.print('''SEU ATAQUE FALHOU
-            -------------RANDOM LATENCIA: {}'''.format(str(randomLatenciaAtaque)), "RED")
-
     def restoreMana(self, dano):
         """
         :param dano: int
@@ -444,19 +344,6 @@ class Player:
             self.mana += 300
             return 300
 
-    @staticmethod
-    def printAttacks(player):
-        '''
-        Metodo estático. Imprime os ataques.
-        :param player: Player
-        :return: void
-        '''
-        attacksUser = player.sword.getAttack()
-        for attackIndice in range(4):
-            if attackIndice == 3:
-                print(str(attackIndice) + " - Manter modo defensivo")
-                break
-            print(str(attackIndice) + " - " + str(attacksUser[attackIndice]) + "\n")
     def addItem(self, item):
         self.inventory.append(item)
         self.money -= item.valor
@@ -646,29 +533,6 @@ class Sword:
         self.attackII = attackII
         self.attackIII = attackIII
 
-    def __str__(self):
-        ataques = self.getAttack()
-        somaDanoMagico = 0
-        somaDanoFisico = 0
-        somaMana = 0
-        samaLatencia = 0
-
-        for attack in ataques:
-            somaDanoMagico += attack.danoMagico
-            somaDanoFisico += attack.danoFisico
-            samaLatencia += attack.latencia
-            somaMana += attack.mana
-        mediaDanoMagico = somaDanoMagico / 3
-        mediaDanoFisico = somaDanoFisico / 3
-        mediaLatencia = samaLatencia / 3
-        mediaMana = somaMana/3
-
-        return '''Nome: {}
-Média DM : {:.2f}
-Média DF : {:.2f}
-Média Latência : {:.2f}
-Média Mana: {:.2f}'''.format(self.name,mediaDanoMagico, mediaDanoFisico,mediaLatencia, mediaMana)
-
     def getDados(self):
         ataques = self.getAttack()
         somaDanoMagico = 0
@@ -709,10 +573,6 @@ class Attack:
         self.danoFisico = danoFisico
         self.imageBt = imageBT
 
-    def __str__(self):
-        # coverter para string
-        return ("Nome: " + str(self.name) + "\nDano Magico: " + str(self.danoMagico) + "\nDano Fisico: " + str(
-            self.danoFisico) + "\nMana: " + str(self.mana) + "\nLantenci: " + str(self.latencia))
     def getDados(self):
         return ("Nome: " + str(self.name) + "\nDano Magico: " + str(self.danoMagico) + "\nDano Fisico: " + str(
             self.danoFisico) + "\nMana: " + str(self.mana) + "\nLantenci: " + str(self.latencia))
@@ -726,9 +586,6 @@ class Shield:
         self.defesaMagica = defesaMagica
         self.defesaFisica = defesaFisica
 
-    def __str__(self):
-        return (
-                "Nome: " + self.name + "\nLatencia: " + self.latencia + "\nDefesa Magica: " + self.defesaMagica + "\nDefesa Fisica: " + self.defesaFisica)
     def getDados(self):
         return '''Nome: {}
 Defesa Magica: {}

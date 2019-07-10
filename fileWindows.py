@@ -243,14 +243,20 @@ class TelaMain:
         self.lbDica = Label(self.canvasAttackDica, font=self.fontFixedsys, foreground="white", bg="black")
         self.lbDica.pack(side=TOP, anchor=CENTER)
 
-        # CONFIG DISPLAY
-        self.yDisplayLifi = 490
-        self.xDisplayLifiPlayer = 50
-        self.xDisplayLifiBOT = 1250
+        #LABEL INVENTÁRIO & LOJA
+        self.lbInventario = Canvas(self.root, width=80, height=80, bg="white",  highlightbackground="Black")
+        self.lbInventarioBOT = Canvas(self.root, width=80, height=80, bg="white",  highlightbackground="Black")
+        self.lbShop = Canvas(self.root, width=80, height=80, bg="white",  highlightbackground="Black")
+        self.imageInventario = PhotoImage(file="DirPNG/inventario.png")
+        self.imageShop = PhotoImage(file="DirPNG/shop.png")
 
-        self.yDisplayMana = 635
-        self.xDisplayManaPlayer = 50
-        self.xDisplayManaBOT = 1250
+
+        # CONFIG DISPLAY
+        self.yDisplayLifi = 550
+        self.yDisplayMana = 695
+
+        self.EixoXPlayer = 50
+        self.EixoXBOT = 1250
 
         # DISPLAY
         self.c1 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
@@ -357,7 +363,7 @@ class TelaMain:
         self.stringDanoReal = '''Valor de DANO VERDADEIRO
  (Dano Mágico - Amadura Mágica) + (Dano Físico - Armadura Físico)'''
 
-    def dadosBot(self, event):
+    def setCanvasDICAinfoBOT(self, event):
         txt = "INVENTÁRIO\n"
         for item in self.bot.inventory:
             txt += f"{item.name.upper()} x{item.quatidade}\n"
@@ -690,7 +696,7 @@ class TelaMain:
                     info = item.aplicarItem(self.player, attack, newLatATTK, newLatDEF)
                     newLatATTK, newLatDEF = info[0], info[1]
                     manaItens += info[2]
-                    textLbDica += f"\n+ {item.name}"
+                    textLbDica += f"\n+ {item.name.upper()}"
             self.escreverNoCanvasDica(None, attack.getDados() + textLbDica, 'red')
             if attack.latencia <= newLatATTK:
                 if self.player.mana < attack.mana:
@@ -854,62 +860,79 @@ class TelaMain:
         self.root.bind(self.teclasConfig["DadosEspada"], self.setCanvasDICASword)
 
         self.root["bg"] = "Black"
-        self.lbPlAYER.place(x=self.xDisplayManaPlayer + 50, y=20)
+        self.lbPlAYER.place(x=self.EixoXPlayer + 50, y=20)
 
-        # Atribuindo a abertura da tela Compra itens a label de imagem do player
-        self.lbPlAYER.bind("<Button-1>", self.abrirTelaItens)
-        self.lbPlAYER.bind("<Enter>",
-                           lambda event, txt="COMPRE NOVOS ITENS\nPARA O INVENTÁRIO": self.escreverNoCanvasDica(event,
-                                                                                                                txt))
-        self.lbPlAYER.bind("<Leave>", self.limparCanvasDica)
 
-        self.lbBtBOT.place(x=self.xDisplayManaBOT + 50, y=20)
+        self.lbBtBOT.place(x=self.EixoXBOT + 50, y=20)
 
         # Atribuindo a função de ataque ao botão de imagens do bot
         self.lbBtBOT["command"] = self.ActionBOT
-        self.lbBtBOT.bind("<Enter>", self.dadosBot)
-        self.lbBtBOT.bind("<Leave>", self.limparCanvasDica)
 
-        self.nomePlAYER.place(x=self.xDisplayManaPlayer, y=180)
-        self.nomePlAYER.bind("<Enter>", self.setCanvasDICAInventario)
-        self.nomePlAYER.bind("<Leave>", self.limparCanvasDica)
+        self.nomePlAYER.place(x=self.EixoXPlayer, y=180)
 
-        self.nomeBOT.place(x=self.xDisplayManaBOT, y=180)
+        self.nomeBOT.place(x=self.EixoXBOT, y=180)
 
-        self.swordPlAYER.place(x=self.xDisplayManaPlayer, y=250)
+        self.swordPlAYER.place(x=self.EixoXPlayer, y=260)
         self.swordPlAYER.bind("<Enter>", self.setCanvasDICASword)
         self.swordPlAYER.bind("<Leave>", self.limparCanvasDica)
 
-        self.swordBOT.place(x=self.xDisplayManaBOT, y=250)
+        self.swordBOT.place(x=self.EixoXBOT, y=260)
 
-        self.shieldPlayer.place(x=self.xDisplayManaPlayer, y=320)
+        self.shieldPlayer.place(x=self.EixoXPlayer, y=340)
         self.shieldPlayer.bind("<Enter>", self.setCanvasDICAShield)
         self.shieldPlayer.bind("<Leave>", self.limparCanvasDica)
 
-        self.shieldBOT.place(x=self.xDisplayManaBOT, y=320)
+        self.shieldBOT.place(x=self.EixoXBOT, y=340)
+
+        self.lbInventario.place(x=self.EixoXPlayer + 10, y=430)
+        self.lbShop.place(x=self.EixoXPlayer + 120, y=430)
+        self.lbInventarioBOT.place(x=self.EixoXBOT + 60, y=430)
+
+        # Atribuindo a abertura da tela Compra itens
+        self.lbShop.bind("<Button-1>", self.abrirTelaItens)
+        self.lbShop.bind("<Enter>",
+                           lambda event, txt="COMPRE NOVOS ITENS\nPARA O INVENTÁRIO": self.escreverNoCanvasDica(event,
+                                                                                                                txt))
+        self.lbShop.bind("<Leave>", self.limparCanvasDica)
+
+        self.lbInventario.bind("<Enter>", self.setCanvasDICAInventario)
+        self.lbInventario.bind("<Leave>", self.limparCanvasDica)
+
+        self.lbInventarioBOT.bind("<Enter>", self.setCanvasDICAinfoBOT)
+        self.lbInventarioBOT.bind("<Leave>", self.limparCanvasDica)
+
+        #Imagem Inventario & compra itens
+        self.lbInventario.create_image(42,42, image=self.imageInventario)
+        self.lbInventario.image = self.imageInventario
+
+        self.lbShop.create_image(42, 42, image=self.imageShop)
+        self.lbShop.image = self.imageShop
+
+        self.lbInventarioBOT.create_image(42,42, image=self.imageInventario)
+        self.lbInventarioBOT.image = self.imageInventario
 
         recuo = 20
         # Display LIFE PLAYER
         for j in range(len(self.displayLifePlayer)):
             self.displayLifePlayer[j].config(bg="Black")
-            self.displayLifePlayer[j].place(x=j * 50 + self.xDisplayLifiPlayer - recuo, y=self.yDisplayLifi + 60)
-        self.lbLifePlayer.place(x=self.xDisplayLifiPlayer, y=self.yDisplayLifi)
+            self.displayLifePlayer[j].place(x=j * 50 + self.EixoXPlayer - recuo, y=self.yDisplayLifi + 60)
+        self.lbLifePlayer.place(x=self.EixoXPlayer, y=self.yDisplayLifi)
 
         for j in range(len(self.displayManaPlayer)):
             self.displayManaPlayer[j].config(bg="Black")
-            self.displayManaPlayer[j].place(x=j * 50 + self.xDisplayManaPlayer - recuo, y=self.yDisplayMana + 60)
-        self.lbManaPlayer.place(x=self.xDisplayManaPlayer, y=self.yDisplayMana)
+            self.displayManaPlayer[j].place(x=j * 50 + self.EixoXPlayer - recuo, y=self.yDisplayMana + 60)
+        self.lbManaPlayer.place(x=self.EixoXPlayer, y=self.yDisplayMana)
 
         # Display LIFE BOT
         for j in range(len(self.displayLifeBOT)):
             self.displayLifeBOT[j].config(bg="Black")
-            self.displayLifeBOT[j].place(x=j * 50 + self.xDisplayLifiBOT - recuo, y=self.yDisplayLifi + 60)
-        self.lbLifeBOT.place(x=self.xDisplayLifiBOT, y=self.yDisplayLifi)
+            self.displayLifeBOT[j].place(x=j * 50 + self.EixoXBOT - recuo, y=self.yDisplayLifi + 60)
+        self.lbLifeBOT.place(x=self.EixoXBOT, y=self.yDisplayLifi)
 
         for j in range(len(self.displayManaBOT)):
             self.displayManaBOT[j].config(bg="Black")
-            self.displayManaBOT[j].place(x=j * 50 + self.xDisplayManaBOT - recuo, y=self.yDisplayMana + 60)
-        self.lbManaBOT.place(x=self.xDisplayManaBOT, y=self.yDisplayMana)
+            self.displayManaBOT[j].place(x=j * 50 + self.EixoXBOT - recuo, y=self.yDisplayMana + 60)
+        self.lbManaBOT.place(x=self.EixoXBOT, y=self.yDisplayMana)
 
         # DISPLAY DL
         for j in range(len(self.displayDanoReal)):
@@ -1328,7 +1351,7 @@ class TelaItens:
     def addItem(self, item, bt):
         if self.player.money >= item.valor:
             self.player.addItem(item)
-            self.lb["text"] = f"ITEM {item.name}\nCOMPRADO COM SUCESSO!"
+            self.lb["text"] = f"ITEM {item.name.upper()}\nCOMPRADO COM SUCESSO!"
             self.setDisplay(str(self.player.money), self.displayMoney)
             bt["bg"] = "Blue"
             bt["command"] = lambda: None
