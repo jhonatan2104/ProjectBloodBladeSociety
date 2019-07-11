@@ -373,7 +373,7 @@ class InteligencePlayer:
                 # Atributos para o Rankamento
                 "attribute" : {
                     "alterMana": {
-                        "priority":1,
+                        "priority":10,
                         "reverse" :  False
                     }
                 }
@@ -421,7 +421,7 @@ class InteligencePlayer:
                 "condition": lambda: self.player.hp < 1000,
                 "attribute": {
                     "alterLife": {
-                        "priority": 1,
+                        "priority": 10,
                         "reverse": False
                     }
                 }

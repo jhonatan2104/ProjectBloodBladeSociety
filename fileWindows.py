@@ -672,6 +672,9 @@ class TelaMain:
             self.lbDica["text"] = '''ERRO - Sua vez foi alternada, Click no Icon do BOT
            para ele realizar o ATTACK'''
             self.setCanvasStatus(-2)
+    def abrirTelaInicio(self, event):
+        self.root.destroy()
+        TelaInicio().construtor()
 
     def abrirTelaOption(self, status):
         self.root.destroy()
@@ -859,6 +862,8 @@ class TelaMain:
         self.root.bind(self.teclasConfig["DadosArmadura"], self.setCanvasDICAShield)
         self.root.bind(self.teclasConfig["DadosEspada"], self.setCanvasDICASword)
 
+        self.root.bind("<Escape>", self.abrirTelaInicio)
+
         self.root["bg"] = "Black"
         self.lbPlAYER.place(x=self.EixoXPlayer + 50, y=20)
 
@@ -1017,9 +1022,9 @@ class TelaOption:
         self.dadosDaPatida = dadosDaPatida
 
         self.margeX = 0
-        self.margeY = 150
-        self.x = 265
-        self.y = 200
+        self.margeY = 250
+        self.x = 565
+        self.y = 350
         self.color = "Black"
 
         self.imagemRelatorio = PhotoImage(
@@ -1048,7 +1053,7 @@ class TelaOption:
 
         self.root.destroy()
         t = TelaEscolhaBot()
-        t.p1 = System.choosePlayer(System.listPlayer().index(self.player.name))
+        t.p1 = System.choosePlayer(nameChamp=self.player.name)
         t.lb["image"] = t.imagemLabelBOT
         t.construtor()
 
