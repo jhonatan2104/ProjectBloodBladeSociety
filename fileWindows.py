@@ -1,7 +1,6 @@
 from functools import partial
 from tkinter import *
-from tkinter import font
-
+from tkinter import font,scrolledtext
 from fileClass import *
 
 
@@ -179,6 +178,7 @@ class TelaEscolhaBot:
 
         self.radioDefault.place(x=eixoX, y=1)
         self.radioDefault["command"] = partial(self.alterPersonalityFunc, self.radioDefault["value"])
+        self.radioDefault.select()
 
         self.radioAggressive.place(x=eixoX + 170,y=1)
         self.radioAggressive["command"] = partial(self.alterPersonalityFunc, self.radioAggressive["value"])
@@ -220,6 +220,10 @@ class TelaInicio:
         self.root.destroy()
         TelaEscolhaBot().construtor()
 
+    def abrirTelaTutor(self):
+        self.root.destroy()
+        TelaTutor().construtor()
+
     def sair(self):
         self.root.destroy()
         sys.exit()
@@ -238,6 +242,7 @@ class TelaInicio:
         self.btTutor.place(x=990, y=300)
         self.bt1["command"] = self.abrirTelaEscolhaPlayerBOT
         self.btSair["command"] = self.sair
+        self.btTutor["command"] = self.abrirTelaTutor
         self.root.mainloop()
 
 
@@ -1548,4 +1553,33 @@ class TelaItens:
         self.btVolta["command"] = self.voltar
 
         self.setDisplay(str(self.player.money), self.displayMoney)
+        self.root.mainloop()
+class TelaTutor:
+    def __init__(self):
+        self.root = Tk()
+
+        self.fontFixedsys12 = font.Font(family='Fixedsys', size=12)
+
+        self.texto = scrolledtext.ScrolledText(self.root,width=190,height=60, font=self.fontFixedsys12, bg="Black",
+                                               fg="white")
+
+        arp = open("TutorialTEXT.txt", "r")
+        txt = arp.readlines()
+        self.texto.insert(INSERT, txt)
+        self.texto.configure(state='disabled')
+
+    def voltar(self):
+        self.root.destroy()
+        TelaInicio().construtor()
+
+    def construtor(self):
+        self.root.attributes('-fullscreen',True)
+        self.root.focus_force()
+        self.root.title("Blood Blade Society")
+        self.root["bg"] = "Black"
+
+        self.root.bind("<Escape>", lambda event: self.voltar())
+
+        self.texto.pack()
+
         self.root.mainloop()

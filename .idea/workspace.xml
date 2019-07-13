@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fefe4446-7a52-4355-8c4a-2041c4896d9f" name="Default Changelist" comment="Teste Hacker">
+      <change beforePath="$PROJECT_DIR$/TutorialTEXT.txt" beforeDir="false" afterPath="$PROJECT_DIR$/TutorialTEXT.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fileClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/fileClass.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fileWindows.py" beforeDir="false" afterPath="$PROJECT_DIR$/fileWindows.py" afterDir="false" />
     </list>
@@ -31,8 +32,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/fileWindows.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="118">
-              <caret line="58" column="36" selection-start-line="58" selection-start-column="36" selection-end-line="58" selection-end-column="36" />
+            <state relative-caret-position="184">
+              <caret line="1565" column="32" selection-start-line="1565" selection-start-column="32" selection-end-line="1565" selection-end-column="32" />
+              <folding>
+                <element signature="e#0#29#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -40,8 +44,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TutorialTEXT.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="556">
-              <caret line="73" selection-start-line="73" selection-end-line="73" />
+            <state relative-caret-position="216">
+              <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
             </state>
           </provider>
         </entry>
@@ -61,8 +65,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fileClass.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="189" selection-start-line="189" selection-end-line="189" />
+            <state relative-caret-position="-2006">
+              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
                 <element signature="e#17294#19756#0" />
@@ -111,8 +115,8 @@
         <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/setup.py" />
         <option value="$PROJECT_DIR$/TutorialTEXT" />
-        <option value="$PROJECT_DIR$/TutorialTEXT.txt" />
         <option value="$PROJECT_DIR$/fileMain.py" />
+        <option value="$PROJECT_DIR$/TutorialTEXT.txt" />
         <option value="$PROJECT_DIR$/fileClass.py" />
         <option value="$PROJECT_DIR$/fileWindows.py" />
       </list>
@@ -200,7 +204,7 @@
               <item name="ProjectBloodBladeSociety" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
               <item name="fileClass.py" type="8704e2dd:PyFileNode" />
-              <item name="System" type="dd8bbb05:PyElementNode" />
+              <item name="InteligencePlayer" type="dd8bbb05:PyElementNode" />
             </path>
             <path>
               <item name="ProjectBloodBladeSociety" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
@@ -217,13 +221,7 @@
               <item name="ProjectBloodBladeSociety" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
               <item name="fileWindows.py" type="8704e2dd:PyFileNode" />
-              <item name="TelaOption" type="dd8bbb05:PyElementNode" />
-            </path>
-            <path>
-              <item name="ProjectBloodBladeSociety" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="fileWindows.py" type="8704e2dd:PyFileNode" />
-              <item name="TelaRelatorio" type="dd8bbb05:PyElementNode" />
+              <item name="TelaInicio" type="dd8bbb05:PyElementNode" />
             </path>
           </expand>
           <select />
@@ -617,15 +615,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/TutorialTEXT.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="556">
-          <caret line="73" selection-start-line="73" selection-end-line="73" />
+        <state relative-caret-position="216">
+          <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/fileClass.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="189" selection-start-line="189" selection-end-line="189" />
+        <state relative-caret-position="-2006">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
             <element signature="e#17294#19756#0" />
@@ -635,8 +633,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/fileWindows.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="58" column="36" selection-start-line="58" selection-start-column="36" selection-end-line="58" selection-end-column="36" />
+        <state relative-caret-position="184">
+          <caret line="1565" column="32" selection-start-line="1565" selection-start-column="32" selection-end-line="1565" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

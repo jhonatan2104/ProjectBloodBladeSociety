@@ -5,7 +5,6 @@ import sys
 
 
 class System:
-
     @staticmethod
     def choosePlayer(indexPlayer=None,nameChamp=None):
         if indexPlayer != None or nameChamp!=None:
