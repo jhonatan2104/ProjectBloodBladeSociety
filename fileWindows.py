@@ -49,6 +49,63 @@ class TelaEscolhaBot:
         self.btVoltar = Button(self.root, image=self.backPNG, bg="Black")
         self.bts = [[self.bt1, self.bt2, self.bt3], [self.bt4, self.bt5]]
 
+        self.canvasStrategy = Canvas(self.root, width=1000, height=40, bg="black", highlightbackground="Black")
+        self.canvasStrategyPersonality = Canvas(self.root, width=1000, height=50, bg="black",
+                                               highlightbackground="Black")
+        self.fontFixedsys15 = font.Font(family='Fixedsys', size=12)
+
+        #Variáveis
+        self.alterPersonality = False
+        self.personalityAttk = '413'
+        self.strategyVariables = {}
+        self.strategyCheckButton = {}
+
+        self.btAlterStrategyBot = Button(self.root, width=25, height=2, bg="#ec352e", fg="black",
+                    highlightbackground="#ec352e", font=font.Font(family='Fixedsys', size=15), text="Alterar Estratégia Bot")
+
+        for estrategia in InteligencePlayer(None,None,0).strategyItens:
+            auxC = Checkbutton(self.canvasStrategy, text=estrategia, font=self.fontFixedsys15, bg="black",
+                               fg="#ec352e", activeforeground="#ec352e", activebackground="black")
+            self.strategyVariables.update({estrategia : False})
+            self.strategyCheckButton.update({estrategia : auxC})
+
+        self.lbCanvasEstrategia = Label(self.root, font=font.Font(family='Fixedsys', size=15),
+                                        fg="#ec352e",bg="Black", highlightbackground="black",width=25, height=2,
+                                        text="CONFIGURE E ESCOLHA O BOT")
+        self.radioAggressive = Radiobutton(self.canvasStrategyPersonality, bg="black", fg="#ec352e", text="Aggressive",
+                                            font=font.Font(family='Fixedsys', size=15), value='713',
+                                            variable=self.personalityAttk)
+        self.radioStrategy = Radiobutton(self.canvasStrategyPersonality, bg="black", fg="#ec352e", text="Strategy",
+                                           font=font.Font(family='Fixedsys', size=15), value='432',
+                                           variable=self.personalityAttk)
+        self.radioFrantic = Radiobutton(self.canvasStrategyPersonality, bg="black", fg="#ec352e", text="Frantic",
+                                         font=font.Font(family='Fixedsys', size=15), value='147',
+                                         variable=self.personalityAttk)
+
+    def invertValue(self, variable):
+        '''
+        Ela inverte o valor do dic self.strategyVariables pela chave passada
+        :param variable:
+        :return:
+        '''
+        self.strategyVariables[variable] = not self.strategyVariables[variable]
+
+    def alterPersonalityFunc(self, listValue):
+        self.personalityAttk = listValue
+
+    def alterStrategy(self, widget):
+        self.alterPersonality = not self.alterPersonality
+        if self.alterPersonality:
+            self.canvasStrategyPersonality.pack(side=BOTTOM, anchor=S)
+            self.canvasStrategy.pack(side=BOTTOM, anchor=S)
+            self.lbCanvasEstrategia.pack(side=BOTTOM, anchor=S)
+            widget["text"] = "Config Default"
+        else:
+            self.canvasStrategy.pack_forget()
+            self.lbCanvasEstrategia.pack_forget()
+            self.canvasStrategyPersonality.pack_forget()
+            widget["text"] = "Alterar Estratégia Bot"
+
     def choose(self, contCamp):
 
         # OBJETO Player
@@ -60,10 +117,25 @@ class TelaEscolhaBot:
 
             # MUDAR IMAGENS DE TÍTULO
             self.lb["image"] = self.imagemLabelBOT
+
+            #ALTERAR STRATEGIA
+            self.btAlterStrategyBot.pack(side=BOTTOM, anchor=SE)
+
+            self.btAlterStrategyBot["command"] = lambda widget=self.btAlterStrategyBot: self.alterStrategy(widget)
         elif self.BOT is None:
             # TOCAR ÁUDIO
             player.PlayWAVShow()
             self.BOT = player
+            print(self.strategyVariables)
+            print(self.personalityAttk)
+            #print(self.personalityAttk)
+
+            if self.alterPersonality:
+                print("Alterada")
+                self.BOT.setPersonalityItens(self.strategyVariables)
+                self.BOT.setPersonalityAttk(self.personalityAttk)
+            else:
+                print("Não alterada")
 
             # CHAMAR OUTRA TELA
             self.root.destroy()
@@ -88,8 +160,25 @@ class TelaEscolhaBot:
                 contCamp += 1
                 self.bts[line][column].place(x=self.x * column + self.margeX, y=self.y * line + self.margeY)
 
+        x = 0
+        y = 3
+
+        for nomeStrategy in self.strategyCheckButton:
+            self.strategyCheckButton[nomeStrategy].place(x=x * 200 + 5, y=y)
+            self.strategyCheckButton[nomeStrategy]["command"] = partial(self.invertValue, nomeStrategy)
+            x += 1
+
+        self.radioAggressive.place(x=300,y=1)
+        self.radioAggressive["command"] = partial(self.alterPersonalityFunc, self.radioAggressive["value"])
+
+        self.radioStrategy.place(x=470,y=1)
+        self.radioStrategy["command"] = partial(self.alterPersonalityFunc, self.radioStrategy["value"])
+
+        self.radioFrantic.place(x=640,y=1)
+        self.radioFrantic["command"] = partial(self.alterPersonalityFunc, self.radioFrantic["value"])
+
         self.lb.pack(side=TOP)
-        self.btVoltar.pack(side=BOTTOM, anchor=SE)
+        self.btVoltar.pack(side=LEFT, anchor=SW)
         self.btVoltar["command"] = self.voltar
         self.root.mainloop()
 
@@ -146,6 +235,9 @@ class TelaMain:
         # PLAYER
         self.player = player
         self.bot = bot
+
+        print(self.player.personality)
+        print(self.bot.personality)
 
         # CRIAR A UMA INSTÂNCIA DA INTALIGÊNCIA BOT
         self.intelBOT = InteligencePlayer(self.bot, self.player, 500,
@@ -410,12 +502,8 @@ class TelaMain:
                 ## COMPRA DE ITEM
                 self.intelBOT.buyItems()
 
-                newLatATTK, newLatDEF, textLbDica = randomLatenciaAtaque, randomLatenciaDefesa, "\n"
-                for item in self.bot.inventory:
-                    if item.ended():
-                        info = item.aplicarItem(self.bot, attackBOT, newLatATTK, newLatDEF)
-                        newLatATTK, newLatDEF = info[0], info[1]
-                        textLbDica += f"\n+ {item.name.upper()}"
+                newLatATTK, newLatDEF, manaItens, textLbDica = self.bot.userItens(randomLatenciaAtaque, randomLatenciaDefesa, attackBOT)
+
                 self.escreverNoCanvasDica(None, attackBOT.getDados() + textLbDica, 'red')
 
                 if attackBOT.latencia <= newLatATTK:

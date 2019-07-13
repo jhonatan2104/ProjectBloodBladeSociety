@@ -290,6 +290,28 @@ class Player:
                             "activeStrategyDF":activeStrategyDF
                             }
 
+    def setPersonalityItens(self, dic):
+        '''
+        Ele set os atributos do player em relação a compra dos Itens
+
+        :param dic:
+        :return: void
+        '''
+        for strategy in dic:
+            self.personality[strategy] = dic[strategy]
+    def setPersonalityAttk(self, listP):
+        '''
+        Ele set os atributos do player em relação a escolha de ataques
+
+        :param listP:
+        :return:
+        '''
+        listP = list(listP)
+        self.personality["importanciaDANO"] = int(listP.__getitem__(0))
+        self.personality["importanciaMANA"] = int(listP.__getitem__(1))
+        self.personality["importanciaLATENCIA"] =  int(listP.__getitem__(2))
+
+
     def sufferDamage(self, damage):
         '''
         Funcao responsavel subtrair o dano sofrido no HP
@@ -330,6 +352,16 @@ class Player:
 
         self.mana -= mana
 
+    def userItens(self, randomLatenciaAtaque, randomLatenciaDefesa, attack):
+        newLatATTK, newLatDEF, manaItens, textLbDica = randomLatenciaAtaque, randomLatenciaDefesa, 0, "\n"
+        for item in self.inventory:
+            if item.ended():
+                info = item.aplicarItem(self, attack, newLatATTK, newLatDEF)
+                newLatATTK, newLatDEF = info[0], info[1]
+                manaItens += info[2]
+                textLbDica += f"\n+ {item.name.upper()}"
+        return [newLatATTK, newLatDEF, manaItens, textLbDica]
+
     def restoreMana(self, dano):
         """
         :param dano: int
@@ -364,8 +396,9 @@ class InteligencePlayer:
 
         # Estratégias de Mana
         self.strategyItens = {
-            # Nome da Estratégia
-            "Mana" : {
+            # Nome da Estratégia e atributo de ativação
+            "activeStrategyMana" : {
+                "name": "Mana",
                 # Estratégia Ativa
                 "active" : activeStrategyMana,
                 # Condição de Ativação Durante a Partida
@@ -378,7 +411,8 @@ class InteligencePlayer:
                     }
                 }
             },
-            "Latência Attk": {
+            "activeStrategyLatAttk": {
+                "name": "Latência Attk",
                 "active": activeStrategyLatAttk,
                 "condition": lambda : self.player.sword.getAttack()[self.resolverAttack(self.adv)].latencia > 5,
                 "attribute": {
@@ -388,21 +422,19 @@ class InteligencePlayer:
                     }
                 }
             },
-            "Dano Mágico Críticos": {
+            "activeStrategyDMC": {
+                "name": "Dano Mágico Crítico",
                 "active": activeStrategyDMC,
                 "condition": lambda : True,
                 "attribute": {
                     "alterDanoMagico": {
-                        "priority": 4,
+                        "priority": 3,
                         "reverse": False
-                    },
-                    "alterLatenciaDeff": {
-                        "priority": 2,
-                        "reverse": True
                     }
                 }
             },
-            "Latência Deff": {
+            "activeStrategyLatDeff": {
+                "name": "Ataques Críticos",
                 "active": activeStrategyLatDeff,
                 "condition": lambda: self.adv.shield.latencia < 4,
                 "attribute": {
@@ -416,17 +448,19 @@ class InteligencePlayer:
                     }
                 }
             },
-            "Vida": {
+            "activeStrategyLife": {
+                "name": "Vida",
                 "active": activeStrategyLife,
                 "condition": lambda: self.player.hp < 1000,
                 "attribute": {
                     "alterLife": {
-                        "priority": 10,
+                        "priority": 3,
                         "reverse": False
                     }
                 }
             },
-            "Dano Físico": {
+            "activeStrategyDF": {
+                "name": "Vida",
                 "active": activeStrategyDF,
                 "condition": lambda: True,
                 "attribute": {
@@ -611,10 +645,31 @@ class Item:
         self.alterDanoMagico = alterDanoMagico
         self.alterDanoFisico = alterDanoFisico
     def usarItem(self):
+        '''
+        Altera a quantidade do item.
+
+        -- Função "private"
+
+        :return: Void
+        '''
         self.quatidade -= 1
     def ended(self):
+        '''
+        Verifica se o Item terminou
+
+        :return: Boolean
+        '''
         return self.quatidade > 0
     def aplicarItem(self, player, attack, latATTK, latDEFF):
+        '''
+        Ela altera algumas vaiáveis do jogo.
+
+        :param player:
+        :param attack:
+        :param latATTK:
+        :param latDEFF:
+        :return: list [latATTK, latDEFF, self.alterMana]
+        '''
         self.usarItem()
         #ALTERAR O PLAYER
         player.hp += self.alterLife
@@ -628,8 +683,13 @@ class Item:
         #ATTACK
         attack.danoMagico += self.alterDanoMagico
         attack.danoFisico += self.alterDanoFisico
-        return [latATTK,latDEFF, self.alterMana]
+        return [latATTK, latDEFF, self.alterMana]
     def getDados(self):
+        '''
+        Get dos dados do Item de forma formatada.
+
+        :return: String
+        '''
         info = {"Life":self.alterLife ,
                 "Mana":self.alterMana,
                 "Defesa Magica":self.alterDefesaMagica,
