@@ -56,7 +56,7 @@ class TelaEscolhaBot:
 
         #Variáveis
         self.alterPersonality = False
-        self.personalityAttk = '413'
+        self.personalityAttk = 'None'
         self.strategyVariables = {}
         self.strategyCheckButton = {}
 
@@ -81,6 +81,9 @@ class TelaEscolhaBot:
         self.radioFrantic = Radiobutton(self.canvasStrategyPersonality, bg="black", fg="#ec352e", text="Frantic",
                                          font=font.Font(family='Fixedsys', size=15), value='147',
                                          variable=self.personalityAttk)
+        self.radioDefault = Radiobutton(self.canvasStrategyPersonality, bg="black", fg="#ec352e", text="Default",
+                                        font=font.Font(family='Fixedsys', size=15), value='None',
+                                        variable=self.personalityAttk)
 
     def invertValue(self, variable):
         '''
@@ -106,6 +109,10 @@ class TelaEscolhaBot:
             self.canvasStrategyPersonality.pack_forget()
             widget["text"] = "Alterar Estratégia Bot"
 
+    def ADDbtAlterStrategyBot(self):
+        self.btAlterStrategyBot.pack(side=BOTTOM, anchor=SE)
+        self.btAlterStrategyBot["command"] = lambda widget=self.btAlterStrategyBot: self.alterStrategy(widget)
+
     def choose(self, contCamp):
 
         # OBJETO Player
@@ -119,9 +126,7 @@ class TelaEscolhaBot:
             self.lb["image"] = self.imagemLabelBOT
 
             #ALTERAR STRATEGIA
-            self.btAlterStrategyBot.pack(side=BOTTOM, anchor=SE)
-
-            self.btAlterStrategyBot["command"] = lambda widget=self.btAlterStrategyBot: self.alterStrategy(widget)
+            self.ADDbtAlterStrategyBot()
         elif self.BOT is None:
             # TOCAR ÁUDIO
             player.PlayWAVShow()
@@ -133,7 +138,8 @@ class TelaEscolhaBot:
             if self.alterPersonality:
                 print("Alterada")
                 self.BOT.setPersonalityItens(self.strategyVariables)
-                self.BOT.setPersonalityAttk(self.personalityAttk)
+                if self.personalityAttk != 'None':
+                    self.BOT.setPersonalityAttk(self.personalityAttk)
             else:
                 print("Não alterada")
 
@@ -148,6 +154,7 @@ class TelaEscolhaBot:
     def construtor(self):
         self.root.attributes('-fullscreen',True)
         self.root.focus_force()
+        self.root.title("Blood Blade Society")
         self.root["bg"] = self.color
 
         # VARIÁVEL AUXILIAR PARA INDEX DO PLAYER { self.choose(contCamp) }
@@ -168,14 +175,21 @@ class TelaEscolhaBot:
             self.strategyCheckButton[nomeStrategy]["command"] = partial(self.invertValue, nomeStrategy)
             x += 1
 
-        self.radioAggressive.place(x=300,y=1)
+        eixoX = 210
+
+        self.radioDefault.place(x=eixoX, y=1)
+        self.radioDefault["command"] = partial(self.alterPersonalityFunc, self.radioDefault["value"])
+
+        self.radioAggressive.place(x=eixoX + 170,y=1)
         self.radioAggressive["command"] = partial(self.alterPersonalityFunc, self.radioAggressive["value"])
 
-        self.radioStrategy.place(x=470,y=1)
+        self.radioStrategy.place(x=eixoX + 170*2,y=1)
         self.radioStrategy["command"] = partial(self.alterPersonalityFunc, self.radioStrategy["value"])
 
-        self.radioFrantic.place(x=640,y=1)
+        self.radioFrantic.place(x=eixoX + 170*3,y=1)
         self.radioFrantic["command"] = partial(self.alterPersonalityFunc, self.radioFrantic["value"])
+
+
 
         self.lb.pack(side=TOP)
         self.btVoltar.pack(side=LEFT, anchor=SW)
@@ -213,6 +227,7 @@ class TelaInicio:
     def construtor(self):
         self.root.attributes('-fullscreen',True)
         self.root.focus_force()
+        self.root.title("Blood Blade Society")
 
         self.root.bind("<Return>", lambda event: self.abrirTelaEscolhaPlayerBOT())
         self.root["bg"] = self.color
@@ -933,6 +948,7 @@ class TelaMain:
     def construtor(self):
         self.root.attributes('-fullscreen',True)
         self.root.focus_force()
+        self.root.title("Blood Blade Society")
 
         #List de ataques do player
         attacksPlayer = self.player.sword.getAttack()
@@ -1143,18 +1159,24 @@ class TelaOption:
         t = TelaEscolhaBot()
         t.p1 = System.choosePlayer(nameChamp=self.player.name)
         t.lb["image"] = t.imagemLabelBOT
+        t.ADDbtAlterStrategyBot()
         t.construtor()
 
     def construtor(self):
         self.root.attributes('-fullscreen',True)
         self.root.focus_force()
+        self.root.title("Blood Blade Society")
         self.root["bg"] = self.color
+
         self.lb["bg"] = self.color
         self.lb.pack(side=TOP)
+
         self.bt1.place(x=self.x, y=self.y)
         self.bt2.place(x=self.x + self.margeX, y=self.y + self.margeY)
+
         self.bt1["command"] = self.abrirRelatorio
         self.bt2["command"] = self.abrirChoosePlayer
+
         self.root.mainloop()
 
 
@@ -1349,7 +1371,9 @@ class TelaRelatorio:
     def construtor(self):
         self.root.attributes('-fullscreen',True)
         self.root.focus_force()
+        self.root.title("Blood Blade Society")
         self.root["bg"] = "Black"
+
         self.lbTitulo.pack(side=TOP)
         cont = 0
         for lbx in range(len(self.labels)):
@@ -1364,6 +1388,7 @@ class TelaRelatorio:
                 infoPartida = self.dadosDaPartida[cont]
                 self.setDisplay(infoPartida if infoPartida >= 0 else 0, self.displays[lbx][lby])
                 cont += 1
+
         self.btVolta.pack(side=BOTTOM, anchor=SE)
         self.btVolta["command"] = self.voltar
         self.root.mainloop()
@@ -1490,6 +1515,7 @@ class TelaItens:
     def construtor(self):
         self.root.attributes('-fullscreen',True)
         self.root.focus_force()
+        self.root.title("Blood Blade Society")
 
         # Eventos TECLADOS
         self.root.bind("<Return>", lambda event: self.abrirTelaMain())

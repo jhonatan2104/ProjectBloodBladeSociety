@@ -3,19 +3,6 @@ from operator import itemgetter
 import winsound
 import sys
 
-Config = {
-    "RED": '\033[31m',
-    "GREEN": '\033[32m',
-    "BLUE": '\033[34m',
-    "CIANO": '\033[36m',
-    "MAGETA": '\033[35m',
-    "YELLOW": '\033[33m',
-    "BLACK": '\033[30m',
-    "WHITE": '\033[37m',
-    'NEGRITO': '\033[1m',
-    'RESET': '\033[0;0m'
-}
-
 
 class System:
 
@@ -176,21 +163,31 @@ class System:
     def allItens():
         return [
             Item("Dragon claws",150,5,alterDanoMagico=200,alterLatenciaAttk=9, image="DirPNG/Itens/Dragonclaws.png"),
+
             Item("3 warriors of David",600,3,alterLatenciaDeff=-5,alterDanoFisico=700, alterDanoMagico=300,
                  image="DirPNG/Itens/3warriorsofDavid.png"),
+
             Item("Adam's ring",200,5,alterLatenciaAttk=9,alterLatenciaDeff=4, alterLife=150,
                  image="DirPNG/Itens/Adamsring.png"),
+
             Item("living shield", 200, 1,alterLife=2500, alterDefesaMagica=550,alterLatenciaAttk=-1,
             image="DirPNG/Itens/livingshield.png"),
+
             Item("helmet of Ulysses", 250, 1, alterDefesaFisica=1000, image="DirPNG/Itens/helmetofUlysses.png"),
+
             Item("Loki's dagger", 350, 1, alterLife=3000, alterMana=1000, image="DirPNG/Itens/Lokisdagger.png"),
+
             Item("breastplate", 400, 1, alterLife=5000,alterDefesaMagica=500, alterDefesaFisica=500,
                  image="DirPNG/Itens/breastplate.png"),
+
             Item("hermes dagger", 50, 1, alterLatenciaDeff=-5, image="DirPNG/Itens/hermesdagger.png"),
+
             Item("apollo dagger", 250, 3, alterLatenciaAttk=9, alterDefesaFisica=-50, alterLatenciaDeff=2,
                  alterDanoFisico=200, image="DirPNG/Itens/apollodagger.png"),
+
             Item("Spiked Shoulder Armor", 350, 1, alterDanoFisico=500,alterLatenciaAttk=6,alterMana=200,alterDefesaFisica=400,
                  image="DirPNG/Itens/spikedshoulderarmor.png"),
+
             Item("trident of jaime", 450, 1, alterDanoMagico=1500, alterLatenciaDeff=-9, alterMana=-400, image="DirPNG/Itens/tridentofjaime.png"),
         ]
 
