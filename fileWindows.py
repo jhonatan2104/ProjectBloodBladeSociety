@@ -60,8 +60,12 @@ class TelaEscolhaBot:
         self.strategyVariables = {}
         self.strategyCheckButton = {}
 
+        self.imageBTDesafiar = PhotoImage(file="DirPNG/DESAFIAR.png")
+
         self.btAlterStrategyBot = Button(self.root, width=25, height=2, bg="#ec352e", fg="black",
                     highlightbackground="#ec352e", font=font.Font(family='Fixedsys', size=15), text="Alterar Estratégia Bot")
+        self.btAbrirTelaItens = Button(self.root, width=400, height=200, bg="black",highlightbackground="black",
+                                       image=self.imageBTDesafiar, border=0)
 
         dic = InteligencePlayer(None,None,0).strategyItens
 
@@ -138,27 +142,31 @@ class TelaEscolhaBot:
             # MUDAR IMAGENS DE TÍTULO
             self.lb["image"] = self.imagemLabelBOT
 
-            #ALTERAR STRATEGIA
-            self.ADDbtAlterStrategyBot()
         elif self.BOT is None:
             # TOCAR ÁUDIO
             player.PlayWAVShow()
             self.BOT = player
-            print(self.strategyVariables)
-            print(self.personalityAttk)
             #print(self.personalityAttk)
 
-            if self.alterPersonality:
-                print("Alterada")
-                self.BOT.setPersonalityItens(self.strategyVariables)
-                if self.personalityAttk != 'None':
-                    self.BOT.setPersonalityAttk(self.personalityAttk)
-            else:
-                print("Não alterada")
+            self.btAbrirTelaItens.place(x=1080,y=452)
+            self.btAbrirTelaItens["command"] = self.abrirTelaItens
+            # ALTERAR STRATEGIA
+            self.ADDbtAlterStrategyBot()
 
-            # CHAMAR OUTRA TELA
-            self.root.destroy()
-            TelaItens(self.p1, self.BOT).construtor()
+    def abrirTelaItens(self):
+        print(self.strategyVariables)
+        print(self.personalityAttk)
+        if self.alterPersonality:
+            print("Alterada")
+            self.BOT.setPersonalityItens(self.strategyVariables)
+            if self.personalityAttk != 'None':
+                self.BOT.setPersonalityAttk(self.personalityAttk)
+        else:
+            print("Não alterada")
+
+        # CHAMAR OUTRA TELA
+        self.root.destroy()
+        TelaItens(self.p1, self.BOT).construtor()
 
     def voltar(self):
         self.root.destroy()

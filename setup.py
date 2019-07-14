@@ -19,7 +19,8 @@ allArqDir = ["DirPNG", "DirWAV", "TutorialTEXT.txt",
 
 buildOptions = dict(
     packages=["tkinter"],
-    includes=["winsound", "operator", "fileClass", "functools", "tkinter.font", "fileWindows", "tkinter.scrolledtext"],
+    includes=["winsound", "operator", "fileClass", "functools", "tkinter.font", "fileWindows", "tkinter.scrolledtext",
+              "time"],
     include_files=allArqDir,
     excludes=[]
 )
