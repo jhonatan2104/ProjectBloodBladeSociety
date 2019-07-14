@@ -2,6 +2,7 @@ from functools import partial
 from tkinter import *
 from tkinter import font,scrolledtext
 from fileClass import *
+import time
 
 
 class TelaEscolhaBot:
@@ -48,7 +49,7 @@ class TelaEscolhaBot:
         self.btVoltar = Button(self.root, image=self.backPNG, bg="Black")
         self.bts = [[self.bt1, self.bt2, self.bt3], [self.bt4, self.bt5]]
 
-        self.canvasStrategy = Canvas(self.root, width=1000, height=40, bg="black", highlightbackground="Black")
+        self.canvasStrategy = Canvas(self.root, width=1200, height=40, bg="black", highlightbackground="Black")
         self.canvasStrategyPersonality = Canvas(self.root, width=1000, height=50, bg="black",
                                                highlightbackground="Black")
         self.fontFixedsys15 = font.Font(family='Fixedsys', size=12)
@@ -62,8 +63,10 @@ class TelaEscolhaBot:
         self.btAlterStrategyBot = Button(self.root, width=25, height=2, bg="#ec352e", fg="black",
                     highlightbackground="#ec352e", font=font.Font(family='Fixedsys', size=15), text="Alterar Estratégia Bot")
 
-        for estrategia in InteligencePlayer(None,None,0).strategyItens:
-            auxC = Checkbutton(self.canvasStrategy, text=estrategia, font=self.fontFixedsys15, bg="black",
+        dic = InteligencePlayer(None,None,0).strategyItens
+
+        for estrategia in dic:
+            auxC = Checkbutton(self.canvasStrategy, text=dic[estrategia]["name"], font=self.fontFixedsys15, bg="black",
                                fg="#ec352e", activeforeground="#ec352e", activebackground="black")
             self.strategyVariables.update({estrategia : False})
             self.strategyCheckButton.update({estrategia : auxC})
@@ -84,6 +87,13 @@ class TelaEscolhaBot:
                                         font=font.Font(family='Fixedsys', size=15), value='None',
                                         variable=self.personalityAttk)
 
+        self.lbStrategyItens = Label(self.root, font=font.Font(family='Fixedsys', size=11),
+                                        fg="White",bg="Black", highlightbackground="black",width=19, height=2,
+                                        text="Strategy Itens")
+        self.lbStrategyAttk = Label(self.root, font=font.Font(family='Fixedsys', size=11),
+                                     fg="White", bg="Black", highlightbackground="black", width=19, height=2,
+                                     text="Strategy Attack")
+
     def invertValue(self, variable):
         '''
         Ela inverte o valor do dic self.strategyVariables pela chave passada
@@ -101,11 +111,15 @@ class TelaEscolhaBot:
             self.canvasStrategyPersonality.pack(side=BOTTOM, anchor=S)
             self.canvasStrategy.pack(side=BOTTOM, anchor=S)
             self.lbCanvasEstrategia.pack(side=BOTTOM, anchor=S)
+            self.lbStrategyItens.place(x=90, y=680)
+            self.lbStrategyAttk.place(x=345, y=735)
             widget["text"] = "Config Default"
         else:
             self.canvasStrategy.pack_forget()
             self.lbCanvasEstrategia.pack_forget()
             self.canvasStrategyPersonality.pack_forget()
+            self.lbStrategyItens.place_forget()
+            self.lbStrategyAttk.place_forget()
             widget["text"] = "Alterar Estratégia Bot"
 
     def ADDbtAlterStrategyBot(self):
@@ -188,7 +202,6 @@ class TelaEscolhaBot:
 
         self.radioFrantic.place(x=eixoX + 170*3,y=1)
         self.radioFrantic["command"] = partial(self.alterPersonalityFunc, self.radioFrantic["value"])
-
 
 
         self.lb.pack(side=TOP)
@@ -718,6 +731,7 @@ class TelaMain:
 
     def verificarGame(self):
         if self.player.hp <= 0:
+            time.sleep(1)
             print(f'''
                         VOCÊ PERDEU!1
                     {self.player.name} x {self.bot.name}
@@ -740,6 +754,7 @@ class TelaMain:
             # index 2 : se o ele venceu ou não
             return [True, False]
         if self.bot.hp <= 0:
+            time.sleep(1)
             print(f'''
                         VOCÊ GANHOU!!1
                     {self.player.name} x {self.bot.name}

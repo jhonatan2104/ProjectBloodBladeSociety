@@ -161,33 +161,33 @@ class System:
     @staticmethod
     def allItens():
         return [
-            Item("Dragon claws",150,5,alterDanoMagico=200,alterLatenciaAttk=9, image="DirPNG/Itens/Dragonclaws.png"),
+            Item("Dragon claws",350,5,alterDanoMagico=200,alterLatenciaAttk=9, image="DirPNG/Itens/Dragonclaws.png"),
 
-            Item("3 warriors of David",600,3,alterLatenciaDeff=-5,alterDanoFisico=700, alterDanoMagico=300,
+            Item("3 warriors of David",800,3,alterLatenciaDeff=-5,alterDanoFisico=700, alterDanoMagico=300,
                  image="DirPNG/Itens/3warriorsofDavid.png"),
 
-            Item("Adam's ring",200,5,alterLatenciaAttk=9,alterLatenciaDeff=4, alterLife=150,
+            Item("Adam's ring",400,5,alterLatenciaAttk=9,alterLatenciaDeff=4, alterLife=150,
                  image="DirPNG/Itens/Adamsring.png"),
 
-            Item("living shield", 200, 1,alterLife=2500, alterDefesaMagica=550,alterLatenciaAttk=-1,
+            Item("living shield", 350, 1,alterLife=2500, alterDefesaMagica=550,alterLatenciaAttk=-1,
             image="DirPNG/Itens/livingshield.png"),
 
-            Item("helmet of Ulysses", 250, 1, alterDefesaFisica=1000, image="DirPNG/Itens/helmetofUlysses.png"),
+            Item("helmet of Ulysses", 450, 1, alterDefesaFisica=1000, image="DirPNG/Itens/helmetofUlysses.png"),
 
-            Item("Loki's dagger", 350, 1, alterLife=3000, alterMana=1000, image="DirPNG/Itens/Lokisdagger.png"),
+            Item("Loki's dagger", 550, 1, alterLife=3000, alterMana=1000, image="DirPNG/Itens/Lokisdagger.png"),
 
-            Item("breastplate", 400, 1, alterLife=5000,alterDefesaMagica=500, alterDefesaFisica=500,
+            Item("breastplate", 700, 1, alterLife=5000,alterDefesaMagica=500, alterDefesaFisica=500,
                  image="DirPNG/Itens/breastplate.png"),
 
-            Item("hermes dagger", 50, 1, alterLatenciaDeff=-5, image="DirPNG/Itens/hermesdagger.png"),
+            Item("hermes dagger", 150, 1, alterLatenciaDeff=-5, image="DirPNG/Itens/hermesdagger.png"),
 
-            Item("apollo dagger", 250, 3, alterLatenciaAttk=9, alterDefesaFisica=-50, alterLatenciaDeff=2,
+            Item("apollo dagger", 300, 3, alterLatenciaAttk=9, alterDefesaFisica=-50, alterLatenciaDeff=2,
                  alterDanoFisico=200, image="DirPNG/Itens/apollodagger.png"),
 
-            Item("Spiked Shoulder Armor", 350, 1, alterDanoFisico=500,alterLatenciaAttk=6,alterMana=200,alterDefesaFisica=400,
+            Item("Spiked Shoulder Armor", 450, 1, alterDanoFisico=500,alterLatenciaAttk=6,alterMana=200,alterDefesaFisica=400,
                  image="DirPNG/Itens/spikedshoulderarmor.png"),
 
-            Item("trident of jaime", 450, 1, alterDanoMagico=1500, alterLatenciaDeff=-9, alterMana=-400, image="DirPNG/Itens/tridentofjaime.png"),
+            Item("trident of jaime", 850, 1, alterDanoMagico=1500, alterLatenciaDeff=-9, alterMana=-400, image="DirPNG/Itens/tridentofjaime.png"),
         ]
 
     @staticmethod
@@ -394,7 +394,7 @@ class InteligencePlayer:
         self.strategyItens = {
             # Nome da Estratégia e atributo de ativação
             "activeStrategyMana" : {
-                "name": "Mana",
+                "name": "Strategy MANA",
                 # Estratégia Ativa
                 "active" : activeStrategyMana,
                 # Condição de Ativação Durante a Partida
@@ -408,7 +408,7 @@ class InteligencePlayer:
                 }
             },
             "activeStrategyLatAttk": {
-                "name": "Latência Attk",
+                "name": "Attk Frenético",
                 "active": activeStrategyLatAttk,
                 "condition": lambda : self.player.sword.getAttack()[self.resolverAttack(self.adv)].latencia > 5,
                 "attribute": {
@@ -419,7 +419,7 @@ class InteligencePlayer:
                 }
             },
             "activeStrategyDMC": {
-                "name": "Dano Mágico Crítico",
+                "name": "ATTK DM Crítico",
                 "active": activeStrategyDMC,
                 "condition": lambda : True,
                 "attribute": {
@@ -430,7 +430,7 @@ class InteligencePlayer:
                 }
             },
             "activeStrategyLatDeff": {
-                "name": "Ataques Críticos",
+                "name": "ATTK Críticos",
                 "active": activeStrategyLatDeff,
                 "condition": lambda: self.adv.shield.latencia < 4,
                 "attribute": {
@@ -445,18 +445,18 @@ class InteligencePlayer:
                 }
             },
             "activeStrategyLife": {
-                "name": "Vida",
+                "name": "Strategy LIFE",
                 "active": activeStrategyLife,
-                "condition": lambda: self.player.hp < 1000,
+                "condition": lambda: self.player.hp < 5000,
                 "attribute": {
                     "alterLife": {
-                        "priority": 3,
+                        "priority": 5,
                         "reverse": False
                     }
                 }
             },
             "activeStrategyDF": {
-                "name": "Vida",
+                "name": "ATTK DF",
                 "active": activeStrategyDF,
                 "condition": lambda: True,
                 "attribute": {

@@ -1,4 +1,3 @@
-import glob
 import os
 import sys
 
@@ -14,24 +13,16 @@ executables = [
     Executable("fileMain.py", base=base)
 ]
 
-# VARREDURA NOS DIRETÓRIOS { DIRPNG , DIRWAV }
-allArqDir = []
-for diretirio in ["DirPNG", "DirWAV"]:
-    for f in glob.glob(f"{diretirio}\*"):
-        if len(f.split(".")) == 2:
-            allArqDir.append(f)
-        else:
-            for f1 in glob.glob(f'{f}\*'):
-                allArqDir.append(f1)
+allArqDir = ["DirPNG", "DirWAV", "TutorialTEXT.txt",
+             r"C:\Users\User\AppData\Local\Programs\Python\Python37\DLLs\tcl86t.dll",
+             r"C:\Users\User\AppData\Local\Programs\Python\Python37\DLLs\tk86t.dll"]
 
 buildOptions = dict(
     packages=["tkinter"],
-    includes=["winsound", "operator", "fileClass", "functools", "tkinter.font","fileWindows"],
+    includes=["winsound", "operator", "fileClass", "functools", "tkinter.font", "fileWindows", "tkinter.scrolledtext"],
     include_files=allArqDir,
     excludes=[]
 )
-allArqDir.append(r"C:\Users\User\AppData\Local\Programs\Python\Python37\DLLs\tcl86t.dll")
-allArqDir.append(r"C:\Users\User\AppData\Local\Programs\Python\Python37\DLLs\tk86t.dll")
 setup(
     name="ProjectBloodBladeSociety",
     version="BETA",
