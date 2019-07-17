@@ -4,17 +4,17 @@ from tkinter import font,scrolledtext
 from fileClass import *
 import time
 
+User = ""
 
 class TelaEscolhaBot:
     def __init__(self):
         self.root = Tk()
-
         # CONFIG
         self.color = "Black"
         self.btSizeX = 400
         self.btSizeY = 200
-        self.margeX = 100
-        self.margeY = 200
+        self.margeX = 80
+        self.margeY = 180
         self.x = 490
         self.y = 250
 
@@ -25,6 +25,8 @@ class TelaEscolhaBot:
             file="DirPNG/ImagemLabelBOT.png")
         self.imagemLabelPlayer = PhotoImage(
             file="DirPNG/ImagemLabelPlayer.png")
+        self.imagemLabelDESAFIAR1 = PhotoImage(
+            file="DirPNG/DESAFIAR1.png")
 
         # IMAGENS DOS PLAYER
         self.IchigoKurosakiPNG = PhotoImage(file=System.choosePlayer(0).imageShowChoose)
@@ -46,10 +48,14 @@ class TelaEscolhaBot:
                           height=self.btSizeY)
         self.lb = Label(self.root, image=self.imagemLabelPlayer, bg=self.color)
 
+        self.canvasNamePlayer = Canvas(self.root, width=200, height=60, bg="black", highlightbackground="Black", border=0)
+        self.canvasNameBOT = Canvas(self.root, width=200, height=60, bg="black", highlightbackground="Black",
+                                       border=0)
+
         self.btVoltar = Button(self.root, image=self.backPNG, bg="Black")
         self.bts = [[self.bt1, self.bt2, self.bt3], [self.bt4, self.bt5]]
 
-        self.canvasStrategy = Canvas(self.root, width=1200, height=40, bg="black", highlightbackground="Black")
+        self.canvasStrategy = Canvas(self.root, width=1500, height=40, bg="black", highlightbackground="Black")
         self.canvasStrategyPersonality = Canvas(self.root, width=1000, height=50, bg="black",
                                                highlightbackground="Black")
         self.fontFixedsys15 = font.Font(family='Fixedsys', size=12)
@@ -116,7 +122,7 @@ class TelaEscolhaBot:
             self.canvasStrategy.pack(side=BOTTOM, anchor=S)
             self.lbCanvasEstrategia.pack(side=BOTTOM, anchor=S)
             self.lbStrategyItens.place(x=90, y=680)
-            self.lbStrategyAttk.place(x=345, y=735)
+            self.lbStrategyAttk.place(x=325, y=735)
             widget["text"] = "Config Default"
         else:
             self.canvasStrategy.pack_forget()
@@ -142,20 +148,26 @@ class TelaEscolhaBot:
             # MUDAR IMAGENS DE TÍTULO
             self.lb["image"] = self.imagemLabelBOT
 
+            #ADD Image Canvas Nome Player
+            self.ADDimageCanvas(self.canvasNamePlayer, self.p1.imageID)
+
         elif self.BOT is None:
             # TOCAR ÁUDIO
             player.PlayWAVShow()
             self.BOT = player
-            #print(self.personalityAttk)
+            self.ADDimageCanvas(self.canvasNameBOT, self.BOT.imageID)
 
-            self.btAbrirTelaItens.place(x=1080,y=452)
+            self.btAbrirTelaItens.place(x=1075,y=452)
             self.btAbrirTelaItens["command"] = self.abrirTelaItens
-            # ALTERAR STRATEGIA
-            self.ADDbtAlterStrategyBot()
+
+            self.lb["image"] = self.imagemLabelDESAFIAR1
+
+    def ADDimageCanvas(self, canvas, strImage):
+        imag = PhotoImage(file=strImage)
+        canvas.create_image(102, 32, image=imag)
+        canvas.image = imag
 
     def abrirTelaItens(self):
-        print(self.strategyVariables)
-        print(self.personalityAttk)
         if self.alterPersonality:
             print("Alterada")
             self.BOT.setPersonalityItens(self.strategyVariables)
@@ -187,12 +199,13 @@ class TelaEscolhaBot:
                 self.bts[line][column]["command"] = partial(self.choose, contCamp)
                 contCamp += 1
                 self.bts[line][column].place(x=self.x * column + self.margeX, y=self.y * line + self.margeY)
+                #self.bts[line][column][""] = ""
 
         x = 0
         y = 3
 
         for nomeStrategy in self.strategyCheckButton:
-            self.strategyCheckButton[nomeStrategy].place(x=x * 200 + 5, y=y)
+            self.strategyCheckButton[nomeStrategy].place(x=x * 150, y=y)
             self.strategyCheckButton[nomeStrategy]["command"] = partial(self.invertValue, nomeStrategy)
             x += 1
 
@@ -212,8 +225,12 @@ class TelaEscolhaBot:
         self.radioFrantic["command"] = partial(self.alterPersonalityFunc, self.radioFrantic["value"])
 
 
+
         self.lb.pack(side=TOP)
-        self.btVoltar.pack(side=LEFT, anchor=SW)
+        self.canvasNamePlayer.place(x=40,y=30)
+        self.canvasNameBOT.place(x=1300,y=30)
+        self.btVoltar.place(x=0,y=810)
+        self.ADDbtAlterStrategyBot()
         self.btVoltar["command"] = self.voltar
         self.root.mainloop()
 
@@ -231,9 +248,9 @@ class TelaInicio:
         self.imageSair = PhotoImage(file="DirPNG/sair.png")
         self.imageTutor = PhotoImage(file="DirPNG/tutorial.png")
 
-        self.bt1 = Button(self.root, image=self.imagemPlayerXbot, border=0, width=400, height=200, relief="groove")
-        self.btSair = Button(self.root, image=self.imageSair, border=0, width=400, height=200, relief="groove")
-        self.btTutor = Button(self.root, image=self.imageTutor, border=0, width=400, height=200, relief="groove")
+        self.bt1 = Button(self.root, image=self.imagemPlayerXbot, border=0, width=400, height=200, relief="groove", bg="Black")
+        self.btSair = Button(self.root, image=self.imageSair, border=0, width=400, height=200, relief="groove", bg="Black")
+        self.btTutor = Button(self.root, image=self.imageTutor, border=0, width=400, height=200, relief="groove", bg="Black")
 
         self.lb = Label(self.root, image=self.imagemLabel, bg="Black")
 
@@ -277,20 +294,12 @@ class TelaMain:
         self.player = player
         self.bot = bot
 
-        print(self.player.personality)
-        print(self.bot.personality)
 
         # CRIAR A UMA INSTÂNCIA DA INTALIGÊNCIA BOT
-        self.intelBOT = InteligencePlayer(self.bot, self.player, 500,
-                                          importanciaDANO=self.bot.personality["importanciaDANO"],
-                                          importanciaMANA=self.bot.personality["importanciaMANA"],
-                                          importanciaLATENCIA=self.bot.personality["importanciaLATENCIA"],
-                                          activeStrategyLatAttk=self.bot.personality["activeStrategyLatAttk"],
-                                          activeStrategyMana=self.bot.personality["activeStrategyMana"],
-                                          activeStrategyDMC=self.bot.personality["activeStrategyDMC"],
-                                          activeStrategyLatDeff=self.bot.personality["activeStrategyLatDeff"],
-                                          activeStrategyLife=self.bot.personality["activeStrategyLife"],
-                                          activeStrategyDF=self.bot.personality["activeStrategyDF"])
+        self.intelBOT = InteligencePlayer(self.bot, self.player, self.bot.baseMana)
+        for key in self.bot.personality:
+            self.intelBOT.__setattr__(key, self.bot.personality[key])
+
 
         # DADOS PLAYER
         if dicDados is None:
@@ -363,11 +372,11 @@ class TelaMain:
         self.imageStatusEfetivo = PhotoImage(file="DirPNG/ataqueEfetivo.png")
         self.imageStatusCritico = PhotoImage(file="DirPNG/critico.png")
         self.imageStatusModoDef = PhotoImage(file="DirPNG/modeDEFF.png")
-        self.imageStatusHome = PhotoImage(file="DirPNG/bemVindo.png")
+        self.imageStatusHome = PhotoImage(file="DirPNG/DESAFIAR1.png")
         self.imageStatusManaAlerta = PhotoImage(file="DirPNG/manaAlerta.png")
         self.imageStatusErro = PhotoImage(file="DirPNG/ERRO.png")
 
-        self.canvasStatus = Canvas(self.root, width=725, height=200, highlightbackground="Black")
+        self.canvasStatus = Canvas(self.root, width=725, height=200, highlightbackground="Black", bg="black")
 
         # CANVAS ATTACK DICA
         self.canvasAttackDica = Canvas(self.root, width=725, height=200, highlightbackground="Black")
@@ -788,7 +797,7 @@ class TelaMain:
         if self.Alternar:
             self.setCanvasStatus(4)
             manaRestore = self.player.restoreMana(0)
-            self.lbDica["text"] = f"+{manaRestore}"
+            self.lbDica["text"] = f"MODO DEFENSIVO\n\nMana : +{manaRestore}"
 
             # SET DISPLAY DADOS
             self.setDisplay(self.player.mana if self.player.mana >= 0 else 0, self.displayManaPlayer)
@@ -1188,6 +1197,7 @@ class TelaOption:
         t.p1 = System.choosePlayer(nameChamp=self.player.name)
         t.lb["image"] = t.imagemLabelBOT
         t.ADDbtAlterStrategyBot()
+        t.ADDimageCanvas(t.canvasNamePlayer, t.p1.imageID)
         t.construtor()
 
     def construtor(self):
@@ -1425,7 +1435,7 @@ class TelaRelatorio:
 class TelaItens:
     def __init__(self, player, bot, alternar=True, dicInfo=None):
         self.root = Tk()
-        self.listItens = System.filterItens()
+        self.listItens = []
         self.player = player
         self.bot = bot
         self.alternar = alternar
@@ -1477,11 +1487,15 @@ class TelaItens:
         self.c4 = Canvas(self.root, width=80, height=80, highlightbackground="Black", bg="black")
         self.displayMoney = [self.c1, self.c2, self.c3, self.c4]
 
+        self.imageBtCicle = PhotoImage(file="DirPNG/cicle.png")
+
+        self.btCicle = Button(self.root, width=80, height=80, border=0,bg="black", image=self.imageBtCicle)
+
         self.image = PhotoImage(
             file="DirPNG/continue.png"
         )
 
-        self.btContinuar = Button(self.root, image=self.image, width=400, height=200, bg="black")
+        self.btContinuar = Button(self.root, image=self.image, width=400, height=200, bg="black", border=0)
 
         self.backPNG = PhotoImage(
             file="DirPNG/backPNG.png")
@@ -1539,6 +1553,30 @@ class TelaItens:
             imag = dicImagens[strNumber[elem]]
             display[elem].create_image(50, 50, image=imag)
             display[elem].image = imag
+    def ADDbts(self):
+        self.listItens = System.filterItens()
+        cont = 0
+        for line in range(len(self.listBt)):
+            for colunn in range(len(self.listBt[line])):
+                self.listBt[line][colunn].place(x=colunn * self.margeIN_x + self.margeEX_x,
+                                                y=line * self.margeIN_y + self.margeEX_y)
+                self.listBt[line][colunn]["bg"] = "#ec352e"
+                self.listBt[line][colunn]["text"] = f'''{self.listItens[cont].name.upper()}\n\nx{self.listItens[
+                    cont].quatidade}\n{self.listItens[cont].valor}U$'''
+                self.listBt[line][colunn].bind("<Enter>",
+                                               lambda event, item=self.listItens[cont]: self.setLABEitem(event, item))
+                self.listBt[line][colunn].bind("<Leave>", self.setLABEitem)
+                self.listBt[line][colunn]["command"] = partial(self.addItem, self.listItens[cont],
+                                                               self.listBt[line][colunn])
+                cont += 1
+    def FORGETbts(self):
+        for line in range(len(self.listBt)):
+            for colunn in range(len(self.listBt[line])):
+                self.listBt[line][colunn].place_forget()
+
+    def SetItensTela(self):
+        self.FORGETbts()
+        self.ADDbts()
 
     def construtor(self):
         self.root.attributes('-fullscreen',True)
@@ -1556,19 +1594,13 @@ class TelaItens:
         self.btContinuar["command"] = self.abrirTelaMain
         self.lbTitulo.place(x=280, y=0)
         self.lbSimbol.place(x=1020, y=700)
-        cont = 0
-        for line in range(len(self.listBt)):
-            for colunn in range(len(self.listBt[line])):
-                self.listBt[line][colunn].place(x=colunn * self.margeIN_x + self.margeEX_x,
-                                                y=line * self.margeIN_y + self.margeEX_y)
-                self.listBt[line][colunn]["text"] = f'''{self.listItens[cont].name.upper()}\n\nx{self.listItens[
-                    cont].quatidade}\n{self.listItens[cont].valor}U$'''
-                self.listBt[line][colunn].bind("<Enter>",
-                                               lambda event, item=self.listItens[cont]: self.setLABEitem(event, item))
-                self.listBt[line][colunn].bind("<Leave>", self.setLABEitem)
-                self.listBt[line][colunn]["command"] = partial(self.addItem, self.listItens[cont],
-                                                               self.listBt[line][colunn])
-                cont += 1
+
+        self.btCicle.pack(anchor=NE)
+        self.btCicle["command"] = self.SetItensTela
+
+        #ADD BUTTONS
+        self.ADDbts()
+
         for index in range(len(self.displayMoney)):
             self.displayMoney[index].place(x=90 * index + 1110, y=690)
 

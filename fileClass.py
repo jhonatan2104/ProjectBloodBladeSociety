@@ -23,6 +23,7 @@ class System:
                                 imageID="DirPNG/Shield/berserker.png")
 
                 player = Player(name="Ichigo Kurosaki", hp=10000, mana=600, sword=sword, shield=shield, personality=[5,4,1],
+                                baseMana=450,
                                 activeStrategyMana=True,
                                 activeStrategyLatAttk=False,
                                 activeStrategyDMC=False,
@@ -53,6 +54,7 @@ class System:
                                 imageID="DirPNG/Shield/gemeos.png")
 
                 player = Player(name="Killer Bee", hp=12500, mana=1000, sword=sword, shield=shield, personality=[6,3,4],
+                                baseMana=850,
                                 activeStrategyMana=True,
                                 activeStrategyLatAttk=True,
                                 activeStrategyDMC=True,
@@ -82,6 +84,7 @@ class System:
                                 imageID="DirPNG/Shield/knight.png")
 
                 player = Player(name="Xena", hp=9900, mana=1500, sword=sword, shield=shield, personality=[6,3,3],
+                                baseMana=750,
                                 activeStrategyMana=False,
                                 activeStrategyLatAttk=False,
                                 activeStrategyDMC=False,
@@ -111,6 +114,7 @@ class System:
                                 imageID="DirPNG/Shield/negra.png")
 
                 player = Player(name="Roronoa Zoro", hp=11000, mana=1000, sword=sword, shield=shield, personality=[5,2,1],
+                                baseMana=250,
                                 activeStrategyMana=False,
                                 activeStrategyLatAttk=True,
                                 activeStrategyDMC=False,
@@ -140,6 +144,7 @@ class System:
                                 imageID="DirPNG/Shield/metalTech.png")
 
                 player = Player(name="Gohan", hp=14000, mana=1800, sword=sword, shield=shield, personality=[5,4,2],
+                                baseMana=1000,
                                 activeStrategyMana=True,
                                 activeStrategyLatAttk=True,
                                 activeStrategyDMC=True,
@@ -161,33 +166,66 @@ class System:
     @staticmethod
     def allItens():
         return [
-            Item("Dragon claws",350,5,alterDanoMagico=200,alterLatenciaAttk=9, image="DirPNG/Itens/Dragonclaws.png"),
+            Item("Dragon claws",420,5,alterDanoMagico=200,alterLatenciaAttk=8, image="DirPNG/Itens/Dragonclaws.png"),
 
             Item("3 warriors of David",800,3,alterLatenciaDeff=-5,alterDanoFisico=700, alterDanoMagico=300,
                  image="DirPNG/Itens/3warriorsofDavid.png"),
 
-            Item("Adam's ring",400,5,alterLatenciaAttk=9,alterLatenciaDeff=4, alterLife=150,
+            Item("Adam's ring",270,5,alterLatenciaAttk=7,alterLatenciaDeff=4, alterLife=150,
                  image="DirPNG/Itens/Adamsring.png"),
 
-            Item("living shield", 350, 1,alterLife=2500, alterDefesaMagica=550,alterLatenciaAttk=-1,
+            Item("living shield", 250, 1,alterLife=2500, alterDefesaMagica=550,alterLatenciaAttk=-1,
             image="DirPNG/Itens/livingshield.png"),
 
-            Item("helmet of Ulysses", 450, 1, alterDefesaFisica=1000, image="DirPNG/Itens/helmetofUlysses.png"),
+            Item("helmet of Ulysses", 350, 1, alterDefesaFisica=1000, image="DirPNG/Itens/helmetofUlysses.png"),
 
-            Item("Loki's dagger", 550, 1, alterLife=3000, alterMana=1000, image="DirPNG/Itens/Lokisdagger.png"),
+            Item("Loki's dagger", 350, 1, alterLife=3000, alterMana=1000, image="DirPNG/Itens/Lokisdagger.png"),
 
-            Item("breastplate", 700, 1, alterLife=5000,alterDefesaMagica=500, alterDefesaFisica=500,
+            Item("breastplate", 600, 1, alterLife=5000,alterDefesaMagica=500, alterDefesaFisica=500,
                  image="DirPNG/Itens/breastplate.png"),
 
             Item("hermes dagger", 150, 1, alterLatenciaDeff=-5, image="DirPNG/Itens/hermesdagger.png"),
 
-            Item("apollo dagger", 300, 3, alterLatenciaAttk=9, alterDefesaFisica=-50, alterLatenciaDeff=2,
+            Item("apollo dagger", 300, 3, alterLatenciaAttk=7, alterDefesaFisica=-50, alterLatenciaDeff=2,
                  alterDanoFisico=200, image="DirPNG/Itens/apollodagger.png"),
 
-            Item("Spiked Shoulder Armor", 450, 1, alterDanoFisico=500,alterLatenciaAttk=6,alterMana=200,alterDefesaFisica=400,
+            Item("Spiked Shoulder Armor", 450, 1, alterDanoFisico=500,alterLatenciaAttk=6,alterMana=200,
+                 alterDefesaFisica=400,
                  image="DirPNG/Itens/spikedshoulderarmor.png"),
 
-            Item("trident of jaime", 850, 1, alterDanoMagico=1500, alterLatenciaDeff=-9, alterMana=-400, image="DirPNG/Itens/tridentofjaime.png"),
+            Item("trident of jaime", 650, 1, alterDanoMagico=1200, alterLatenciaDeff=-7, alterMana=-700,
+                 image="DirPNG/Itens/tridentofjaime.png"),
+
+            Item("fragmented sword", 650, 1, alterDanoMagico=1600,alterDefesaFisica=-500,
+                 image="DirPNG/Itens/fragmentedsword.png"),
+
+            Item("Bone knife", 150, 1, alterLatenciaAttk=9,
+                 image="DirPNG/Itens/Boneknife.png"),
+
+            Item("flail", 450, 2, alterLatenciaDeff=-2,alterDanoFisico=600,
+                 image="DirPNG/Itens/flail.png"),
+
+            Item("Sharp axe", 550, 1, alterDanoFisico=800, alterLatenciaAttk=4,
+                 image="DirPNG/Itens/Sharpaxe.png"),
+
+            Item("viking helmet", 450, 1, alterDefesaFisica=700, alterLatenciaAttk=5,
+                 image="DirPNG/Itens/vikinghelmet.png"),
+
+            Item("Black Knight Helm", 550, 1, alterDefesaFisica=1500,
+                 image="DirPNG/Itens/BlackKnightHelm.png"),
+
+            Item("helmet of the wise", 780, 1, alterDefesaFisica=300,alterDefesaMagica=700,alterDanoMagico=1000,
+                 image="DirPNG/Itens/helmetofthewise.png"),
+
+            Item("Brutal helm", 360, 1, alterDefesaFisica=700, alterLatenciaAttk=6, alterLatenciaDeff=-6,
+                 image="DirPNG/Itens/Brutalhelm.png"),
+
+            Item("Heavy helm", 400, 1, alterDefesaFisica=1200, alterDanoFisico=300,
+                 image="DirPNG/Itens/Heavyhelm.png"),
+
+            Item("Crossed axes", 350, 1, alterDanoFisico=800, alterLatenciaDeff=-7
+                ,image="DirPNG/Itens/Crossedaxes.png")
+
         ]
 
     @staticmethod
@@ -255,13 +293,14 @@ class System:
 
 
 class Player:
-    def __init__(self, name, hp, mana, sword, shield, personality=[4,1,3],
+    def __init__(self, name, hp, mana, sword, shield, personality=[4,1,3], baseMana=500,
                  activeStrategyMana = False,
                  activeStrategyLatAttk=False,
                  activeStrategyDMC=False,
                  activeStrategyLatDeff=False,
                  activeStrategyLife=False,
                  activeStrategyDF=False,
+                 activeStrategyDefM=False,
                  imageShow = "DirPNG/matrix-wallpaper.png",imageID="DirPNG/matrix-wallpaper.png",
                  imageShowChoose = "DirPNG/matrix-wallpaper.png"):
         self.name = name
@@ -269,11 +308,15 @@ class Player:
         self.sword = sword
         self.shield = shield
         self.mana = mana
+        self.inventory = []
+        self.baseMana = baseMana
+
         self.imageShow = imageShow
         self.imageID = imageID
         self.imageShowChoose = imageShowChoose
+
         self.arqWAV = ["", ""]
-        self.inventory = []
+
         self.money = 600
         self.personality = {"importanciaDANO": personality[0],
                             "importanciaMANA": personality[1],
@@ -283,7 +326,8 @@ class Player:
                             "activeStrategyDMC" : activeStrategyDMC,
                             "activeStrategyLatDeff": activeStrategyLatDeff,
                             "activeStrategyLife":activeStrategyLife,
-                            "activeStrategyDF":activeStrategyDF
+                            "activeStrategyDF":activeStrategyDF,
+                            "activeStrategyDefM": activeStrategyDefM
                             }
 
     def setPersonalityItens(self, dic):
@@ -378,9 +422,10 @@ class Player:
 
 
 class InteligencePlayer:
-    def __init__(self, player, adv, baseDeMana, importanciaDANO=4,importanciaMANA=1, importanciaLATENCIA=3,
+    def __init__(self, player, adv, baseDeMana=500, importanciaDANO=4,importanciaMANA=1, importanciaLATENCIA=3,
                  activeStrategyMana = False, activeStrategyLatAttk= False, activeStrategyDMC=False,
-                 activeStrategyLatDeff=False, activeStrategyLife=False, activeStrategyDF=False):
+                 activeStrategyLatDeff=False, activeStrategyLife=False, activeStrategyDF=False,
+                 activeStrategyDefM=False):
         self.player = player
         self.adv = adv
         self.importanciaDANO = importanciaDANO
@@ -390,13 +435,22 @@ class InteligencePlayer:
 
         self.rankAttack = list()
 
-        # Estratégias de Mana
+        #ATRIBUTOS DE ATIVAÇÃO
+        self.activeStrategyMana = activeStrategyMana
+        self.activeStrategyLatAttk = activeStrategyLatAttk
+        self.activeStrategyDMC = activeStrategyDMC
+        self.activeStrategyLatDeff = activeStrategyLatDeff
+        self.activeStrategyLife = activeStrategyLife
+        self.activeStrategyDF = activeStrategyDF
+        self.activeStrategyDefM = activeStrategyDefM
+
+        # Estratégias
         self.strategyItens = {
             # Nome da Estratégia e atributo de ativação
             "activeStrategyMana" : {
                 "name": "Strategy MANA",
                 # Estratégia Ativa
-                "active" : activeStrategyMana,
+                "active" : lambda : self.activeStrategyMana,
                 # Condição de Ativação Durante a Partida
                 "condition" : lambda : self.player.mana < self.baseDeMana,
                 # Atributos para o Rankamento
@@ -409,8 +463,8 @@ class InteligencePlayer:
             },
             "activeStrategyLatAttk": {
                 "name": "Attk Frenético",
-                "active": activeStrategyLatAttk,
-                "condition": lambda : self.player.sword.getAttack()[self.resolverAttack(self.adv)].latencia > 5,
+                "active": lambda : self.activeStrategyLatAttk,
+                "condition": lambda : self.player.sword.getAttack()[self.resolverAttack(self.adv)].latencia > 3,
                 "attribute": {
                     "alterLatenciaAttk": {
                         "priority": 1,
@@ -419,8 +473,8 @@ class InteligencePlayer:
                 }
             },
             "activeStrategyDMC": {
-                "name": "ATTK DM Crítico",
-                "active": activeStrategyDMC,
+                "name": "ATTK DM",
+                "active": lambda : self.activeStrategyDMC,
                 "condition": lambda : True,
                 "attribute": {
                     "alterDanoMagico": {
@@ -431,7 +485,8 @@ class InteligencePlayer:
             },
             "activeStrategyLatDeff": {
                 "name": "ATTK Críticos",
-                "active": activeStrategyLatDeff,
+                "active": lambda : self.activeStrategyLatDeff,
+                #Só a necessidade de comprar itens se a defesa for eficiente
                 "condition": lambda: self.adv.shield.latencia < 4,
                 "attribute": {
                     "alterLatenciaAttk": {
@@ -446,7 +501,7 @@ class InteligencePlayer:
             },
             "activeStrategyLife": {
                 "name": "Strategy LIFE",
-                "active": activeStrategyLife,
+                "active": lambda : self.activeStrategyLife,
                 "condition": lambda: self.player.hp < 5000,
                 "attribute": {
                     "alterLife": {
@@ -457,10 +512,21 @@ class InteligencePlayer:
             },
             "activeStrategyDF": {
                 "name": "ATTK DF",
-                "active": activeStrategyDF,
+                "active": lambda : self.activeStrategyDF,
                 "condition": lambda: True,
                 "attribute": {
                     "alterDanoFisico": {
+                        "priority": 1,
+                        "reverse": False
+                    }
+                }
+            },
+            "activeStrategyDefM": {
+                "name": "Defesa Mágica",
+                "active": lambda : self.activeStrategyDefM,
+                "condition": lambda: self.adv.sword.getMAXdanoMagico() >= self.player.shield.defesaMagica,
+                "attribute": {
+                    "alterDefesaMagica": {
                         "priority": 1,
                         "reverse": False
                     }
@@ -497,7 +563,7 @@ class InteligencePlayer:
         listaPontosGeralItens = []
         for strategy in self.strategyItens:
             # Verica se a estratégia está ativada e a sua condição está presente
-            if self.strategyItens[strategy]["active"] and self.strategyItens[strategy]["condition"]():
+            if self.strategyItens[strategy]["active"]() and self.strategyItens[strategy]["condition"]():
                 print(strategy)
                 # Add pontuação para todos os atributos dessa estratégia
                 for attr in self.strategyItens[strategy]["attribute"]:
@@ -508,9 +574,14 @@ class InteligencePlayer:
         return listaPontosGeralItens
 
     def buyItems(self):
-        for listItem in self.resolverListCompraItens():
-            if listItem[0].valor <= self.player.money:
+        contTop = 0
+        listItensBuy = self.resolverListCompraItens()
+        a = [[item[0].name, item[1]] for item in listItensBuy] if len(listItensBuy) > 0 else None
+        print(a)
+        for listItem in listItensBuy:
+            if listItem[0].valor <= self.player.money and contTop < 3:
                 self.player.addItem(listItem[0])
+            contTop+=1
 
     def gerarRanckAttack(self, playerAdv):
         ListAttack = self.player.sword.getAttack()
@@ -562,6 +633,11 @@ class Sword:
         self.attackI = attackI
         self.attackII = attackII
         self.attackIII = attackIII
+
+    def getMAXdanoFisico(self):
+        return max([attack.danoFisico for attack in self.getAttack()])
+    def getMAXdanoMagico(self):
+        return max([ attack.danoMagico for attack in self.getAttack()])
 
     def getDados(self):
         ataques = self.getAttack()
