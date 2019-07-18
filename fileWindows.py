@@ -392,6 +392,10 @@ class TelaMain:
         self.imageInventario = PhotoImage(file="DirPNG/inventario.png")
         self.imageShop = PhotoImage(file="DirPNG/shop.png")
 
+        #LABEL MANA E MONEY RESTAURADO
+        self.lbRestareManaMoney = Label(self.root, font=self.fontFixedsys, fg="#ec352e", bg="black")
+        self.lbItensUsados = Label(self.root, font=self.fontFixedsys, fg="#ec352e", bg="black")
+
 
         # CONFIG DISPLAY
         self.yDisplayLifi = 550
@@ -506,10 +510,11 @@ class TelaMain:
  (Dano Mágico - Amadura Mágica) + (Dano Físico - Armadura Físico)'''
 
     def setCanvasDICAinfoBOT(self, event):
+        self.limparCanvasDica(None)
         txt = "INVENTÁRIO\n"
         for item in self.bot.inventory:
             txt += f"{item.name.upper()} x{item.quatidade}\n"
-        txt += f"\n{self.bot.money}"
+        txt += f"\nU${self.bot.money}"
         self.lbDica["text"] = txt
 
     def alterarBorda(self, vez):
@@ -521,6 +526,8 @@ class TelaMain:
             self.lbPlAYER["border"] = 1
 
     def ActionBOT(self):
+        #limpar canvas
+        self.limparCanvasDica(None)
         if not self.Alternar:
             attacksBOT = self.bot.sword.getAttack()
 
@@ -530,7 +537,9 @@ class TelaMain:
             if value == 3:
                 self.setCanvasStatus(4)
                 self.limparCanvasDica(None)
-                self.bot.restoreMana(0)
+                manaRestore = self.bot.restoreMana(0)
+
+                self.lbDica["text"] = f"MODO DEFENSIVO\n\nMana : +{manaRestore}"
 
                 # SET DISPLAY DADOS
                 self.setDisplay(self.bot.mana, self.displayManaBOT)
@@ -554,7 +563,8 @@ class TelaMain:
 
                 newLatATTK, newLatDEF, manaItens, textLbDica = self.bot.userItens(randomLatenciaAtaque, randomLatenciaDefesa, attackBOT)
 
-                self.escreverNoCanvasDica(None, attackBOT.getDados() + textLbDica, 'red')
+                self.escreverNoCanvasDica(None, attackBOT.getDados(), '#ec352e')
+                self.setLBItensUsados(textLbDica)
 
                 if attackBOT.latencia <= newLatATTK:
                     # ATAQUE EFETIVO
@@ -568,10 +578,15 @@ class TelaMain:
                         danoReal = danos[0] + danos[1]
                         self.player.sufferDamage(danoReal)
                         self.bot.userMana(attackBOT.mana)
-                        self.bot.restoreMana(danoReal)
+                        manaRestore = self.bot.restoreMana(danoReal)
 
                         # RESTAURA MONEY
-                        self.bot.money += System.calculeteRestareMoney(type="an", dano=danoReal)
+                        moneyResrore = System.calculeteRestareMoney(type="an", dano=danoReal)
+                        self.bot.money += moneyResrore
+
+                        # SET DISLAY MONEY & MANA
+                        self.setLBrestareManaMoney(manaRestore, moneyResrore)
+
 
                         # DADOS ARMAZENÁVEIS
                         self.damageFisicoSofrido += danos[0]
@@ -604,10 +619,14 @@ class TelaMain:
                         danoReal = danos[0] + danos[1]
                         self.player.sufferDamage(danoReal)
                         self.bot.userMana(attackBOT.mana)
-                        self.bot.restoreMana(danoReal)
+                        manaRestore = self.bot.restoreMana(danoReal)
 
                         # RESTAURA MONEY
-                        self.bot.money += System.calculeteRestareMoney(type="ac", dano=danoReal)
+                        moneyResrore = System.calculeteRestareMoney(type="ac", dano=danoReal)
+                        self.bot.money += moneyResrore
+
+                        # SET DISLAY MONEY & MANA
+                        self.setLBrestareManaMoney(manaRestore, moneyResrore)
 
                         # DADOS ARMAZENÁVEIS
                         self.damageFisicoSofrido += danos[0]
@@ -636,7 +655,11 @@ class TelaMain:
                     self.setCanvasStatus(0)
 
                     # RESTAURA MONEY
-                    self.player.money += System.calculeteRestareMoney(type="f", dano=0)
+                    moneyResrore = System.calculeteRestareMoney(type="f", dano=0)
+                    self.player.money += moneyResrore
+
+                    # SET DISLAY MONEY & MANA
+                    self.setLBrestareManaMoney(0, moneyResrore)
 
                     StatusGame = self.verificarGame()
                     if any(StatusGame):
@@ -727,17 +750,21 @@ class TelaMain:
             self.canvasStatus.image = self.imageStatusModoDef
 
     def setCanvasDICASword(self, event):
+        self.limparCanvasDica(None)
         self.lbDica.configure(fg="white")
         self.lbDica["text"] = self.player.sword.getDados()
 
     def setCanvasDICAShield(self, event):
+        self.limparCanvasDica(None)
         self.lbDica.configure(fg="white")
         self.lbDica["text"] = self.player.shield.getDados()
 
     def setCanvasDICAInventario(self, event):
+        self.limparCanvasDica(None)
         txt = "INVENTÁRIO\n"
         for item in self.player.inventory:
             txt += f"{item.name.upper()} x{item.quatidade}\n"
+        txt+=f"\nU${self.player.money}"
         self.lbDica["text"] = txt
 
     def gerarRELATORIO(self):
@@ -825,6 +852,7 @@ class TelaMain:
         TelaItens(self.player, self.bot, self.Alternar, self.gerarDic()).construtor()
 
     def knock(self, attack):
+        self.limparCanvasDica(None)
         if self.Alternar:
             # o numero randomico para a latencia
             randomLatenciaAtaque = randint(0, 9)
@@ -833,14 +861,10 @@ class TelaMain:
             randomLatenciaDefesa = randint(0, 9)
             self.setDisplay(randomLatenciaDefesa, self.displayLatenciaDef)
 
-            newLatATTK, newLatDEF, manaItens, textLbDica = randomLatenciaAtaque, randomLatenciaDefesa, 0, "\n"
-            for item in self.player.inventory:
-                if item.ended():
-                    info = item.aplicarItem(self.player, attack, newLatATTK, newLatDEF)
-                    newLatATTK, newLatDEF = info[0], info[1]
-                    manaItens += info[2]
-                    textLbDica += f"\n+ {item.name.upper()}"
-            self.escreverNoCanvasDica(None, attack.getDados() + textLbDica, 'red')
+            newLatATTK, newLatDEF, manaItens, textLbDica = self.player.userItens(randomLatenciaAtaque,randomLatenciaDefesa,attack)
+
+            self.escreverNoCanvasDica(None, attack.getDados(), '#ec352e')
+            self.setLBItensUsados(textLbDica)
             if attack.latencia <= newLatATTK:
                 if self.player.mana < attack.mana:
                     self.setCanvasStatus(3)
@@ -863,7 +887,11 @@ class TelaMain:
                         manaRestore = self.player.restoreMana(danoReal)
 
                         # RESTAURA MONEY
-                        self.player.money += System.calculeteRestareMoney(type="an", dano=danoReal)
+                        moneyResrore = System.calculeteRestareMoney(type="an", dano=danoReal)
+                        self.player.money += moneyResrore
+
+                        #SET DISLAY MONEY & MANA
+                        self.setLBrestareManaMoney(manaRestore,moneyResrore)
 
                         # DADOS ARMAZENÁVEIS
                         self.damageTotal += danoReal
@@ -908,7 +936,11 @@ class TelaMain:
                         manaRestore = self.player.restoreMana(danoReal)
 
                         # RESTAURA MONEY
-                        self.player.money += System.calculeteRestareMoney(type="ac", dano=danoReal)
+                        moneyResrore = System.calculeteRestareMoney(type="ac", dano=danoReal)
+                        self.player.money += moneyResrore
+
+                        # SET DISLAY MONEY & MANA
+                        self.setLBrestareManaMoney(manaRestore, moneyResrore)
 
                         # DADOS ARMAZENÁVEIS
                         self.damageTotal += danoReal
@@ -950,7 +982,11 @@ class TelaMain:
                 self.CONTAttackFalhos += 1
 
                 # RESTAURA MONEY
-                self.player.money += System.calculeteRestareMoney(type="f", dano=0)
+                moneyResrore = System.calculeteRestareMoney(type="f", dano=0)
+                self.player.money += moneyResrore
+
+                # SET DISLAY MONEY & MANA
+                self.setLBrestareManaMoney(0, moneyResrore)
 
                 StatusGame = self.verificarGame()
                 if any(StatusGame):
@@ -977,8 +1013,18 @@ class TelaMain:
 
     def limparCanvasDica(self, event):
         self.lbDica["text"] = ""
+        self.lbRestareManaMoney["text"] = ""
+        self.lbItensUsados["text"] = ""
+
+    def setLBrestareManaMoney(self,mana, money):
+        txt = f"RESTORE\n\nMANA:{mana}\nMONEY: {money}"
+        self.lbRestareManaMoney["text"] = txt
+    def setLBItensUsados(self, strItensUsados):
+        txt = f"ITENS USADOS\n{strItensUsados}"
+        self.lbItensUsados["text"] = txt
 
     def escreverNoCanvasDica(self, event, txt, cor="white"):
+        self.limparCanvasDica(None)
         self.lbDica.configure(fg=cor)
         self.lbDica["text"] = txt
 
@@ -1046,6 +1092,9 @@ class TelaMain:
 
         self.lbInventarioBOT.bind("<Enter>", self.setCanvasDICAinfoBOT)
         self.lbInventarioBOT.bind("<Leave>", self.limparCanvasDica)
+
+        self.lbRestareManaMoney.place(x=420,y=220)
+        self.lbItensUsados.place(x=970,y=220)
 
         #Imagem Inventario & compra itens
         self.lbInventario.create_image(42,42, image=self.imageInventario)

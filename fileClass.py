@@ -301,6 +301,7 @@ class Player:
                  activeStrategyLife=False,
                  activeStrategyDF=False,
                  activeStrategyDefM=False,
+                 activeStrategyDefF=False,
                  imageShow = "DirPNG/matrix-wallpaper.png",imageID="DirPNG/matrix-wallpaper.png",
                  imageShowChoose = "DirPNG/matrix-wallpaper.png"):
         self.name = name
@@ -327,7 +328,8 @@ class Player:
                             "activeStrategyLatDeff": activeStrategyLatDeff,
                             "activeStrategyLife":activeStrategyLife,
                             "activeStrategyDF":activeStrategyDF,
-                            "activeStrategyDefM": activeStrategyDefM
+                            "activeStrategyDefM": activeStrategyDefM,
+                            "activeStrategyDefF": activeStrategyDefF
                             }
 
     def setPersonalityItens(self, dic):
@@ -393,7 +395,7 @@ class Player:
         self.mana -= mana
 
     def userItens(self, randomLatenciaAtaque, randomLatenciaDefesa, attack):
-        newLatATTK, newLatDEF, manaItens, textLbDica = randomLatenciaAtaque, randomLatenciaDefesa, 0, "\n"
+        newLatATTK, newLatDEF, manaItens, textLbDica = randomLatenciaAtaque, randomLatenciaDefesa, 0, ""
         for item in self.inventory:
             if item.ended():
                 info = item.aplicarItem(self, attack, newLatATTK, newLatDEF)
@@ -425,7 +427,7 @@ class InteligencePlayer:
     def __init__(self, player, adv, baseDeMana=500, importanciaDANO=4,importanciaMANA=1, importanciaLATENCIA=3,
                  activeStrategyMana = False, activeStrategyLatAttk= False, activeStrategyDMC=False,
                  activeStrategyLatDeff=False, activeStrategyLife=False, activeStrategyDF=False,
-                 activeStrategyDefM=False):
+                 activeStrategyDefM=False, activeStrategyDefF=False, activeStrategyEconomic=False):
         self.player = player
         self.adv = adv
         self.importanciaDANO = importanciaDANO
@@ -443,8 +445,13 @@ class InteligencePlayer:
         self.activeStrategyLife = activeStrategyLife
         self.activeStrategyDF = activeStrategyDF
         self.activeStrategyDefM = activeStrategyDefM
+        self.activeStrategyDefF = activeStrategyDefF
+        self.activeStrategyEconomic = activeStrategyEconomic
 
         # Estratégias
+
+        # TRUE - Top 1 é o menor
+        # FALSE - Top 1 é o maior
         self.strategyItens = {
             # Nome da Estratégia e atributo de ativação
             "activeStrategyMana" : {
@@ -461,51 +468,47 @@ class InteligencePlayer:
                     }
                 }
             },
+            "activeStrategyLife": {
+                "name": "Strategy LIFE",
+                "active": lambda: self.activeStrategyLife,
+                "condition": lambda: self.player.hp < 5000,
+                "attribute": {
+                    "alterLife": {
+                        "priority": 10,
+                        "reverse": False
+                    }
+                }
+            },
             "activeStrategyLatAttk": {
                 "name": "Attk Frenético",
                 "active": lambda : self.activeStrategyLatAttk,
                 "condition": lambda : self.player.sword.getAttack()[self.resolverAttack(self.adv)].latencia > 3,
                 "attribute": {
                     "alterLatenciaAttk": {
-                        "priority": 1,
-                        "reverse": False
-                    }
-                }
-            },
-            "activeStrategyDMC": {
-                "name": "ATTK DM",
-                "active": lambda : self.activeStrategyDMC,
-                "condition": lambda : True,
-                "attribute": {
-                    "alterDanoMagico": {
-                        "priority": 3,
+                        "priority": 5,
                         "reverse": False
                     }
                 }
             },
             "activeStrategyLatDeff": {
                 "name": "ATTK Críticos",
-                "active": lambda : self.activeStrategyLatDeff,
-                #Só a necessidade de comprar itens se a defesa for eficiente
+                "active": lambda: self.activeStrategyLatDeff,
+                # Só a necessidade de comprar itens se a defesa for eficiente
                 "condition": lambda: self.adv.shield.latencia < 4,
                 "attribute": {
-                    "alterLatenciaAttk": {
-                        "priority": 1,
-                        "reverse": False
-                    },
                     "alterLatenciaDeff": {
                         "priority": 5,
                         "reverse": True
                     }
                 }
             },
-            "activeStrategyLife": {
-                "name": "Strategy LIFE",
-                "active": lambda : self.activeStrategyLife,
-                "condition": lambda: self.player.hp < 5000,
+            "activeStrategyDM": {
+                "name": "ATTK DM",
+                "active": lambda : self.activeStrategyDMC,
+                "condition": lambda : True,
                 "attribute": {
-                    "alterLife": {
-                        "priority": 5,
+                    "alterDanoMagico": {
+                        "priority": 1,
                         "reverse": False
                     }
                 }
@@ -527,7 +530,33 @@ class InteligencePlayer:
                 "condition": lambda: self.adv.sword.getMAXdanoMagico() >= self.player.shield.defesaMagica,
                 "attribute": {
                     "alterDefesaMagica": {
-                        "priority": 1,
+                        "priority": 2,
+                        "reverse": False
+                    }
+                }
+            },
+            "activeStrategyDefF": {
+                "name": "Defesa Física",
+                "active": lambda: self.activeStrategyDefF,
+                "condition": lambda: self.adv.sword.getMAXdanoFisico() >= self.player.shield.defesaFisica,
+                "attribute": {
+                    "alterDefesaMagica": {
+                        "priority": 2,
+                        "reverse": False
+                    }
+                }
+            },
+            "activeStrategyEconomic": {
+                "name": "Economic",
+                "active": lambda: self.activeStrategyEconomic,
+                "condition": lambda: True,
+                "attribute": {
+                    "valor": {
+                        "priority": 2,
+                        "reverse": True
+                    },
+                    "quatidade": {
+                        "priority": 2,
                         "reverse": False
                     }
                 }
