@@ -4,7 +4,9 @@ from tkinter import font,scrolledtext
 from fileClass import *
 import time
 
-User = ""
+from fileBD import *
+
+userPlayer = None
 
 class TelaEscolhaBot:
     def __init__(self):
@@ -845,6 +847,9 @@ class TelaMain:
 
     def abrirTelaOption(self, status):
         self.root.destroy()
+        d = DAO()
+        userPlayer.addPartida(self.player.name,self.bot.name,d.gerarSTR(self.gerarRELATORIO()), "win" if status else "low")
+
         TelaOption(self.player, self.gerarRELATORIO(), status).construtor()
 
     def abrirTelaItens(self, event):
@@ -1685,5 +1690,173 @@ class TelaTutor:
         self.root.bind("<Escape>", lambda event: self.voltar())
 
         self.texto.pack()
+
+        self.root.mainloop()
+
+class TelaCadastro:
+    def __init__(self):
+        self.root = Tk()
+        self.dao = DAO()
+
+        self.fontFixedsys12 = font.Font(family='Fixedsys', size=14)
+        self.imageLb = PhotoImage(
+            file="DirPNG/escolhaItens.png"
+        )
+        self.lbTitle = Label(self.root, image=self.imageLb, highlightbackground="Black", bg="black")
+
+        self.canvas = Canvas(self.root,width=200,height=20, highlightbackground="Black", bg="white")
+
+        self.entryNome = Entry(self.root, width=20, font=self.fontFixedsys12)
+        self.lbNome = Label(self.root,width=10,height=1, font=self.fontFixedsys12, bg="Black",
+                                               fg="white", text="Nome")
+        self.entrySenha = Entry(self.root, width=20, font=self.fontFixedsys12)
+        self.lbSenha = Label(self.root, width=10, height=1, font=self.fontFixedsys12, bg="Black",
+                            fg="white", text="Senha")
+
+        self.lbStatus = Label(self.canvas,width=45,height=1, font=font.Font(family='Fixedsys', size=10), bg="Black",
+                                               fg="white", text="")
+
+        self.btCadastrar = Button(self.root, width=35,height=2, bg="#ec352e", fg="Black", highlightbackground="Black",
+                                  text="CADASTRAR", font=font.Font(family='Fixedsys', size=15))
+        self.btLogar = Button(self.root, width=35, height=2, bg="#ec352e", fg="Black", highlightbackground="Black",
+                                  text="TELA LOGIN", font=font.Font(family='Fixedsys', size=15))
+
+    def cadastrar(self):
+        nome = self.entryNome.get().strip()
+        senha = self.entrySenha.get().strip()
+        if nome == "" or senha == "":
+            self.lbStatus["fg"] = "red"
+            self.lbStatus["text"] = "Campo vazio".upper()
+        else:
+            if self.dao.cadastrar(nome,senha):
+                self.lbStatus["fg"] = "green"
+                self.lbStatus["text"] = "Cadastro confirmado".upper()
+            else:
+                self.lbStatus["fg"] = "red"
+                self.lbStatus["text"] = "Nome já existente".upper()
+
+    def abrirTelaLogin(self):
+        self.root.destroy()
+        TelaLogin().construtor()
+
+
+    def construtor(self):
+        self.root.attributes('-fullscreen', True)
+        self.root.focus_force()
+        self.root.title("Blood Blade Society")
+        self.root["bg"] = "Black"
+
+        self.lbTitle.pack()
+
+
+        yNome = 200
+        ySenha = 280
+        yStatus = 320
+        yBt = 350
+
+        margeY = 100
+        margeX = 100
+
+        self.entryNome.place(x=610+margeX,y=yNome+margeY)
+        self.lbNome.place(x=500+margeX,y=yNome+margeY)
+
+        self.entrySenha.place(x=610+margeX,y=ySenha+margeY)
+        self.lbSenha.place(x=500+margeX,y=ySenha+margeY)
+
+        self.canvas.place(x=500+margeX, y=yStatus+margeY)
+        self.lbStatus.pack(anchor=CENTER,side=TOP)
+
+        self.btCadastrar.place(x=500+margeX, y=yBt+margeY)
+        self.btCadastrar["command"] = self.cadastrar
+        self.btCadastrar.bind("<Return>", lambda event:self.cadastrar())
+
+        self.btLogar.pack(side=RIGHT,anchor=S)
+        self.btLogar["command"] = self.abrirTelaLoginqw
+
+        self.root.mainloop()
+
+class TelaLogin:
+    def __init__(self):
+        self.root = Tk()
+        self.dao = DAO()
+
+        self.fontFixedsys12 = font.Font(family='Fixedsys', size=14)
+        self.imageLb = PhotoImage(
+            file="DirPNG/escolhaItens.png"
+        )
+        self.lbTitle = Label(self.root, image=self.imageLb, highlightbackground="Black", bg="black")
+
+        self.canvas = Canvas(self.root, width=200, height=20, highlightbackground="Black", bg="white")
+
+        self.entryNome = Entry(self.root, width=20, font=self.fontFixedsys12)
+        self.lbNome = Label(self.root, width=10, height=1, font=self.fontFixedsys12, bg="Black",
+                            fg="white", text="Nome")
+        self.entrySenha = Entry(self.root, width=20, font=self.fontFixedsys12)
+        self.lbSenha = Label(self.root, width=10, height=1, font=self.fontFixedsys12, bg="Black",
+                             fg="white", text="Senha")
+
+        self.lbStatus = Label(self.canvas, width=45, height=1, font=font.Font(family='Fixedsys', size=10), bg="Black",
+                              fg="white", text="")
+
+        self.btLogar = Button(self.root, width=35, height=2, bg="#ec352e", fg="Black", highlightbackground="Black",
+                              text="FAZER LOGIN", font=font.Font(family='Fixedsys', size=15))
+
+        self.btCadastra = Button(self.root, width=35, height=2, bg="#ec352e", fg="Black", highlightbackground="Black",
+                              text="TELA DE CADASTRO", font=font.Font(family='Fixedsys', size=15))
+    def logar(self):
+        nome = self.entryNome.get().strip()
+        senha = self.entrySenha.get().strip()
+        if nome == "" or senha == "":
+            self.lbStatus["fg"] = "red"
+            self.lbStatus["text"] = "Campo vazio".upper()
+        else:
+            user = self.dao.getUser(nome)
+            if user == None:
+                self.lbStatus["fg"] = "red"
+                self.lbStatus["text"] = "usuário não existente".upper()
+            elif nome.upper() != user.Nome.upper() or senha.upper() != user.Senha.upper():
+                self.lbStatus["fg"] = "red"
+                self.lbStatus["text"] = "nome ou senha incorreto".upper()
+            else:
+                global userPlayer
+                userPlayer = user
+                self.root.destroy()
+                TelaInicio().construtor()
+    def abrirTelaCadastro(self):
+        self.root.destroy()
+        TelaCadastro().construtor()
+
+    def construtor(self):
+        self.root.attributes('-fullscreen', True)
+        self.root.focus_force()
+        self.root.title("Blood Blade Society")
+        self.root["bg"] = "Black"
+
+        self.lbTitle.pack()
+
+
+        yNome = 200
+        ySenha = 280
+        yStatus = 320
+        yBt = 350
+
+        margeY = 100
+        margeX = 100
+
+        self.entryNome.place(x=610+margeX,y=yNome+margeY)
+        self.lbNome.place(x=500+margeX,y=yNome+margeY)
+
+        self.entrySenha.place(x=610+margeX,y=ySenha+margeY)
+        self.lbSenha.place(x=500+margeX,y=ySenha+margeY)
+
+        self.canvas.place(x=500+margeX, y=yStatus+margeY)
+        self.lbStatus.pack(anchor=CENTER,side=TOP)
+
+        self.btLogar.place(x=500 + margeX, y=yBt + margeY)
+        self.btLogar["command"] = self.logar
+        self.btLogar.bind("<Return>", lambda event : self.logar())
+
+        self.btCadastra.pack(side=LEFT, anchor=S)
+        self.btCadastra["command"] = self.abrirTelaCadastro
 
         self.root.mainloop()
