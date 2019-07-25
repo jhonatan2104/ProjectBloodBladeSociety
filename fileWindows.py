@@ -6,7 +6,7 @@ import time
 
 from fileBD import *
 
-userPlayer = None
+userPlayer = User("Jhonatan","tantan21","UserJHONATAN.txt")
 
 class TelaEscolhaBot:
     def __init__(self):
@@ -249,10 +249,13 @@ class TelaInicio:
         self.imagemPlayerXbot = PhotoImage(file="DirPNG/playerXbotPNG.png")
         self.imageSair = PhotoImage(file="DirPNG/sair.png")
         self.imageTutor = PhotoImage(file="DirPNG/tutorial.png")
+        self.imagePerfil = PhotoImage(file="DirPNG/PERFILinicio.png")
 
         self.bt1 = Button(self.root, image=self.imagemPlayerXbot, border=0, width=400, height=200, relief="groove", bg="Black")
         self.btSair = Button(self.root, image=self.imageSair, border=0, width=400, height=200, relief="groove", bg="Black")
         self.btTutor = Button(self.root, image=self.imageTutor, border=0, width=400, height=200, relief="groove", bg="Black")
+        self.btPerfil = Button(self.root, image=self.imagePerfil, border=0, width=400, height=200, relief="groove",
+                              bg="Black")
 
         self.lb = Label(self.root, image=self.imagemLabel, bg="Black")
 
@@ -263,6 +266,9 @@ class TelaInicio:
     def abrirTelaTutor(self):
         self.root.destroy()
         TelaTutor().construtor()
+    def abrirTelaPerfil(self):
+        self.root.destroy()
+        TelaPerfil().construtor()
 
     def sair(self):
         self.root.destroy()
@@ -277,12 +283,14 @@ class TelaInicio:
         self.root["bg"] = self.color
         self.lb["bg"] = self.color
         self.lb.pack(side=TOP)
-        self.bt1.place(x=555, y=465)
+        self.bt1.place(x=555, y=540)
         self.btSair.place(x=125, y=300)
         self.btTutor.place(x=990, y=300)
+        self.btPerfil.place(x=555, y=300)
         self.bt1["command"] = self.abrirTelaEscolhaPlayerBOT
         self.btSair["command"] = self.sair
         self.btTutor["command"] = self.abrirTelaTutor
+        self.btPerfil["command"] = self.abrirTelaPerfil
         self.root.mainloop()
 
 
@@ -1700,7 +1708,7 @@ class TelaCadastro:
 
         self.fontFixedsys12 = font.Font(family='Fixedsys', size=14)
         self.imageLb = PhotoImage(
-            file="DirPNG/escolhaItens.png"
+            file="DirPNG/CADASTRO.png"
         )
         self.lbTitle = Label(self.root, image=self.imageLb, highlightbackground="Black", bg="black")
 
@@ -1748,11 +1756,10 @@ class TelaCadastro:
 
         self.lbTitle.pack()
 
-
         yNome = 200
-        ySenha = 280
-        yStatus = 320
-        yBt = 350
+        ySenha = 260
+        yStatus = 300
+        yBt = 330
 
         margeY = 100
         margeX = 100
@@ -1768,10 +1775,10 @@ class TelaCadastro:
 
         self.btCadastrar.place(x=500+margeX, y=yBt+margeY)
         self.btCadastrar["command"] = self.cadastrar
-        self.btCadastrar.bind("<Return>", lambda event:self.cadastrar())
+        self.root.bind("<Return>", lambda event:self.cadastrar())
 
         self.btLogar.pack(side=RIGHT,anchor=S)
-        self.btLogar["command"] = self.abrirTelaLoginqw
+        self.btLogar["command"] = self.abrirTelaLogin
 
         self.root.mainloop()
 
@@ -1782,7 +1789,7 @@ class TelaLogin:
 
         self.fontFixedsys12 = font.Font(family='Fixedsys', size=14)
         self.imageLb = PhotoImage(
-            file="DirPNG/escolhaItens.png"
+            file="DirPNG/LOGIN.png"
         )
         self.lbTitle = Label(self.root, image=self.imageLb, highlightbackground="Black", bg="black")
 
@@ -1836,12 +1843,12 @@ class TelaLogin:
 
 
         yNome = 200
-        ySenha = 280
-        yStatus = 320
-        yBt = 350
+        ySenha = 260
+        yStatus = 300
+        yBt = 330
 
         margeY = 100
-        margeX = 100
+        margeX = 90
 
         self.entryNome.place(x=610+margeX,y=yNome+margeY)
         self.lbNome.place(x=500+margeX,y=yNome+margeY)
@@ -1854,9 +1861,160 @@ class TelaLogin:
 
         self.btLogar.place(x=500 + margeX, y=yBt + margeY)
         self.btLogar["command"] = self.logar
-        self.btLogar.bind("<Return>", lambda event : self.logar())
+        self.root.bind("<Return>", lambda event : self.logar())
 
         self.btCadastra.pack(side=LEFT, anchor=S)
         self.btCadastra["command"] = self.abrirTelaCadastro
 
+        self.root.mainloop()
+
+class TelaPerfil:
+    def __init__(self):
+        self.root = Tk()
+        self.fontFixedsys12 = font.Font(family='Fixedsys', size=17)
+        self.imageLb = PhotoImage(
+            file="DirPNG/PERFIL.png"
+        )
+        self.lbTitle = Label(self.root, image=self.imageLb, highlightbackground="Black", bg="black")
+
+        self.imagBack = PhotoImage(file="DirPNG/backperfil.png")
+        self.btVoltar = Button(self.root, image=self.imagBack, bg="Black", border=0)
+
+        #LABAL DICAS
+        self.lbDicaChampFavorito = Label(self.root, font=self.fontFixedsys12, highlightbackground="Black", bg="black",
+                                         fg="#ec352e",text="Player Favorito")
+
+        nomeChamp = userPlayer.getChanpFavorito()
+
+        imagPerfil = System.choosePlayer(nameChamp=nomeChamp).imageShowChoose if nomeChamp != None else "DirPNG/playerPerfil.png"
+        self.imagePerfil = PhotoImage(file=imagPerfil)
+        self.lbPerfil = Label(self.root,image=self.imagePerfil,highlightbackground="Black")
+
+        self.canvasRelatorio = Canvas(self.root, width=300, height=400, background="black", border=0,
+                                      highlightbackground="Black")
+        self.canvasOptions = Canvas(self.root, width=300, height=400, background="black", border=0,
+                                      highlightbackground="Black")
+
+
+        width = 24
+        height = 2
+
+        self.bt0 = Button(self.canvasRelatorio, width=width, height=height, border=0, fg="black",background="#ec352e",
+                          font=self.fontFixedsys12,highlightbackground="Black")
+        self.bt1 = Button(self.canvasRelatorio,  width=width, height=height, border=0, fg="black",background="#ec352e",
+                          font=self.fontFixedsys12,highlightbackground="Black")
+        self.bt2 = Button(self.canvasRelatorio,  width=width, height=height, border=0, fg="black",background="#ec352e",
+                          font=self.fontFixedsys12,highlightbackground="Black")
+        self.bt3 = Button(self.canvasRelatorio,  width=width, height=height, border=0, fg="black",background="#ec352e",
+                          font=self.fontFixedsys12,highlightbackground="Black")
+        self.bt4 = Button(self.canvasRelatorio,  width=width, height=height, border=0, fg="black",background="#ec352e",
+                          font=self.fontFixedsys12,highlightbackground="Black")
+
+        self.btOp0 = Button(self.canvasOptions, width=width, height=height, border=0, fg="black", background="#ec352e",
+                          font=self.fontFixedsys12, highlightbackground="Black", text="WIN & LOW")
+        self.btOp1 = Button(self.canvasOptions, width=width, height=height, border=0, fg="black", background="#ec352e",
+                            font=self.fontFixedsys12, highlightbackground="Black", text="TYPE DAMEGE")
+
+
+        # CANVAS WIN & LOW
+        self.canvasOpWin = Canvas(self.root,bg="black", border=0,highlightbackground="Black")
+        self.lbWin = Label(self.canvasOpWin, bg="black", fg="green", border=0, font=font.Font(family='Fixedsys', size=17))
+        self.lbLow = Label(self.canvasOpWin, bg="black", fg="red", border=0,
+                           font=font.Font(family='Fixedsys', size=17))
+        self.photoArt = PhotoImage(file="DirPNG/logo.png")
+        self.lbImage = Label(self.canvasOpWin, image=self.photoArt, highlightbackground="Black", bg="black")
+
+        # CANVAS TIPO GUERREIRO
+        self.canvasType = Canvas(self.root, bg="black", border=0, highlightbackground="Black")
+
+        dm = userPlayer.getDM()
+        df = userPlayer.getDF()
+
+        strImage = "DirPNG/atk3.png" if dm*0.8 > df else "DirPNG/atk1.png" if df*0.8 > dm else "DirPNG/atk2.png"
+        self.imageStr = PhotoImage(file=strImage)
+
+        self.lbImageType = Label(self.canvasType, width=300,image=self.imageStr, highlightbackground="Black", bg="black")
+
+        self.lbDM = Label(self.canvasType, bg="black", fg="#9c27a2", border=0,text=f"DANO MÁGICO\n\n{dm}",
+                           font=font.Font(family='Fixedsys', size=17))
+        self.lbDF = Label(self.canvasType, bg="black", fg="#d41d16", border=0, text=f"DANO FÍSICO\n\n{df}",
+                          font=font.Font(family='Fixedsys', size=17))
+
+
+
+        self.listBTrelatorio = [self.bt0,self.bt1,self.bt2,self.bt3,self.bt4]
+
+        self.listBToptions = [self.btOp0,self.btOp1]
+        self.listCanvas = [[self.canvasOpWin,585,500], [self.canvasType,505,500]]
+
+    def selfAbrir(self, tela):
+        tela.root.destroy()
+        TelaPerfil().construtor()
+
+    def voltar(self):
+        self.root.destroy()
+        TelaInicio().construtor()
+
+    def abrirTelaRelatorio(self, name):
+        global userPlayer
+        listRelatorio = userPlayer.getRelatorioChanp(name)
+        self.root.destroy()
+        t = TelaRelatorio(listRelatorio)
+
+        #GAMBIARA
+        t.voltar = lambda :self.selfAbrir(t)
+
+        t.construtor()
+    def placeCanvas(self, canvas, x, y):
+        # LIMPAR O CANVAS
+        for lineClearCanvas in range(len(self.listCanvas)):
+            self.listCanvas[lineClearCanvas][0].place_forget()
+
+        # PLACE CANVAS
+        canvas.place(x=x,y=y)
+
+    def construtor(self):
+        self.root.attributes('-fullscreen', True)
+        self.root.focus_force()
+        self.root.title("Blood Blade Society")
+        self.root["bg"] = "Black"
+
+        self.lbTitle.pack()
+        self.btVoltar.place(x=1475,y=800)
+        self.btVoltar["command"] = self.voltar
+
+        for index in range(5):
+            champ = System.choosePlayer(index)
+            self.listBTrelatorio[index]["text"] = champ.name
+            self.listBTrelatorio[index].place(x=0,y=65*index)
+            self.listBTrelatorio[index]["command"] = partial(self.abrirTelaRelatorio,champ.name)
+
+        # CONSTRUINDO CANVAS WIN & LOW
+        self.lbWin.pack(side=LEFT)
+        self.lbWin["text"] = f"VITÓRIAS\n\n{userPlayer.getNumberWin()}"
+
+        self.lbImage.pack(side=LEFT)
+        self.lbLow.pack(side=RIGHT)
+        self.lbLow["text"] = f"DERROTAS\n\n{userPlayer.getNumberLow()}"
+
+        # CONSTRUINDO CANVAS TYPE
+        #self.canvasType.place(x=505,y=500)
+
+        self.lbDF.pack(side=LEFT)
+        self.lbImageType.pack(side=LEFT)
+        self.lbDM.pack(side=RIGHT)
+
+
+
+        for index in range(len(self.listBToptions)):
+            self.listBToptions[index].place(x=0, y=65 * index)
+            canvas, X, Y = self.listCanvas[index]
+            self.listBToptions[index]["command"] = lambda c=canvas, x=X, y=Y: self.placeCanvas(c, x, y)
+
+
+        self.canvasRelatorio.place(x=0,y=300)
+        self.canvasOptions.place(x=1290,y=300)
+
+        self.lbDicaChampFavorito.place(x=570, y=220)
+        self.lbPerfil.place(x=570, y=250)
         self.root.mainloop()

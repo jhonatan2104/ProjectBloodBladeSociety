@@ -23,7 +23,7 @@ Dados da partida
             STATUS: 4
 
 """
-
+from operator import itemgetter
 
 class DAO:
     def __init__(self):
@@ -91,6 +91,7 @@ class DAO:
         arqRead.close()
         for linha in txt:
             Nome, Senha, arq = linha.split(":")
+            arq = arq[0:-1] if "\n" in arq else arq
             if Nome.upper() == nome.upper():
                 return User(Nome, Senha, arq)
         return None
@@ -150,6 +151,107 @@ class User:
                     listDados[indexAtributo] = listDados[indexAtributo] + int(relatorio[indexAtributo])
                 cont += 1
         listMedia = []
+        cont = cont if cont != 0 else 1
         for info in listDados:
             listMedia.append(int(info/cont))
         return listMedia
+
+    def getChanpFavorito(self):
+        arqRead = open(f"{self.dirProject}/{self.ArqSTR}", "r")
+        txt = arqRead.readlines()
+        arqRead.close()
+        matriz = []
+        if len(txt) != 0:
+            for linhaTxT in txt:
+                nomeChamp = linhaTxT.split(":")[1]
+
+                if len(matriz) == 0:
+                    matriz.append([nomeChamp, 1])
+                else:
+                    alterada = False
+                    for linha in matriz:
+                        if linha[0] == nomeChamp:
+                            linha[1] += 1
+                            alterada = True
+                            break
+                    if not alterada:
+                        matriz.append([nomeChamp, 1])
+            #  Todos os personagens jogados
+            rank = sorted(matriz, key=itemgetter(1),  reverse=True)
+            return rank[0][0]
+        else:
+            return None
+
+    def getNumberCombat(self, nome=None):
+        arqRead = open(f"{self.dirProject}/{self.ArqSTR}", "r")
+        txt = arqRead.readlines()
+        arqRead.close()
+        cont = 0
+        if nome is None:
+            return len(txt)
+        else:
+            for linhaTxT in txt:
+                nomeChamp = linhaTxT.split(":")[1]
+                if nomeChamp == nome:
+                    cont += 1
+            return cont
+
+    def getNumberWin(self, nome=None):
+        arqRead = open(f"{self.dirProject}/{self.ArqSTR}", "r")
+        txt = arqRead.readlines()
+        arqRead.close()
+        cont = 0
+        if nome is None:
+            for linhaTxT in txt:
+                status = linhaTxT.split(":")[4]
+                if "win" in status:
+                    cont += 1
+            return cont
+        else:
+            for linhaTxT in txt:
+                nomeChamp = linhaTxT.split(":")[1]
+                status = linhaTxT.split(":")[4]
+                if "win" in status and nome == nomeChamp:
+                    cont += 1
+            return cont
+
+    def getNumberLow(self, nome=None):
+        arqRead = open(f"{self.dirProject}/{self.ArqSTR}", "r")
+        txt = arqRead.readlines()
+        arqRead.close()
+        cont = 0
+        if nome is None:
+            for linhaTxT in txt:
+                status = linhaTxT.split(":")[4]
+                if "low" in status:
+                    cont += 1
+            return cont
+        else:
+            for linhaTxT in txt:
+                nomeChamp = linhaTxT.split(":")[1]
+                status = linhaTxT.split(":")[4]
+                if "low" in status and nome == nomeChamp:
+                    cont += 1
+            return cont
+
+    def getDM(self):
+        arqRead = open(f"{self.dirProject}/{self.ArqSTR}", "r")
+        txt = arqRead.readlines()
+        arqRead.close()
+        cont = 0
+        for linha in txt:
+            dm = linha.split(":")[3].split("-")[1]
+            cont += int(dm)
+        return cont
+
+    def getDF(self):
+        arqRead = open(f"{self.dirProject}/{self.ArqSTR}", "r")
+        txt = arqRead.readlines()
+        arqRead.close()
+        cont = 0
+        for linha in txt:
+            df = linha.split(":")[3].split("-")[2]
+            cont += int(df)
+        return cont
+
+#print(User("Jhonatan","tantan21","UserJHONATAN.txt").getNumberLow("Ichigo Kurosaki"))
