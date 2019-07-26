@@ -229,6 +229,13 @@ class System:
         ]
 
     @staticmethod
+    def getItem(nome):
+        for item in System.allItens():
+            if item.name == nome:
+                return item
+        return None
+
+    @staticmethod
     def filterItens():
         lista = System.allItens()
         shuffle(lista)

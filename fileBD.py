@@ -25,10 +25,12 @@ Dados da partida
 """
 from operator import itemgetter
 
+
 class DAO:
     def __init__(self):
         self.dirProject = "DirTXT"
         self.masterDate = "DAOUser.txt"
+        self.idArqItens = "ITENS"
 
     def cadastrar(self, name, senha):
         if not self.isExist(name):
@@ -41,15 +43,16 @@ class DAO:
             newArq = f"User{name.upper()}.txt"
             # escrever no arquivo master
             if len(txt) == 0:
-                txt = f"{name}:{senha}:{newArq}"
+                txt = f"{name}:{senha}:{newArq}:{self.idArqItens}{newArq}:"
                 arqWrite.writelines(txt)
                 arqWrite.close()
             else:
-                txt += f"\n{name}:{senha}:{newArq}"
+                txt += f"\n{name}:{senha}:{newArq}:{self.idArqItens}{newArq}:"
                 arqWrite.writelines(txt)
                 arqWrite.close()
 
             arqUser = open(f"{self.dirProject}/{newArq}", "w")
+            self.criarArquivoItens(f"{self.idArqItens}{newArq}")
             arqUser.close()
             return True
         else:
@@ -60,17 +63,32 @@ class DAO:
         txt = arqRead.readlines()
         arqRead.close()
         for linha in txt:
-            Nome,Senha,arq = linha.split(":")
+            Nome, Senha, arq, itens, nextLine = linha.split(":")
             if Nome.upper() == nome.upper():
                 return True
         return False
+
+    def criarArquivoItens(self, newArqItens):
+        listNomeItens = ['Dragon claws', '3 warriors of David', "Adam's ring", 'living shield', 'helmet of Ulysses',
+                         "Loki's dagger", 'breastplate', 'hermes dagger', 'apollo dagger', 'Spiked Shoulder Armor',
+                         'trident of jaime', 'fragmented sword', 'Bone knife', 'flail', 'Sharp axe', 'viking helmet',
+                         'Black Knight Helm', 'helmet of the wise', 'Brutal helm', 'Heavy helm', 'Crossed axes']
+        txt = ""
+        for nomeItem in listNomeItens:
+            if len(txt) == 0:
+                txt += f"{nomeItem}:0:"
+            else:
+                txt += f"\n{nomeItem}:0:"
+        arqUser = open(f"{self.dirProject}/{newArqItens}", "w")
+        arqUser.writelines(txt)
+        arqUser.close()
 
     def getSenha(self, nome):
         arqRead = open(f"{self.dirProject}/{self.masterDate}", "r")
         txt = arqRead.readlines()
         arqRead.close()
         for linha in txt:
-            Nome, Senha, arq = linha.split(":")
+            Nome, Senha, arq, itens, nextLine = linha.split(":")
             if Nome.upper() == nome.upper():
                 return Senha
         return None
@@ -80,7 +98,7 @@ class DAO:
         txt = arqRead.readlines()
         arqRead.close()
         for linha in txt:
-            Nome, Senha, arq = linha.split(":")
+            Nome, Senha, arq, itens, nextLine = linha.split(":")
             if Nome.upper() == nome.upper():
                 return arq
         return None
@@ -90,18 +108,22 @@ class DAO:
         txt = arqRead.readlines()
         arqRead.close()
         for linha in txt:
-            Nome, Senha, arq = linha.split(":")
-            arq = arq[0:-1] if "\n" in arq else arq
+            Nome, Senha, arq, itens, nextLine = linha.split(":")
             if Nome.upper() == nome.upper():
-                return User(Nome, Senha, arq)
+                return User(Nome, Senha, arq, itens)
+        return None
+
+    def getArqItens(self, nome):
+        arqRead = open(f"{self.dirProject}/{self.masterDate}", "r")
+        txt = arqRead.readlines()
+        arqRead.close()
+        for linha in txt:
+            Nome, Senha, arq, itens, nextLine = linha.split(":")
+            if Nome.upper() == nome.upper():
+                return itens
         return None
 
     def gerarSTR(self, lista):
-        '''
-            atributo.info - atributo.info - {...}
-        :param dic:
-        :return:
-        '''
         txt = ""
         for elem in lista:
             txt += f"{elem}-"
@@ -117,9 +139,10 @@ class DAO:
 
 
 class User:
-    def __init__(self, nome, senha, arq):
+    def __init__(self, nome, senha, arq, itens):
         self.dirProject = "DirTXT"
         self.ArqSTR = arq
+        self.ArqSTRItens = itens
         self.Senha = senha
         self.Nome = nome
 
@@ -155,6 +178,49 @@ class User:
         for info in listDados:
             listMedia.append(int(info/cont))
         return listMedia
+
+    def addBuyItens(self, nome):
+        alterada = False
+        arqRead = open(f"{self.dirProject}/{self.ArqSTRItens}", "r")
+        txt = arqRead.readlines()
+        arqRead.close()
+        txtAux = ""
+        for linha in txt:
+            nomeItem, quant, nextline = linha.split(":")
+            if nome == nomeItem:
+                newQuant = int(quant)+1
+                txtAux += f"{nomeItem}:{newQuant}:{nextline}"
+                alterada = True
+            else:
+                txtAux += linha
+
+        if not alterada:
+            txtAux += f"\n{nome}:1:"
+
+        arqWrite = open(f"{self.dirProject}/{self.ArqSTRItens}", "w")
+        arqWrite.writelines(txtAux)
+        arqWrite.close()
+
+    def getItensFavorito(self):
+        arqRead = open(f"{self.dirProject}/{self.ArqSTRItens}", "r")
+        txt = arqRead.readlines()
+        arqRead.close()
+        listaItens = []
+        for line in txt:
+            nomeItem, quant, nextline = line.split(":")
+            listaItens.append([nomeItem, quant])
+
+        listaRank = sorted(listaItens, key=itemgetter(1), reverse=True)
+
+        listaRankAux = []
+
+        for line in range(3):
+            if listaRank[line][1] == '0':
+                listaRankAux.append([None, 0])
+            else:
+                listaRankAux.append(listaRank[line])
+
+        return listaRankAux[0:3]
 
     def getChanpFavorito(self):
         arqRead = open(f"{self.dirProject}/{self.ArqSTR}", "r")

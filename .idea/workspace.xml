@@ -2,17 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fefe4446-7a52-4355-8c4a-2041c4896d9f" name="Default Changelist" comment="Teste Hacker">
-      <change afterPath="$PROJECT_DIR$/DirPNG/CADASTRO.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DirPNG/LOGIN.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DirPNG/PERFIL.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DirPNG/PERFILinicio.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DirPNG/backperfil.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DirPNG/logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DirPNG/playerPerfil.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DirTXT/DAOUser.txt" beforeDir="false" afterPath="$PROJECT_DIR$/DirTXT/DAOUser.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DirTXT/UserJHONATAN.txt" beforeDir="false" afterPath="$PROJECT_DIR$/DirTXT/UserJHONATAN.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DirTXT/UserJHEAN.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DirTXT/UserJHONATAN.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DirTXT/UserJHONATAN88.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DirTXT/UserTANTAN.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DirTXT/UserWHYJHO.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/fileBD.py" beforeDir="false" afterPath="$PROJECT_DIR$/fileBD.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fileClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/fileClass.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fileWindows.py" beforeDir="false" afterPath="$PROJECT_DIR$/fileWindows.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,11 +24,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fileMain.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+            <state relative-caret-position="17">
+              <caret line="3" selection-start-line="3" selection-end-line="3" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
               </folding>
@@ -38,20 +36,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DirTXT/UserJHONATAN.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="36" lean-forward="true" selection-start-line="3" selection-start-column="36" selection-end-line="3" selection-end-column="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/fileWindows.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="2020" selection-start-line="2020" selection-end-line="2020" />
+            <state relative-caret-position="96">
+              <caret line="1859" column="41" selection-start-line="1859" selection-start-column="41" selection-end-line="1859" selection-end-column="41" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
               </folding>
@@ -62,17 +51,27 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fileBD.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="516">
-              <caret line="255" selection-start-line="255" selection-end-line="255" />
+            <state relative-caret-position="-414">
+              <caret line="220" column="52" selection-start-line="220" selection-start-column="52" selection-end-line="220" selection-end-column="52" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DirTXT/ITENSUserTANTAN.txt">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DirTXT/DAOUser.txt">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fileClass.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="54" lean-forward="true" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="54" />
+            <state relative-caret-position="211">
+              <caret line="737" column="6" selection-start-line="737" selection-start-column="6" selection-end-line="737" selection-end-column="6" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -121,10 +120,10 @@
         <option value="$PROJECT_DIR$/TutorialTEXT" />
         <option value="$PROJECT_DIR$/TutorialTEXT.txt" />
         <option value="$PROJECT_DIR$/setup.py" />
-        <option value="$PROJECT_DIR$/fileClass.py" />
         <option value="$PROJECT_DIR$/DirTXT/UserJHONATAN.txt" />
-        <option value="$PROJECT_DIR$/DirTXT/DAOUser.txt" />
         <option value="$PROJECT_DIR$/fileMain.py" />
+        <option value="$PROJECT_DIR$/DirTXT/DAOUser.txt" />
+        <option value="$PROJECT_DIR$/fileClass.py" />
         <option value="$PROJECT_DIR$/fileBD.py" />
         <option value="$PROJECT_DIR$/fileWindows.py" />
       </list>
@@ -206,57 +205,12 @@
             <path>
               <item name="ProjectBloodBladeSociety" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="DirPNG" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="ProjectBloodBladeSociety" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
               <item name="DirTXT" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
             <path>
               <item name="ProjectBloodBladeSociety" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
               <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="fileBD.py" type="8704e2dd:PyFileNode" />
-            </path>
-            <path>
-              <item name="ProjectBloodBladeSociety" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="fileBD.py" type="8704e2dd:PyFileNode" />
-              <item name="DAO" type="dd8bbb05:PyElementNode" />
-            </path>
-            <path>
-              <item name="ProjectBloodBladeSociety" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="fileBD.py" type="8704e2dd:PyFileNode" />
-              <item name="User" type="dd8bbb05:PyElementNode" />
-            </path>
-            <path>
-              <item name="ProjectBloodBladeSociety" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="fileClass.py" type="8704e2dd:PyFileNode" />
-            </path>
-            <path>
-              <item name="ProjectBloodBladeSociety" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="fileClass.py" type="8704e2dd:PyFileNode" />
-              <item name="System" type="dd8bbb05:PyElementNode" />
-            </path>
-            <path>
-              <item name="ProjectBloodBladeSociety" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
               <item name="fileWindows.py" type="8704e2dd:PyFileNode" />
-            </path>
-            <path>
-              <item name="ProjectBloodBladeSociety" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="fileWindows.py" type="8704e2dd:PyFileNode" />
-              <item name="TelaInicio" type="dd8bbb05:PyElementNode" />
-            </path>
-            <path>
-              <item name="ProjectBloodBladeSociety" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="fileWindows.py" type="8704e2dd:PyFileNode" />
-              <item name="TelaPerfil" type="dd8bbb05:PyElementNode" />
             </path>
           </expand>
           <select />
@@ -531,7 +485,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="Teste Hacker" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/teste.py" />
     <entry file="file://$PROJECT_DIR$/../portifolio/hacker.py" />
     <entry file="file://$PROJECT_DIR$/SystemGame.py" />
     <entry file="file://$PROJECT_DIR$/Mind" />
@@ -647,13 +600,6 @@
     <entry file="file://$PROJECT_DIR$/DirPNG/DESAFIAR1.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/DirTXT/DAOUser.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="17" selection-start-column="17" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/DirPNG/PERFIL.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -672,55 +618,61 @@
     <entry file="file://$PROJECT_DIR$/DirPNG/backperfil.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/DirTXT/UserJHONATAN.txt">
+    <entry file="file://$PROJECT_DIR$/DirTXT/UserJHONATAN88.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/fileMain.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="36" lean-forward="true" selection-start-line="3" selection-start-column="36" selection-end-line="3" selection-end-column="36" />
+        <state relative-caret-position="17">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+          <folding>
+            <element signature="e#0#25#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DirTXT/UserJHONATAN88.txt">
+    <entry file="file://$PROJECT_DIR$/DirTXT/UserJHONATAN.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="36" selection-start-line="3" selection-start-column="36" selection-end-line="3" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DirTXT/UserWHYJHO.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/DirTXT/UserTANTAN.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/DirTXT/UserWHYJHO.txt">
+    <entry file="file://$PROJECT_DIR$/DirTXT/DAOUser.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/fileBD.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="516">
-          <caret line="255" selection-start-line="255" selection-end-line="255" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/DirTXT/ITENSUserTANTAN.txt">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/fileClass.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="54" lean-forward="true" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="54" />
+        <state relative-caret-position="211">
+          <caret line="737" column="6" selection-start-line="737" selection-start-column="6" selection-end-line="737" selection-end-column="6" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fileWindows.py">
+    <entry file="file://$PROJECT_DIR$/fileBD.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="2020" selection-start-line="2020" selection-end-line="2020" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-414">
+          <caret line="220" column="52" selection-start-line="220" selection-start-column="52" selection-end-line="220" selection-end-column="52" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fileMain.py">
+    <entry file="file://$PROJECT_DIR$/fileWindows.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+        <state relative-caret-position="96">
+          <caret line="1859" column="41" selection-start-line="1859" selection-start-column="41" selection-end-line="1859" selection-end-column="41" />
           <folding>
-            <element signature="e#0#25#0" expanded="true" />
+            <element signature="e#0#29#0" expanded="true" />
           </folding>
         </state>
       </provider>

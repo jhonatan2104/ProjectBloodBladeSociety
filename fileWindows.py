@@ -6,7 +6,7 @@ import time
 
 from fileBD import *
 
-userPlayer = User("Jhonatan","tantan21","UserJHONATAN.txt")
+userPlayer = None
 
 class TelaEscolhaBot:
     def __init__(self):
@@ -272,7 +272,7 @@ class TelaInicio:
 
     def sair(self):
         self.root.destroy()
-        sys.exit()
+        TelaLogin().construtor()
 
     def construtor(self):
         self.root.attributes('-fullscreen',True)
@@ -1498,7 +1498,10 @@ class TelaItens:
     def __init__(self, player, bot, alternar=True, dicInfo=None):
         self.root = Tk()
         self.listItens = []
+
         self.player = player
+
+        # VARIÁVEIS TEMPORÁRIAS
         self.bot = bot
         self.alternar = alternar
         self.dicInfo = dicInfo
@@ -1510,24 +1513,29 @@ class TelaItens:
         self.margeIN_y = 210
         self.fontFixedsys15 = font.Font(family='Fixedsys', size=15)
         self.fontFixedsys25 = font.Font(family='Fixedsys', size=17)
-        # Caminho diretório
+        ## CAMINHO DO DIRETÓRIO PARA O NUMROS GOLD
         self.caminhoDirNum = "DirPNG/DirPNGnumber/numberGold/"
 
-        self.canvaLayaot = Canvas(self.root, bg="Black", width=400, height=700, highlightbackground="Black")
 
+
+        # IMAGENS
         self.imageLb = PhotoImage(
             file="DirPNG/escolhaItens.png"
         )
+        self.lbTitulo = Label(self.root, image=self.imageLb, highlightbackground="Black", bg="black")
+
         self.imageLbSimbol = PhotoImage(
             file="DirPNG/DirPNGnumber/numberGold/u.png"
         )
-        self.lbTitulo = Label(self.root, image=self.imageLb, highlightbackground="Black", bg="black")
-
-        self.canvasImage = Canvas(self.canvaLayaot, width=250, height=250, bg="Black", highlightbackground="Black")
-        self.lb = Label(self.canvaLayaot, font=self.fontFixedsys25, bg="Black", fg="white")
         self.lbSimbol = Label(self.root, width=80, height=80, image=self.imageLbSimbol, highlightbackground="Black",
                               bg="Black")
 
+        # CANVAS PRINCIPAL DE APRESENTAÇÃO DO ITEM
+        self.canvaLayaot = Canvas(self.root, bg="Black", width=400, height=700, highlightbackground="Black")
+        self.canvasImage = Canvas(self.canvaLayaot, width=250, height=250, bg="Black", highlightbackground="Black")
+        self.lb = Label(self.canvaLayaot, font=self.fontFixedsys25, bg="Black", fg="white")
+
+        # BOTÃOES DE COMPRA DOS ITENS
         self.bt1 = Button(self.root, width=25, height=7, bg="#ec352e",
                           fg="Black", font=self.fontFixedsys15)
         self.bt2 = Button(self.root, width=25, height=7, bg="#ec352e",
@@ -1541,37 +1549,55 @@ class TelaItens:
         self.bt6 = Button(self.root, width=25, height=7, bg="#ec352e",
                           fg="Black", font=self.fontFixedsys15)
 
+        # LISTA DE LAYAOT DOS BOTÕES
         self.listBt = [[self.bt1, self.bt2, self.bt3], [self.bt4, self.bt5, self.bt6]]
 
+        # DISPLAY MONEY
         self.c1 = Canvas(self.root, width=80, height=80, highlightbackground="Black", bg="black")
         self.c2 = Canvas(self.root, width=80, height=80, highlightbackground="Black", bg="black")
         self.c3 = Canvas(self.root, width=80, height=80, highlightbackground="Black", bg="black")
         self.c4 = Canvas(self.root, width=80, height=80, highlightbackground="Black", bg="black")
         self.displayMoney = [self.c1, self.c2, self.c3, self.c4]
 
+        # BOTÃO DE ATUALIZAÇÃO DOS ITENS
         self.imageBtCicle = PhotoImage(file="DirPNG/cicle.png")
-
         self.btCicle = Button(self.root, width=80, height=80, border=0,bg="black", image=self.imageBtCicle)
 
+        # BOTÃO PARA CONTINUAR
         self.image = PhotoImage(
             file="DirPNG/continue.png"
         )
-
         self.btContinuar = Button(self.root, image=self.image, width=400, height=200, bg="black", border=0)
 
+        # BOTÃO PARA VOLTAR
         self.backPNG = PhotoImage(
             file="DirPNG/backPNG.png")
         self.btVolta = Button(self.root, image=self.backPNG, bg="Black")
 
     def voltar(self):
+        '''
+        FUNÇÃO PARA ABRIR A TELA DE ESCOLHA DE PLAYER
+        :return:
+        '''
         self.root.destroy()
-        TelaEscolhaBot().construtor()
+        t = TelaEscolhaBot()
+        t.p1 = self.player
+        t.ADDimageCanvas(t.canvasNamePlayer,self.player.imageID)
+        t.construtor()
+
 
     def dinheiroERRO(self):
+        '''
+        FUNÇÃO PARA EXIBIR O ERRO - FALTA DE DINHEIRO- NA COMPRA DOS ITENS
+        :return:
+        '''
         self.lb["text"] = "VOCÊ NÃO POSSUE MOEDAS\nPARA COMPRAR ESSE ITEM"
 
     def addItem(self, item, bt):
         if self.player.money >= item.valor:
+
+            userPlayer.addBuyItens(item.name)
+
             self.player.addItem(item)
             self.lb["text"] = f"ITEM {item.name.upper()}\nCOMPRADO COM SUCESSO!"
             self.setDisplay(str(self.player.money), self.displayMoney)
@@ -1695,7 +1721,7 @@ class TelaTutor:
         self.root.title("Blood Blade Society")
         self.root["bg"] = "Black"
 
-        self.root.bind("<Escape>", lambda event: self.voltar())
+        self.root.bind("<Key>", lambda event: self.voltar())
 
         self.texto.pack()
 
@@ -1726,20 +1752,23 @@ class TelaCadastro:
 
         self.btCadastrar = Button(self.root, width=35,height=2, bg="#ec352e", fg="Black", highlightbackground="Black",
                                   text="CADASTRAR", font=font.Font(family='Fixedsys', size=15))
-        self.btLogar = Button(self.root, width=35, height=2, bg="#ec352e", fg="Black", highlightbackground="Black",
+        self.btLogar = Button(self.root, width=30, height=1, bg="#ec352e", fg="Black", highlightbackground="Black",
                                   text="TELA LOGIN", font=font.Font(family='Fixedsys', size=15))
 
     def cadastrar(self):
         nome = self.entryNome.get().strip()
         senha = self.entrySenha.get().strip()
         if nome == "" or senha == "":
+            # CAMPO VAZIO
             self.lbStatus["fg"] = "red"
             self.lbStatus["text"] = "Campo vazio".upper()
         else:
             if self.dao.cadastrar(nome,senha):
+                # CADASTRO CONFIRMADO
                 self.lbStatus["fg"] = "green"
                 self.lbStatus["text"] = "Cadastro confirmado".upper()
             else:
+                # NOME JÁ EXISTENTE
                 self.lbStatus["fg"] = "red"
                 self.lbStatus["text"] = "Nome já existente".upper()
 
@@ -1808,23 +1837,29 @@ class TelaLogin:
         self.btLogar = Button(self.root, width=35, height=2, bg="#ec352e", fg="Black", highlightbackground="Black",
                               text="FAZER LOGIN", font=font.Font(family='Fixedsys', size=15))
 
-        self.btCadastra = Button(self.root, width=35, height=2, bg="#ec352e", fg="Black", highlightbackground="Black",
+        self.btCadastra = Button(self.root, width=30, height=1, bg="#ec352e", fg="Black", highlightbackground="Black",
                               text="TELA DE CADASTRO", font=font.Font(family='Fixedsys', size=15))
+        self.btSair = Button(self.root, width=30, height=1, bg="#ec352e", fg="Black", highlightbackground="Black",
+                                 text="SAIR", font=font.Font(family='Fixedsys', size=15))
     def logar(self):
         nome = self.entryNome.get().strip()
         senha = self.entrySenha.get().strip()
         if nome == "" or senha == "":
+            # CAMPO VAZIO
             self.lbStatus["fg"] = "red"
             self.lbStatus["text"] = "Campo vazio".upper()
         else:
             user = self.dao.getUser(nome)
             if user == None:
+                # USER NÃO EXISTENTE
                 self.lbStatus["fg"] = "red"
                 self.lbStatus["text"] = "usuário não existente".upper()
             elif nome.upper() != user.Nome.upper() or senha.upper() != user.Senha.upper():
+                # NOME OU SENHA INCORRETOS
                 self.lbStatus["fg"] = "red"
-                self.lbStatus["text"] = "nome ou senha incorreto".upper()
+                self.lbStatus["text"] = "senha incorreto".upper()
             else:
+                # LOGADO
                 global userPlayer
                 userPlayer = user
                 self.root.destroy()
@@ -1832,6 +1867,10 @@ class TelaLogin:
     def abrirTelaCadastro(self):
         self.root.destroy()
         TelaCadastro().construtor()
+
+    def sair(self):
+        self.root.destroy()
+        sys.exit()
 
     def construtor(self):
         self.root.attributes('-fullscreen', True)
@@ -1863,8 +1902,13 @@ class TelaLogin:
         self.btLogar["command"] = self.logar
         self.root.bind("<Return>", lambda event : self.logar())
 
+        self.btSair.pack(side=BOTTOM, anchor=W)
+        self.btSair["command"] = self.sair
+
         self.btCadastra.pack(side=LEFT, anchor=S)
         self.btCadastra["command"] = self.abrirTelaCadastro
+
+
 
         self.root.mainloop()
 
@@ -1890,15 +1934,21 @@ class TelaPerfil:
         self.imagePerfil = PhotoImage(file=imagPerfil)
         self.lbPerfil = Label(self.root,image=self.imagePerfil,highlightbackground="Black")
 
+        # LABEL DICAS
+        self.lbDicaRelatorio = Label(self.root, bg="black", fg="#ec352e", highlightbackground="Black",
+                                     font=self.fontFixedsys12)
+        # GAMBIARRA
+        Canvas(self.root,bg="black",height=280,highlightbackground="Black").pack(side=BOTTOM)
+
+        # CANVAS DO MENU PERFIL
         self.canvasRelatorio = Canvas(self.root, width=300, height=400, background="black", border=0,
                                       highlightbackground="Black")
         self.canvasOptions = Canvas(self.root, width=300, height=400, background="black", border=0,
                                       highlightbackground="Black")
-
-
         width = 24
         height = 2
 
+        # BOTÕES DE RELATÓRIO
         self.bt0 = Button(self.canvasRelatorio, width=width, height=height, border=0, fg="black",background="#ec352e",
                           font=self.fontFixedsys12,highlightbackground="Black")
         self.bt1 = Button(self.canvasRelatorio,  width=width, height=height, border=0, fg="black",background="#ec352e",
@@ -1910,10 +1960,13 @@ class TelaPerfil:
         self.bt4 = Button(self.canvasRelatorio,  width=width, height=height, border=0, fg="black",background="#ec352e",
                           font=self.fontFixedsys12,highlightbackground="Black")
 
+        # BOTÕES DE OPTIONS
         self.btOp0 = Button(self.canvasOptions, width=width, height=height, border=0, fg="black", background="#ec352e",
                           font=self.fontFixedsys12, highlightbackground="Black", text="WIN & LOW")
         self.btOp1 = Button(self.canvasOptions, width=width, height=height, border=0, fg="black", background="#ec352e",
                             font=self.fontFixedsys12, highlightbackground="Black", text="TYPE DAMEGE")
+        self.btOp2 = Button(self.canvasOptions, width=width, height=height, border=0, fg="black", background="#ec352e",
+                            font=self.fontFixedsys12, highlightbackground="Black", text="ITENS")
 
 
         # CANVAS WIN & LOW
@@ -1924,7 +1977,17 @@ class TelaPerfil:
         self.photoArt = PhotoImage(file="DirPNG/logo.png")
         self.lbImage = Label(self.canvasOpWin, image=self.photoArt, highlightbackground="Black", bg="black")
 
-        # CANVAS TIPO GUERREIRO
+        # CANVAS TIPO DANO
+        """
+        Construção do canvas tipo de dano (dm) e (df) são as variáveis que contem o valor do dano total do User. Com 
+        base no dano que for superior é determinado a imagem do tipo de Dano
+        
+        "DirPNG/atk1.png" : df é meio que dm
+        "DirPNG/atk3.png" : dm é meio que df
+        "DirPNG/atk2.png" : são parecidos 
+        
+        coeficiente de variação : 0.8
+        """
         self.canvasType = Canvas(self.root, bg="black", border=0, highlightbackground="Black")
 
         dm = userPlayer.getDM()
@@ -1940,12 +2003,67 @@ class TelaPerfil:
         self.lbDF = Label(self.canvasType, bg="black", fg="#d41d16", border=0, text=f"DANO FÍSICO\n\n{df}",
                           font=font.Font(family='Fixedsys', size=17))
 
+        # CANVAS ITENS
+        self.canvasItens = Canvas(self.root, bg="black", border=0, highlightbackground="Black")
+
+        rank1,rank2,rank3 = userPlayer.getItensFavorito()
+
+        canvasTop = Canvas(self.canvasItens, bg="black",width=800, height=250,  border=0, highlightbackground="Black")
+        canvasBotton = Canvas(self.canvasItens, bg="black",width=800, height=250, border=0, highlightbackground="Black")
+
+        item1 = System.getItem(rank1[0])
+        item2 = System.getItem(rank2[0])
+        item3 = System.getItem(rank3[0])
+
+        self.image1 = PhotoImage(file=item1.image) if item1 is not None else PhotoImage(file="DirPNG/erroItens.png")
+        self.image2 = PhotoImage(file=item2.image) if item2 is not None else PhotoImage(file="DirPNG/erroItens.png")
+        self.image3 = PhotoImage(file=item3.image) if item3 is not None else PhotoImage(file="DirPNG/erroItens.png")
+
+        txt1 = f"RANK 1\n\nNOME: {item1.name}\nCOMPRAS: {rank1[1]}x" if item1 != None else "COMPRE MAIS ITENS"
+        txt2 = f"RANK 2\n\nNOME: {item2.name}\nCOMPRAS: {rank2[1]}x" if item2 != None else "COMPRE MAIS ITENS"
+        txt3 = f"RANK 3\n\nNOME: {item3.name}\nCOMPRAS: {rank3[1]}x" if item3 != None else "COMPRE MAIS ITENS"
+
+        lb1 = Label(canvasBotton, bg="black", fg="#ec352e", border=0,text=txt1,
+                           font=font.Font(family='Fixedsys', size=17))
+        lb2 = Label(canvasBotton, bg="black", fg="#ec352e", border=0, text=txt2,
+                    font=font.Font(family='Fixedsys', size=17))
+        lb3 = Label(canvasBotton, bg="black", fg="#ec352e", border=0, text=txt3,
+                    font=font.Font(family='Fixedsys', size=17))
+
+
+        lbimage1 = Label(canvasTop, bg="black",border=0, image=self.image1, highlightbackground="Black")
+        lbimage2 = Label(canvasTop, bg="black",border=0, image=self.image2, highlightbackground="Black")
+        lbimage3 = Label(canvasTop, bg="black",border=0, image=self.image3, highlightbackground="Black")
+
+        x = 280
+
+        lb1.place(x=x*0,y=0)
+        lb2.place(x=x*1,y=0)
+        lb3.place(x=x*2,y=0)
+
+        lbimage1.place(x=x*0,y=0)
+        lbimage2.place(x=x*1,y=0)
+        lbimage3.place(x=x*2,y=0)
+
+        canvasBotton.pack(side=BOTTOM)
+        canvasTop.pack(side=TOP)
+
 
 
         self.listBTrelatorio = [self.bt0,self.bt1,self.bt2,self.bt3,self.bt4]
 
-        self.listBToptions = [self.btOp0,self.btOp1]
-        self.listCanvas = [[self.canvasOpWin,585,500], [self.canvasType,505,500]]
+        """
+        A lista (self.listBToptions) e (self.listCanvas) estão em sincronia.
+        
+        Cada elemento da lista (self.listBToptions) apontam para uma instância de um botão e cada elemento da lista 
+        (self.listCanvas) para outra lista, composta da seguinte forma [instância de Canvas, cordenada X, cordenada Y]
+        
+        Cada botão da lista (self.listBToptions) ativa uma chamada da função placeCanvas(canvas, x, y) e de forma 
+        sincrona cada Canvas passado como parâmetro é um elemento de mesmo index na lista (self.listCanvas)
+        """
+
+        self.listBToptions = [self.btOp0,self.btOp1, self.btOp2]
+        self.listCanvas = [[self.canvasOpWin,585,500], [self.canvasType,505,500], [self.canvasItens, 400,480]]
 
     def selfAbrir(self, tela):
         tela.root.destroy()
@@ -1966,12 +2084,23 @@ class TelaPerfil:
 
         t.construtor()
     def placeCanvas(self, canvas, x, y):
-        # LIMPAR O CANVAS
+        # LIMPAR A ROOT
         for lineClearCanvas in range(len(self.listCanvas)):
             self.listCanvas[lineClearCanvas][0].place_forget()
 
         # PLACE CANVAS
         canvas.place(x=x,y=y)
+
+    def escreverLBPlayer(self, name):
+        # LIMPAR A ROOT
+        for lineClearCanvas in range(len(self.listCanvas)):
+            self.listCanvas[lineClearCanvas][0].place_forget()
+
+        txt = f"{name}\n\nVITÓRIAS: {userPlayer.getNumberWin(name)}\nDERROTAS: {userPlayer.getNumberLow(name)}\nCOMBATES: {userPlayer.getNumberCombat(name)}"
+        self.lbDicaRelatorio["text"] = txt
+
+    def limparDicaRelatorio(self):
+        self.lbDicaRelatorio["text"] = ''
 
     def construtor(self):
         self.root.attributes('-fullscreen', True)
@@ -1988,6 +2117,8 @@ class TelaPerfil:
             self.listBTrelatorio[index]["text"] = champ.name
             self.listBTrelatorio[index].place(x=0,y=65*index)
             self.listBTrelatorio[index]["command"] = partial(self.abrirTelaRelatorio,champ.name)
+            self.listBTrelatorio[index].bind("<Enter>", lambda event, name=champ.name: self.escreverLBPlayer(name))
+            self.listBTrelatorio[index].bind("<Leave>", lambda event: self.limparDicaRelatorio())
 
         # CONSTRUINDO CANVAS WIN & LOW
         self.lbWin.pack(side=LEFT)
@@ -1998,12 +2129,14 @@ class TelaPerfil:
         self.lbLow["text"] = f"DERROTAS\n\n{userPlayer.getNumberLow()}"
 
         # CONSTRUINDO CANVAS TYPE
-        #self.canvasType.place(x=505,y=500)
 
         self.lbDF.pack(side=LEFT)
         self.lbImageType.pack(side=LEFT)
         self.lbDM.pack(side=RIGHT)
 
+
+
+        self.lbDicaRelatorio.pack(anchor=CENTER, side=BOTTOM)
 
 
         for index in range(len(self.listBToptions)):

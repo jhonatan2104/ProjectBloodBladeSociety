@@ -1,5 +1,2 @@
-Jhonatan:tantan21:UserJHONATAN.txt
-whyjho:2104:UserWHYJHO.txt
-jhonatan88:1:UserJHONATAN88.txt
-tantan:2104:UserTANTAN.txt
-jhean:1415:UserJHEAN.txt
+Tantan:21:UserTANTAN.txt:ITENSUserTANTAN.txt:
+Jhonatan:1:UserJHONATAN.txt:ITENSUserJHONATAN.txt:
