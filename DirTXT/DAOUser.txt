@@ -1,2 +1,1 @@
-Tantan:21:UserTANTAN.txt:ITENSUserTANTAN.txt:
-Jhonatan:1:UserJHONATAN.txt:ITENSUserJHONATAN.txt:
+User:1234:UserUSER.txt:ITENSUserUSER.txt:

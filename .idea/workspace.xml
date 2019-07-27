@@ -2,16 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fefe4446-7a52-4355-8c4a-2041c4896d9f" name="Default Changelist" comment="Teste Hacker">
+      <change afterPath="$PROJECT_DIR$/Blood Blade Society.exe" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DirPNG/BBS.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DirTXT/UserUSER.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DirPNG/PERFILinicio.png" beforeDir="false" afterPath="$PROJECT_DIR$/DirPNG/PERFILinicio.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DirTXT/DAOUser.txt" beforeDir="false" afterPath="$PROJECT_DIR$/DirTXT/DAOUser.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DirTXT/UserJHEAN.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DirTXT/UserJHONATAN.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DirTXT/UserJHONATAN88.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DirTXT/ITENSUserTANTAN.txt" beforeDir="false" afterPath="$PROJECT_DIR$/DirTXT/ITENSUserUSER.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DirTXT/UserTANTAN.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DirTXT/UserWHYJHO.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/fileBD.py" beforeDir="false" afterPath="$PROJECT_DIR$/fileBD.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fileClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/fileClass.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fileWindows.py" beforeDir="false" afterPath="$PROJECT_DIR$/fileWindows.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -36,11 +36,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fileWindows.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="1859" column="41" selection-start-line="1859" selection-start-column="41" selection-end-line="1859" selection-end-column="41" />
+            <state relative-caret-position="29682">
+              <caret line="1752" column="75" selection-start-line="1752" selection-start-column="68" selection-end-line="1752" selection-end-column="75" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
               </folding>
@@ -51,30 +51,48 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fileBD.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-414">
-              <caret line="220" column="52" selection-start-line="220" selection-start-column="52" selection-end-line="220" selection-end-column="52" />
+            <state relative-caret-position="561">
+              <caret line="34" selection-start-line="34" selection-end-line="34" />
+              <folding>
+                <element signature="e#641#672#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DirTXT/ITENSUserTANTAN.txt">
+        <entry file="file://$PROJECT_DIR$/setup.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="22" column="52" selection-start-line="22" selection-start-column="52" selection-end-line="22" selection-end-column="52" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DirTXT/UserUSER.txt">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DirTXT/DAOUser.txt">
+        <entry file="file://$PROJECT_DIR$/DirTXT/ITENSUserUSER.txt">
           <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/DirTXT/DAOUser.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="6" selection-start-column="6" selection-end-column="6" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fileClass.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="211">
-              <caret line="737" column="6" selection-start-line="737" selection-start-column="6" selection-end-line="737" selection-end-column="6" />
-              <folding>
-                <element signature="e#0#35#0" expanded="true" />
-              </folding>
+            <state>
+              <caret column="11" selection-start-column="5" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -119,13 +137,13 @@
         <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/TutorialTEXT" />
         <option value="$PROJECT_DIR$/TutorialTEXT.txt" />
-        <option value="$PROJECT_DIR$/setup.py" />
         <option value="$PROJECT_DIR$/DirTXT/UserJHONATAN.txt" />
         <option value="$PROJECT_DIR$/fileMain.py" />
-        <option value="$PROJECT_DIR$/DirTXT/DAOUser.txt" />
         <option value="$PROJECT_DIR$/fileClass.py" />
-        <option value="$PROJECT_DIR$/fileBD.py" />
         <option value="$PROJECT_DIR$/fileWindows.py" />
+        <option value="$PROJECT_DIR$/fileBD.py" />
+        <option value="$PROJECT_DIR$/setup.py" />
+        <option value="$PROJECT_DIR$/DirTXT/DAOUser.txt" />
       </list>
     </option>
   </component>
@@ -146,6 +164,27 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+          <expand>
+            <path>
+              <item name="ProjectBloodBladeSociety" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+            </path>
+            <path>
+              <item name="ProjectBloodBladeSociety" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="DirTXT" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="ProjectBloodBladeSociety" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="fileBD.py" type="8704e2dd:PyFileNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -190,27 +229,6 @@
               <item name="ProjectBloodBladeSociety" type="462c0819:PsiDirectoryNode" />
               <item name="fileWindows.py" type="8704e2dd:PyFileNode" />
               <item name="TelaEscolhaBot" type="dd8bbb05:PyElementNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope">
-        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
-          <expand>
-            <path>
-              <item name="ProjectBloodBladeSociety" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-            </path>
-            <path>
-              <item name="ProjectBloodBladeSociety" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="DirTXT" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="ProjectBloodBladeSociety" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="fileWindows.py" type="8704e2dd:PyFileNode" />
             </path>
           </expand>
           <select />
@@ -420,12 +438,12 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info x="598" y="59" width="340" height="706" id="Project" order="0" sideWeight="0.49633968" visible="true" weight="0.1665565" />
+      <window_info active="true" x="598" y="59" width="340" height="706" id="Project" order="0" sideWeight="0.49633968" visible="true" weight="0.1665565" />
       <window_info id="Structure" order="1" show_stripe_button="false" sideWeight="0.5021097" side_tool="true" weight="0.2247191" />
       <window_info id="Favorites" order="2" sideWeight="0.5036603" side_tool="true" weight="0.20555188" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.329429" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4990086" visible="true" weight="0.5065886" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4990086" weight="0.5065886" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39824304" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -485,11 +503,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="Teste Hacker" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../portifolio/hacker.py" />
-    <entry file="file://$PROJECT_DIR$/SystemGame.py" />
-    <entry file="file://$PROJECT_DIR$/Mind" />
-    <entry file="file://$PROJECT_DIR$/Mind.txt" />
-    <entry file="file://$PROJECT_DIR$/Strategy.py" />
     <entry file="file://$PROJECT_DIR$/Interface/Tk.py" />
     <entry file="file://$PROJECT_DIR$/DirPNG/eu sou a solução dos seus problemas.png" />
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/tkinter/__init__.py">
@@ -557,13 +570,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/setup.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/DirPNG/backPNG.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -618,8 +624,23 @@
     <entry file="file://$PROJECT_DIR$/DirPNG/backperfil.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/DirTXT/UserJHONATAN88.txt">
+    <entry file="file://$PROJECT_DIR$/DirTXT/UserJHONATAN88.txt" />
+    <entry file="file://$PROJECT_DIR$/DirTXT/UserWHYJHO.txt" />
+    <entry file="file://$PROJECT_DIR$/DirTXT/UserTANTAN.txt" />
+    <entry file="file://$PROJECT_DIR$/DirTXT/ITENSUserTANTAN.txt" />
+    <entry file="file://$PROJECT_DIR$/DirTXT/desktop.ini" />
+    <entry file="file://$PROJECT_DIR$/DirTXT/ITENSUserJHONATAN.txt">
       <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DirPNG/BBS.ico">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DirTXT/UserJHONATAN.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="36" selection-start-line="1" selection-start-column="36" selection-end-line="1" selection-end-column="36" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/fileMain.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -631,49 +652,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DirTXT/UserJHONATAN.txt">
+    <entry file="file://$PROJECT_DIR$/fileWindows.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="36" selection-start-line="3" selection-start-column="36" selection-end-line="3" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DirTXT/UserWHYJHO.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DirTXT/UserTANTAN.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DirTXT/DAOUser.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DirTXT/ITENSUserTANTAN.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/fileClass.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="737" column="6" selection-start-line="737" selection-start-column="6" selection-end-line="737" selection-end-column="6" />
+        <state relative-caret-position="29682">
+          <caret line="1752" column="75" selection-start-line="1752" selection-start-column="68" selection-end-line="1752" selection-end-column="75" />
           <folding>
-            <element signature="e#0#35#0" expanded="true" />
+            <element signature="e#0#29#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/fileBD.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-414">
-          <caret line="220" column="52" selection-start-line="220" selection-start-column="52" selection-end-line="220" selection-end-column="52" />
+        <state relative-caret-position="561">
+          <caret line="34" selection-start-line="34" selection-end-line="34" />
+          <folding>
+            <element signature="e#641#672#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fileWindows.py">
+    <entry file="file://$PROJECT_DIR$/fileClass.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="96">
-          <caret line="1859" column="41" selection-start-line="1859" selection-start-column="41" selection-end-line="1859" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
+        <state>
+          <caret column="11" selection-start-column="5" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/setup.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="22" column="52" selection-start-line="22" selection-start-column="52" selection-end-line="22" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DirTXT/UserUSER.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DirTXT/ITENSUserUSER.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DirTXT/DAOUser.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="6" selection-start-column="6" selection-end-column="6" />
         </state>
       </provider>
     </entry>

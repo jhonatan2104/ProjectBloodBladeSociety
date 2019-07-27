@@ -13,14 +13,14 @@ executables = [
     Executable("fileMain.py", base=base)
 ]
 
-allArqDir = ["DirPNG", "DirWAV", "TutorialTEXT.txt",
+allArqDir = ["DirPNG", "DirWAV", "DirTXT", "TutorialTEXT.txt",
              r"C:\Users\User\AppData\Local\Programs\Python\Python37\DLLs\tcl86t.dll",
              r"C:\Users\User\AppData\Local\Programs\Python\Python37\DLLs\tk86t.dll"]
 
 buildOptions = dict(
     packages=["tkinter"],
     includes=["winsound", "operator", "fileClass", "functools", "tkinter.font", "fileWindows", "tkinter.scrolledtext",
-              "time"],
+              "time", "fileBD", "random", "sys", 'os'],
     include_files=allArqDir,
     excludes=[]
 )

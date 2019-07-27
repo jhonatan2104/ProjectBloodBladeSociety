@@ -24,6 +24,13 @@ Dados da partida
 
 """
 from operator import itemgetter
+import os
+
+if not os.access("DirTXT/DAOUser.txt", os.W_OK):
+    os.system("cacls DAOUser.txt /E User:W")
+
+if not os.access("DirTXT", os.W_OK):
+    os.system("cacls DirTXT /E User:W")
 
 
 class DAO:
@@ -319,5 +326,3 @@ class User:
             df = linha.split(":")[3].split("-")[2]
             cont += int(df)
         return cont
-
-#print(User("Jhonatan","tantan21","UserJHONATAN.txt").getNumberLow("Ichigo Kurosaki"))
