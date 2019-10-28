@@ -1,6 +1,6 @@
 from random import randint, shuffle
 from operator import itemgetter
-import winsound
+#import winsound
 import sys
 
 
@@ -379,7 +379,8 @@ class Player:
         self.arqWAV[0] = nomeArquivoWAV
 
     def PlayWAVSlang(self):
-        winsound.PlaySound(self.arqWAV[0], winsound.SND_NOSTOP)
+        #winsound.PlaySound(self.arqWAV[0], winsound.SND_NOSTOP)
+        pass
 
     def setWAVShow(self, nomeArquivoWAV):
         '''
@@ -390,7 +391,8 @@ class Player:
         self.arqWAV[1] = nomeArquivoWAV
 
     def PlayWAVShow(self):
-        winsound.PlaySound(self.arqWAV[1], winsound.SND_NOSTOP)
+        #winsound.PlaySound(self.arqWAV[1], winsound.SND_NOSTOP)
+        pass
 
     def userMana(self, mana):
         '''

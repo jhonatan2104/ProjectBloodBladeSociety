@@ -248,7 +248,7 @@ class TelaInicio:
 
         self.imagemPlayerXbot = PhotoImage(file="DirPNG/playerXbotPNG.png")
         self.imageSair = PhotoImage(file="DirPNG/sair.png")
-        self.imageTutor = PhotoImage(file="DirPNG/tutorial.png")
+        self.imageTutor = PhotoImage(file="DirPNG/TUTORIAL.png")
         self.imagePerfil = PhotoImage(file="DirPNG/PERFILinicio.png")
 
         self.bt1 = Button(self.root, image=self.imagemPlayerXbot, border=0, width=400, height=200, relief="groove", bg="Black")
@@ -1822,14 +1822,17 @@ class TelaLogin:
         )
         self.lbTitle = Label(self.root, image=self.imageLb, highlightbackground="Black", bg="black")
 
-        self.canvas = Canvas(self.root, width=200, height=20, highlightbackground="Black", bg="white")
+        self.canvas_entry_dados = Canvas(self.root, bg="White", width=200, height=200)
 
         self.entryNome = Entry(self.root, width=20, font=self.fontFixedsys12)
         self.lbNome = Label(self.root, width=10, height=1, font=self.fontFixedsys12, bg="Black",
                             fg="white", text="Nome")
+
         self.entrySenha = Entry(self.root, width=20, font=self.fontFixedsys12)
         self.lbSenha = Label(self.root, width=10, height=1, font=self.fontFixedsys12, bg="Black",
                              fg="white", text="Senha")
+
+        self.canvas = Canvas(self.root, width=200, height=20, highlightbackground="Black", bg="white")
 
         self.lbStatus = Label(self.canvas, width=45, height=1, font=font.Font(family='Fixedsys', size=10), bg="Black",
                               fg="white", text="")
