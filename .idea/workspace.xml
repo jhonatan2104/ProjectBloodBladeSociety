@@ -5,16 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fefe4446-7a52-4355-8c4a-2041c4896d9f" name="Default Changelist" comment="Teste Hacker">
-      <change beforePath="$PROJECT_DIR$/.idea/ProjectBloodBladeSociety.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ProjectBloodBladeSociety.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DirTXT/ITENSUserTAN.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DirTXT/UserTAN.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DirTXT/DAOUser.txt" beforeDir="false" afterPath="$PROJECT_DIR$/DirTXT/DAOUser.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/TutorialTEXT.txt" beforeDir="false" afterPath="$PROJECT_DIR$/TutorialTEXT.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fileClass.py" beforeDir="false" afterPath="$PROJECT_DIR$/fileClass.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fileMain.py" beforeDir="false" afterPath="$PROJECT_DIR$/fileMain.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fileWindows.py" beforeDir="false" afterPath="$PROJECT_DIR$/fileWindows.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -254,6 +249,7 @@
       <workItem from="1568935275501" duration="34000" />
       <workItem from="1570099784871" duration="4627000" />
       <workItem from="1572236988025" duration="1032000" />
+      <workItem from="1572238522446" duration="2349000" />
     </task>
     <task id="LOCAL-00001" summary="Teste Hacker">
       <created>1553311628870</created>
@@ -311,7 +307,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ProjectBloodBladeSociety$setup.coverage" NAME="setup Coverage Results" MODIFIED="1567432617559" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/ProjectBloodBladeSociety$fileMain.coverage" NAME="fileMain Coverage Results" MODIFIED="1572237413566" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ProjectBloodBladeSociety$fileMain.coverage" NAME="fileMain Coverage Results" MODIFIED="1572240857277" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="masterDetails">
     <states>
