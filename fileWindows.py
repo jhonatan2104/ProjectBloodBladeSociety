@@ -1738,14 +1738,18 @@ class TelaCadastro:
         )
         self.lbTitle = Label(self.root, image=self.imageLb, highlightbackground="Black", bg="black")
 
-        self.canvas = Canvas(self.root,width=200,height=20, highlightbackground="Black", bg="white")
+        self.aux = Canvas(self.root, bg="Black", highlightbackground="Black", width=10, height=200)
+        self.aux2 = Canvas(self.root, bg="Black", highlightbackground="Black", width=10, height=20)
+        self.canvas_entry_Nome = Canvas(self.root, bg="Black", highlightbackground="Black")
+        self.canvas_entry_Senha = Canvas(self.root, bg="Black", highlightbackground="Black")
 
-        self.entryNome = Entry(self.root, width=20, font=self.fontFixedsys12)
-        self.lbNome = Label(self.root,width=10,height=1, font=self.fontFixedsys12, bg="Black",
+        self.entryNome = Entry(self.canvas_entry_Nome, width=20, font=self.fontFixedsys12)
+        self.lbNome = Label(self.canvas_entry_Nome,width=10,height=1, font=self.fontFixedsys12, bg="Black",
                                                fg="white", text="Nome")
-        self.entrySenha = Entry(self.root, width=20, font=self.fontFixedsys12)
-        self.lbSenha = Label(self.root, width=10, height=1, font=self.fontFixedsys12, bg="Black",
+        self.entrySenha = Entry(self.canvas_entry_Senha, width=20, font=self.fontFixedsys12)
+        self.lbSenha = Label(self.canvas_entry_Senha, width=10, height=1, font=self.fontFixedsys12, bg="Black",
                             fg="white", text="Senha")
+        self.canvas = Canvas(self.root, width=200, height=20, highlightbackground="Black", bg="white")
 
         self.lbStatus = Label(self.canvas,width=45,height=1, font=font.Font(family='Fixedsys', size=10), bg="Black",
                                                fg="white", text="")
@@ -1784,25 +1788,21 @@ class TelaCadastro:
         self.root["bg"] = "Black"
 
         self.lbTitle.pack()
+        self.aux.pack()
+        self.canvas_entry_Nome.pack()
+        self.aux2.pack()
+        self.canvas_entry_Senha.pack()
 
-        yNome = 200
-        ySenha = 260
-        yStatus = 300
-        yBt = 330
+        self.entryNome.pack(anchor=NW, side=RIGHT)
+        self.lbNome.pack(anchor=NE, side=LEFT)
 
-        margeY = 100
-        margeX = 100
+        self.entrySenha.pack(anchor=NW, side=RIGHT)
+        self.lbSenha.pack(anchor=NE, side=LEFT)
 
-        self.entryNome.place(x=610+margeX,y=yNome+margeY)
-        self.lbNome.place(x=500+margeX,y=yNome+margeY)
-
-        self.entrySenha.place(x=610+margeX,y=ySenha+margeY)
-        self.lbSenha.place(x=500+margeX,y=ySenha+margeY)
-
-        self.canvas.place(x=500+margeX, y=yStatus+margeY)
+        self.canvas.pack()
         self.lbStatus.pack(anchor=CENTER,side=TOP)
 
-        self.btCadastrar.place(x=500+margeX, y=yBt+margeY)
+        self.btCadastrar.pack()
         self.btCadastrar["command"] = self.cadastrar
         self.root.bind("<Return>", lambda event:self.cadastrar())
 
