@@ -247,7 +247,7 @@
       <workItem from="1570099784871" duration="4627000" />
       <workItem from="1572236988025" duration="1032000" />
       <workItem from="1572238522446" duration="2923000" />
-      <workItem from="1572261839137" duration="519000" />
+      <workItem from="1572261839137" duration="2161000" />
     </task>
     <task id="LOCAL-00001" summary="Teste Hacker">
       <created>1553311628870</created>
@@ -305,7 +305,7 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ProjectBloodBladeSociety$setup.coverage" NAME="setup Coverage Results" MODIFIED="1567432617559" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/ProjectBloodBladeSociety$fileMain.coverage" NAME="fileMain Coverage Results" MODIFIED="1572262357295" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ProjectBloodBladeSociety$fileMain.coverage" NAME="fileMain Coverage Results" MODIFIED="1572264049999" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="masterDetails">
     <states>

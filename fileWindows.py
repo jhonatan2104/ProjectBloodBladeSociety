@@ -251,10 +251,19 @@ class TelaInicio:
         self.imageTutor = PhotoImage(file="DirPNG/TUTORIAL.png")
         self.imagePerfil = PhotoImage(file="DirPNG/PERFILinicio.png")
 
-        self.bt1 = Button(self.root, image=self.imagemPlayerXbot, border=0, width=400, height=200, relief="groove", bg="Black")
-        self.btSair = Button(self.root, image=self.imageSair, border=0, width=400, height=200, relief="groove", bg="Black")
-        self.btTutor = Button(self.root, image=self.imageTutor, border=0, width=400, height=200, relief="groove", bg="Black")
-        self.btPerfil = Button(self.root, image=self.imagePerfil, border=0, width=400, height=200, relief="groove",
+        self.div_vertical_1 = Canvas(self.root, width=10, height=80, bg="Black", highlightbackground="Black")
+        self.div_vertical_2 = Canvas(self.root, width=10, height=30, bg="Black", highlightbackground="Black")
+
+        self.canvas_line_1 = Canvas(self.root, bg="Black",highlightbackground="Black")
+        self.div_horizontal_1 = Canvas(self.canvas_line_1, width=25, height=10, bg="Black", highlightbackground="Black")
+        self.div_horizantal_2 = Canvas(self.canvas_line_1, width=25, height=10, bg="Black", highlightbackground="Black")
+
+        self.canvas_line_2 = Canvas(self.root, bg="Black", highlightbackground="Black")
+
+        self.bt1 = Button(self.canvas_line_2, image=self.imagemPlayerXbot, border=0, width=400, height=200, relief="groove", bg="Black")
+        self.btSair = Button(self.canvas_line_1, image=self.imageSair, border=0, width=400, height=200, relief="groove", bg="Black")
+        self.btTutor = Button(self.canvas_line_1, image=self.imageTutor, border=0, width=400, height=200, relief="groove", bg="Black")
+        self.btPerfil = Button(self.canvas_line_1, image=self.imagePerfil, border=0, width=400, height=200, relief="groove",
                               bg="Black")
 
         self.lb = Label(self.root, image=self.imagemLabel, bg="Black")
@@ -282,11 +291,21 @@ class TelaInicio:
         self.root.bind("<Return>", lambda event: self.abrirTelaEscolhaPlayerBOT())
         self.root["bg"] = self.color
         self.lb["bg"] = self.color
-        self.lb.pack(side=TOP)
-        self.bt1.place(x=555, y=540)
-        self.btSair.place(x=125, y=300)
-        self.btTutor.place(x=990, y=300)
-        self.btPerfil.place(x=555, y=300)
+
+        self.btSair.pack(side=LEFT)
+        self.div_horizontal_1.pack(side=LEFT)
+        self.btPerfil.pack(side=LEFT)
+        self.div_horizantal_2.pack(side=LEFT)
+        self.btTutor.pack(side=LEFT)
+
+        self.bt1.pack()
+
+        self.lb.pack()
+        self.div_vertical_1.pack()
+        self.canvas_line_1.pack()
+        self.div_vertical_2.pack()
+        self.canvas_line_2.pack()
+
         self.bt1["command"] = self.abrirTelaEscolhaPlayerBOT
         self.btSair["command"] = self.sair
         self.btTutor["command"] = self.abrirTelaTutor
