@@ -6,7 +6,7 @@ import time
 
 from fileBD import *
 
-userPlayer = None
+userPlayer = User("Tan", "21", "UserTAN.txt","ITENSUserTAN.txt")
 
 class TelaEscolhaBot:
     def __init__(self):
@@ -1945,26 +1945,27 @@ class TelaPerfil:
         self.imagBack = PhotoImage(file="DirPNG/backperfil.png")
         self.btVoltar = Button(self.root, image=self.imagBack, bg="Black", border=0)
 
+        self.div_perfil = Canvas(self.root, bg="Black", highlightbackground="Black")
+        self.div_h_canvas_apt = Canvas(self.root, bg="Black", width=50, height=10, highlightbackground="Black")
+
         #LABAL DICAS
-        self.lbDicaChampFavorito = Label(self.root, font=self.fontFixedsys12, highlightbackground="Black", bg="black",
+        self.lbDicaChampFavorito = Label(self.div_perfil, font=self.fontFixedsys12, highlightbackground="Black", bg="black",
                                          fg="#ec352e",text="Player Favorito")
 
         nomeChamp = userPlayer.getChanpFavorito()
 
         imagPerfil = System.choosePlayer(nameChamp=nomeChamp).imageShowChoose if nomeChamp != None else "DirPNG/playerPerfil.png"
         self.imagePerfil = PhotoImage(file=imagPerfil)
-        self.lbPerfil = Label(self.root,image=self.imagePerfil,highlightbackground="Black")
+        self.lbPerfil = Label(self.div_perfil,image=self.imagePerfil,highlightbackground="Black")
 
         # LABEL DICAS
-        self.lbDicaRelatorio = Label(self.root, bg="black", fg="#ec352e", highlightbackground="Black",
+        self.lbDicaRelatorio = Label(self.root,width=12, height=7, bg="Black", fg="#ec352e", highlightbackground="Black",
                                      font=self.fontFixedsys12)
-        # GAMBIARRA
-        Canvas(self.root,bg="black",height=280,highlightbackground="Black").pack(side=BOTTOM)
 
         # CANVAS DO MENU PERFIL
-        self.canvasRelatorio = Canvas(self.root, width=300, height=400, background="black", border=0,
+        self.canvasRelatorio = Canvas(self.root, width=400, height=400, background="black", border=0,
                                       highlightbackground="Black")
-        self.canvasOptions = Canvas(self.root, width=300, height=400, background="black", border=0,
+        self.canvasOptions = Canvas(self.root, width=400, height=500, background="black", border=0,
                                       highlightbackground="Black")
         width = 24
         height = 2
@@ -2025,12 +2026,19 @@ class TelaPerfil:
                           font=font.Font(family='Fixedsys', size=17))
 
         # CANVAS ITENS
+
         self.canvasItens = Canvas(self.root, bg="black", border=0, highlightbackground="Black")
 
         rank1,rank2,rank3 = userPlayer.getItensFavorito()
 
-        canvasTop = Canvas(self.canvasItens, bg="black",width=800, height=250,  border=0, highlightbackground="Black")
-        canvasBotton = Canvas(self.canvasItens, bg="black",width=800, height=250, border=0, highlightbackground="Black")
+        self.canvasTop = Canvas(self.canvasItens, bg="Black",  border=0, highlightbackground="Black")
+        self.canvasBotton = Canvas(self.canvasItens, bg="Black", border=0, highlightbackground="Black")
+
+        self.div_h_itens_top_1 = Canvas(self.canvasTop, bg="Black", width=10, height=2, highlightbackground="Black")
+        self.div_h_itens_top_2 = Canvas(self.canvasTop, bg="Black", width=10, height=2, highlightbackground="Black")
+
+        self.div_h_itens_botton_1 = Canvas(self.canvasBotton, bg="Black", width=10, height=2, highlightbackground="Black")
+        self.div_h_itens_botton_2 = Canvas(self.canvasBotton, bg="Black", width=10, height=2, highlightbackground="Black")
 
         item1 = System.getItem(rank1[0])
         item2 = System.getItem(rank2[0])
@@ -2044,30 +2052,34 @@ class TelaPerfil:
         txt2 = f"RANK 2\n\nNOME: {item2.name}\nCOMPRAS: {rank2[1]}x" if item2 != None else "COMPRE MAIS ITENS"
         txt3 = f"RANK 3\n\nNOME: {item3.name}\nCOMPRAS: {rank3[1]}x" if item3 != None else "COMPRE MAIS ITENS"
 
-        lb1 = Label(canvasBotton, bg="black", fg="#ec352e", border=0,text=txt1,
+        lb1 = Label(self.canvasBotton, bg="black", fg="#ec352e", border=0,text=txt1,
                            font=font.Font(family='Fixedsys', size=17))
-        lb2 = Label(canvasBotton, bg="black", fg="#ec352e", border=0, text=txt2,
+        lb2 = Label(self.canvasBotton, bg="black", fg="#ec352e", border=0, text=txt2,
                     font=font.Font(family='Fixedsys', size=17))
-        lb3 = Label(canvasBotton, bg="black", fg="#ec352e", border=0, text=txt3,
+        lb3 = Label(self.canvasBotton, bg="black", fg="#ec352e", border=0, text=txt3,
                     font=font.Font(family='Fixedsys', size=17))
 
 
-        lbimage1 = Label(canvasTop, bg="black",border=0, image=self.image1, highlightbackground="Black")
-        lbimage2 = Label(canvasTop, bg="black",border=0, image=self.image2, highlightbackground="Black")
-        lbimage3 = Label(canvasTop, bg="black",border=0, image=self.image3, highlightbackground="Black")
+        lbimage1 = Label(self.canvasTop, bg="black",border=0, image=self.image1, highlightbackground="Black")
+        lbimage2 = Label(self.canvasTop, bg="black",border=0, image=self.image2, highlightbackground="Black")
+        lbimage3 = Label(self.canvasTop, bg="black",border=0, image=self.image3, highlightbackground="Black")
 
         x = 280
 
-        lb1.place(x=x*0,y=0)
-        lb2.place(x=x*1,y=0)
-        lb3.place(x=x*2,y=0)
+        lb1.pack(side=LEFT)
+        self.div_h_itens_botton_1.pack(side=LEFT)
+        lb2.pack(side=LEFT)
+        self.div_h_itens_botton_2.pack(side=LEFT)
+        lb3.pack(side=LEFT)
 
-        lbimage1.place(x=x*0,y=0)
-        lbimage2.place(x=x*1,y=0)
-        lbimage3.place(x=x*2,y=0)
+        lbimage1.pack(side=LEFT)
+        self.div_h_itens_top_1.pack(side=LEFT)
+        lbimage2.pack(side=LEFT)
+        self.div_h_itens_top_2.pack(side=LEFT)
+        lbimage3.pack(side=LEFT)
 
-        canvasBotton.pack(side=BOTTOM)
-        canvasTop.pack(side=TOP)
+        self.canvasBotton.pack(side=BOTTOM)
+        self.canvasTop.pack(side=TOP)
 
 
 
@@ -2084,7 +2096,7 @@ class TelaPerfil:
         """
 
         self.listBToptions = [self.btOp0,self.btOp1, self.btOp2]
-        self.listCanvas = [[self.canvasOpWin,585,500], [self.canvasType,505,500], [self.canvasItens, 400,480]]
+        self.listCanvas = [[self.canvasOpWin,340], [self.canvasType,250], [self.canvasItens, 180]]
 
     def selfAbrir(self, tela):
         tela.root.destroy()
@@ -2104,13 +2116,14 @@ class TelaPerfil:
         t.voltar = lambda :self.selfAbrir(t)
 
         t.construtor()
-    def placeCanvas(self, canvas, x, y):
+
+    def packCanvas(self, canvas, div_esponse, size_):
         # LIMPAR A ROOT
         for lineClearCanvas in range(len(self.listCanvas)):
-            self.listCanvas[lineClearCanvas][0].place_forget()
+            self.listCanvas[lineClearCanvas][0].pack_forget()
 
-        # PLACE CANVAS
-        canvas.place(x=x,y=y)
+        div_esponse["width"] = size_
+        canvas.pack(side=LEFT)
 
     def escreverLBPlayer(self, name):
         # LIMPAR A ROOT
@@ -2130,7 +2143,8 @@ class TelaPerfil:
         self.root["bg"] = "Black"
 
         self.lbTitle.pack()
-        self.btVoltar.place(x=1475,y=800)
+        self.div_perfil.pack()
+        self.btVoltar.pack(side=BOTTOM, anchor=SW)
         self.btVoltar["command"] = self.voltar
 
         for index in range(5):
@@ -2155,20 +2169,21 @@ class TelaPerfil:
         self.lbImageType.pack(side=LEFT)
         self.lbDM.pack(side=RIGHT)
 
-
-
         self.lbDicaRelatorio.pack(anchor=CENTER, side=BOTTOM)
 
 
         for index in range(len(self.listBToptions)):
-            self.listBToptions[index].place(x=0, y=65 * index)
-            canvas, X, Y = self.listCanvas[index]
-            self.listBToptions[index]["command"] = lambda c=canvas, x=X, y=Y: self.placeCanvas(c, x, y)
+            self.listBToptions[index].pack()
+            canvas, size_ = self.listCanvas[index]
+            self.listBToptions[index]["command"] = lambda c=canvas, s=size_: self.packCanvas(c, self.div_h_canvas_apt, s)
 
 
-        self.canvasRelatorio.place(x=0,y=300)
-        self.canvasOptions.place(x=1290,y=300)
 
-        self.lbDicaChampFavorito.place(x=570, y=220)
-        self.lbPerfil.place(x=570, y=250)
+        self.canvasRelatorio.pack(side=LEFT)
+        self.canvasOptions.pack(side=RIGHT)
+
+        self.div_h_canvas_apt.pack(side=LEFT)
+
+        self.lbDicaChampFavorito.pack()
+        self.lbPerfil.pack()
         self.root.mainloop()

@@ -12,7 +12,7 @@ trident of jaime:0:
 fragmented sword:0:
 Bone knife:0:
 flail:0:
-Sharp axe:0:
+Sharp axe:1:
 viking helmet:0:
 Black Knight Helm:0:
 helmet of the wise:0:
