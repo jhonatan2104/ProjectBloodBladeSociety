@@ -15,10 +15,6 @@ class TelaEscolhaBot:
         self.color = "Black"
         self.btSizeX = 400
         self.btSizeY = 200
-        self.margeX = 80
-        self.margeY = 180
-        self.x = 490
-        self.y = 250
 
         self.p1 = None
         self.BOT = None
@@ -30,32 +26,53 @@ class TelaEscolhaBot:
         self.imagemLabelDESAFIAR1 = PhotoImage(
             file="DirPNG/DESAFIAR1.png")
 
+        #Canvas Desenho
+        self.canvas_top = Canvas(self.root, bg="Black", highlightbackground="Black")
+        self.canvas_div_top_1 = Canvas(self.canvas_top,width=50, height=5, bg="Black", highlightbackground="Black")
+        self.canvas_div_top_2 = Canvas(self.canvas_top, width=50, height=5, bg="Black", highlightbackground="Black")
+
+        self.canvas_div_v_1 = Canvas(self.root,width=5, height=50, bg="Black", highlightbackground="Black")
+
+        self.canvas_line_1 = Canvas(self.root, bg="Black", highlightbackground="Black")
+        self.canvas_div_h_line1_1 = Canvas(self.canvas_line_1, width=30, height=5, bg="Black", highlightbackground="Black")
+        self.canvas_div_h_line1_2 = Canvas(self.canvas_line_1, width=30, height=5, bg="Black", highlightbackground="Black")
+
+        self.canvas_div_v_2 = Canvas(self.root, width=5, height=50, bg="Black", highlightbackground="Black")
+
+        self.canvas_line_2 = Canvas(self.root, bg="Black", highlightbackground="Black")
+        self.canvas_div_h_line2_1 = Canvas(self.canvas_line_2, width=30, height=5, bg="Black",highlightbackground="Black")
+        self.canvas_div_h_line2_2 = Canvas(self.canvas_line_2, width=30, height=5, bg="Black",highlightbackground="Black")
+
         # IMAGENS DOS PLAYER
         self.IchigoKurosakiPNG = PhotoImage(file=System.choosePlayer(0).imageShowChoose)
         self.KillerBeePNG = PhotoImage(file=System.choosePlayer(1).imageShowChoose)
         self.XenaPNG = PhotoImage(file=System.choosePlayer(2).imageShowChoose)
         self.RoronoaZoroPNG = PhotoImage(file=System.choosePlayer(3).imageShowChoose)
         self.GohanPNG = PhotoImage(file=System.choosePlayer(4).imageShowChoose)
-
         self.backPNG = PhotoImage(file="DirPNG/backPNG.png")
-        self.bt1 = Button(self.root, image=self.IchigoKurosakiPNG, width=self.btSizeX,
-                          height=self.btSizeY)
-        self.bt2 = Button(self.root, image=self.KillerBeePNG, width=self.btSizeX,
-                          height=self.btSizeY)
-        self.bt3 = Button(self.root, image=self.XenaPNG, width=self.btSizeX,
-                          height=self.btSizeY)
-        self.bt4 = Button(self.root, image=self.RoronoaZoroPNG, width=self.btSizeX,
-                          height=self.btSizeY)
-        self.bt5 = Button(self.root, image=self.GohanPNG, width=self.btSizeX,
-                          height=self.btSizeY)
-        self.lb = Label(self.root, image=self.imagemLabelPlayer, bg=self.color)
 
-        self.canvasNamePlayer = Canvas(self.root, width=200, height=60, bg="black", highlightbackground="Black", border=0)
-        self.canvasNameBOT = Canvas(self.root, width=200, height=60, bg="black", highlightbackground="Black",
+        self.bt1 = Button(self.canvas_line_1, image=self.IchigoKurosakiPNG, width=self.btSizeX,
+                          height=self.btSizeY)
+        self.bt2 = Button(self.canvas_line_1, image=self.KillerBeePNG, width=self.btSizeX,
+                          height=self.btSizeY)
+        self.bt3 = Button(self.canvas_line_1, image=self.XenaPNG, width=self.btSizeX,
+                          height=self.btSizeY)
+        self.bt4 = Button(self.canvas_line_2, image=self.RoronoaZoroPNG, width=self.btSizeX,
+                          height=self.btSizeY)
+        self.bt5 = Button(self.canvas_line_2, image=self.GohanPNG, width=self.btSizeX,
+                          height=self.btSizeY)
+
+
+        self.lb = Label(self.canvas_top, image=self.imagemLabelPlayer, bg=self.color)
+        self.canvasNamePlayer = Canvas(self.canvas_top, width=200, height=60, bg="black", highlightbackground="Black", border=0)
+        self.canvasNameBOT = Canvas(self.canvas_top, width=200, height=60, bg="black", highlightbackground="Black",
                                        border=0)
 
         self.btVoltar = Button(self.root, image=self.backPNG, bg="Black")
-        self.bts = [[self.bt1, self.bt2, self.bt3], [self.bt4, self.bt5]]
+
+        self.bts = [self.bt1, self.bt2, self.bt3, self.bt4, self.bt5]
+        self.matriz = [[self.bt1,self.canvas_div_h_line1_1, self.bt2,self.canvas_div_h_line1_2, self.bt3],
+                       [self.bt4,self.canvas_div_h_line2_1, self.bt5, self.canvas_div_h_line2_2]]
 
         self.canvasStrategy = Canvas(self.root, width=1500, height=40, bg="black", highlightbackground="Black")
         self.canvasStrategyPersonality = Canvas(self.root, width=1000, height=50, bg="black",
@@ -79,7 +96,7 @@ class TelaEscolhaBot:
 
         for estrategia in dic:
             auxC = Checkbutton(self.canvasStrategy, text=dic[estrategia]["name"], font=self.fontFixedsys15, bg="black",
-                               fg="#ec352e", activeforeground="#ec352e", activebackground="black")
+                               fg="#ec352e", activeforeground="#ec352e", activebackground="black", highlightbackground="black")
             self.strategyVariables.update({estrategia : False})
             self.strategyCheckButton.update({estrategia : auxC})
 
@@ -87,22 +104,22 @@ class TelaEscolhaBot:
                                         fg="#ec352e",bg="Black", highlightbackground="black",width=25, height=2,
                                         text="CONFIGURE E ESCOLHA O BOT")
         self.radioAggressive = Radiobutton(self.canvasStrategyPersonality, bg="black", fg="#ec352e", text="Aggressive",
-                                            font=font.Font(family='Fixedsys', size=15), value='713',
+                                            font=font.Font(family='Fixedsys', size=15), value='713',highlightbackground="black",
                                             variable=self.personalityAttk)
         self.radioStrategy = Radiobutton(self.canvasStrategyPersonality, bg="black", fg="#ec352e", text="Strategy",
-                                           font=font.Font(family='Fixedsys', size=15), value='432',
+                                           font=font.Font(family='Fixedsys', size=15), value='432',highlightbackground="black",
                                            variable=self.personalityAttk)
         self.radioFrantic = Radiobutton(self.canvasStrategyPersonality, bg="black", fg="#ec352e", text="Frantic",
-                                         font=font.Font(family='Fixedsys', size=15), value='147',
+                                         font=font.Font(family='Fixedsys', size=15), value='147',highlightbackground="black",
                                          variable=self.personalityAttk)
         self.radioDefault = Radiobutton(self.canvasStrategyPersonality, bg="black", fg="#ec352e", text="Default",
-                                        font=font.Font(family='Fixedsys', size=15), value='None',
+                                        font=font.Font(family='Fixedsys', size=15), value='None',highlightbackground="black",
                                         variable=self.personalityAttk)
 
-        self.lbStrategyItens = Label(self.root, font=font.Font(family='Fixedsys', size=11),
+        self.lbStrategyItens = Label(self.canvasStrategy, font=font.Font(family='Fixedsys', size=11),
                                         fg="White",bg="Black", highlightbackground="black",width=19, height=2,
                                         text="Strategy Itens")
-        self.lbStrategyAttk = Label(self.root, font=font.Font(family='Fixedsys', size=11),
+        self.lbStrategyAttk = Label(self.canvasStrategyPersonality, font=font.Font(family='Fixedsys', size=11),
                                      fg="White", bg="Black", highlightbackground="black", width=19, height=2,
                                      text="Strategy Attack")
 
@@ -123,15 +140,11 @@ class TelaEscolhaBot:
             self.canvasStrategyPersonality.pack(side=BOTTOM, anchor=S)
             self.canvasStrategy.pack(side=BOTTOM, anchor=S)
             self.lbCanvasEstrategia.pack(side=BOTTOM, anchor=S)
-            self.lbStrategyItens.place(x=90, y=680)
-            self.lbStrategyAttk.place(x=325, y=735)
             widget["text"] = "Config Default"
         else:
             self.canvasStrategy.pack_forget()
             self.lbCanvasEstrategia.pack_forget()
             self.canvasStrategyPersonality.pack_forget()
-            self.lbStrategyItens.place_forget()
-            self.lbStrategyAttk.place_forget()
             widget["text"] = "Alterar Estratégia Bot"
 
     def ADDbtAlterStrategyBot(self):
@@ -159,7 +172,15 @@ class TelaEscolhaBot:
             self.BOT = player
             self.ADDimageCanvas(self.canvasNameBOT, self.BOT.imageID)
 
-            self.btAbrirTelaItens.place(x=1075,y=452)
+            # Retirando o blocos anteriores
+            self.canvas_line_1.pack_forget()
+            self.canvas_div_v_2.pack_forget()
+            self.canvas_line_2.pack_forget()
+
+            # Aumentando o espacamento anterior
+            self.canvas_div_v_1["height"] = 200
+
+            self.btAbrirTelaItens.pack()
             self.btAbrirTelaItens["command"] = self.abrirTelaItens
 
             self.lb["image"] = self.imagemLabelDESAFIAR1
@@ -192,48 +213,52 @@ class TelaEscolhaBot:
         self.root.title("Blood Blade Society")
         self.root["bg"] = self.color
 
+        self.canvas_top.pack()
+        self.canvas_div_v_1.pack()
+        self.canvas_line_1.pack()
+        self.canvas_div_v_2.pack()
+        self.canvas_line_2.pack()
+
         # VARIÁVEL AUXILIAR PARA INDEX DO PLAYER { self.choose(contCamp) }
-        contCamp = 0
+
+        for contCamp in range(5):
+            self.bts[contCamp]["command"] = partial(self.choose, contCamp)
 
         # GRADEADO DOS BUTTONS
-        for line in range(len(self.bts)):
-            for column in range(len(self.bts[line])):
-                self.bts[line][column]["command"] = partial(self.choose, contCamp)
-                contCamp += 1
-                self.bts[line][column].place(x=self.x * column + self.margeX, y=self.y * line + self.margeY)
-                #self.bts[line][column][""] = ""
+        for line in range(len(self.matriz)):
+            for column in range(len(self.matriz[line])):
+                self.matriz[line][column].pack(side=LEFT)
 
-        x = 0
-        y = 3
+        self.lbStrategyItens.pack(side=LEFT)
+        self.lbStrategyAttk.pack(side=LEFT)
 
         for nomeStrategy in self.strategyCheckButton:
-            self.strategyCheckButton[nomeStrategy].place(x=x * 150, y=y)
+            self.strategyCheckButton[nomeStrategy].pack(side=LEFT)
             self.strategyCheckButton[nomeStrategy]["command"] = partial(self.invertValue, nomeStrategy)
-            x += 1
 
-        eixoX = 210
-
-        self.radioDefault.place(x=eixoX, y=1)
+        self.radioDefault.pack(side=LEFT)
         self.radioDefault["command"] = partial(self.alterPersonalityFunc, self.radioDefault["value"])
         self.radioDefault.select()
 
-        self.radioAggressive.place(x=eixoX + 170,y=1)
+        self.radioAggressive.pack(side=LEFT)
         self.radioAggressive["command"] = partial(self.alterPersonalityFunc, self.radioAggressive["value"])
 
-        self.radioStrategy.place(x=eixoX + 170*2,y=1)
+        self.radioStrategy.pack(side=LEFT)
         self.radioStrategy["command"] = partial(self.alterPersonalityFunc, self.radioStrategy["value"])
 
-        self.radioFrantic.place(x=eixoX + 170*3,y=1)
+        self.radioFrantic.pack(side=LEFT)
         self.radioFrantic["command"] = partial(self.alterPersonalityFunc, self.radioFrantic["value"])
 
+        self.canvasNamePlayer.pack(side=LEFT)
+        self.canvas_div_top_1.pack(side=LEFT)
+        self.lb.pack(side=LEFT)
+        self.canvas_div_top_2.pack(side=LEFT)
+        self.canvasNameBOT.pack(side=LEFT)
 
-
-        self.lb.pack(side=TOP)
-        self.canvasNamePlayer.place(x=40,y=30)
-        self.canvasNameBOT.place(x=1300,y=30)
-        self.btVoltar.place(x=0,y=810)
+        self.btVoltar.place(x=0,y=0)
         self.ADDbtAlterStrategyBot()
         self.btVoltar["command"] = self.voltar
+
         self.root.mainloop()
 
 

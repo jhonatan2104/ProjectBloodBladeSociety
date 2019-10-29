@@ -1,3 +1,3 @@
 import fileWindows as fw
 
-fw.TelaPerfil().construtor()
+fw.TelaEscolhaBot().construtor()
