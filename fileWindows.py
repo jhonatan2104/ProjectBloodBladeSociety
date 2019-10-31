@@ -348,6 +348,24 @@ class TelaMain:
         self.player = player
         self.bot = bot
 
+        # Canvas desenho
+
+        self.canvas_main = Canvas(self.root, bg="Black", highlightbackground="Black")
+
+        self.canvas_player = Canvas(self.canvas_main, bg="Black", highlightbackground="Black")
+        self.canvas_line_shop_inve = Canvas(self.canvas_player, bg="Black", highlightbackground="Black")
+        self.canvas_display_life_player = Canvas(self.canvas_player, bg="Black", highlightbackground="Black")
+        self.canvas_display_mana_player = Canvas(self.canvas_player, bg="Black", highlightbackground="Black")
+
+        self.canvas_mid = Canvas(self.canvas_main, bg="Black", highlightbackground="Black")
+        self.canvas_mid_info = Canvas(self.canvas_mid, bg="Black", highlightbackground="Black")
+        self.canvas_mid_danoReal = Canvas(self.canvas_mid, bg="Black", highlightbackground="Black")
+        self.canvas_mid_random = Canvas(self.canvas_mid, bg="Black", highlightbackground="Black")
+
+        self.canvas_bot = Canvas(self.canvas_main, bg="Black", highlightbackground="Black")
+        self.canvas_display_life_bot = Canvas(self.canvas_bot, bg="Black", highlightbackground="Black")
+        self.canvas_display_mana_bot = Canvas(self.canvas_bot, bg="Black", highlightbackground="Black")
+
 
         # CRIAR A UMA INSTÂNCIA DA INTALIGÊNCIA BOT
         self.intelBOT = InteligencePlayer(self.bot, self.player, self.bot.baseMana)
@@ -400,26 +418,26 @@ class TelaMain:
         self.ImageIDShieldBOT = PhotoImage(file=bot.shield.imageID)
 
         # Lb Player
-        self.lbPlAYER = Label(self.root, image=self.ImageShowPlayer, width=100, height=150, relief="groove")
-        self.nomePlAYER = Label(self.root, image=self.ImageIDPlayer, width=200, height=60, bg="Black")
-        self.swordPlAYER = Label(self.root, image=self.ImageIDSwordPlayer, width=200, height=60, bg="Black")
-        self.shieldPlayer = Label(self.root, image=self.ImageIDShieldPlayer, width=200, height=60, bg="Black")
+        self.lbPlAYER = Label(self.canvas_player, image=self.ImageShowPlayer, width=100, height=150, relief="groove")
+        self.nomePlAYER = Label(self.canvas_player, image=self.ImageIDPlayer, width=200, height=60, bg="Black")
+        self.swordPlAYER = Label(self.canvas_player, image=self.ImageIDSwordPlayer, width=200, height=60, bg="Black")
+        self.shieldPlayer = Label(self.canvas_player, image=self.ImageIDShieldPlayer, width=200, height=60, bg="Black")
 
         # Lb BOT
-        self.lbBtBOT = Button(self.root, image=self.ImageShowBOT, width=100, height=150, relief="groove")
-        self.nomeBOT = Label(self.root, image=self.ImageIDBOT, width=200, height=60, bg="Black")
-        self.swordBOT = Label(self.root, image=self.ImageIDSwordBOT, width=200, height=60, bg="Black")
-        self.shieldBOT = Label(self.root, image=self.ImageIDShieldBOT, width=200, height=60, bg="Black")
+        self.lbBtBOT = Button(self.canvas_bot, image=self.ImageShowBOT, width=100, height=150, relief="groove")
+        self.nomeBOT = Label(self.canvas_bot, image=self.ImageIDBOT, width=200, height=60, bg="Black")
+        self.swordBOT = Label(self.canvas_bot, image=self.ImageIDSwordBOT, width=200, height=60, bg="Black")
+        self.shieldBOT = Label(self.canvas_bot, image=self.ImageIDShieldBOT, width=200, height=60, bg="Black")
 
         self.imageLife1 = PhotoImage(file="DirPNG/life.png")
         self.imageLife2 = PhotoImage(file="DirPNG/life.png")
         self.imageMana1 = PhotoImage(file="DirPNG/mana.png")
         self.imageMana2 = PhotoImage(file="DirPNG/mana.png")
 
-        self.lbLifePlayer = Label(self.root, width=200, height=60, image=self.imageLife1, bg="Black")
-        self.lbLifeBOT = Label(self.root, width=200, height=60, image=self.imageLife2, bg="Black")
-        self.lbManaPlayer = Label(self.root, width=200, height=60, image=self.imageMana1, bg="Black")
-        self.lbManaBOT = Label(self.root, width=200, height=60, image=self.imageMana2, bg="Black")
+        self.lbLifePlayer = Label(self.canvas_player, width=200, height=60, image=self.imageLife1, bg="Black")
+        self.lbLifeBOT = Label(self.canvas_bot, width=200, height=60, image=self.imageLife2, bg="Black")
+        self.lbManaPlayer = Label(self.canvas_player, width=200, height=60, image=self.imageMana1, bg="Black")
+        self.lbManaBOT = Label(self.canvas_bot, width=200, height=60, image=self.imageMana2, bg="Black")
 
         # CANVAS STATUS
         self.imageStatusFalhou = PhotoImage(file="DirPNG/ataqueFalhou.png")
@@ -430,61 +448,53 @@ class TelaMain:
         self.imageStatusManaAlerta = PhotoImage(file="DirPNG/manaAlerta.png")
         self.imageStatusErro = PhotoImage(file="DirPNG/ERRO.png")
 
-        self.canvasStatus = Canvas(self.root, width=725, height=200, highlightbackground="Black", bg="black")
+        self.canvasStatus = Canvas(self.canvas_mid, width=725, height=200, highlightbackground="Black", bg="black")
 
         # CANVAS ATTACK DICA
-        self.canvasAttackDica = Canvas(self.root, width=725, height=200, highlightbackground="Black")
+        self.canvasAttackDica = Canvas(self.canvas_mid_info, highlightbackground="Black", bg="black")
         self.fontFixedsys = font.Font(family='Fixedsys', size=17)
         font.families()
-        self.lbDica = Label(self.canvasAttackDica, font=self.fontFixedsys, foreground="white", bg="black")
+        self.lbDica = Label(self.canvasAttackDica, font=self.fontFixedsys, width=30, height=15, foreground="white", bg="black")
         self.lbDica.pack(side=TOP, anchor=CENTER)
 
         #LABEL INVENTÁRIO & LOJA
-        self.lbInventario = Canvas(self.root, width=80, height=80, bg="white",  highlightbackground="Black")
-        self.lbInventarioBOT = Canvas(self.root, width=80, height=80, bg="white",  highlightbackground="Black")
-        self.lbShop = Canvas(self.root, width=80, height=80, bg="white",  highlightbackground="Black")
+        self.lbInventario = Canvas(self.canvas_line_shop_inve, width=80, height=80, bg="white",  highlightbackground="Black")
+        self.lbInventarioBOT = Canvas(self.canvas_bot, width=80, height=80, bg="white",  highlightbackground="Black")
+        self.lbShop = Canvas(self.canvas_line_shop_inve, width=80, height=80, bg="white",  highlightbackground="Black")
         self.imageInventario = PhotoImage(file="DirPNG/inventario.png")
         self.imageShop = PhotoImage(file="DirPNG/shop.png")
 
         #LABEL MANA E MONEY RESTAURADO
-        self.lbRestareManaMoney = Label(self.root, font=self.fontFixedsys, fg="#ec352e", bg="black")
-        self.lbItensUsados = Label(self.root, font=self.fontFixedsys, fg="#ec352e", bg="black")
-
-
-        # CONFIG DISPLAY
-        self.yDisplayLifi = 550
-        self.yDisplayMana = 695
-
-        self.EixoXPlayer = 50
-        self.EixoXBOT = 1250
+        self.lbRestareManaMoney = Label(self.canvas_mid_info, font=self.fontFixedsys, width=25, height=15, fg="#ec352e", bg="black")
+        self.lbItensUsados = Label(self.canvas_mid_info, font=self.fontFixedsys,width=25, height=15, fg="#ec352e", bg="black")
 
         # DISPLAY
-        self.c1 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
-        self.c2 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
-        self.c3 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
-        self.c4 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
-        self.c17 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c1 = Canvas(self.canvas_display_life_player, width=60, height=60, highlightbackground="Black")
+        self.c2 = Canvas(self.canvas_display_life_player, width=60, height=60, highlightbackground="Black")
+        self.c3 = Canvas(self.canvas_display_life_player, width=60, height=60, highlightbackground="Black")
+        self.c4 = Canvas(self.canvas_display_life_player, width=60, height=60, highlightbackground="Black")
+        self.c17 = Canvas(self.canvas_display_life_player, width=60, height=60, highlightbackground="Black")
         self.displayLifePlayer = [self.c1, self.c2, self.c3, self.c4, self.c17]
 
-        self.c5 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
-        self.c6 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
-        self.c7 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
-        self.c8 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
-        self.c18 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c5 = Canvas(self.canvas_display_life_bot, width=60, height=60, highlightbackground="Black")
+        self.c6 = Canvas(self.canvas_display_life_bot, width=60, height=60, highlightbackground="Black")
+        self.c7 = Canvas(self.canvas_display_life_bot, width=60, height=60, highlightbackground="Black")
+        self.c8 = Canvas(self.canvas_display_life_bot, width=60, height=60, highlightbackground="Black")
+        self.c18 = Canvas(self.canvas_display_life_bot, width=60, height=60, highlightbackground="Black")
         self.displayLifeBOT = [self.c5, self.c6, self.c7, self.c8, self.c18]
 
-        self.c9 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
-        self.c10 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
-        self.c11 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
-        self.c12 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
-        self.c19 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c9 = Canvas(self.canvas_display_mana_player, width=60, height=60, highlightbackground="Black")
+        self.c10 = Canvas(self.canvas_display_mana_player, width=60, height=60, highlightbackground="Black")
+        self.c11 = Canvas(self.canvas_display_mana_player, width=60, height=60, highlightbackground="Black")
+        self.c12 = Canvas(self.canvas_display_mana_player, width=60, height=60, highlightbackground="Black")
+        self.c19 = Canvas(self.canvas_display_mana_player, width=60, height=60, highlightbackground="Black")
         self.displayManaPlayer = [self.c9, self.c10, self.c11, self.c12, self.c19]
 
-        self.c13 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
-        self.c14 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
-        self.c15 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
-        self.c16 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
-        self.c20 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c13 = Canvas(self.canvas_display_mana_bot, width=60, height=60, highlightbackground="Black")
+        self.c14 = Canvas(self.canvas_display_mana_bot, width=60, height=60, highlightbackground="Black")
+        self.c15 = Canvas(self.canvas_display_mana_bot, width=60, height=60, highlightbackground="Black")
+        self.c16 = Canvas(self.canvas_display_mana_bot, width=60, height=60, highlightbackground="Black")
+        self.c20 = Canvas(self.canvas_display_mana_bot, width=60, height=60, highlightbackground="Black")
         self.displayManaBOT = [self.c13, self.c14, self.c15, self.c16, self.c20]
 
         # CONFIG DISPLAY DANO, LATÊNCIA
@@ -498,28 +508,28 @@ class TelaMain:
         self.imgDanoReal = PhotoImage(file="DirPNG/danoReal.png")
 
         # LABEL DANO, LATÊNCIA
-        self.lbLatencia = Label(self.root, width=200, height=80, bg="Black", highlightbackground="Black",
+        self.lbLatencia = Label(self.canvas_mid_random, width=200, height=80, bg="Black", highlightbackground="Black",
                                 image=self.imgLatencia)
-        self.lbLatenciaDef = Label(self.root, width=200, height=80, bg="Black", highlightbackground="Black",
+        self.lbLatenciaDef = Label(self.canvas_mid_random, width=200, height=80, bg="Black", highlightbackground="Black",
                                    image=self.imgLatenciaDEF)
-        self.lbDanoReal = Label(self.root, width=200, height=80, bg="Black", highlightbackground="Black",
+        self.lbDanoReal = Label(self.canvas_mid_danoReal, width=200, height=80, bg="Black", highlightbackground="Black",
                                 image=self.imgDanoReal)
 
         # DISPLAY DANO
-        self.c21 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
-        self.c22 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
-        self.c23 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
-        self.c24 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c21 = Canvas(self.canvas_mid_danoReal, width=60, height=60, highlightbackground="Black")
+        self.c22 = Canvas(self.canvas_mid_danoReal, width=60, height=60, highlightbackground="Black")
+        self.c23 = Canvas(self.canvas_mid_danoReal, width=60, height=60, highlightbackground="Black")
+        self.c24 = Canvas(self.canvas_mid_danoReal, width=60, height=60, highlightbackground="Black")
         self.displayDanoReal = [self.c21, self.c22, self.c23, self.c24]
 
         # DISPLAY LATENCIA
-        self.c25 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c25 = Canvas(self.canvas_mid_random, width=60, height=60, highlightbackground="Black")
         self.displayLatencia = [self.c25]
-        self.c26 = Canvas(self.root, width=60, height=60, highlightbackground="Black")
+        self.c26 = Canvas(self.canvas_mid_random, width=60, height=60, highlightbackground="Black")
         self.displayLatenciaDef = [self.c26]
 
         # BOTÕES DE ATTACK
-        self.canvasAttk = Canvas(self.root, width=925, height=205, highlightbackground="Black")
+        self.canvasAttk = Canvas(self.canvas_mid, width=925, height=205, highlightbackground="Black")
         Attacks = self.player.sword.getAttack()
         self.imageATTK1 = PhotoImage(file=Attacks[0].imageBt)
         self.imageATTK2 = PhotoImage(file=Attacks[1].imageBt)
@@ -547,21 +557,31 @@ class TelaMain:
         }
 
         # TEXTOS DE DICAS
-        self.stringMODODEF = '''Você pode manter modo defensivo
- e recuperar mana para relaizar um ATTACK 
- ainda mais forte'''
-        self.stringRandLantDEF = '''Esse é o random de DEFESA.
- Ele presenta o dado lançado para definir a 
- falha ou a efetividade do bloqueio da 
- armadura
-        '''
-        self.stringRandLantATK = '''Esse é o random de ATTACK.
- Ele presenta o dado lançado para 
- definir a falha ou a efetividade 
- do ATTACK escolhido
-                '''
-        self.stringDanoReal = '''Valor de DANO VERDADEIRO
- (Dano Mágico - Amadura Mágica) + (Dano Físico - Armadura Físico)'''
+        self.stringMODODEF = '''
+Mantenha modo Defensivo
+para atacar mais forte
+na próxima rodada'''
+        self.stringRandLantDEF = '''
+Random de DEFESA 
+representa o dado lançado 
+que definir a falha ou a 
+efetividade do bloqueio'''
+        self.stringRandLantATK = '''
+Random de ATTACK 
+representa o dado lançado 
+que definir a falha ou a 
+efetividade do ataque'''
+        self.stringDanoReal = '''
+Valor de DANO VERDADEIRO
+(Dano Mágico - Amadura Mágica)
++ 
+(Dano Físico - Armadura Físico)'''
+        self.stringERRO ='''
+ERRO - Espera a ação do BOT
+Click no Icon do BOT
+ou
+No botão ENTER
+para Atualizar'''
 
     def setCanvasDICAinfoBOT(self, event):
         self.limparCanvasDica(None)
@@ -1064,8 +1084,7 @@ class TelaMain:
                         self.setDisplay(self.player.mana, self.displayManaPlayer)
 
         else:
-            self.lbDica["text"] = '''ERRO - Sua vez foi alternada, Click no Icon do BOT
-    para ele realizar o ATTACK'''
+            self.lbDica["text"] = self.stringERRO
             self.setCanvasStatus(-2)
 
     def limparCanvasDica(self, event):
@@ -1090,6 +1109,12 @@ class TelaMain:
         self.root.focus_force()
         self.root.title("Blood Blade Society")
 
+        ## Nivel 1 - Front
+        self.canvas_main.pack(side=BOTTOM)
+        self.canvas_player.pack(side=LEFT)
+        self.canvas_mid.pack(side=LEFT)
+        self.canvas_bot.pack(side=LEFT)
+
         #List de ataques do player
         attacksPlayer = self.player.sword.getAttack()
 
@@ -1109,33 +1134,34 @@ class TelaMain:
         self.root.bind("<Escape>", self.abrirTelaInicio)
 
         self.root["bg"] = "Black"
-        self.lbPlAYER.place(x=self.EixoXPlayer + 50, y=20)
+        self.lbPlAYER.pack()
 
 
-        self.lbBtBOT.place(x=self.EixoXBOT + 50, y=20)
+        self.lbBtBOT.pack()
 
         # Atribuindo a função de ataque ao botão de imagens do bot
         self.lbBtBOT["command"] = self.ActionBOT
 
-        self.nomePlAYER.place(x=self.EixoXPlayer, y=180)
+        self.nomePlAYER.pack()
 
-        self.nomeBOT.place(x=self.EixoXBOT, y=180)
+        self.nomeBOT.pack()
 
-        self.swordPlAYER.place(x=self.EixoXPlayer, y=260)
+        self.swordPlAYER.pack()
         self.swordPlAYER.bind("<Enter>", self.setCanvasDICASword)
         self.swordPlAYER.bind("<Leave>", self.limparCanvasDica)
 
-        self.swordBOT.place(x=self.EixoXBOT, y=260)
+        self.swordBOT.pack()
 
-        self.shieldPlayer.place(x=self.EixoXPlayer, y=340)
+        self.shieldPlayer.pack()
         self.shieldPlayer.bind("<Enter>", self.setCanvasDICAShield)
         self.shieldPlayer.bind("<Leave>", self.limparCanvasDica)
 
-        self.shieldBOT.place(x=self.EixoXBOT, y=340)
+        self.shieldBOT.pack()
 
-        self.lbInventario.place(x=self.EixoXPlayer + 10, y=430)
-        self.lbShop.place(x=self.EixoXPlayer + 120, y=430)
-        self.lbInventarioBOT.place(x=self.EixoXBOT + 60, y=430)
+        self.canvas_line_shop_inve.pack()
+        self.lbInventario.pack(side=LEFT)
+        self.lbShop.pack(side=LEFT)
+        self.lbInventarioBOT.pack()
 
         # Atribuindo a abertura da tela Compra itens
         self.lbShop.bind("<Button-1>", self.abrirTelaItens)
@@ -1150,67 +1176,75 @@ class TelaMain:
         self.lbInventarioBOT.bind("<Enter>", self.setCanvasDICAinfoBOT)
         self.lbInventarioBOT.bind("<Leave>", self.limparCanvasDica)
 
-        self.lbRestareManaMoney.place(x=420,y=220)
-        self.lbItensUsados.place(x=970,y=220)
+        self.lbRestareManaMoney.pack(side=LEFT)
+        self.canvasAttackDica.pack(side=LEFT)
+        self.lbItensUsados.pack(side=LEFT)
 
         #Imagem Inventario & compra itens
-        self.lbInventario.create_image(42,42, image=self.imageInventario)
+        self.lbInventario.create_image(41,41, image=self.imageInventario)
         self.lbInventario.image = self.imageInventario
 
-        self.lbShop.create_image(42, 42, image=self.imageShop)
+        self.lbShop.create_image(41, 41, image=self.imageShop)
         self.lbShop.image = self.imageShop
 
-        self.lbInventarioBOT.create_image(42,42, image=self.imageInventario)
+        self.lbInventarioBOT.create_image(41,41, image=self.imageInventario)
         self.lbInventarioBOT.image = self.imageInventario
 
         recuo = 20
         # Display LIFE PLAYER
+        self.lbLifePlayer.pack()
+        self.canvas_display_life_player.pack()
         for j in range(len(self.displayLifePlayer)):
             self.displayLifePlayer[j].config(bg="Black")
-            self.displayLifePlayer[j].place(x=j * 50 + self.EixoXPlayer - recuo, y=self.yDisplayLifi + 60)
-        self.lbLifePlayer.place(x=self.EixoXPlayer, y=self.yDisplayLifi)
+            self.displayLifePlayer[j].pack(side=LEFT)
 
+        self.lbManaPlayer.pack()
+        self.canvas_display_mana_player.pack()
         for j in range(len(self.displayManaPlayer)):
             self.displayManaPlayer[j].config(bg="Black")
-            self.displayManaPlayer[j].place(x=j * 50 + self.EixoXPlayer - recuo, y=self.yDisplayMana + 60)
-        self.lbManaPlayer.place(x=self.EixoXPlayer, y=self.yDisplayMana)
+            self.displayManaPlayer[j].pack(side=LEFT)
+
 
         # Display LIFE BOT
+        self.lbLifeBOT.pack()
+        self.canvas_display_life_bot.pack()
         for j in range(len(self.displayLifeBOT)):
             self.displayLifeBOT[j].config(bg="Black")
-            self.displayLifeBOT[j].place(x=j * 50 + self.EixoXBOT - recuo, y=self.yDisplayLifi + 60)
-        self.lbLifeBOT.place(x=self.EixoXBOT, y=self.yDisplayLifi)
+            self.displayLifeBOT[j].pack(side=LEFT)
 
+        self.lbManaBOT.pack()
+        self.canvas_display_mana_bot.pack()
         for j in range(len(self.displayManaBOT)):
             self.displayManaBOT[j].config(bg="Black")
-            self.displayManaBOT[j].place(x=j * 50 + self.EixoXBOT - recuo, y=self.yDisplayMana + 60)
-        self.lbManaBOT.place(x=self.EixoXBOT, y=self.yDisplayMana)
+            self.displayManaBOT[j].pack(side=LEFT)
 
-        # DISPLAY DL
-        for j in range(len(self.displayDanoReal)):
-            self.displayDanoReal[j].config(bg="Black")
-            self.displayDanoReal[j].place(x=j * 50 + self.xMargeDisplayDL, y=self.yMargeDisplayDL)
-
-        self.displayLatencia[0].config(bg="Black")
-        self.displayLatencia[0].place(x=self.xMargeDisplayDL - 100, y=self.yMargeDisplayDL + 100)
-
-        self.displayLatenciaDef[0].config(bg="Black")
-        self.displayLatenciaDef[0].place(x=self.xMargeDisplayDL + 230, y=self.yMargeDisplayDL + 100)
-
-        self.lbDanoReal.place(x=self.xMargeLabelDL, y=self.yMargeDisplayDL)
+        # DANO REAL FRONT
+        self.lbDanoReal.pack(side=LEFT)
         self.lbDanoReal.bind("<Enter>",
                              lambda event, txt=self.stringDanoReal: self.escreverNoCanvasDica(event, txt))
         self.lbDanoReal.bind("<Leave>", self.limparCanvasDica)
+        # DISPLAY DL
+        for j in range(len(self.displayDanoReal)):
+            self.displayDanoReal[j].config(bg="Black")
+            self.displayDanoReal[j].pack(side=LEFT)
 
-        self.lbLatencia.place(x=self.xMargeLabelDL - 100, y=self.yMargeDisplayDL + 90)
+        # LATENCIA ATTACK FRONT
+        self.lbLatencia.pack(side=LEFT)
         self.lbLatencia.bind("<Enter>",
                              lambda event, txt=self.stringRandLantATK: self.escreverNoCanvasDica(event, txt))
         self.lbLatencia.bind("<Leave>", self.limparCanvasDica)
 
-        self.lbLatenciaDef.place(x=self.xMargeLabelDL + 230, y=self.yMargeDisplayDL + 90)
+        self.displayLatencia[0].config(bg="Black")
+        self.displayLatencia[0].pack(side=LEFT)
+
+        # LATENCIA DEFF FRONT
+        self.lbLatenciaDef.pack(side=LEFT)
         self.lbLatenciaDef.bind("<Enter>",
                                 lambda event, txt=self.stringRandLantDEF: self.escreverNoCanvasDica(event, txt))
         self.lbLatenciaDef.bind("<Leave>", self.limparCanvasDica)
+
+        self.displayLatenciaDef[0].config(bg="Black")
+        self.displayLatenciaDef[0].pack(side=LEFT)
 
         self.canvasAttk.pack(side=BOTTOM, anchor=S)
         self.canvasAttk.config(bg="black")
@@ -1242,11 +1276,12 @@ class TelaMain:
                                           lambda event, txt=self.stringMODODEF: self.escreverNoCanvasDica(event, txt))
                 self.BTSCommands[bt].bind("<Leave>", self.limparCanvasDica)
 
-        self.canvasStatus.pack(side=TOP, anchor=N)
-        self.canvasStatus.config(bg="Black")
-        self.canvasAttackDica.pack(side=TOP, anchor=CENTER)
-        self.canvasAttackDica.config(bg="Black")
+        # Construindo CANVAS MID
+        self.canvasStatus.pack(anchor=N)
         self.setCanvasStatus(-1)
+        self.canvas_mid_info.pack()
+        self.canvas_mid_random.pack(side=BOTTOM)
+        self.canvas_mid_danoReal.pack(side=BOTTOM)
 
         self.alterarBorda(self.Alternar)
 

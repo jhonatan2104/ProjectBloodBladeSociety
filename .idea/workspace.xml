@@ -244,7 +244,9 @@
       <workItem from="1572236988025" duration="1032000" />
       <workItem from="1572238522446" duration="2923000" />
       <workItem from="1572261839137" duration="8411000" />
-      <workItem from="1572315875830" duration="5421000" />
+      <workItem from="1572315875830" duration="6655000" />
+      <workItem from="1572394964360" duration="602000" />
+      <workItem from="1572444710268" duration="8566000" />
     </task>
     <task id="LOCAL-00001" summary="Teste Hacker">
       <created>1553311628870</created>
@@ -302,8 +304,8 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ProjectBloodBladeSociety$setup.coverage" NAME="setup Coverage Results" MODIFIED="1567432617559" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/ProjectBloodBladeSociety$fileMain.coverage" NAME="fileMain Coverage Results" MODIFIED="1572316356265" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/ProjectBloodBladeSociety$test.coverage" NAME="test Coverage Results" MODIFIED="1572369704060" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ProjectBloodBladeSociety$fileMain.coverage" NAME="fileMain Coverage Results" MODIFIED="1572446058488" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/ProjectBloodBladeSociety$test.coverage" NAME="test Coverage Results" MODIFIED="1572462191753" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="masterDetails">
     <states>
