@@ -342,30 +342,14 @@ class TelaMain:
     def __init__(self, player, bot, alternar=True, dicDados=None):
         self.root = Tk()
 
+        ######### Back-End
+
         # Alternar Ataques
         self.Alternar = alternar
         # PLAYER
         self.player = player
         self.bot = bot
-
-        # Canvas desenho
-
-        self.canvas_main = Canvas(self.root, bg="Black", highlightbackground="Black")
-
-        self.canvas_player = Canvas(self.canvas_main, bg="Black", highlightbackground="Black")
-        self.canvas_line_shop_inve = Canvas(self.canvas_player, bg="Black", highlightbackground="Black")
-        self.canvas_display_life_player = Canvas(self.canvas_player, bg="Black", highlightbackground="Black")
-        self.canvas_display_mana_player = Canvas(self.canvas_player, bg="Black", highlightbackground="Black")
-
-        self.canvas_mid = Canvas(self.canvas_main, bg="Black", highlightbackground="Black")
-        self.canvas_mid_info = Canvas(self.canvas_mid, bg="Black", highlightbackground="Black")
-        self.canvas_mid_danoReal = Canvas(self.canvas_mid, bg="Black", highlightbackground="Black")
-        self.canvas_mid_random = Canvas(self.canvas_mid, bg="Black", highlightbackground="Black")
-
-        self.canvas_bot = Canvas(self.canvas_main, bg="Black", highlightbackground="Black")
-        self.canvas_display_life_bot = Canvas(self.canvas_bot, bg="Black", highlightbackground="Black")
-        self.canvas_display_mana_bot = Canvas(self.canvas_bot, bg="Black", highlightbackground="Black")
-
+        Attacks = self.player.sword.getAttack()
 
         # CRIAR A UMA INSTÂNCIA DA INTALIGÊNCIA BOT
         self.intelBOT = InteligencePlayer(self.bot, self.player, self.bot.baseMana)
@@ -405,41 +389,33 @@ class TelaMain:
             self.manaRestaurada = dicDados["manaRestaurada"]
             self.manaGasta = dicDados["manaGasta"]
 
-        # IMAGE PLAYER
-        self.ImageShowPlayer = PhotoImage(file=self.player.imageShow)
-        self.ImageIDPlayer = PhotoImage(file=player.imageID)
-        self.ImageIDSwordPlayer = PhotoImage(file=player.sword.imageID)
-        self.ImageIDShieldPlayer = PhotoImage(file=player.shield.imageID)
+        ######### Front-End
+        # Canvas Estrutural
+        self.canvas_main = Canvas(self.root, bg="Black", highlightbackground="Black")
 
-        # IMAAGE BOT
-        self.ImageShowBOT = PhotoImage(file=self.bot.imageShow)
-        self.ImageIDBOT = PhotoImage(file=bot.imageID)
-        self.ImageIDSwordBOT = PhotoImage(file=bot.sword.imageID)
-        self.ImageIDShieldBOT = PhotoImage(file=bot.shield.imageID)
+        self.canvas_player = Canvas(self.canvas_main, bg="Black", highlightbackground="Black")
+        self.canvas_line_shop_inve = Canvas(self.canvas_player, bg="Black", highlightbackground="Black")
+        self.canvas_display_life_player = Canvas(self.canvas_player, bg="Black", highlightbackground="Black")
+        self.canvas_display_mana_player = Canvas(self.canvas_player, bg="Black", highlightbackground="Black")
 
-        # Lb Player
-        self.lbPlAYER = Label(self.canvas_player, image=self.ImageShowPlayer, width=100, height=150, relief="groove")
-        self.nomePlAYER = Label(self.canvas_player, image=self.ImageIDPlayer, width=200, height=60, bg="Black")
-        self.swordPlAYER = Label(self.canvas_player, image=self.ImageIDSwordPlayer, width=200, height=60, bg="Black")
-        self.shieldPlayer = Label(self.canvas_player, image=self.ImageIDShieldPlayer, width=200, height=60, bg="Black")
+        self.canvas_mid = Canvas(self.canvas_main, bg="Black", highlightbackground="Black")
+        self.canvas_mid_info = Canvas(self.canvas_mid, bg="Black", highlightbackground="Black")
+        self.canvas_mid_danoReal = Canvas(self.canvas_mid, bg="Black", highlightbackground="Black")
+        self.canvas_mid_random = Canvas(self.canvas_mid, bg="Black", highlightbackground="Black")
 
-        # Lb BOT
-        self.lbBtBOT = Button(self.canvas_bot, image=self.ImageShowBOT, width=100, height=150, relief="groove")
-        self.nomeBOT = Label(self.canvas_bot, image=self.ImageIDBOT, width=200, height=60, bg="Black")
-        self.swordBOT = Label(self.canvas_bot, image=self.ImageIDSwordBOT, width=200, height=60, bg="Black")
-        self.shieldBOT = Label(self.canvas_bot, image=self.ImageIDShieldBOT, width=200, height=60, bg="Black")
+        self.canvas_bot = Canvas(self.canvas_main, bg="Black", highlightbackground="Black")
+        self.canvas_display_life_bot = Canvas(self.canvas_bot, bg="Black", highlightbackground="Black")
+        self.canvas_display_mana_bot = Canvas(self.canvas_bot, bg="Black", highlightbackground="Black")
 
+        ##### Imagens
+        ##############################################################
+        # LIFE
         self.imageLife1 = PhotoImage(file="DirPNG/life.png")
         self.imageLife2 = PhotoImage(file="DirPNG/life.png")
+        # MANA
         self.imageMana1 = PhotoImage(file="DirPNG/mana.png")
         self.imageMana2 = PhotoImage(file="DirPNG/mana.png")
-
-        self.lbLifePlayer = Label(self.canvas_player, width=200, height=60, image=self.imageLife1, bg="Black")
-        self.lbLifeBOT = Label(self.canvas_bot, width=200, height=60, image=self.imageLife2, bg="Black")
-        self.lbManaPlayer = Label(self.canvas_player, width=200, height=60, image=self.imageMana1, bg="Black")
-        self.lbManaBOT = Label(self.canvas_bot, width=200, height=60, image=self.imageMana2, bg="Black")
-
-        # CANVAS STATUS
+        # STATUS
         self.imageStatusFalhou = PhotoImage(file="DirPNG/ataqueFalhou.png")
         self.imageStatusEfetivo = PhotoImage(file="DirPNG/ataqueEfetivo.png")
         self.imageStatusCritico = PhotoImage(file="DirPNG/critico.png")
@@ -447,7 +423,53 @@ class TelaMain:
         self.imageStatusHome = PhotoImage(file="DirPNG/DESAFIAR1.png")
         self.imageStatusManaAlerta = PhotoImage(file="DirPNG/manaAlerta.png")
         self.imageStatusErro = PhotoImage(file="DirPNG/ERRO.png")
+        # INVENTARIO E SHOP
+        self.imageInventario = PhotoImage(file="DirPNG/inventario.png")
+        self.imageShop = PhotoImage(file="DirPNG/shop.png")
+        # LATENCIA E DANO REAL
+        self.imgLatencia = PhotoImage(file="DirPNG/latenciaATTK.png")
+        self.imgLatenciaDEF = PhotoImage(file="DirPNG/latenciaDEF.png")
+        self.imgDanoReal = PhotoImage(file="DirPNG/danoReal.png")
+        # Attacks
+        self.imageATTK1 = PhotoImage(file=Attacks[0].imageBt)
+        self.imageATTK2 = PhotoImage(file=Attacks[1].imageBt)
+        self.imageATTK3 = PhotoImage(file=Attacks[2].imageBt)
+        self.imageDEF = PhotoImage(file="DirPNG/deff.png")
+        # IMAGE PLAYER
+        self.ImageShowPlayer = PhotoImage(file=self.player.imageShow)
+        self.ImageIDPlayer = PhotoImage(file=player.imageID)
+        self.ImageIDSwordPlayer = PhotoImage(file=player.sword.imageID)
+        self.ImageIDShieldPlayer = PhotoImage(file=player.shield.imageID)
+        # IMAGE BOT
+        self.ImageShowBOT = PhotoImage(file=self.bot.imageShow)
+        self.ImageIDBOT = PhotoImage(file=bot.imageID)
+        self.ImageIDSwordBOT = PhotoImage(file=bot.sword.imageID)
+        self.ImageIDShieldBOT = PhotoImage(file=bot.shield.imageID)
+        # IMAGE TURNO
+        self.ImageTurnoYes= PhotoImage(file="DirPNG/iconTurnosYes.png")
+        self.ImageTurnoNo = PhotoImage(file="DirPNG/iconTurnosNo.png")
+        ##############################################################
 
+        # Lb Player
+        self.lbTurnoPlayer = Label(self.canvas_player, bg="Black")
+        self.lbPlAYER = Label(self.canvas_player, image=self.ImageShowPlayer, width=100, height=150, relief="groove")
+        self.nomePlAYER = Label(self.canvas_player, image=self.ImageIDPlayer, width=200, height=60, bg="Black")
+        self.swordPlAYER = Label(self.canvas_player, image=self.ImageIDSwordPlayer, width=200, height=60, bg="Black")
+        self.shieldPlayer = Label(self.canvas_player, image=self.ImageIDShieldPlayer, width=200, height=60, bg="Black")
+
+        # Lb BOT
+        self.lbTurnoBot = Label(self.canvas_bot, bg="Black")
+        self.lbBtBOT = Button(self.canvas_bot, image=self.ImageShowBOT, width=100, height=150, relief="groove")
+        self.nomeBOT = Label(self.canvas_bot, image=self.ImageIDBOT, width=200, height=60, bg="Black")
+        self.swordBOT = Label(self.canvas_bot, image=self.ImageIDSwordBOT, width=200, height=60, bg="Black")
+        self.shieldBOT = Label(self.canvas_bot, image=self.ImageIDShieldBOT, width=200, height=60, bg="Black")
+
+        self.lbLifePlayer = Label(self.canvas_player, width=200, height=60, image=self.imageLife1, bg="Black")
+        self.lbLifeBOT = Label(self.canvas_bot, width=200, height=60, image=self.imageLife2, bg="Black")
+        self.lbManaPlayer = Label(self.canvas_player, width=200, height=60, image=self.imageMana1, bg="Black")
+        self.lbManaBOT = Label(self.canvas_bot, width=200, height=60, image=self.imageMana2, bg="Black")
+
+        # CANVAS STATUS
         self.canvasStatus = Canvas(self.canvas_mid, width=725, height=200, highlightbackground="Black", bg="black")
 
         # CANVAS ATTACK DICA
@@ -458,11 +480,9 @@ class TelaMain:
         self.lbDica.pack(side=TOP, anchor=CENTER)
 
         #LABEL INVENTÁRIO & LOJA
-        self.lbInventario = Canvas(self.canvas_line_shop_inve, width=80, height=80, bg="white",  highlightbackground="Black")
+        self.lbInventarioPlayer = Canvas(self.canvas_line_shop_inve, width=80, height=80, bg="white", highlightbackground="Black")
         self.lbInventarioBOT = Canvas(self.canvas_bot, width=80, height=80, bg="white",  highlightbackground="Black")
         self.lbShop = Canvas(self.canvas_line_shop_inve, width=80, height=80, bg="white",  highlightbackground="Black")
-        self.imageInventario = PhotoImage(file="DirPNG/inventario.png")
-        self.imageShop = PhotoImage(file="DirPNG/shop.png")
 
         #LABEL MANA E MONEY RESTAURADO
         self.lbRestareManaMoney = Label(self.canvas_mid_info, font=self.fontFixedsys, width=25, height=15, fg="#ec352e", bg="black")
@@ -497,16 +517,6 @@ class TelaMain:
         self.c20 = Canvas(self.canvas_display_mana_bot, width=60, height=60, highlightbackground="Black")
         self.displayManaBOT = [self.c13, self.c14, self.c15, self.c16, self.c20]
 
-        # CONFIG DISPLAY DANO, LATÊNCIA
-        self.xMargeDisplayDL = 750
-        self.xMargeLabelDL = 550
-        self.yMargeDisplayDL = 450
-
-        # IMAGE DANO, LATÊNCIA
-        self.imgLatencia = PhotoImage(file="DirPNG/latenciaATTK.png")
-        self.imgLatenciaDEF = PhotoImage(file="DirPNG/latenciaDEF.png")
-        self.imgDanoReal = PhotoImage(file="DirPNG/danoReal.png")
-
         # LABEL DANO, LATÊNCIA
         self.lbLatencia = Label(self.canvas_mid_random, width=200, height=80, bg="Black", highlightbackground="Black",
                                 image=self.imgLatencia)
@@ -530,11 +540,6 @@ class TelaMain:
 
         # BOTÕES DE ATTACK
         self.canvasAttk = Canvas(self.canvas_mid, width=925, height=205, highlightbackground="Black")
-        Attacks = self.player.sword.getAttack()
-        self.imageATTK1 = PhotoImage(file=Attacks[0].imageBt)
-        self.imageATTK2 = PhotoImage(file=Attacks[1].imageBt)
-        self.imageATTK3 = PhotoImage(file=Attacks[2].imageBt)
-        self.imageDEF = PhotoImage(file="DirPNG/deff.png")
         self.btAttk1 = Button(self.canvasAttk, width=220, height=200, image=self.imageATTK1, bg='Black',
                               highlightbackground="Black")
         self.btAttk2 = Button(self.canvasAttk, width=220, height=200, image=self.imageATTK2, bg='Black',
@@ -544,16 +549,16 @@ class TelaMain:
         self.btdef1 = Button(self.canvasAttk, width=220, height=200, image=self.imageDEF, bg='Black',
                              highlightbackground="Black")
         self.BTSCommands = [self.btAttk1, self.btAttk2, self.btAttk3, self.btdef1]
-        self.teclasAttkConfig = ["<q>", "<w>", "<e>", "<r>"]
+        self.teclasAttkConfig = ["<Q>", "<W>", "<E>", "<R>"]
         self.teclasConfig = {
-            "Inventário" : "<c>",
-            "compraInventário" : "<v>",
+            "Inventário" : "<v>",
+            "compraInventário" : "<b>",
             "attkBOT" : "<Return>",
-            "attk1-dica" : "<Q>",
-            "attk2-dica": "<W>",
-            "attk3-dica": "<E>",
-            "DadosArmadura": "<k>",
-            "DadosEspada": "<j>"
+            "attk1-dica" : "<q>",
+            "attk2-dica": "<w>",
+            "attk3-dica": "<e>",
+            "DadosArmadura": "<f>",
+            "DadosEspada": "<g>"
         }
 
         # TEXTOS DE DICAS
@@ -593,13 +598,13 @@ para Atualizar'''
 
     def alterarBorda(self, vez):
         if vez:
-            self.lbPlAYER["border"] = 5
-            self.lbBtBOT["border"] = 1
+            self.lbTurnoPlayer["image"] = self.ImageTurnoYes
+            self.lbTurnoBot["image"] = self.ImageTurnoNo
         else:
-            self.lbBtBOT["border"] = 5
-            self.lbPlAYER["border"] = 1
+            self.lbTurnoPlayer["image"] = self.ImageTurnoNo
+            self.lbTurnoBot["image"] = self.ImageTurnoYes
 
-    def ActionBOT(self):
+    def actionBOT(self):
         #limpar canvas
         self.limparCanvasDica(None)
         if not self.Alternar:
@@ -841,7 +846,7 @@ para Atualizar'''
         txt+=f"\nU${self.player.money}"
         self.lbDica["text"] = txt
 
-    def gerarRELATORIO(self):
+    def gerarRelatorio(self):
         return [self.damageTotal, self.damageMagico, self.damageFisico, self.CONTAttackFalhos, self.CONTAttackCriticos,
                 self.CONTAttackNormais, self.CONTAttack, self.FalhaDefesa, self.damageMagicoSofrido,
                 self.damageFisicoSofrido,
@@ -920,9 +925,9 @@ para Atualizar'''
     def abrirTelaOption(self, status):
         self.root.destroy()
         d = DAO()
-        userPlayer.addPartida(self.player.name,self.bot.name,d.gerarSTR(self.gerarRELATORIO()), "win" if status else "low")
+        userPlayer.addPartida(self.player.name, self.bot.name, d.gerarSTR(self.gerarRelatorio()), "win" if status else "low")
 
-        TelaOption(self.player, self.gerarRELATORIO(), status).construtor()
+        TelaOption(self.player, self.gerarRelatorio(), status).construtor()
 
     def abrirTelaItens(self, event):
         self.root.destroy()
@@ -1121,7 +1126,7 @@ para Atualizar'''
         # EVENTOS NO TECLADO
         self.root.bind(self.teclasConfig["Inventário"], self.setCanvasDICAInventario)
         self.root.bind(self.teclasConfig["compraInventário"], self.abrirTelaItens)
-        self.root.bind(self.teclasConfig["attkBOT"], lambda event : self.ActionBOT())
+        self.root.bind(self.teclasConfig["attkBOT"], lambda event : self.actionBOT())
         self.root.bind(self.teclasConfig["attk1-dica"],
                        lambda event, atk=attacksPlayer[0]: self.escreverNoCanvasDica(event, atk.getDados()))
         self.root.bind(self.teclasConfig["attk2-dica"],
@@ -1134,13 +1139,16 @@ para Atualizar'''
         self.root.bind("<Escape>", self.abrirTelaInicio)
 
         self.root["bg"] = "Black"
+
+
+        self.lbTurnoPlayer.pack()
         self.lbPlAYER.pack()
 
-
+        self.lbTurnoBot.pack()
         self.lbBtBOT.pack()
 
         # Atribuindo a função de ataque ao botão de imagens do bot
-        self.lbBtBOT["command"] = self.ActionBOT
+        self.lbBtBOT["command"] = self.actionBOT
 
         self.nomePlAYER.pack()
 
@@ -1159,7 +1167,7 @@ para Atualizar'''
         self.shieldBOT.pack()
 
         self.canvas_line_shop_inve.pack()
-        self.lbInventario.pack(side=LEFT)
+        self.lbInventarioPlayer.pack(side=LEFT)
         self.lbShop.pack(side=LEFT)
         self.lbInventarioBOT.pack()
 
@@ -1170,8 +1178,8 @@ para Atualizar'''
                                                                                                                 txt))
         self.lbShop.bind("<Leave>", self.limparCanvasDica)
 
-        self.lbInventario.bind("<Enter>", self.setCanvasDICAInventario)
-        self.lbInventario.bind("<Leave>", self.limparCanvasDica)
+        self.lbInventarioPlayer.bind("<Enter>", self.setCanvasDICAInventario)
+        self.lbInventarioPlayer.bind("<Leave>", self.limparCanvasDica)
 
         self.lbInventarioBOT.bind("<Enter>", self.setCanvasDICAinfoBOT)
         self.lbInventarioBOT.bind("<Leave>", self.limparCanvasDica)
@@ -1181,8 +1189,8 @@ para Atualizar'''
         self.lbItensUsados.pack(side=LEFT)
 
         #Imagem Inventario & compra itens
-        self.lbInventario.create_image(41,41, image=self.imageInventario)
-        self.lbInventario.image = self.imageInventario
+        self.lbInventarioPlayer.create_image(41, 41, image=self.imageInventario)
+        self.lbInventarioPlayer.image = self.imageInventario
 
         self.lbShop.create_image(41, 41, image=self.imageShop)
         self.lbShop.image = self.imageShop

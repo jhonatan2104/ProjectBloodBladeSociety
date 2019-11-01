@@ -1,15 +1,15 @@
 Dragon claws:0:
 3 warriors of David:0:
 Adam's ring:1:
-living shield:1:
+living shield:2:
 helmet of Ulysses:0:
 Loki's dagger:0:
 breastplate:0:
-hermes dagger:3:
+hermes dagger:4:
 apollo dagger:1:
 Spiked Shoulder Armor:0:
 trident of jaime:0:
-fragmented sword:0:
+fragmented sword:1:
 Bone knife:0:
 flail:0:
 Sharp axe:3:
