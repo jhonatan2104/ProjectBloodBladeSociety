@@ -1,6 +1,5 @@
 from random import randint, shuffle
 from operator import itemgetter
-#import winsound
 import sys
 
 
@@ -8,7 +7,7 @@ class System:
     @staticmethod
     def choosePlayer(indexPlayer=None,nameChamp=None):
         if indexPlayer != None or nameChamp!=None:
-            if nameChamp == 'Ichigo Kurosaki' or indexPlayer==0 :
+            if nameChamp == 'Ichigo Kurosaki' or indexPlayer == 0:
                 at1 = Attack(name="Getsuga Tenshou", mana=400, latencia=5, danoFisico=300, danoMagico=2000,
                              imageBT="DirPNG/atk3.png")
                 at2 = Attack(name="Piercer of Heaven", mana=200, latencia=2, danoFisico=100, danoMagico=1000,
@@ -38,7 +37,7 @@ class System:
                 player.setWAVSlang("DirWAV/go.wav")
 
                 return player
-            elif nameChamp == 'Killer Bee' or indexPlayer==1:
+            elif nameChamp == 'Killer Bee' or indexPlayer == 1:
                 at1 = Attack(name="Crumbling the skin", mana=800, latencia=6, danoFisico=3000, danoMagico=600,
                              imageBT="DirPNG/atk1.png")
                 at2 = Attack(name="Life Theft", mana=250, latencia=3, danoFisico=400, danoMagico=1500,
@@ -69,7 +68,7 @@ class System:
                 player.setWAVSlang("DirWAV/go.wav")
 
                 return player
-            elif nameChamp == 'Xena' or indexPlayer==2:
+            elif nameChamp == 'Xena' or indexPlayer == 2:
                 at1 = Attack(name="Full Counter", mana=700, latencia=3, danoFisico=3000, danoMagico=500,
                              imageBT="DirPNG/atk1.png")
                 at2 = Attack(name="Counter Vanish", mana=200, latencia=1, danoFisico=2000, danoMagico=0,
@@ -99,7 +98,7 @@ class System:
                 player.setWAVSlang("DirWAV/go.wav")
 
                 return player
-            elif nameChamp == 'Roronoa Zoro' or indexPlayer==3:
+            elif nameChamp == 'Roronoa Zoro' or indexPlayer == 3:
                 at1 = Attack(name="Shishi SonSon", mana=50, latencia=1, danoFisico=1500, danoMagico=0,
                              imageBT="DirPNG/atk1.png")
                 at2 = Attack(name="Sanjuroku Pound Ho", mana=200, latencia=3, danoFisico=3500, danoMagico=30,
@@ -129,7 +128,7 @@ class System:
                 player.setWAVSlang("DirWAV/go.wav")
 
                 return player
-            elif nameChamp == 'Gohan' or indexPlayer==4:
+            elif nameChamp == 'Gohan' or indexPlayer == 4:
                 at1 = Attack(name="Fulminant Strike", mana=900, latencia=4, danoFisico=900, danoMagico=3000,
                              imageBT="DirPNG/atk3.png")
                 at2 = Attack(name="Blade Combo", mana=700, latencia=1, danoFisico=920, danoMagico=1100,

@@ -7,15 +7,15 @@ Loki's dagger:0:
 breastplate:0:
 hermes dagger:4:
 apollo dagger:1:
-Spiked Shoulder Armor:0:
+Spiked Shoulder Armor:1:
 trident of jaime:0:
 fragmented sword:1:
 Bone knife:0:
 flail:0:
 Sharp axe:3:
 viking helmet:1:
-Black Knight Helm:0:
+Black Knight Helm:1:
 helmet of the wise:0:
 Brutal helm:0:
-Heavy helm:0:
+Heavy helm:2:
 Crossed axes:0:

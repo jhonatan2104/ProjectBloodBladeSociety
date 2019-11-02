@@ -931,8 +931,10 @@ para Atualizar'''
 
     def abrirTelaItens(self, event):
         self.root.destroy()
-        TelaItens(self.player, self.bot, self.Alternar, self.gerarDic()).construtor()
-
+        tela = TelaItens(self.player, self.bot, self.Alternar, self.gerarDic())
+        tela.voltar = None
+        tela.btVolta["image"] = PhotoImage(file="DirPNG/#.png")
+        tela.construtor()
     def knock(self, attack):
         self.limparCanvasDica(None)
         if self.Alternar:
@@ -1584,6 +1586,9 @@ class TelaRelatorio:
 class TelaItens:
     def __init__(self, player, bot, alternar=True, dicInfo=None):
         self.root = Tk()
+
+        ##### Back-End
+        ############################################
         self.listItens = []
 
         self.player = player
@@ -1593,6 +1598,35 @@ class TelaItens:
         self.alternar = alternar
         self.dicInfo = dicInfo
 
+        ## CAMINHO DO DIRETÓRIO PARA O NUMROS GOLD
+        self.caminhoDirNum = "DirPNG/DirPNGnumber/numberGold/"
+        ############################################
+
+        ##### Front-End
+        ############################################
+
+        # Canvas Desenho
+
+        self.canvasMain = Canvas(self.root, bg = "Black", highlightbackground="Black")
+
+        self.canvas_bts = Canvas(self.canvasMain, bg = "Black", highlightbackground="Black")
+        self.canvas_div_v_1 = Canvas(self.canvas_bts, width=5,height=15, bg = "Black", highlightbackground="Black")
+
+        self.canvas_line1 = Canvas(self.canvas_bts, bg = "Black", highlightbackground="Black")
+        self.canvas_div1_h_1 = Canvas(self.canvas_line1, width=5, height=5, bg="Black", highlightbackground="Black")
+        self.canvas_div1_h_2 = Canvas(self.canvas_line1, width=5,height=5, bg="Black", highlightbackground="Black")
+
+        self.canvas_div_v_2 = Canvas(self.canvas_bts,  width=5,height=15, bg="Black", highlightbackground="Black")
+
+        self.canvas_line2 = Canvas(self.canvas_bts, bg="Black", highlightbackground="Black")
+        self.canvas_div2_h_1 = Canvas(self.canvas_line2, width=5,height=5, bg="Black", highlightbackground="Black")
+        self.canvas_div2_h_2 = Canvas(self.canvas_line2, width=5,height=5, bg="Black", highlightbackground="Black")
+
+        self.canvas_div_v_3 = Canvas(self.canvas_bts,  width=5,height=15, bg="Black", highlightbackground="Black")
+
+        self.canvaLayaot = Canvas(self.canvasMain, bg="Black", highlightbackground="Black")
+        self.canvas_line_display = Canvas(self.canvaLayaot, bg="Black", highlightbackground="Black")
+
         # CONFIG
         self.margeEX_x = 50
         self.margeEX_y = 130
@@ -1600,50 +1634,46 @@ class TelaItens:
         self.margeIN_y = 210
         self.fontFixedsys15 = font.Font(family='Fixedsys', size=15)
         self.fontFixedsys25 = font.Font(family='Fixedsys', size=17)
-        ## CAMINHO DO DIRETÓRIO PARA O NUMROS GOLD
-        self.caminhoDirNum = "DirPNG/DirPNGnumber/numberGold/"
-
-
 
         # IMAGENS
         self.imageLb = PhotoImage(
             file="DirPNG/escolhaItens.png"
         )
-        self.lbTitulo = Label(self.root, image=self.imageLb, highlightbackground="Black", bg="black")
+        self.lbTitulo = Label(self.canvas_bts, image=self.imageLb, highlightbackground="Black", bg="black")
 
         self.imageLbSimbol = PhotoImage(
             file="DirPNG/DirPNGnumber/numberGold/u.png"
         )
-        self.lbSimbol = Label(self.root, width=80, height=80, image=self.imageLbSimbol, highlightbackground="Black",
+        self.lbSimbol = Label(self.canvas_line_display, width=80, height=80, image=self.imageLbSimbol, highlightbackground="Black",
                               bg="Black")
 
         # CANVAS PRINCIPAL DE APRESENTAÇÃO DO ITEM
-        self.canvaLayaot = Canvas(self.root, bg="Black", width=400, height=700, highlightbackground="Black")
         self.canvasImage = Canvas(self.canvaLayaot, width=250, height=250, bg="Black", highlightbackground="Black")
-        self.lb = Label(self.canvaLayaot, font=self.fontFixedsys25, bg="Black", fg="white")
+        self.lb = Label(self.canvaLayaot, width=25, height=15, font=self.fontFixedsys25, bg="Black", fg="white")
 
         # BOTÃOES DE COMPRA DOS ITENS
-        self.bt1 = Button(self.root, width=25, height=7, bg="#ec352e",
+        self.bt1 = Button(self.canvas_line1, width=25, height=7, bg="#ec352e",
                           fg="Black", font=self.fontFixedsys15)
-        self.bt2 = Button(self.root, width=25, height=7, bg="#ec352e",
+        self.bt2 = Button(self.canvas_line1, width=25, height=7, bg="#ec352e",
                           fg="Black", font=self.fontFixedsys15)
-        self.bt3 = Button(self.root, width=25, height=7, bg="#ec352e",
+        self.bt3 = Button(self.canvas_line1, width=25, height=7, bg="#ec352e",
                           fg="Black", font=self.fontFixedsys15)
-        self.bt4 = Button(self.root, width=25, height=7, bg="#ec352e",
+        self.bt4 = Button(self.canvas_line2, width=25, height=7, bg="#ec352e",
                           fg="Black", font=self.fontFixedsys15)
-        self.bt5 = Button(self.root, width=25, height=7, bg="#ec352e",
+        self.bt5 = Button(self.canvas_line2, width=25, height=7, bg="#ec352e",
                           fg="Black", font=self.fontFixedsys15)
-        self.bt6 = Button(self.root, width=25, height=7, bg="#ec352e",
+        self.bt6 = Button(self.canvas_line2, width=25, height=7, bg="#ec352e",
                           fg="Black", font=self.fontFixedsys15)
 
         # LISTA DE LAYAOT DOS BOTÕES
-        self.listBt = [[self.bt1, self.bt2, self.bt3], [self.bt4, self.bt5, self.bt6]]
+        self.listBt = [[self.bt1, self.canvas_div1_h_1, self.bt2, self.canvas_div1_h_2,self.bt3],
+                       [self.bt4, self.canvas_div2_h_1, self.bt5, self.canvas_div2_h_2, self.bt6]]
 
         # DISPLAY MONEY
-        self.c1 = Canvas(self.root, width=80, height=80, highlightbackground="Black", bg="black")
-        self.c2 = Canvas(self.root, width=80, height=80, highlightbackground="Black", bg="black")
-        self.c3 = Canvas(self.root, width=80, height=80, highlightbackground="Black", bg="black")
-        self.c4 = Canvas(self.root, width=80, height=80, highlightbackground="Black", bg="black")
+        self.c1 = Canvas(self.canvas_line_display, width=80, height=80, highlightbackground="Black", bg="black")
+        self.c2 = Canvas(self.canvas_line_display, width=80, height=80, highlightbackground="Black", bg="black")
+        self.c3 = Canvas(self.canvas_line_display, width=80, height=80, highlightbackground="Black", bg="black")
+        self.c4 = Canvas(self.canvas_line_display, width=80, height=80, highlightbackground="Black", bg="black")
         self.displayMoney = [self.c1, self.c2, self.c3, self.c4]
 
         # BOTÃO DE ATUALIZAÇÃO DOS ITENS
@@ -1654,12 +1684,14 @@ class TelaItens:
         self.image = PhotoImage(
             file="DirPNG/continue.png"
         )
-        self.btContinuar = Button(self.root, image=self.image, width=400, height=200, bg="black", border=0)
+        self.btContinuar = Button(self.canvas_bts, image=self.image, width=400, height=200, bg="black", border=0)
 
         # BOTÃO PARA VOLTAR
         self.backPNG = PhotoImage(
             file="DirPNG/backPNG.png")
-        self.btVolta = Button(self.root, image=self.backPNG, bg="Black")
+        self.btVolta = Button(self.root, image=self.backPNG, bg="Black", highlightbackground="Black", border=0)
+
+        ############################################
 
     def voltar(self):
         '''
@@ -1733,17 +1765,17 @@ class TelaItens:
         cont = 0
         for line in range(len(self.listBt)):
             for colunn in range(len(self.listBt[line])):
-                self.listBt[line][colunn].place(x=colunn * self.margeIN_x + self.margeEX_x,
-                                                y=line * self.margeIN_y + self.margeEX_y)
-                self.listBt[line][colunn]["bg"] = "#ec352e"
-                self.listBt[line][colunn]["text"] = f'''{self.listItens[cont].name.upper()}\n\nx{self.listItens[
-                    cont].quatidade}\n{self.listItens[cont].valor}U$'''
-                self.listBt[line][colunn].bind("<Enter>",
-                                               lambda event, item=self.listItens[cont]: self.setLABEitem(event, item))
-                self.listBt[line][colunn].bind("<Leave>", self.setLABEitem)
-                self.listBt[line][colunn]["command"] = partial(self.addItem, self.listItens[cont],
-                                                               self.listBt[line][colunn])
-                cont += 1
+                if (self.listBt[line][colunn].__class__ is Button):
+                    self.listBt[line][colunn]["bg"] = "#ec352e"
+                    self.listBt[line][colunn]["text"] = f'''{self.listItens[cont].name.upper()}\n\nx{self.listItens[
+                        cont].quatidade}\n{self.listItens[cont].valor}U$'''
+                    self.listBt[line][colunn].bind("<Enter>",
+                                                   lambda event, item=self.listItens[cont]: self.setLABEitem(event, item))
+                    self.listBt[line][colunn].bind("<Leave>", self.setLABEitem)
+                    self.listBt[line][colunn]["command"] = partial(self.addItem, self.listItens[cont],
+                                                                   self.listBt[line][colunn])
+                    cont += 1
+                self.listBt[line][colunn].pack(side=LEFT)
     def FORGETbts(self):
         for line in range(len(self.listBt)):
             for colunn in range(len(self.listBt[line])):
@@ -1757,33 +1789,46 @@ class TelaItens:
         self.root.attributes('-fullscreen',True)
         self.root.focus_force()
         self.root.title("Blood Blade Society")
+        self.root["bg"] = "Black"
 
         # Eventos TECLADOS
         self.root.bind("<Return>", lambda event: self.abrirTelaMain())
 
-        self.root["bg"] = "Black"
-        self.canvaLayaot.place(x=1170, y=150)
-        self.canvasImage.pack(anchor=CENTER)
-        self.lb.pack(anchor=CENTER)
-        self.btContinuar.place(x=320, y=600)
-        self.btContinuar["command"] = self.abrirTelaMain
-        self.lbTitulo.place(x=280, y=0)
-        self.lbSimbol.place(x=1020, y=700)
-
         self.btCicle.pack(anchor=NE)
+        self.canvasMain.pack()
+        self.btVolta.pack(side=BOTTOM, anchor=SW)
+
+        self.canvas_bts.pack(side=LEFT)
+        self.canvaLayaot.pack(side=LEFT)
+
+        # Canvas BTs
+        self.lbTitulo.pack()
+        self.canvas_div_v_1.pack()
+        self.canvas_line1.pack()
+        self.canvas_div_v_2.pack()
+        self.canvas_line2.pack()
+        self.canvas_div_v_3.pack()
+        self.btContinuar.pack()
+
+        # Canvas Itens
+        self.canvasImage.pack()
+        self.lb.pack()
+        self.canvas_line_display.pack()
+        self.lbSimbol.pack(side=LEFT)
+        for index in range(len(self.displayMoney)):
+            self.displayMoney[index].pack(side=LEFT)
+
+        self.btContinuar["command"] = self.abrirTelaMain
         self.btCicle["command"] = self.SetItensTela
+        self.btVolta["command"] = self.voltar
 
         #ADD BUTTONS
         self.ADDbts()
 
-        for index in range(len(self.displayMoney)):
-            self.displayMoney[index].place(x=90 * index + 1110, y=690)
-
-        self.btVolta.pack(side=BOTTOM, anchor=SW)
-        self.btVolta["command"] = self.voltar
-
         self.setDisplay(str(self.player.money), self.displayMoney)
+
         self.root.mainloop()
+
 class TelaTutor:
     def __init__(self):
         self.root = Tk()
